@@ -1,0 +1,35 @@
+# Python 虛擬環境
+venv/
+env/
+.venv/
+
+# Python 快取
+__pycache__/
+*.pyc
+*.pyo
+
+# Playwright 相關
+test-results/
+playwright-report/
+playwright/.cache/
+
+# 環境變數與敏感資訊
+.env
+.env.local
+*.env
+
+# 測試報告
+.pytest_cache/
+htmlcov/
+.coverage
+
+# IDE 設定
+.vscode/
+.idea/
+
+# 作業系統產生的檔案
+.DS_Store
+Thumbs.db
+
+# 日誌檔
+*.log
