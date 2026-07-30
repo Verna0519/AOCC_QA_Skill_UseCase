@@ -47,28 +47,43 @@
   .rule .rd{font-size:12.8px;color:var(--muted);line-height:1.6}
   @media(max-width:720px){.rules{grid-template-columns:1fr}}
 
+  /* 誤導提醒 callout */
+  .warn{background:var(--amberT);border:1px solid var(--amberB);border-left:4px solid var(--amber);
+    border-radius:10px;padding:13px 16px;margin:16px 0 2px;font-size:13.2px;color:var(--ink)}
+  .warn b{color:var(--amber)}
+
   /* pipeline */
   .flow{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
     padding:22px 20px;margin:16px 0;box-shadow:var(--shadow)}
-  .node{display:grid;grid-template-columns:88px 1fr 210px;gap:14px;align-items:center;padding:4px 0}
-  .actor{font-size:12.5px;color:var(--muted);text-align:right;padding-right:2px}
+  .node{display:grid;grid-template-columns:92px 1fr;gap:14px;align-items:stretch;padding:4px 0}
+  .actor{font-size:12.5px;color:var(--muted);text-align:right;padding:11px 2px 0 0}
   .actor.qa{color:var(--greenD);font-weight:700}
-  .box{position:relative;background:var(--panel2);border:1.5px solid var(--line);border-radius:10px;padding:11px 15px}
+  .box{position:relative;background:var(--panel2);border:1.5px solid var(--line);border-radius:10px;padding:12px 15px}
   .box .nm{font-family:Consolas,monospace;font-weight:700;font-size:13.5px;color:var(--ink)}
   .box .ds{font-size:12.3px;color:var(--muted);margin-top:2px}
   .box.human{border-style:dashed;border-color:var(--tintB);background:var(--tint)}
   .box.human .nm{color:var(--greenD)}
-  .out{font-size:12px;color:var(--muted);line-height:1.45}
-  .arrow{grid-column:2;color:var(--dim);text-align:center;height:14px;line-height:14px;font-size:13px}
+  .mrow{display:flex;gap:9px;margin-top:9px;padding-top:9px;border-top:1px dashed var(--line)}
+  .mrow:first-of-type{}
+  .ml{flex:0 0 46px;font-size:11px;color:var(--dim);padding-top:3px;letter-spacing:.5px}
+  .trigs{display:flex;flex-wrap:wrap;gap:5px;flex:1}
+  .trig{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:2px 8px;
+    font-size:11.2px;color:var(--muted)}
+  .box.human .trig{background:var(--panel)}
+  .outv{flex:1;font-size:12.3px;color:var(--muted);padding-top:1px}
+  .cond{flex:1;font-size:12.3px;color:var(--muted);padding-top:1px}
+  .arrow{grid-column:2;color:var(--dim);text-align:center;height:16px;line-height:16px;font-size:13px}
   @media(max-width:720px){
-    .node{grid-template-columns:64px 1fr;gap:10px}
-    .out{grid-column:2;padding-left:2px}
+    .node{grid-template-columns:56px 1fr;gap:9px}
+    .actor{font-size:11.5px}
     .arrow{grid-column:2}
   }
 
   .kb{margin-top:16px;background:var(--gtint);border:1px solid var(--line);border-radius:10px;
-    padding:12px 16px;font-size:13px;color:var(--muted)}
+    padding:13px 16px;font-size:13px;color:var(--muted)}
   .kb b{color:var(--greenD)}
+  .kb .kbtrig{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+  .kb .kbtrig .trig{background:var(--panel)}
 
   /* scenarios — 直接列出 */
   .keylegend{display:flex;gap:18px;flex-wrap:wrap;margin:6px 0 18px;font-size:12.5px;color:var(--muted)}
@@ -109,7 +124,7 @@
 
 <header>
   <h1>AOCCQA — 工作流程與使用情境</h1>
-  <div class="sub">上方是完整工作流程（泳道 + 回流），下方直接列出六個使用情境，每個情境標出「用哪幾步 · 跳過哪幾步 · 哪幾步重複」。</div>
+  <div class="sub">上方是預期的工作流程（泳道 + 回流），每步含「怎麼觸發」與「產出」；下方直接列出六個使用情境。</div>
   <div class="meta">ASUS EC（Magento）QA 測試案例產線 ｜ 七支核心 skill ｜ 對象：QA 新進 / 委外 / 流程導入</div>
 </header>
 
@@ -124,11 +139,24 @@
 
 <!-- ================= 工作流程 ================= -->
 <h2><span class="idx">§1</span> 工作流程（泳道 + 回流）</h2>
-<div class="note">左＝誰在做、中＝這步做什麼、右＝產出。實線往下是主流程；虛線框是需要人判斷的關卡。</div>
+<div class="warn">
+  ⚠️ <b>這不是固定順序、不是每次都要照跑。</b>此圖是「預期／典型」的串接，只是把七支 skill 的<b>常見接法</b>畫出來。實際用哪幾步依情境而定（見 §2）——步驟可<b>跳過</b>、可<b>回流重複</b>，每支 skill 也都能<b>單獨呼叫</b>。全線唯一強制的只有鐵則②：<b>規格沒確認不往下</b>；其餘都是「需要才叫」。下方每步的「觸發」就是你實際會怎麼叫它。
+</div>
+<div class="note">左＝誰在做；卡片內含 <b>怎麼觸發</b>（實際會說的話／觸發時機）與 <b>產出</b>。虛線框是需要人判斷的關卡。</div>
 
 <div class="flow">
   <div id="pipeline"></div>
-  <div class="kb">🔎 <b>aoccqa-knowledge-base</b> 不在流程順序裡，而是<b>全程可查</b>的共用知識庫：上面任何一步遇到名詞、狀態值、金額公式、系統連動不清楚時，都可查它（只取需要的那幾筆）。</div>
+  <div class="kb">
+    🔎 <b>aoccqa-knowledge-base</b> 不在流程順序裡，而是<b>全程可查</b>的共用知識庫：上面任何一步遇到名詞、狀態值、金額公式、系統連動不清楚時，都可查它（只取需要的那幾筆）。
+    <div class="kbtrig">
+      <span class="trig">這名詞／狀態值／錯誤訊息什麼意思</span>
+      <span class="trig">這金額／折扣公式怎麼算</span>
+      <span class="trig">這後台設定對應前台哪裡</span>
+      <span class="trig">Magento／AOM／EC 資料流</span>
+      <span class="trig">以前測過哪些／有沒有歷史單</span>
+      <span class="trig">某頁面有哪些區塊</span>
+    </div>
+  </div>
 </div>
 
 <!-- ================= 使用情境（直接列出） ================= -->
@@ -156,16 +184,24 @@
 </div>
 
 <script>
-/* ---------- 8 個流程節點 ---------- */
+/* ---------- 8 個流程節點：trig=觸發說法(skill) / cond=觸發時機(人工關卡) ---------- */
 const NODES = [
-  {id:"parser",  actor:"Skill",  qa:false, short:"aoccqa-fsd-parser",       nm:"① aoccqa-fsd-parser",       ds:"解析全部來源，原始檔只在這裡讀一次", out:"需求清單 + 釐清問題"},
-  {id:"confirm", actor:"QA + PM",qa:true,  short:"規格確認",                nm:"規格確認（人工）",          ds:"唯一必經人工關卡，沒結論不往下",     out:"釐清結論", human:true},
-  {id:"rule",    actor:"Skill",  qa:false, short:"aoccqa-rule-loader",      nm:"② aoccqa-rule-loader",      ds:"只載這次涉及的市場規則",             out:"規則清單 Rule Context"},
-  {id:"tc",      actor:"Skill",  qa:false, short:"aoccqa-tc-generator",     nm:"③ aoccqa-tc-generator",     ds:"引用需求 ID，不重開原始檔",          out:"第一版 Test Case + 追溯表"},
-  {id:"expand",  actor:"Skill",  qa:false, short:"aoccqa-scenario-expander",nm:"④ aoccqa-scenario-expander",ds:"以既有案例為底，補覆蓋缺口",        out:"補強案例草稿"},
-  {id:"review",  actor:"Skill",  qa:false, short:"aoccqa-quality-reviewer", nm:"⑤ aoccqa-quality-reviewer", ds:"只用原文查核，不看需求清單",         out:"三段報告 + 交付判定"},
-  {id:"verdict", actor:"QA",     qa:true,  short:"判定處置",                nm:"判定處置（人工）",          ds:"接受 / 不接受(記理由) / 需再確認",   out:"定稿案例清單", human:true},
-  {id:"export",  actor:"Skill",  qa:false, short:"aoccqa-case-exporter",    nm:"⑥ aoccqa-case-exporter",    ds:"任何階段可單獨叫，需附 Jira 單",     out:"xlsx 交付檔 + 欄位狀況"}
+  {id:"parser",  actor:"Skill",  qa:false, short:"aoccqa-fsd-parser",       nm:"① aoccqa-fsd-parser",       ds:"解析全部來源，原始檔只在這裡讀一次", out:"需求清單 + 釐清問題",
+    trig:["幫我做測試需求分析","這份 FSD／PRD 要測什麼","規格有沒有缺漏／矛盾","改版了、最終版是哪個","截圖跟內文對不上"]},
+  {id:"confirm", actor:"QA + PM",qa:true,  short:"規格確認",                nm:"規格確認（人工）",          ds:"唯一必經人工關卡，沒結論不往下",     out:"釐清結論", human:true,
+    cond:"觸發時機：parser 產出釐清清單後，QA 帶問題找 PM／RD 確認。非指令觸發，是流程強制關卡（鐵則②）。"},
+  {id:"rule",    actor:"Skill",  qa:false, short:"aoccqa-rule-loader",      nm:"② aoccqa-rule-loader",      ds:"只載這次涉及的市場規則",             out:"規則清單 Rule Context",
+    trig:["這功能要上哪些國家／站台","各國幣別／稅／語系／時區規則","Guest／Member／Admin 權限規則","哪些後台設定影響 Pass／Fail"]},
+  {id:"tc",      actor:"Skill",  qa:false, short:"aoccqa-tc-generator",     nm:"③ aoccqa-tc-generator",     ds:"引用需求 ID，不重開原始檔",          out:"第一版 Test Case + 追溯表",
+    trig:["幫我寫測試案例","產 test case／測項初稿","規劃測試覆蓋","正向／負向／邊界要測什麼","把 Requirement 轉成測項"]},
+  {id:"expand",  actor:"Skill",  qa:false, short:"aoccqa-scenario-expander",nm:"④ aoccqa-scenario-expander",ds:"以既有案例為底，補覆蓋缺口",        out:"補強案例草稿",
+    trig:["舊測案不夠完整、想補測項","回歸測試要補哪些","狀態轉換／身分別有沒有漏測","拿既有 xlsx 補強覆蓋"]},
+  {id:"review",  actor:"Skill",  qa:false, short:"aoccqa-quality-reviewer", nm:"⑤ aoccqa-quality-reviewer", ds:"只用原文查核，不看需求清單",         out:"三段報告 + 交付判定",
+    trig:["幫我審這份分析報告","有沒有漏測","有沒有捏造／超出文件的測項","技術值／公式／錯誤訊息有沒有抄錯","Gate 2 審查"]},
+  {id:"verdict", actor:"QA",     qa:true,  short:"判定處置",                nm:"判定處置（人工）",          ds:"接受 / 不接受(記理由) / 需再確認",   out:"定稿案例清單", human:true,
+    cond:"觸發時機：reviewer 交付判定後，QA 決定 接受／不接受(記理由)／需再確認。人工決策，非指令觸發。"},
+  {id:"export",  actor:"Skill",  qa:false, short:"aoccqa-case-exporter",    nm:"⑥ aoccqa-case-exporter",    ds:"任何階段可單獨叫，需附 Jira 單",     out:"xlsx 交付檔 + 欄位狀況",
+    trig:["案例匯出成 Excel","套 AOCC 官方模板","產 Test_Case 檔","接 Jira 單打包成交付檔"]}
 ];
 
 /* ---------- 6 個使用情境 ---------- */
@@ -196,21 +232,25 @@ const SCN = [
    key:"視需求任叫一支。此圖示範 exporter 單獨出檔；reviewer/parser 亦同理。"}
 ];
 
-/* ---------- render pipeline（靜態完整流程） ---------- */
+/* ---------- render pipeline（靜態完整流程，含觸發＋產出） ---------- */
 const pipe = document.getElementById("pipeline");
 NODES.forEach((nd,i)=>{
   const node=document.createElement("div");
   node.className="node";
-  node.innerHTML=`
-    <div class="actor ${nd.qa?'qa':''}">${nd.actor}</div>
-    <div class="box ${nd.human?'human':''}">
-      <div class="nm">${nd.nm}</div><div class="ds">${nd.ds}</div>
-    </div>
-    <div class="out">${nd.out}</div>`;
+  let inner=`<div class="nm">${nd.nm}</div><div class="ds">${nd.ds}</div>`;
+  if(nd.human){
+    inner+=`<div class="mrow"><span class="ml">觸發</span><div class="cond">${nd.cond}</div></div>`;
+    inner+=`<div class="mrow"><span class="ml">產出</span><div class="outv">${nd.out}</div></div>`;
+  }else{
+    const chips=nd.trig.map(t=>`<span class="trig">${t}</span>`).join("");
+    inner+=`<div class="mrow"><span class="ml">觸發</span><div class="trigs">${chips}</div></div>`;
+    inner+=`<div class="mrow"><span class="ml">產出</span><div class="outv">${nd.out}</div></div>`;
+  }
+  node.innerHTML=`<div class="actor ${nd.qa?'qa':''}">${nd.actor}</div><div class="box ${nd.human?'human':''}">${inner}</div>`;
   pipe.appendChild(node);
   if(i<NODES.length-1){
     const a=document.createElement("div");a.className="node";a.style.padding="0";
-    a.innerHTML=`<div></div><div class="arrow">↓</div><div></div>`;
+    a.innerHTML=`<div></div><div class="arrow">↓</div>`;
     pipe.appendChild(a);
   }
 });
