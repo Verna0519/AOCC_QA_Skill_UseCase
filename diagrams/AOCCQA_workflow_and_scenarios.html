@@ -100,7 +100,16 @@
     display:flex;align-items:center;justify-content:center;font-size:13.5px;font-weight:700}
   .scn .badge{font-size:11.5px;font-weight:700;background:var(--tint);color:var(--greenD);
     padding:2px 11px;border-radius:20px;border:1px solid var(--tintB)}
-  .scn .cx{color:var(--muted);font-size:13.3px;margin:8px 0 12px}
+  .scn .cx{color:var(--muted);font-size:13.3px;margin:8px 0 10px}
+  .scn .ex{font-size:12.5px;color:var(--greenD);margin:8px 0 0;padding:7px 11px;
+    background:var(--tint);border:1px solid var(--tintB);border-radius:8px;line-height:1.55}
+  .scn .kbref{font-size:12.3px;color:var(--muted);margin:9px 0 12px;line-height:1.6}
+  .scn .kbref b{color:var(--greenD);font-weight:600}
+  .whyskip{margin-top:12px;background:var(--gtint);border:1px solid var(--line);border-radius:10px;padding:11px 15px}
+  .whyskip .wt{font-weight:700;font-size:12.8px;color:var(--amber);margin-bottom:6px;display:flex;align-items:center;gap:6px}
+  .whyskip ul{margin:0;padding-left:18px}
+  .whyskip li{font-size:12.4px;color:var(--muted);margin:6px 0;line-height:1.65}
+  .whyskip li b{color:var(--ink);font-family:Consolas,monospace;font-size:11.8px}
   .strip{display:flex;flex-wrap:wrap;align-items:center;gap:5px}
   .step{font-size:11.8px;padding:4px 10px;border-radius:7px;border:1px solid var(--line);white-space:nowrap}
   .step.use{background:var(--tint);color:var(--greenD);border-color:var(--tintB)}
@@ -187,7 +196,7 @@
 
 <!-- ================= 使用情境（直接列出） ================= -->
 <h2><span class="idx">§2</span> 使用情境</h2>
-<div class="note">同一條產線，依情境決定哪幾步會用、跳過或重複——不是每次都七支全用。每列色塊對應上方流程的同一步。</div>
+<div class="note">同一條產線，依情境決定哪幾步會用、跳過或重複——不是每次都七支全用。每個情境含<b>真實功能實例</b>（取自 aoccqa-knowledge-base）、<b>知識庫參照</b>、以及<b>「為什麼跳過仍完整」</b>的理由。每列色塊對應上方流程的同一步。</div>
 <div class="keylegend">
   <span><i class="lg-use">會用</i> 這情境會執行</span>
   <span><i class="lg-human">人工關卡</i> QA/PM 判斷</span>
@@ -232,30 +241,59 @@ const NODES = [
 
 /* ---------- 6 個使用情境 ---------- */
 const SCN = [
-  {n:"1", title:"新需求 · 跨市場 · 完整流程", badge:"七支全用",
-   ctx:"全新功能，涉及多個市場與產品型態，且有相鄰既有案例可當補強基準。",
+  {n:"1", title:"全新功能 × 跨市場首發，且有相鄰功能可當補強基準", badge:"七支全用",
+   ex:"實例：Customized Bundle 首次導入 EU 多站 —— 橫跨 90PN／Buy／Cart／Wishlist 多頁，涉及 +$／Save$／Sale Price 價格計算與各國稅則（知識庫 23 張歷史單）。",
+   ctx:"全新功能、要上多個市場與產品型態，且已有相鄰功能（Plus Sale／Freebie）的既有案例可當補強 baseline。",
+   kbref:"觸及涵蓋維度：<b>價格與計算 · 跨國／多語系／時區 · 前後台連動 · 跨系統資料流</b>；FSD＝EU ECSA-6 Order。",
    states:{parser:"use",confirm:"use",rule:"use",tc:"use",expand:"use",review:"use",verdict:"use",export:"use"},
-   key:"最完整的一條，七支＋知識庫全上場。"},
-  {n:"2", title:"新需求 · 單一市場 · 無既有案例", badge:"最常見",
-   ctx:"全新功能，只有一個市場，也沒有可比對的舊案例 → 規則整備與補強都不用。",
+   skipwhy:[],
+   key:"最完整的一條，七支＋知識庫全上場——多市場需 rule-loader、有既有案例可補故需 expander。"},
+  {n:"2", title:"全新功能 × 單一市場、查無既有案例可比對", badge:"最常見",
+   ex:"實例：單一站台新增一個 Buy Page 元件／AI Assistant 入口，只上一國、知識庫查無相似歷史單。",
+   ctx:"全新功能，只有一個市場，也沒有可比對的舊案例。日常最高頻的一種。",
+   kbref:"覆蓋改由 tc-generator 對照 <b>12 個涵蓋維度</b> 逐項建齊，reviewer 再獨立重讀原文查漏。",
    states:{parser:"use",confirm:"use",rule:"skip",tc:"use",expand:"skip",review:"use",verdict:"use",export:"use"},
-   key:"日常最高頻。跳過 rule-loader 與 scenario-expander。"},
-  {n:"3", title:"既有功能異動 · 補強路徑", badge:"以補強為主",
-   ctx:"既有功能加市場／改參數／改流程，已有完整舊案例 → 補強為主，不重建第一版。",
+   skipwhy:[
+     {s:"aoccqa-rule-loader", why:"只有單一市場 → 沒有「跨市場規則差異」要載。它的產出（跨市場 Rule Applicability Matrix）在單市場下退化成單一列，該市場規則已包含在 parser 的需求裡，跳過<b>不會少掉任何規則資訊</b>。"},
+     {s:"aoccqa-scenario-expander", why:"expander 的設計前提是「要有既有案例當 baseline」才能比對缺口；無底可比。覆蓋完整性改由 <b>tc-generator（對照 12 涵蓋維度建齊）＋ reviewer（獨立查漏）</b> 兩關共同保證，不靠補強一樣完整。"}
+   ],
+   key:"跳過 rule-loader 與 scenario-expander，覆蓋由 tc-generator＋reviewer 撐住。"},
+  {n:"3", title:"既有成熟功能異動 × 以既有案例為底做補強", badge:"以補強為主",
+   ex:"實例：Payment 新增一種付款方式（知識庫已累積 61 張歷史單）／Cart 調整流程（23 張）——只是加市場、改參數或改流程。",
+   ctx:"既有功能異動，已有完整且通過的舊案例，重點是補「異動帶來的新增覆蓋」而非重建第一版。",
+   kbref:"以既有案例為 <b>Coverage Baseline</b>，只補新增缺口：<b>新狀態轉換 · 新身分別（Guest／Member）· 新邊界值</b>。",
    states:{parser:"use",confirm:"use",rule:"use",tc:"skip",expand:"use",review:"use",verdict:"use",export:"use"},
-   key:"跳過 tc-generator（不重建），改走 scenario-expander 補缺口。"},
-  {n:"4", title:"規格不足 · 早停", badge:"只用一支",
-   ctx:"fsd-parser 回傳 BLOCKED，代表資料不足以建立可測需求 → 後面全部不做，先補件。",
+   skipwhy:[
+     {s:"aoccqa-tc-generator", why:"第一版案例早已存在且通過，重建會打掉既有<b>編號與追溯</b>、徒增風險。改走 scenario-expander 只對「差異」補測 → 最終覆蓋＝<b>既有案例（維持）＋ 差異補強</b>，是完整覆蓋而非少測。"}
+   ],
+   key:"跳過 tc-generator（不重建第一版），改走 scenario-expander 補缺口。"},
+  {n:"4", title:"規格資料不足 × parser 判 BLOCKED，早停補件", badge:"只用一支",
+   ex:"實例：Country Rollout 只給了 Checkout 頁，卻缺各國稅則／金流／語系設定，無法建立可測需求。",
+   ctx:"fsd-parser 判定資料不足以建立可測需求，回傳 BLOCKED；後面全部不做，先回頭補件。",
+   kbref:"缺口對照涵蓋維度：<b>跨國／多語系／時區 · 價格與計算 · 後台設定／匯入驗證</b> 尚無來源可測。",
    states:{parser:"use",confirm:"use",rule:"skip",tc:"skip",expand:"skip",review:"skip",verdict:"skip",export:"skip"},
+   skipwhy:[
+     {s:"後續全部步驟", why:"這不是「省略覆蓋」，而是<b>還沒有可被覆蓋的需求</b>。鐵則②——規格沒確認不往下；此時硬產案只會生出沒有依據的測項，reviewer 必砍、等於白工。補件後回到情境 1／2 重跑即可完整。"}
+   ],
    key:"鐵則②實作：規格沒確認，一步都不往下。confirm 這裡是「補件與釐清」。"},
-  {n:"5", title:"審查判定 REWORK · 回流", badge:"兩支重複",
+  {n:"5", title:"審查發現漏測 × 回流補正（REWORK 迴圈）", badge:"兩支重複",
+   ex:"實例：reviewer 對照 FSD ECSA-6 Order 原文，發現漏了某涵蓋維度（如邊界值或跨國稅），判 REWORK 要求補測。",
    ctx:"reviewer 找到漏測／沒依據的案例 → tc-generator 只補差異、reviewer 只查新增，不重跑整條。",
+   kbref:"回流只針對缺的那個<b>涵蓋維度</b>補測；其餘已 PASS 的案例維持不動。",
    states:{parser:"skip",confirm:"skip",rule:"skip",tc:"repeat",expand:"skip",review:"repeat",verdict:"repeat",export:"use"},
+   skipwhy:[
+     {s:"parser／rule-loader 等前段", why:"需求與規則在第一輪已完成、且<b>沒有變更</b> → 不重跑。覆蓋完整性由「<b>新增部分被查核 ＋ 原有部分已 PASS</b>」共同保證；重跑前段只會重複勞動，還可能動到已穩定的案例。"}
+   ],
    key:"回流迴圈：tc-generator ⇄ quality-reviewer 來回多次，直到 QA 判定「接受」。"},
-  {n:"6", title:"單點呼叫", badge:"只用其中一支",
-   ctx:"skill 可獨立呼叫、不靠上游。常見：exporter 只出檔／reviewer 健檢／parser 只整理釐清問題。",
+  {n:"6", title:"單點呼叫 × 只借用其中一支 skill 的能力", badge:"只用其中一支",
+   ex:"實例：exporter 把已完成案例套 AOCC 官方模板、接 Jira 單出檔／reviewer 健檢一份既有 xlsx／parser 只整理釐清問題給 PM。",
+   ctx:"skill 責任單一、可獨立呼叫，不靠上游。這不是產線的一輪，而是借用單項能力。",
+   kbref:"—",
    states:{parser:"skip",confirm:"skip",rule:"skip",tc:"skip",expand:"skip",review:"skip",verdict:"skip",export:"use"},
-   key:"視需求任叫一支。此圖示範 exporter 單獨出檔；reviewer/parser 亦同理。"}
+   skipwhy:[
+     {s:"其餘步驟", why:"本情境不是要跑完整產線，而是<b>單獨使用某一支的能力</b>，故其他步驟本就不在需求範圍內（是「非必要」而非「漏做」）。"}
+   ],
+   key:"視需求任叫一支。此圖示範 exporter 單獨出檔；reviewer／parser 亦同理。"}
 ];
 
 /* ---------- render pipeline（靜態完整流程，含觸發＋產出） ---------- */
@@ -315,12 +353,22 @@ SCN.forEach(s=>{
     if(idx<NODES.length-1) mini.push(`<div class="mnode" style="padding:0"><div></div><div class="marrow">↓</div></div>`);
   });
 
+  const kbhtml = (s.kbref && s.kbref!=="—") ? `<div class="kbref"><b>🗂 知識庫參照：</b>${s.kbref}</div>` : "";
+  let whyhtml="";
+  if(s.skipwhy && s.skipwhy.length){
+    const items=s.skipwhy.map(w=>`<li><b>${w.s}</b>：${w.why}</li>`).join("");
+    whyhtml=`<div class="whyskip"><div class="wt">💡 為什麼可以這樣跳，卻仍完整？</div><ul>${items}</ul></div>`;
+  }
+
   const el=document.createElement("div");
   el.className="scn";
   el.innerHTML=`
     <div class="ct"><span class="n">${s.n}</span>${s.title}<span class="badge">${s.badge}</span></div>
+    <div class="ex">${s.ex}</div>
     <div class="cx">${s.ctx}</div>
+    ${kbhtml}
     <div class="strip">${parts.join("")}</div>
+    ${whyhtml}
     <div class="keyline"><b>重點：</b>${s.key}</div>
     <details class="flowdrop">
       <summary><span class="tri">▶</span>展開這個情境的流程圖</summary>
