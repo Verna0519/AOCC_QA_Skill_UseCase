@@ -1,0 +1,960 @@
+{
+  "name": "Definition_AOCCQA_ecpages",
+  "description": "ASUS EC 前台頁面定義:每頁的用途、主要區塊、涉及功能與來源。區塊名對應 Definition_AOCCQA_glossary 名詞。",
+  "version": "1.0",
+  "generated_date": "2026-07-24",
+  "page_count": 27,
+  "pages": [
+    {
+      "page": "Buy Page(購買頁,含 simple / configurable-CNF)",
+      "aliases": [
+        "Product Buy Page",
+        "商品購買頁",
+        "PDP",
+        "simple buy page",
+        "configurable buy page",
+        "CNF Buy Page"
+      ],
+      "definition_zh": "單一商品的購買頁,消費者在此檢視商品規格、價格與促銷、選擇規格(configurable/CNF 可選顏色尺寸等屬性)與組合/加購,並加入購物車或預購。分 simple(無規格)與 configurable(CNF,有規格屬性)兩型。",
+      "key_sections": [
+        "Floating bar (Buy Page)",
+        "CNF 選項按鈕狀態",
+        "Price Difference Amount",
+        "CNF Buy Page key spec attribute enhancement",
+        "Warning icon (Config Option)",
+        "Config Change Notification Popup",
+        "Main Notification Bar",
+        "Secondary Notification Bar",
+        "SPEC 錨點連結",
+        "SPEC 屬性顯示",
+        "Game FPS 區塊",
+        "Display The Energy Label Section On Buy Page",
+        "Display The Adapter Icon Section On Buy Page",
+        "Buy Page Price Check",
+        "Add to wishlist",
+        "USP (Unique Selling Proposition) Block",
+        "Free Shipping message",
+        "Promotion Banner Info (Top/Bottom)",
+        "Active Banners",
+        "+$ (加價)",
+        "Save$ (省下)",
+        "Sale Price",
+        "Original Price",
+        "隱藏 bundle set 的價格條件",
+        "Special Price for Bundle",
+        "30天最低價",
+        "Catalog Price",
+        "Tier Price",
+        "min_price",
+        "會員優惠價 (Guest/Member/VIP Price)",
+        "Chat with Support",
+        "Estimated shipment date (ETA)",
+        "ETA / Delivery Options popup",
+        "Add more protection",
+        "Add-ons Recommendation Section",
+        "Asus warranty program 區塊",
+        "購物車商品導回 Buy Page 預選 (URL 參數)",
+        "Cross-Sale Product Card"
+      ],
+      "features": [
+        "AIA(AI Assistant)",
+        "Buy Page Banner 排程維護",
+        "Buy Page Tech Spec 錨點",
+        "Buy Page 浮動列設計",
+        "Buy Page 規格按鈕設計",
+        "CNF Buy Page 關鍵規格屬性強化",
+        "Customized Bundle",
+        "EU 30天最低價(Omnibus)",
+        "EU 消費者保護指令-最低價顯示",
+        "Energy Label 自動同步至 Buy Page",
+        "FPS 顯示邏輯",
+        "Payment",
+        "Plus Sale",
+        "Private Store",
+        "Rating & Review(BazaarVoice)",
+        "SPEC detail",
+        "充電器 Adapter Icon 顯示",
+        "免運訊息與規則",
+        "會員優惠價",
+        "末端配送商由 UPS 改為 DHL",
+        "購物車商品連結預選",
+        "顯示預計出貨日 (ETA)"
+      ],
+      "sources": [
+        "(EU) Price reduction under the EU consumer protection directive_TestCase_20230714.xlsx",
+        "(MCC1)Rating & Review Status auto-sync up with Official Site  ROG Site for EC buy page_testcase_ESDK_0524.xlsx",
+        "AIA_MCC1_EC magento page導入AI Assistant服務_TestCase_20250908 .xlsx",
+        "Buy Page design enhancement (Tech Spec anchor)_MCC1_Testcase_20260508.xlsx",
+        "Buy Page_FPS display logic optimization_TestCase_EU_20250303.xlsx",
+        "Buy page spec attribute selection design color & effect change_TestCase_20220518.xlsx",
+        "Configurable product link in shopping cart - Redirect to specific SKUS2_Test Case_20220511.xlsx",
+        "Configurable product link in shopping cart - Redirect to specific SKU_Test Case_20220422.xlsx",
+        "Customized Bundle Adaption_Phase2_TestCase_EU_20240311.xlsx",
+        "Customized Bundle_TestCase_HU_20220920.xlsx",
+        "Digital WEP - Plus Sale_TestCase_CZ_20250428.xlsx",
+        "Digital WEP - Plus Sale_Testcase_HU_20240710.xlsx",
+        "Display special price with discount effect for customer group info_TestCase_MCC1_20231213.xlsx",
+        "Display the discount price template for configurable product (out-of-stock status)_TestCase_EU13_20231013.xlsx",
+        "EC Buy Page key spec attribute design and logic enhancement (configurable product)_EU_Testcase_20260703.xlsx",
+        "EU10PLHUCZ_ Energy Efficiency Logo  Label image auto sync up to Buy Page_Test Case_20260421.xlsx",
+        "EU_Add adapter icon on EC Buy Page_Test Case_20260415.xlsx",
+        "EU_Buy Page banner maintenance mechanism for multiple products - Test Case_20260418.xlsx",
+        "Free Shipping message and Rules_TestCase_20211110.xlsx",
+        "HU_Add new payment method - InstaCash BNPL service_Test Case_20250714.xlsx",
+        "Last mile delivery carrier partner change (from UPS to DHL)_EU10_Testcase_20260305.xlsx",
+        "Plus sale_TestCase_EU_20220209.xlsx",
+        "Price reduction under the EU consumer protection directive_Shopping Cart_TestCase_EU13_20231228.xlsx",
+        "SPEC detail_TestCase_20211111.xlsx",
+        "SheerID integration for EDU Private Store authentication_Test Case_20260604.xlsx",
+        "The price and buy button float bar design on Buy Page_TestCase_20220422.xlsx",
+        "[EC][QA] [UAT-QA][EU] Display estimated shipment date (ETA) _Test Case_20240925.xlsx",
+        "[EU]Scheduling mechanism for customized bundle setup_DE&FR&ES&PL&CZ_Testcase_20251029.xlsx",
+        "[UAT-QA][MCC1] customize bundle special price檢核未依local time_ptplfi_testcase_20250116-1.xlsx",
+        "會員優惠價_TestCase_20211208.xlsx"
+      ],
+      "id": "PAGE-01"
+    },
+    {
+      "page": "Category / L3 / L4 Page(商品分類頁)",
+      "aliases": [
+        "Category Page",
+        "L3 Page",
+        "L4 Page",
+        "商品列表頁",
+        "分類頁",
+        "Product Listing Page"
+      ],
+      "definition_zh": "依產品分類(L3/L4 層級)列出多張產品卡的清單頁,消費者在此瀏覽、篩選商品並進入 Buy Page。產品卡狀態按鈕(buy/pre_order/back_order/notify_me)與顏色名稱、促銷資訊等於此呈現。",
+      "key_sections": [
+        "Color Swatch / dot swatch",
+        "Color name (Product Card)",
+        "Promotion info on relative pages",
+        "CTA Button 狀態"
+      ],
+      "features": [
+        "EC Product Card 顏色名稱",
+        "WEP Single Buy",
+        "促銷資訊跨頁顯示"
+      ],
+      "sources": [
+        "(HU)WEP Single Buy_Test Case_20240401 (1).xlsx",
+        "EU_ Add color name for color option on EC Product Card_TestCase_20260625.xlsx",
+        "Promotion info on relative pages_TestCase_20210602.xlsx",
+        "WEP single buy_TestCase_20211112.xlsx"
+      ],
+      "id": "PAGE-02"
+    },
+    {
+      "page": "Product Card(產品卡)",
+      "aliases": [
+        "產品卡",
+        "Product Card",
+        "商品卡片"
+      ],
+      "definition_zh": "出現在 Category/搜尋/推薦等清單中的商品縮圖卡片,顯示商品名稱、顏色名稱與色塊、價格、促銷與依庫存/設定變化的狀態按鈕(buy/pre_order/back_order/notify_me)。",
+      "key_sections": [
+        "Color Swatch / dot swatch",
+        "Color name (Product Card)",
+        "CTA Button 狀態",
+        "MOM Pre-Order tag / Backorder tag",
+        "Cross-Sale Product Card",
+        "WEP Product Card"
+      ],
+      "features": [
+        "EC Product Card 顏色名稱",
+        "Pre-Order",
+        "Rating & Review(BazaarVoice)",
+        "WEP Single Buy"
+      ],
+      "sources": [
+        "(HU)WEP Single Buy_Test Case_20240401 (1).xlsx",
+        "(MCC1)Rating & Review Status auto-sync up with Official Site  ROG Site for EC buy page_testcase_ESDK_0524.xlsx",
+        "Digital WEP - Single Buy_TestCase_CZ_20250407.xlsx",
+        "EU_ Add color name for color option on EC Product Card_TestCase_20260625.xlsx",
+        "Pre order_TestCase_HU_20220926.xlsx",
+        "Pre order_TestCase_PL_20220926.xlsx",
+        "Virtual WEP Single Buy_TestCase_PL_20240506.xlsx",
+        "WEP single buy_TestCase_20211112.xlsx"
+      ],
+      "id": "PAGE-03"
+    },
+    {
+      "page": "Cart Page(購物車頁)",
+      "aliases": [
+        "Shopping Cart",
+        "購物車",
+        "Cart"
+      ],
+      "definition_zh": "消費者檢視與調整已加入商品的頁面,顯示各商品行(含 bundle 主/子商品、贈品、加購與 WEP 保固)、數量、原價/折扣與小計,提供移至願望清單、移除、數量調整及前往結帳。",
+      "key_sections": [
+        "Cart row group",
+        "Cart line (sub-product)",
+        "Cart Number Selection",
+        "Save amount / Original Price 顯示",
+        "Cart page special price 生效時間",
+        "Cart page 贈品行顯示",
+        "Pre-Order Warning in Shopping Cart",
+        "Pre-order item restriction alert",
+        "付款方式不可用擋單訊息",
+        "Item quantity warning (Cart Page)",
+        "Warranty product is already in the shopping cart",
+        "WEP Cart 商品行",
+        "Keep products in cart for payment failed",
+        "pending_payment",
+        "Payment failed redirect to Cart page",
+        "Free gift added!"
+      ],
+      "features": [
+        "Cart Page 數量選擇",
+        "Cart/Checkout 顯示原價與折扣",
+        "Customized Bundle",
+        "Freebie",
+        "Payment",
+        "Pre-Order",
+        "WEP Single Buy",
+        "付款未完成保留購物車",
+        "購物車數量警告"
+      ],
+      "sources": [
+        "(HU)WEP Single Buy_Test Case_20240401 (1).xlsx",
+        "Add new payment method - Bancontact_BE_Testcase_20260212.xlsx",
+        "Add new payment method - iDeal_NL_Testcase_20260223.xlsx",
+        "Cart page quantity selection behavior design change_MCC1_TestCase_20260323.xlsx",
+        "Cart page special price生效時間非local time_MCC1_TestCase_20240826.xlsx",
+        "Customized Bundle Adaption_Phase2_TestCase_EU_20240311.xlsx",
+        "Digital WEP - Single Buy_TestCase_CZ_20250407.xlsx",
+        "EU_Pre-order payment and invoice process adjustment_Test Case_20260306.xlsx",
+        "Freebies for specific customer group users need to be added to cart automatically after login_EU_Testcase_20250121.xlsx",
+        "Freebies for specific customer group users need to be added to cart automatically after login_EU_Testcase_20260427.xlsx",
+        "HU_Add new payment method - InstaCash BNPL service_Test Case_20250714.xlsx",
+        "Item quantity warning on the cart page_TestCase_20211207.xlsx",
+        "Item quantity warning on the cart page_TestCase_20220720.xlsx",
+        "Item quantity warning on the cart page_TestCase_HU_20230308.xlsx",
+        "Item quantity warning on the cart page_TestCase_IT_20230308.xlsx",
+        "Keep the products in shopping cart for payment failed (not completed) orders_EU10_Testcase_20260525.xlsx",
+        "PL_Installment payment method_Test Case_20251016.xlsx",
+        "PL_Payment gateway partner & integration change (with imoje)_TestCase_20260420.xlsx",
+        "PT_ Add new payment method_Multibanco payment_TestCase_20260401.xlsx",
+        "Pre order_TestCase_HU_20220926.xlsx",
+        "Pre order_TestCase_PL_20220926.xlsx",
+        "Pre-order payment method restriction (Paypal and CB card)_TestCase_EU10_20251216.xlsx",
+        "Show original price and discount amount in Cart page and Checkout page_TestCase_EU13_20231211.xlsx",
+        "TreviPay_TestCase_20230719.xlsx",
+        "Virtual WEP Single Buy_TestCase_PL_20240506.xlsx",
+        "WEP single buy_TestCase_20211112.xlsx",
+        "[UAT-QA][MCC1] customize bundle special price檢核未依local time_ptplfi_testcase_20250116-1.xlsx"
+      ],
+      "id": "PAGE-04"
+    },
+    {
+      "page": "Mini Cart(小購物車)",
+      "aliases": [
+        "Mini Cart",
+        "小車",
+        "迷你購物車"
+      ],
+      "definition_zh": "頁首常駐的懸浮小購物車,快速預覽已加入商品與數量、金額,並可前往購物車或結帳。",
+      "key_sections": [
+        "Mini Cart (小車)"
+      ],
+      "features": [
+        "Mini Cart 設計調整"
+      ],
+      "sources": [
+        "Mini Cart Design Adjustment_MCC1_ROG_EC_Testcase_20250521.xlsx",
+        "Mini Cart Design Adjustment_MCC1_Testcase_20250514.xlsx"
+      ],
+      "id": "PAGE-05"
+    },
+    {
+      "page": "Add-on Page / Middle page(加購中間頁)",
+      "aliases": [
+        "Middle page",
+        "中間頁",
+        "加購頁",
+        "Add-on Page",
+        "Plus-sale middle page",
+        "WEP middle page"
+      ],
+      "definition_zh": "主商品加入購物車後,若有可加購的 plus-sale/Add-on/延伸保固(WEP)商品,導向的加購中間頁,消費者可於此加購或跳過後前往購物車。",
+      "key_sections": [
+        "Middle page",
+        "Add-on Page",
+        "Middle page 導向優先順序",
+        "Physical middle page / WEP middle page",
+        "Add-on Tag",
+        "Add more protection",
+        "Add-ons Recommendation Section",
+        "Asus warranty program 區塊",
+        "Page Summary Section",
+        "Relative price info",
+        "Switch to warranty & software / Switch to accessories",
+        "WEP default option (Standard / None)",
+        "add-on price / saved price / original price",
+        "加購品失效/漲價提示",
+        "Edit freebie and go back to cart page",
+        "登入後自動加入贈品",
+        "Choose scenario (Step 1)",
+        "Highlight promotion section",
+        "Freebie CNF 不可預選",
+        "Freebie 選擇模式"
+      ],
+      "features": [
+        "Customized Bundle",
+        "Freebie",
+        "Plus Sale"
+      ],
+      "sources": [
+        "Config addon picture not changing for me upon color swatch click - cnf addon_Testcase_20241024.xlsx",
+        "Customized Bundle Adaption_Phase2_TestCase_EU_20240311.xlsx",
+        "Digital WEP - Plus Sale_TestCase_CZ_20250428.xlsx",
+        "Digital WEP - Plus Sale_Testcase_HU_20240710.xlsx",
+        "EU_Freebie product image changes according to the selected itemTest Case_20250108.xlsx",
+        "Freebies for specific customer group users need to be added to cart automatically after login_EU_Testcase_20250121.xlsx",
+        "Freebies for specific customer group users need to be added to cart automatically after login_EU_Testcase_20260427.xlsx",
+        "Freebies 後台功能優化_TestCase_20211105.xlsx",
+        "Plus Sale Adaption_Phase2_Test Case_ES.HU.PL_20240326.xlsx",
+        "Plus sale_TestCase_EU_20220209.xlsx",
+        "Plus sale_TestCase_HU_20220920.xlsx",
+        "Scheduling mechanism for plus sale setup (& customer group)_TestCase_MCC1_20260325.xlsx",
+        "WEP Plus sale_TestCase_EU_20220617.xlsx"
+      ],
+      "id": "PAGE-06"
+    },
+    {
+      "page": "Checkout Page(結帳頁)",
+      "aliases": [
+        "Checkout",
+        "結帳頁",
+        "結帳"
+      ],
+      "definition_zh": "消費者填寫帳單/收件資訊、選擇付款與運送方式、檢視訂單摘要並送出訂單的頁面。含 VAT/公司欄位、取貨點、付款區塊與離開挽留彈窗等。",
+      "key_sections": [
+        "Checkout Page",
+        "Select Payment Method 區塊",
+        "Payment Method Option 區塊",
+        "Edit Cart function (Checkout Page)",
+        "View Specs +",
+        "Estimated Total",
+        "Checkout Order Summary",
+        "Leave Checkout popup (ASUS Logo)",
+        "EC landing page",
+        "InstaCash Block / Prescore Block",
+        "Multibanco Payment details dialog",
+        "Payment link popup",
+        "Multibanco Payment Reminder / Cancel Email 主旨",
+        "SMS authentication fail message",
+        "Checkout Billing Address (SMB 公司欄位)",
+        "Terms and Conditions (Checkout)",
+        "DPD Pickup Point",
+        "DHL Pickup Point / Access Point",
+        "InPost collection points",
+        "COD (Cash On Delivery)",
+        "Return Address (Home address only)",
+        "OSS 稅務呈現 / VAT included",
+        "DR message",
+        "0 amount order 卡控",
+        "Cart/Price Save Validation Switch",
+        "Privacy Policy Checkbox"
+      ],
+      "features": [
+        "Checkout CTA 按鈕邏輯",
+        "Checkout Page ASUS Logo 彈窗",
+        "Checkout Page 編輯購物車",
+        "Checkout Tech Spec 彈窗",
+        "Checkout 頁面設計優化",
+        "Payment",
+        "Pick up point solution (CZ)",
+        "Private Store",
+        "WEMEA 商業模式變更",
+        "WEP Single Buy",
+        "價格為0時不可結帳",
+        "出貨後產品自動註冊(鑑賞期)",
+        "最後一哩物流商更換(DHL)",
+        "業務模式轉換(CZ)",
+        "退貨取件時間與地址填寫",
+        "運送方式-InPost"
+      ],
+      "sources": [
+        "Add new shipment method - InPost_TestCase_PL_20240529.xlsx",
+        "Apple Pay and Google Pay payment method (with GoPay)_CZ_Testcase_20260527.xlsx",
+        "Business model change_CZ_TestCase_20240830.xlsx",
+        "Checkout Page design enhancement_Order Summary_TestCase_20260612.xlsx",
+        "Checkout Page design enhancement_Tech Spec pop up window_TestCase_20260617.xlsx",
+        "Checkout page CTA button design and logic adjustment_Test Case_EU_20240731.xlsx",
+        "Digital WEP - Single Buy_TestCase_CZ_20250407.xlsx",
+        "EU_ Checkout Page design enhancement (ASUS Logo pop up window)Testcase_20260428.xlsx",
+        "Edit Cart function on Checkout Page_TestCase_MCC1_20251127.xlsx",
+        "HU_Add new payment method - InstaCash BNPL service_Test Case_20250714.xlsx",
+        "PL_Google Pay payment method (with Imoje)_Test Case_20260420.xlsx",
+        "PL_Payment gateway partner & integration change (with imoje)_TestCase_20260420.xlsx",
+        "PT_ Add new payment method_Multibanco payment_TestCase_20260401.xlsx",
+        "PT_Add new payment method_MB Way_Test Case_20260401.xlsx",
+        "Pick up point solution_TestCase_CZ_20250331.xlsx",
+        "Product auto registration after ship out (need to consider the grace period)_TestCase_EU_20240731.xlsx",
+        "Return pick up time and address fill in process on website and AOM_TestCase_FR.ES.PL.HU.CZ_20240627.xlsx",
+        "TreviPay_TestCase_20230719.xlsx",
+        "Unable checkout on cart page when product price=0_TestCase_MCC1_20230509.xlsx",
+        "WEMEA countries business model change project_TestCase_20250728.xlsx",
+        "WEP single buy_TestCase_20211112.xlsx",
+        "[CZ]Private Store mechanism extend to Microbusiness Program (SMB)_TestCase.xlsx",
+        "[EC][QA] Last mile delivery carrier partner change _Test Case_20240823.xlsx",
+        "[EU6] Add Bank Transfer payment method_TestCase_20260519.xlsx"
+      ],
+      "id": "PAGE-07"
+    },
+    {
+      "page": "Thank You Page(訂單完成頁)",
+      "aliases": [
+        "Thank You Page",
+        "訂單完成頁",
+        "下單成功頁"
+      ],
+      "definition_zh": "訂單送出成功後的確認頁,顯示訂單摘要、付款後續指示(如 Multibanco),並提供會員註冊邀請與會員權益說明。",
+      "key_sections": [
+        "Thank you page",
+        "Member benefit instructions (Thank You Page)",
+        "Invoice creation upon payment confirmation"
+      ],
+      "features": [
+        "Payment",
+        "Thank You Page 會員註冊邀請"
+      ],
+      "sources": [
+        "Add new payment method - Bancontact_BE_Testcase_20260212.xlsx",
+        "Add new payment method - iDeal_NL_Testcase_20260223.xlsx",
+        "Add the warning message Online Banking payment on Thank You page_TestCase_NLDE_20220620.xlsx",
+        "Apple Pay and Google Pay payment method (with Stripe)_DK_TestCase_20251124.xlsx",
+        "EU_PartCountries_ Add new payment method - Alma_Test Case_20260410.xlsx",
+        "Member registration invitation notice on Thank You Page_Testcase_EU_0606.xlsx",
+        "PL_Payment gateway partner & integration change (with imoje)_TestCase_20260420.xlsx",
+        "PT_ Add new payment method_Multibanco payment_TestCase_20260401.xlsx",
+        "[EU6] Add Bank Transfer payment method_TestCase_20260519.xlsx"
+      ],
+      "id": "PAGE-08"
+    },
+    {
+      "page": "My Account(會員中心)",
+      "aliases": [
+        "My Account",
+        "會員中心",
+        "會員帳戶",
+        "MyAccount"
+      ],
+      "definition_zh": "登入消費者的帳戶中心,查看訂單與退貨、退款明細(Refund tab)、發票(Invoice tab)、會員權益等。",
+      "key_sections": [
+        "MyAccount Refund Tab / Refund Details",
+        "My Account Invoice tab",
+        "Member benefit instructions (Thank You Page)",
+        "Membership check section"
+      ],
+      "features": [
+        "MyAccount Refund tab 與 Refund email 優化",
+        "Pre-Order",
+        "Private Store",
+        "Thank You Page 會員註冊邀請"
+      ],
+      "sources": [
+        "EU_Pre-order payment and invoice process adjustment_Test Case_20260306.xlsx",
+        "Member registration invitation notice on Thank You Page_Testcase_EU_0606.xlsx",
+        "MyAccount Refund tab & Refund email 呈現優化_EU10_Testcase_20260112.xlsx",
+        "Private Store new country rollout_PT_Testcase_20260313.xlsx",
+        "Private Store_TestCase_v1_20220920.xlsx"
+      ],
+      "id": "PAGE-09"
+    },
+    {
+      "page": "Wishlist(願望清單)",
+      "aliases": [
+        "Wishlist",
+        "願望清單",
+        "我的收藏"
+      ],
+      "definition_zh": "消費者收藏商品的清單,可從 Buy Page/購物車加入,日後再加入購物車。",
+      "key_sections": [
+        "Add to wishlist"
+      ],
+      "features": [
+        "Customized Bundle"
+      ],
+      "sources": [
+        "Customized Bundle Adaption_Phase2_TestCase_EU_20240311.xlsx"
+      ],
+      "id": "PAGE-10"
+    },
+    {
+      "page": "WEP Recommendation / Landing Page(延伸保固推薦/著陸頁)",
+      "aliases": [
+        "WEP Recommendations Page",
+        "WEP Landing Page",
+        "延伸保固推薦頁",
+        "保固單買頁"
+      ],
+      "definition_zh": "延伸保固(WEP)單買流程的著陸/推薦頁,消費者輸入序號(SN)查詢可用保固方案,檢視推薦、填寫顧客資訊並購買。",
+      "key_sections": [
+        "WEP Recommendations Page / SN Input",
+        "WEP Recommendation Page",
+        "WEP Introduction Content",
+        "WEP Info",
+        "WEP Reminder",
+        "Search Section",
+        "Search Result Section",
+        "SN Input box",
+        "Serial number & Model name & Part number Info",
+        "Show more",
+        "Provide Customer Information section",
+        "Warranty Product Message",
+        "WEP Special Price / Price Rule"
+      ],
+      "features": [
+        "WEP SN 檢核與啟用 API 升級",
+        "WEP Single Buy"
+      ],
+      "sources": [
+        "(HU)WEP Single Buy_Test Case_20240401 (1).xlsx",
+        "Digital WEP - Single Buy_TestCase_CZ_20250407.xlsx",
+        "Virtual WEP Single Buy_TestCase_PL_20240506.xlsx",
+        "WEP single buy_TestCase_20211112.xlsx",
+        "[PL][HU]WEP SN input check and activation API upgrade_Testcase_20250314.xlsx"
+      ],
+      "id": "PAGE-11"
+    },
+    {
+      "page": "WEP Buy Page(延伸保固購買頁)",
+      "aliases": [
+        "WEP Buy Page",
+        "保固購買頁"
+      ],
+      "definition_zh": "延伸保固商品的購買頁,顯示保固內容、價格與規則,加入購物車。",
+      "key_sections": [
+        "WEP Buy Page",
+        "WEP Special Price / Price Rule",
+        "Warranty Product Message",
+        "CTA Button 狀態"
+      ],
+      "features": [
+        "WEP Single Buy"
+      ],
+      "sources": [
+        "(HU)WEP Single Buy_Test Case_20240401 (1).xlsx",
+        "Digital WEP - Single Buy_TestCase_CZ_20250407.xlsx",
+        "Virtual WEP Single Buy_TestCase_PL_20240506.xlsx",
+        "WEP single buy_TestCase_20211112.xlsx"
+      ],
+      "id": "PAGE-12"
+    },
+    {
+      "page": "SN Activation Log Page(序號啟用紀錄頁)",
+      "aliases": [
+        "SN Activation Log Page",
+        "序號啟用紀錄"
+      ],
+      "definition_zh": "查詢/檢視延伸保固序號(SN)啟用紀錄的頁面。",
+      "key_sections": [
+        "SN Activation Log Page"
+      ],
+      "features": [
+        "WEP Single Buy"
+      ],
+      "sources": [
+        "Digital WEP - Single Buy_TestCase_CZ_20250407.xlsx",
+        "Virtual WEP Single Buy_TestCase_PL_20240506.xlsx"
+      ],
+      "id": "PAGE-13"
+    },
+    {
+      "page": "Private Store — Introduction Page(私有商店介紹頁)",
+      "aliases": [
+        "Introduction Page",
+        "EDU Intro Page",
+        "EDU 2.0 Landing Page",
+        "私有商店介紹頁",
+        "教育商店介紹頁"
+      ],
+      "definition_zh": "Private Store(EPP/EDU/SMB)的介紹/著陸頁,說明專屬優惠資格與流程,引導申請或驗證。",
+      "key_sections": [
+        "Introduction Page",
+        "EDU Intro Page",
+        "EDU 2.0 Landing Page"
+      ],
+      "features": [
+        "Private Store"
+      ],
+      "sources": [
+        "Private Store EU10_PL_HU_CZ EDU verification flow optimization - SheerID.xlsx",
+        "Private Store new country rollout_PT_Testcase_20260313.xlsx",
+        "Private Store_TestCase_v1_20220920.xlsx",
+        "SheerID integration for EDU Private Store authentication_Test Case_20260604.xlsx"
+      ],
+      "id": "PAGE-14"
+    },
+    {
+      "page": "Private Store — Application Form / Preview(申請表單頁 / 預覽頁)",
+      "aliases": [
+        "Application Form Page",
+        "SMB Application Form Page",
+        "Application Form Preview Page",
+        "申請表單頁"
+      ],
+      "definition_zh": "Private Store 資格申請的填寫表單頁與送出前的預覽頁,提交後進入審核流程。",
+      "key_sections": [
+        "Application Form Page",
+        "SMB Application Form Page",
+        "Application Form Preview Page"
+      ],
+      "features": [
+        "Private Store",
+        "Private Store 擴展 SMB"
+      ],
+      "sources": [
+        "Private Store mechanism extend to Microbusiness Program (SMB)_CZ_TestCase.xlsx",
+        "Private Store_TestCase_v1_20220920.xlsx",
+        "[CZ]Private Store mechanism extend to Microbusiness Program (SMB)_TestCase.xlsx"
+      ],
+      "id": "PAGE-15"
+    },
+    {
+      "page": "Private Store — Verification / Review Pages(驗證與審核狀態頁)",
+      "aliases": [
+        "Verification Email Sent Page",
+        "Successfully verified your email Page",
+        "Under Education store review page",
+        "Verification failed page",
+        "驗證/審核頁"
+      ],
+      "definition_zh": "Private Store email 驗證與資格審核過程中的各狀態頁:驗證信已寄出、驗證成功、審核中、驗證失敗等。",
+      "key_sections": [
+        "Verification Email Sent Page",
+        "Successfully verified your email Page",
+        "Under Education store review page",
+        "Verification failed page"
+      ],
+      "features": [
+        "Private Store"
+      ],
+      "sources": [
+        "Private Store new country rollout_PT_Testcase_20260313.xlsx",
+        "Private Store_TestCase_v1_20220920.xlsx",
+        "Private Store_UAT_TestCase_v1_ES_20221103.xlsx",
+        "SheerID integration for EDU Private Store authentication_Test Case_20260604.xlsx",
+        "[CZ]Private Store mechanism extend to Microbusiness Program (SMB)_TestCase.xlsx"
+      ],
+      "id": "PAGE-16"
+    },
+    {
+      "page": "Private Store — microsite / FAQs / T&C(專屬微網站/常見問題/條款頁)",
+      "aliases": [
+        "microsite page",
+        "FAQs Page",
+        "Special Offers Terms and Conditions Page",
+        "專屬微網站"
+      ],
+      "definition_zh": "Private Store 通過資格後的專屬購物微網站,以及常見問題(FAQs)與專屬優惠條款(T&C)頁。",
+      "key_sections": [
+        "microsite page",
+        "FAQs Page",
+        "Special Offers Terms and Conditions Page",
+        "Membership check section"
+      ],
+      "features": [
+        "Private Store"
+      ],
+      "sources": [
+        "Private Store EU10_PL_HU_CZ EDU verification flow optimization - SheerID.xlsx",
+        "Private Store new country rollout_PT_Testcase_20260313.xlsx",
+        "Private Store_TestCase_v1_20220920.xlsx",
+        "[CZ]Private Store mechanism extend to Microbusiness Program (SMB)_TestCase.xlsx"
+      ],
+      "id": "PAGE-17"
+    },
+    {
+      "page": "Preview Page(預覽頁)",
+      "aliases": [
+        "Preview Page",
+        "預覽頁"
+      ],
+      "definition_zh": "上架前的頁面預覽,供內部檢視;預覽頁加上浮水印以防外流。",
+      "key_sections": [
+        "Preview Page 浮水印"
+      ],
+      "features": [
+        "Preview Page 加浮水印"
+      ],
+      "sources": [
+        "To add watermark on Preview Page_MCC1_Testcase_20260413.xlsx"
+      ],
+      "id": "PAGE-18"
+    },
+    {
+      "page": "Maintenance Page(維護頁)",
+      "aliases": [
+        "Maintenance page",
+        "維護頁",
+        "雙手維修頁面"
+      ],
+      "definition_zh": "網站維護期間顯示的多語系維護頁面。",
+      "key_sections": [
+        "雙手維修頁面 (Maintenance page)"
+      ],
+      "features": [
+        "維護頁面多語系"
+      ],
+      "sources": [
+        "EU_Maintenance page to support local language.xlsx"
+      ],
+      "id": "PAGE-19"
+    },
+    {
+      "page": "90PN Page(官網產品頁 Official Site)",
+      "aliases": [
+        "90PN page",
+        "90pn page",
+        "Official Site 90PN",
+        "官網產品頁"
+      ],
+      "definition_zh": "ASUS 官方網站(Official Site)的產品頁流程,部分 EC 流程會與其銜接(如彈窗、加購導流)。",
+      "key_sections": [
+        "90PN page",
+        "Official Site pop-up mechanism (Promotion ads)"
+      ],
+      "features": [
+        "Customized Bundle",
+        "沿用官網彈窗機制"
+      ],
+      "sources": [
+        "Configurable product Buy Page auto pre-select (compatible with Official Site 90PN page flow)_TestCase_EUPLHU_20240515.xlsx",
+        "Leverage the pop-up mechanism from Official Site_TestCase_EU_20250311.xlsx"
+      ],
+      "id": "PAGE-20"
+    },
+    {
+      "page": "Global Header(全站頁首)",
+      "aliases": [
+        "Global header",
+        "全站 Header",
+        "頁首"
+      ],
+      "definition_zh": "全站共用的頁首,含導覽、購物車入口(Mini Cart)、登入等,跨所有前台頁面顯示。",
+      "key_sections": [
+        "Global header",
+        "Mini Cart (小車)"
+      ],
+      "features": [
+        "Mini Cart 設計調整",
+        "全站 Header"
+      ],
+      "sources": [
+        "Global header_TestCase_20211025.xlsx",
+        "Mini Cart Design Adjustment_MCC1_ROG_EC_Testcase_20250521.xlsx",
+        "Mini Cart Design Adjustment_MCC1_Testcase_20250514.xlsx"
+      ],
+      "id": "PAGE-21"
+    },
+    {
+      "page": "Login / Password Pages(登入與密碼頁)",
+      "aliases": [
+        "Login Page",
+        "Reset Password",
+        "Restore Password",
+        "登入頁",
+        "密碼重設"
+      ],
+      "definition_zh": "帳戶登入頁與密碼重設/找回頁(Reset/Restore Password),套用密碼強度規範。註:glossary 中 Login Page 定義為 ECMW 後台登入。",
+      "key_sections": [
+        "Login Page",
+        "Reset Password",
+        "Restore Password",
+        "Please enter the correct Email",
+        "2FA QR Code"
+      ],
+      "features": [
+        "AOM"
+      ],
+      "sources": [
+        "AOM_MCC1_TestCase_v1.1_20231020.xlsx",
+        "AOM_MCC1_TestCase_v1_20230530.xlsx",
+        "AOM_MCC1_TestCase_v1_20230710.xlsx",
+        "Implementing the Forgot Password Reset with 2FA_Test Case_MCC1_20240207.xlsx"
+      ],
+      "id": "PAGE-22"
+    },
+    {
+      "page": "Check My Order(訪客查訂單頁)",
+      "aliases": [
+        "Check My Order",
+        "訪客查訂單",
+        "Guest Order Lookup"
+      ],
+      "definition_zh": "未登入訪客以訂單編號/email 查詢訂單狀態的頁面。",
+      "key_sections": [
+        "Check My Order (Guest)"
+      ],
+      "features": [
+        "訪客查訂單"
+      ],
+      "sources": [
+        "Check My Order for Guest can view the orders on both ASUS and ROG storeviews_TestCase_EU13_20250310.xlsx"
+      ],
+      "id": "PAGE-23"
+    },
+    {
+      "page": "Create New Return / Return Pages(退貨申請頁)",
+      "aliases": [
+        "Create New Return",
+        "退貨申請",
+        "RMA",
+        "退貨頁"
+      ],
+      "definition_zh": "消費者發起退貨(RMA)的頁面,填寫退貨品項、退貨原因與取件地址/時間。",
+      "key_sections": [
+        "Create New Return",
+        "Return Items Information",
+        "Return Address (Home address only)",
+        "Return Condition"
+      ],
+      "features": [
+        "手動 approved return 後 Arvato 退貨狀態更新",
+        "退貨/RMA",
+        "退貨取件時間與地址填寫"
+      ],
+      "sources": [
+        "(EU) Create return SN_TestCase_20230630.xlsx",
+        "Return pick up time and address fill in process on website and AOM_TestCase_FR.ES.PL.HU.CZ_20240627.xlsx",
+        "手動approved return後，Arvato return condition更新solution_EU10_Testcase_20260108.xlsx"
+      ],
+      "id": "PAGE-24"
+    },
+    {
+      "page": "eShop Sales Quotation Page(報價單頁 / Proforma Invoice)",
+      "aliases": [
+        "Sales Quotation",
+        "Proforma Invoice",
+        "報價單",
+        "eShop 報價單",
+        "Quotation form"
+      ],
+      "definition_zh": "eShop 報價單(Proforma Invoice)頁,供 B2B/企業客戶產生與檢視報價單,含 VAT/公司 ID 欄位。",
+      "key_sections": [
+        "Sales Quotation (Proforma Invoice)",
+        "Quotation form (Proforma Invoice)"
+      ],
+      "features": [
+        "VAT/Company ID 欄位(CZ)",
+        "eShop 報價單"
+      ],
+      "sources": [
+        "CZ_Add VAT number field on Checkout Page for disti and invoicing_Test Case_20251014.xlsx",
+        "Quotation form on eShop_TestCase_v1_20220923.xlsx"
+      ],
+      "id": "PAGE-25"
+    },
+    {
+      "page": "Transactional Email(交易通知信)",
+      "aliases": [
+        "Email",
+        "交易信",
+        "通知信",
+        "transactional email"
+      ],
+      "definition_zh": "訂單/退款/保固/審核等流程觸發寄送給消費者的交易通知信,屬前台呈現的一環(含社群 logo、no-reply 機制)。",
+      "key_sections": [
+        "WEP activation email",
+        "WEP 相關 Email",
+        "監控 / Alert Email",
+        "NPS checkbox / NPS email",
+        "BazaarVoice email",
+        "到期提醒信",
+        "審核結果通知信",
+        "Customer Group Auto Sync Failure Alert Email",
+        "Order Pending Alert Email / Return request to WMS Email",
+        "Multibanco Payment Reminder / Cancel Email 主旨",
+        "Email 社群 logo 與連結更新",
+        "No reply email 機制",
+        "Free gift added!",
+        "Invoice / Credit Memo PDF (加密)"
+      ],
+      "features": [
+        "CSAT (NPS) email 機制",
+        "CSAT (NPS) email 機制(CZ)",
+        "Email 社群媒體 logo 更新",
+        "Freebie",
+        "Invoice/Credit Memo 改 PDF",
+        "NextM 配銷商與 PayNow 金流導入",
+        "No reply 信件機制調整",
+        "Payment",
+        "Plus Sale",
+        "Private Store",
+        "WEP Single Buy"
+      ],
+      "sources": [
+        "(HU)WEP Single Buy_Test Case_20240401 (1).xlsx",
+        "Digital WEP - Plus Sale_TestCase_CZ_20250428.xlsx",
+        "Digital WEP - Single Buy_TestCase_CZ_20250407.xlsx",
+        "Email notice social media logo and links update_EU10_Testcase_20260616.xlsx",
+        "Freebies for specific customer group users need to be added to cart automatically after login_EU_Testcase_20250121.xlsx",
+        "Freebies for specific customer group users need to be added to cart automatically after login_EU_Testcase_20260427.xlsx",
+        "New disti (NextM) & new payment gateway (PayNow) implementation_TestCase_20250407.xlsx",
+        "No reply email mechanism adjustment_TestCase_EU13_20240118.xlsx",
+        "PT_ Add new payment method_Multibanco payment_TestCase_20260401.xlsx",
+        "Private Store_TestCase_v1_20220920.xlsx",
+        "RS_CSAT (NPS) email and mechanism implementation_TestCase_20260630.xlsx",
+        "SheerID integration for EDU Private Store authentication_Test Case_20260604.xlsx",
+        "Virtual WEP Single Buy_TestCase_PL_20240506.xlsx",
+        "[CZ] CSAT (NPS) email and mechanism redesign_czde_testcase_20250120.xlsx",
+        "[CZ]Private Store mechanism extend to Microbusiness Program (SMB)_TestCase.xlsx",
+        "[EU10] Invoice and Credit Memo change to PDF format_Testcase_1110.xlsx"
+      ],
+      "id": "PAGE-26"
+    },
+    {
+      "page": "AOM / ECMW Console(後台訂單管理主控台)",
+      "aliases": [
+        "AOM",
+        "ECMW",
+        "Admin Order Management",
+        "後台訂單管理"
+      ],
+      "definition_zh": "客服/營運人員使用的後台訂單管理主控台(非消費者前台),用於查詢訂單/退貨、檢視明細、開立退款與報表。列此以完整涵蓋 Order/Return views、Refund/Invoice 明細來源。",
+      "key_sections": [
+        "Country List Page",
+        "Single Country Setting Page",
+        "View Orders",
+        "View Returns",
+        "Filter block",
+        "Order Detail Page",
+        "Order Information tab",
+        "General Information",
+        "Comment",
+        "Payment Information",
+        "Billing Information",
+        "Product Detail tab",
+        "Detail (Item line)",
+        "Shipment tab",
+        "Order History tab",
+        "Return Detail Page",
+        "Refund Detail Tab",
+        "Appeasement UI",
+        "Sales Report",
+        "Invoice and Credit Memo Batch Download",
+        "Payment Review",
+        "Approve/Reject Comment Modal",
+        "Reservation/Sourcing & Quantity History"
+      ],
+      "features": [
+        "AOM",
+        "Magento 庫存查詢 UI",
+        "PayPal 付款人資訊比對攔截"
+      ],
+      "sources": [
+        "AOM_MCC1_TestCase_v1.1_20231020.xlsx",
+        "AOM_MCC1_TestCase_v1_20230530.xlsx",
+        "AOM_MCC1_TestCase_v1_20230710.xlsx",
+        "EU10_Fraud_Detection_Paypal_payer_information_check_and_block_Testcase_20260629.xlsx",
+        "EU_Add sales price reason information in OrderSales Report_TestCase_260615.xlsx",
+        "Magento Inventory Query UI_MCC1_Test Case_20240401.xlsx",
+        "[UAT-QA][EU]_Invoice and Credit Memo batch download function in AOM_Testcase_20260202.xlsx"
+      ],
+      "id": "PAGE-27"
+    }
+  ]
+}

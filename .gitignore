@@ -1,0 +1,11 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.tmp
+*~
+
+# Claude scratch / skill packaging artifacts
+*.skill
+
+# FUSE / OneDrive in-place-edit temp artifacts
+.fuse_hidden*

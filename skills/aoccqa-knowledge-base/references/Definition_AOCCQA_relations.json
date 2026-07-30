@@ -1,0 +1,3366 @@
+{
+  "name": "Definition_AOCCQA_relations",
+  "description": "ASUS EC(Magento)前台↔後台關係地圖:後台設定/欄位/匯入/API/規則 如何驅動前台(Buy Page/Cart/Checkout/My Account/Email)的顯示與行為。與 Definition_AOCCQA_glossary 搭配使用(backend/frontend 皆為 glossary 名詞)。",
+  "version": "1.0",
+  "generated_date": "2026-07-24",
+  "relation_count": 238,
+  "feature_index": {
+    "Customized Bundle": 37,
+    "AOM": 15,
+    "Payment": 28,
+    "Private Store": 19,
+    "WEP Single Buy": 22,
+    "Pre-Order": 15,
+    "Plus Sale": 15,
+    "Freebie": 14,
+    "CNF Buy Page 關鍵規格屬性強化": 3,
+    "EC Magento 導入 AI Assistant": 2,
+    "NextM 配銷商與 PayNow 金流導入": 2,
+    "價格為0時不可結帳": 2,
+    "出貨後產品自動註冊(鑑賞期)": 2,
+    "運送方式-InPost": 2,
+    "Backorder 顯示 pre-order 按鈕": 1,
+    "Buy Page Banner 排程維護": 1,
+    "Buy Page Tech Spec 錨點": 1,
+    "CNF Buy Page 關鍵規格固定排序": 1,
+    "CNF 缺貨折扣價顯示": 1,
+    "CNF 自動建立機制": 1,
+    "CSAT (NPS) email 機制": 1,
+    "Cart Page 數量選擇": 1,
+    "Cart/Checkout 顯示原價與折扣": 1,
+    "Checkout CTA 按鈕邏輯": 1,
+    "Checkout Tech Spec 彈窗": 1,
+    "Checkout 地址自動完成": 1,
+    "Checkout 新增 VAT 欄位並顯示於發票": 1,
+    "Checkout 頁面設計優化": 1,
+    "Company Name 欄位": 1,
+    "Copilot+ PC 命名": 1,
+    "Customer Group 分群規則": 1,
+    "EC Buy Page rich content 整合": 1,
+    "EC Product Card 顏色名稱": 1,
+    "EU 30天最低價(Omnibus)": 1,
+    "Embargo Date 上架卡控": 1,
+    "Energy Label 自動同步至 Buy Page": 1,
+    "FPS 顯示邏輯": 1,
+    "FR 發票/退款單顯示 WEEE": 1,
+    "IT/PT NIF 欄位位置與檢核": 1,
+    "Invoice/Credit Memo 改 PDF": 1,
+    "No reply 信件機制調整": 1,
+    "PayPal 付款人資訊比對攔截": 1,
+    "Pick up point solution (CZ)": 1,
+    "Preview Page 加浮水印": 1,
+    "Private Store 擴展 SMB": 1,
+    "Rating & Review(BazaarVoice)": 1,
+    "Refurbish 整新品": 1,
+    "SPEC detail": 1,
+    "Tech Spec 手動同步": 1,
+    "Thank You Page 會員註冊邀請": 1,
+    "WEMEA 商業模式變更": 1,
+    "WEP SN 檢核與啟用 API 升級": 1,
+    "eShop 報價單": 1,
+    "付款未完成保留購物車": 1,
+    "促銷資訊跨頁顯示": 1,
+    "充電器 Adapter Icon 顯示": 1,
+    "免運訊息與規則": 1,
+    "商品圖片隱藏顯示批次功能": 1,
+    "客服 Email 設定": 1,
+    "德國網站配送奧地利": 1,
+    "推薦與贊助方案": 1,
+    "最後一哩物流商更換(DHL)": 1,
+    "會員優惠價": 1,
+    "會員登入/訪客結帳整合 ASUS One Portal": 1,
+    "會員群組折扣顯示": 1,
+    "業務模式轉換(CZ)": 1,
+    "沿用官網彈窗機制": 1,
+    "特價批次匯入": 1,
+    "確保 Cancel 訂單觸發 Magento Cancel": 1,
+    "購物車數量警告": 1,
+    "退貨/RMA": 1,
+    "退貨取件時間與地址填寫": 1,
+    "運送方式-ZIP 檢核": 1,
+    "顯示預計出貨日 (ETA)": 1
+  },
+  "relations": [
+    {
+      "feature": "Customized Bundle",
+      "backend": "Configurable product auto pre-select",
+      "backend_category": "核心概念",
+      "frontend": "Pre-select",
+      "frontend_category": "Buy Page",
+      "relation_zh": "含 configurable 子商品時,依 CNF 自動預選規則決定預選哪個子 SKU/規格。",
+      "trigger": "預選序:有庫存→有折扣(取折扣最高)→最終價最低→預設 SKU",
+      "sources": [
+        "Configurable product Buy Page auto pre-select_TestCase_20221012.xlsx",
+        "Configurable product Buy Page auto pre-select (compatible with Official Site 90PN page flow)_TestCase_EUPLHU_20240515.xlsx"
+      ],
+      "id": "REL-001"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "Configurable product auto pre-select",
+      "backend_category": "核心概念",
+      "frontend": "In this bundle, you will also get",
+      "frontend_category": "Buy Page",
+      "relation_zh": "含 configurable 子商品的組合會依自動預選規則預選其第一個屬性。",
+      "trigger": "",
+      "sources": [
+        "Configurable product Buy Page auto pre-select_TestCase_20221012.xlsx"
+      ],
+      "id": "REL-002"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "Disabled product 可匯入",
+      "backend_category": "後台",
+      "frontend": "Bundle set",
+      "frontend_category": "核心概念",
+      "relation_zh": "main/bundle product 為 Disabled 或庫存 0 仍可成功建立組合規則,但前台 bundle set 的實際顯示仍受缺貨隱藏規則約束。",
+      "trigger": "Disabled 或庫存 0 商品可匯入,但缺貨時前台仍隱藏",
+      "sources": [
+        "EU_Customized Bundle setup logic adjustment (include disable product_TestCase_20260311.xlsx"
+      ],
+      "id": "REL-003"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "Import Behavior",
+      "backend_category": "匯入欄位",
+      "frontend": "Bundle set",
+      "frontend_category": "核心概念",
+      "relation_zh": "匯入行為決定組合規則的新增或移除,連帶影響 Buy Page 是否出現對應 bundle set。",
+      "trigger": "Add 新增規則→Buy Page 顯示;Delete 刪除相同規格規則→不再顯示",
+      "sources": [
+        "Customized Bundle Adaption_Phase2_TestCase_EU_20240311.xlsx",
+        "Customized Bundle_TestCase_HU_20220920.xlsx",
+        "[EU]Scheduling mechanism for customized bundle setup_DE&FR&ES&PL&CZ_Testcase_20251029.xlsx"
+      ],
+      "id": "REL-004"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "Main product",
+      "backend_category": "核心概念",
+      "frontend": "主商品缺貨隱藏",
+      "frontend_category": "顯示邏輯",
+      "relation_zh": "simple 主商品缺貨時隱藏整個 Select your set 區。",
+      "trigger": "simple 主商品缺貨時隱藏整區",
+      "sources": [
+        "Customized Bundle Adaption_Phase2_TestCase_EU_20240311.xlsx",
+        "Customized Bundle_TestCase_HU_20220920.xlsx"
+      ],
+      "id": "REL-005"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "Single Purchasable",
+      "backend_category": "核心概念",
+      "frontend": "Standard",
+      "frontend_category": "核心概念",
+      "relation_zh": "主商品的 Single Purchasable 旗標決定 Buy Page 是否顯示 Standard(只買主商品)選項。",
+      "trigger": "Single Purchasable=Yes 顯示 Standard;=No 不顯示",
+      "sources": [
+        "Customized Bundle Adaption_Phase2_TestCase_EU_20240311.xlsx",
+        "Customized bundle pre-select on Standard_TestCase_20221011.xlsx"
+      ],
+      "id": "REL-006"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "Single Purchasable",
+      "backend_category": "核心概念",
+      "frontend": "Select your freebie",
+      "frontend_category": "Buy Page",
+      "relation_zh": "主商品 Single Purchasable 旗標控制 Select your freebie 區塊的預設顯示與否。",
+      "trigger": "Single Purchasable=No 且有可用 bundle sets 時預設隱藏;=Yes 時顯示",
+      "sources": [
+        "Customized Bundle Adaption_Phase2_TestCase_EU_20240311.xlsx",
+        "Customized Bundle_TestCase_HU_20220920.xlsx"
+      ],
+      "id": "REL-007"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "Single Purchasable",
+      "backend_category": "核心概念",
+      "frontend": "Pre-select",
+      "frontend_category": "Buy Page",
+      "relation_zh": "主商品可否單獨購買決定 Buy Page 開啟時預選哪個選項。",
+      "trigger": "Single Purchasable=Yes 預選 Standard;=No 預選第一個 bundle set",
+      "sources": [
+        "Customized Bundle Adaption_Phase2_TestCase_EU_20240311.xlsx",
+        "Customized bundle pre-select on Standard_TestCase_20221011.xlsx"
+      ],
+      "id": "REL-008"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "Single Purchasable",
+      "backend_category": "核心概念",
+      "frontend": "Price info",
+      "frontend_category": "Buy Page",
+      "relation_zh": "主商品設為不可單獨購買時,隱藏 Price & add to cart 區塊(僅能透過 bundle set 購買)。",
+      "trigger": "Single Purchasable=No 時隱藏 Price & add to cart 與 Standard",
+      "sources": [
+        "Customized Bundle Adaption_Phase2_TestCase_EU_20240311.xlsx",
+        "Customized Bundle_TestCase_HU_20220920.xlsx"
+      ],
+      "id": "REL-009"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "Special Price for Bundle",
+      "backend_category": "價格公式",
+      "frontend": "Sale Price",
+      "frontend_category": "價格公式",
+      "relation_zh": "為 bundle 設定的特價於生效時間內以 Special Price 呈現於價格區塊。",
+      "trigger": "網站當地時間(local time)落在特價設定區間內",
+      "sources": [
+        "[UAT-QA][MCC1] customize bundle special price檢核未依local time_ptplfi_testcase_20250116-1.xlsx"
+      ],
+      "id": "REL-010"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "Special Price for Bundle",
+      "backend_category": "價格公式",
+      "frontend": "Cart page special price 生效時間",
+      "frontend_category": "顯示邏輯",
+      "relation_zh": "組合特價於 Cart Page(及 Bundle 加購)依網站當地時區判定生效/失效。",
+      "trigger": "依 local time 而非台灣時間判定生效",
+      "sources": [
+        "[UAT-QA][MCC1] customize bundle special price檢核未依local time_ptplfi_testcase_20250116-1.xlsx",
+        "Cart page special price生效時間非local time_MCC1_TestCase_20240826.xlsx"
+      ],
+      "id": "REL-011"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "configurable product",
+      "backend_category": "核心概念",
+      "frontend": "Bundle set switcher",
+      "frontend_category": "Buy Page",
+      "relation_zh": "子商品為 configurable 時,切換規格會更新縮圖,預設顯示 configurable 縮圖。",
+      "trigger": "",
+      "sources": [
+        "Customized Bundle Adaption_Phase2_TestCase_EU_20240311.xlsx",
+        "Customized Bundle_TestCase_HU_20220920.xlsx"
+      ],
+      "id": "REL-012"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "configurable product",
+      "backend_category": "核心概念",
+      "frontend": "子商品缺貨隱藏",
+      "frontend_category": "顯示邏輯",
+      "relation_zh": "子商品為 configurable 時,需全部子商品缺貨才隱藏該 bundle set 按鈕。",
+      "trigger": "configurable 子商品全部缺貨時隱藏",
+      "sources": [
+        "Customized Bundle Adaption_Phase2_TestCase_EU_20240311.xlsx",
+        "Customized Bundle_TestCase_HU_20220920.xlsx"
+      ],
+      "id": "REL-013"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "configurable product",
+      "backend_category": "核心概念",
+      "frontend": "主商品缺貨隱藏",
+      "frontend_category": "顯示邏輯",
+      "relation_zh": "主商品為 configurable 時,需所有關聯主商品都缺貨才隱藏整個 Select your set 區。",
+      "trigger": "configurable 主商品全部關聯主商品缺貨時隱藏整區",
+      "sources": [
+        "Customized Bundle Adaption_Phase2_TestCase_EU_20240311.xlsx",
+        "Customized Bundle_TestCase_HU_20220920.xlsx"
+      ],
+      "id": "REL-014"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "configurable product",
+      "backend_category": "核心概念",
+      "frontend": "Save$ (省下)",
+      "frontend_category": "價格公式",
+      "relation_zh": "configurable 子商品的原價於 Save$ 計算時取其中最低原價。",
+      "trigger": "configurable 子商品取最低原價",
+      "sources": [
+        "Customized Bundle Adaption_Phase2_TestCase_EU_20240311.xlsx"
+      ],
+      "id": "REL-015"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "locale code",
+      "backend_category": "顯示邏輯",
+      "frontend": "Bundle set button",
+      "frontend_category": "Buy Page",
+      "relation_zh": "set_name 的多語系 locale code 決定 bundle set 按鈕依當前語系顯示對應名稱。",
+      "trigger": "locale code 須對應 website_code 且完整提供(如 BE 需 nl_BE + fr_BE)",
+      "sources": [
+        "Customized Bundle Adaption_Phase2_TestCase_EU_20240311.xlsx"
+      ],
+      "id": "REL-016"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "main_sku",
+      "backend_category": "匯入欄位",
+      "frontend": "Bundle set",
+      "frontend_category": "核心概念",
+      "relation_zh": "main_sku 指定組合綁定的主商品,決定該 bundle set 顯示於哪個主商品的 Buy Page。",
+      "trigger": "",
+      "sources": [
+        "Customized Bundle Adaption_Phase2_TestCase_EU_20240311.xlsx",
+        "Customized Bundle_TestCase_HU_20220920.xlsx"
+      ],
+      "id": "REL-017"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "main_sku",
+      "backend_category": "匯入欄位",
+      "frontend": "Cart row group",
+      "frontend_category": "購物車",
+      "relation_zh": "購物車主商品群組列以 main_sku 對應的主商品呈現縮圖、名稱與小計。",
+      "trigger": "",
+      "sources": [
+        "Customized Bundle Adaption_Phase2_TestCase_EU_20240311.xlsx"
+      ],
+      "id": "REL-018"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "main_sku_set_price",
+      "backend_category": "匯入欄位",
+      "frontend": "Sale Price",
+      "frontend_category": "價格公式",
+      "relation_zh": "main_sku_set_price 是組合售價的組成之一。",
+      "trigger": "Sale Price = main_sku_set_price + sub_skus_set_price",
+      "sources": [
+        "Customized Bundle Adaption_Phase2_TestCase_EU_20240311.xlsx"
+      ],
+      "id": "REL-019"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "main_sku_set_price",
+      "backend_category": "匯入欄位",
+      "frontend": "+$ (加價)",
+      "frontend_category": "價格公式",
+      "relation_zh": "未選組合時按鈕顯示的加價金額由組合價與主商品最終價計算。",
+      "trigger": "+$ = (main_sku_set_price + sub_skus_set_price) − 主商品最終價",
+      "sources": [
+        "Customized Bundle Adaption_Phase2_TestCase_EU_20240311.xlsx",
+        "Customized Bundle_TestCase_HU_20220920.xlsx"
+      ],
+      "id": "REL-020"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "main_sku_set_price",
+      "backend_category": "匯入欄位",
+      "frontend": "Save$ (省下)",
+      "frontend_category": "價格公式",
+      "relation_zh": "Save$ 由原價總和與組合價(含 main_sku_set_price)相減得出。",
+      "trigger": "Save$ = (主商品原價 + 子商品原價) − (main_sku_set_price + sub_skus_set_price)",
+      "sources": [
+        "Customized Bundle Adaption_Phase2_TestCase_EU_20240311.xlsx",
+        "Customized Bundle_TestCase_HU_20220920.xlsx"
+      ],
+      "id": "REL-021"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "main_sku_set_price",
+      "backend_category": "匯入欄位",
+      "frontend": "隱藏 bundle set 的價格條件",
+      "frontend_category": "價格公式",
+      "relation_zh": "匯入的組合價與原價/主商品最終價比較不合理時,隱藏對應 bundle set 按鈕。",
+      "trigger": "組合價 > 原價總和,或 組合價 < 主商品最終價 時隱藏",
+      "sources": [
+        "Customized Bundle Adaption_Phase2_TestCase_EU_20240311.xlsx",
+        "Customized Bundle_TestCase_HU_20220920.xlsx"
+      ],
+      "id": "REL-022"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "priority",
+      "backend_category": "匯入欄位",
+      "frontend": "Bundle set",
+      "frontend_category": "核心概念",
+      "relation_zh": "bundle set 在 Buy Page(Select your set 區)的顯示排序由 priority 決定。",
+      "trigger": "排序 priority ASC,再 system id ASC;留空預設 0",
+      "sources": [
+        "Customized Bundle Adaption_Phase2_TestCase_EU_20240311.xlsx",
+        "Customized Bundle_TestCase_HU_20220920.xlsx"
+      ],
+      "id": "REL-023"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "set_name",
+      "backend_category": "匯入欄位",
+      "frontend": "Bundle set button",
+      "frontend_category": "Buy Page",
+      "relation_zh": "bundle set 按鈕上顯示的名稱取自匯入的 set_name。",
+      "trigger": "",
+      "sources": [
+        "Customized Bundle Adaption_Phase2_TestCase_EU_20240311.xlsx"
+      ],
+      "id": "REL-024"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "set_name",
+      "backend_category": "匯入欄位",
+      "frontend": "Cart line (sub-product)",
+      "frontend_category": "購物車",
+      "relation_zh": "購物車子商品行的 Bundle tag『Bundle - {Set Name}』使用 set_name。",
+      "trigger": "",
+      "sources": [
+        "Customized Bundle Adaption_Phase2_TestCase_EU_20240311.xlsx"
+      ],
+      "id": "REL-025"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "start_date / end_date",
+      "backend_category": "匯入欄位",
+      "frontend": "Bundle set",
+      "frontend_category": "核心概念",
+      "relation_zh": "排程起訖日控制 bundle set 的生效期間,僅在期間內才顯示於 Buy Page。",
+      "trigger": "網站時區當前日期落在 start_date~end_date 之間",
+      "sources": [
+        "[EU]Scheduling mechanism for customized bundle setup_DE&FR&ES&PL&CZ_Testcase_20251029.xlsx"
+      ],
+      "id": "REL-026"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "sub_skus",
+      "backend_category": "匯入欄位",
+      "frontend": "In this bundle, you will also get",
+      "frontend_category": "Buy Page",
+      "relation_zh": "選取含子商品的 bundle set 後,依 sub_skus 顯示該組合所有子商品(縮圖、名稱、屬性)。",
+      "trigger": "",
+      "sources": [
+        "Customized Bundle Adaption_Phase2_TestCase_EU_20240311.xlsx"
+      ],
+      "id": "REL-027"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "sub_skus",
+      "backend_category": "匯入欄位",
+      "frontend": "Cart line (sub-product)",
+      "frontend_category": "購物車",
+      "relation_zh": "購物車子商品行依 sub_skus 呈現各子商品縮圖、名稱與規格。",
+      "trigger": "",
+      "sources": [
+        "Customized Bundle Adaption_Phase2_TestCase_EU_20240311.xlsx"
+      ],
+      "id": "REL-028"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "sub_skus",
+      "backend_category": "匯入欄位",
+      "frontend": "Bundle set",
+      "frontend_category": "核心概念",
+      "relation_zh": "bundle set 所含的加購子商品由 sub_skus 欄位決定。",
+      "trigger": "",
+      "sources": [
+        "Customized Bundle Adaption_Phase2_TestCase_EU_20240311.xlsx"
+      ],
+      "id": "REL-029"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "sub_skus_set_price",
+      "backend_category": "匯入欄位",
+      "frontend": "Sale Price",
+      "frontend_category": "價格公式",
+      "relation_zh": "sub_skus_set_price 是組合售價的組成之一。",
+      "trigger": "Sale Price = main_sku_set_price + sub_skus_set_price",
+      "sources": [
+        "Customized Bundle Adaption_Phase2_TestCase_EU_20240311.xlsx"
+      ],
+      "id": "REL-030"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "sub_skus_set_price",
+      "backend_category": "匯入欄位",
+      "frontend": "+$ (加價)",
+      "frontend_category": "價格公式",
+      "relation_zh": "按鈕加價金額由子商品組合價與主商品最終價計算。",
+      "trigger": "+$ = (main_sku_set_price + sub_skus_set_price) − 主商品最終價",
+      "sources": [
+        "Customized Bundle Adaption_Phase2_TestCase_EU_20240311.xlsx",
+        "Customized Bundle_TestCase_HU_20220920.xlsx"
+      ],
+      "id": "REL-031"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "sub_skus_set_price",
+      "backend_category": "匯入欄位",
+      "frontend": "Save$ (省下)",
+      "frontend_category": "價格公式",
+      "relation_zh": "Save$ 折扣金額由原價總和減去含子商品組合價的組合價得出。",
+      "trigger": "Save$ = (主商品原價 + 子商品原價) − (main_sku_set_price + sub_skus_set_price)",
+      "sources": [
+        "Customized Bundle Adaption_Phase2_TestCase_EU_20240311.xlsx",
+        "Customized Bundle_TestCase_HU_20220920.xlsx"
+      ],
+      "id": "REL-032"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "user_group_id",
+      "backend_category": "匯入欄位",
+      "frontend": "Bundle set",
+      "frontend_category": "核心概念",
+      "relation_zh": "Buy Page 僅顯示屬於當前登入會員群組(user_group_id)的 bundle sets。",
+      "trigger": "登入會員 customer group = user_group_id 或 all",
+      "sources": [
+        "Customized Bundle Adaption_Phase2_TestCase_EU_20240311.xlsx"
+      ],
+      "id": "REL-033"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "user_group_limit",
+      "backend_category": "匯入欄位",
+      "frontend": "Purchase Limitation",
+      "frontend_category": "Buy Page",
+      "relation_zh": "每人限購數 X 驅動 Buy Page 顯示限購提示,並在購物車達上限時阻擋加入。",
+      "trigger": "Buy Page 顯示『A maximum of X pieces per customer.』;購物車達 user_group_limit 上限則無法再加入並顯示 Error",
+      "sources": [
+        "Customized Bundle Adaption_Phase2_TestCase_EU_20240311.xlsx"
+      ],
+      "id": "REL-034"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "website timezone",
+      "backend_category": "顯示邏輯",
+      "frontend": "Cart page special price 生效時間",
+      "frontend_category": "顯示邏輯",
+      "relation_zh": "各國別網站時區決定 special price 於 Cart Page 的生效/失效時點。",
+      "trigger": "如 PL/HU=台灣時間6點、FI=台灣時間5點",
+      "sources": [
+        "Cart page special price生效時間非local time_MCC1_TestCase_20240826.xlsx",
+        "[UAT-QA][MCC1] customize bundle special price檢核未依local time_ptplfi_testcase_20250116-1.xlsx"
+      ],
+      "id": "REL-035"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "website timezone",
+      "backend_category": "顯示邏輯",
+      "frontend": "Bundle set",
+      "frontend_category": "核心概念",
+      "relation_zh": "start_date/end_date 的生效判定以網站時區為準,進而決定 bundle set 何時顯示。",
+      "trigger": "以網站當地時區判定 start/end date",
+      "sources": [
+        "[EU]Scheduling mechanism for customized bundle setup_DE&FR&ES&PL&CZ_Testcase_20251029.xlsx"
+      ],
+      "id": "REL-036"
+    },
+    {
+      "feature": "Customized Bundle",
+      "backend": "website_code",
+      "backend_category": "匯入欄位",
+      "frontend": "Bundle set",
+      "frontend_category": "核心概念",
+      "relation_zh": "bundle set 僅顯示於 website_code 所指定的網站(國別)Buy Page。",
+      "trigger": "當前網站 = website_code",
+      "sources": [
+        "Customized Bundle Adaption_Phase2_TestCase_EU_20240311.xlsx",
+        "Customized Bundle_TestCase_HU_20220920.xlsx"
+      ],
+      "id": "REL-037"
+    },
+    {
+      "feature": "AOM",
+      "backend": "Advanced Inventory(Pre-Order=Allow Pre-Order)",
+      "backend_category": "後台",
+      "frontend": "Buy Page 產品狀態按鈕 [Pre-Order]",
+      "frontend_category": "Buy Page",
+      "relation_zh": "後台 Advanced Inventory 的 Pre-Order 欄位選 Allow Pre-Order 時,前台 Buy Page CTA 顯示 Pre-Order,並同時顯示 Pre-Order Note。",
+      "trigger": "Pre-Order = Allow Pre-Order → CTA = Pre-Order",
+      "sources": [
+        "AOM_MCC1_TestCase_v1.1_20231020.xlsx",
+        "AOM_MCC1_TestCase_v1_20230530.xlsx",
+        "AOM_MCC1_TestCase_v1_20230710.xlsx",
+        "Scheduling mechanism for pre-order setup_TestCase_MCC1_20260309.xlsx"
+      ],
+      "id": "REL-038"
+    },
+    {
+      "feature": "AOM",
+      "backend": "Advanced Inventory(Pre-Order=No Pre-Order)",
+      "backend_category": "後台",
+      "frontend": "Buy Page 產品狀態按鈕 [Add to cart]",
+      "frontend_category": "Buy Page",
+      "relation_zh": "後台 Pre-Order 欄位為 No Pre-Order 時,前台 CTA 顯示 Add to cart 且不顯示 Pre-Order Note。",
+      "trigger": "Pre-Order = No Pre-Order → CTA = Add to cart",
+      "sources": [
+        "AOM_MCC1_TestCase_v1.1_20231020.xlsx",
+        "AOM_MCC1_TestCase_v1_20230530.xlsx",
+        "AOM_MCC1_TestCase_v1_20230710.xlsx",
+        "Scheduling mechanism for pre-order setup_TestCase_MCC1_20260309.xlsx"
+      ],
+      "id": "REL-039"
+    },
+    {
+      "feature": "AOM",
+      "backend": "Auto Release Refund",
+      "backend_category": "規則",
+      "frontend": "My Account 退款完成呈現 / Refund email",
+      "frontend_category": "My Account",
+      "relation_zh": "各國 Auto Release Refund 開關與天數,決定 Return approved 後何時自動退款(Released),連動前台 My Account 退款完成呈現與 Refund email 發送時點。",
+      "trigger": "ON:approved 後 X 天自動退款(0=立即,上限 999);OFF:須手動 Approve Refund",
+      "sources": [
+        "AOM_MCC1_TestCase_v1.1_20231020.xlsx",
+        "AOM_MCC1_TestCase_v1_20230530.xlsx",
+        "AOM_MCC1_TestCase_v1_20230710.xlsx"
+      ],
+      "id": "REL-040"
+    },
+    {
+      "feature": "AOM",
+      "backend": "Credit Memo Status",
+      "backend_category": "狀態",
+      "frontend": "My Account Refund tab / 貸項憑證(退款發票)",
+      "frontend_category": "My Account",
+      "relation_zh": "Refund approve 後 Credit Memo Status=Requested,Magento 成功建立 Credit Memo(Complete)後,消費者取得貸項憑證,前台 My Account 退款呈現為完成。",
+      "trigger": "Refund approve→Requested;Magento 建立成功→Complete;失敗→Failed",
+      "sources": [
+        "AOM_MCC1_TestCase_v1.1_20231020.xlsx",
+        "AOM_MCC1_TestCase_v1_20230530.xlsx",
+        "AOM_MCC1_TestCase_v1_20230710.xlsx",
+        "MyAccount Refund tab & Refund email 呈現優化_EU10_Testcase_20260112.xlsx"
+      ],
+      "id": "REL-041"
+    },
+    {
+      "feature": "AOM",
+      "backend": "Out of Stock Threshold (B)",
+      "backend_category": "欄位",
+      "frontend": "Buy Page 可下單數量",
+      "frontend_category": "Buy Page",
+      "relation_zh": "後台缺貨門檻 Out of Stock Threshold(B,負數,隨庫存更新變動)扣抵後決定前台可下單數量。",
+      "trigger": "Salable Qty = A - B - C;B = 前值 + (當天 WMS_SKU_Qty - 前一天 WMS_SKU_Qty)",
+      "sources": [
+        "AOM_MCC1_TestCase_v1.1_20231020.xlsx",
+        "AOM_MCC1_TestCase_v1_20230530.xlsx",
+        "AOM_MCC1_TestCase_v1_20230710.xlsx"
+      ],
+      "id": "REL-042"
+    },
+    {
+      "feature": "AOM",
+      "backend": "Pre-Order Note",
+      "backend_category": "欄位",
+      "frontend": "Buy Page / 下單流程 Pre-Order Note",
+      "frontend_category": "Buy Page",
+      "relation_zh": "後台 Advanced Inventory 設定的 Pre-Order Note 內容,原樣顯示於前台下單流程各頁(位於原 Back-Order Note 位置)。",
+      "trigger": "Pre-Order=Allow Pre-Order 時前台顯示 Pre-Order Note,內容與後台一致",
+      "sources": [
+        "AOM_MCC1_TestCase_v1.1_20231020.xlsx",
+        "AOM_MCC1_TestCase_v1_20230530.xlsx",
+        "AOM_MCC1_TestCase_v1_20230710.xlsx",
+        "Scheduling mechanism for pre-order setup_TestCase_MCC1_20260309.xlsx"
+      ],
+      "id": "REL-043"
+    },
+    {
+      "feature": "AOM",
+      "backend": "Quantity (A)",
+      "backend_category": "欄位",
+      "frontend": "Buy Page 可下單數量",
+      "frontend_category": "Buy Page",
+      "relation_zh": "後台庫存數量 Quantity(A)為 Salable Qty 公式的被減數,A 影響前台可販售/可下單數量。",
+      "trigger": "Salable Qty = A - B - C",
+      "sources": [
+        "AOM_MCC1_TestCase_v1.1_20231020.xlsx",
+        "AOM_MCC1_TestCase_v1_20230530.xlsx",
+        "AOM_MCC1_TestCase_v1_20230710.xlsx"
+      ],
+      "id": "REL-044"
+    },
+    {
+      "feature": "AOM",
+      "backend": "Refund Status",
+      "backend_category": "狀態",
+      "frontend": "My Account Refund tab / Refund email",
+      "frontend_category": "My Account",
+      "relation_zh": "AOM 退款單的 Refund Status(Released 等)與退款資料,驅動前台 My Account Refund tab 與 Refund email 的呈現。",
+      "trigger": "Return 型:approve 後 Released;Appeasement 型:開立即 Released",
+      "sources": [
+        "AOM_MCC1_TestCase_v1.1_20231020.xlsx",
+        "AOM_MCC1_TestCase_v1_20230530.xlsx",
+        "AOM_MCC1_TestCase_v1_20230710.xlsx",
+        "MyAccount Refund tab & Refund email 呈現優化_EU10_Testcase_20260112.xlsx"
+      ],
+      "id": "REL-045"
+    },
+    {
+      "feature": "AOM",
+      "backend": "Reservation Qty (C)",
+      "backend_category": "欄位",
+      "frontend": "Buy Page 可下單數量",
+      "frontend_category": "Buy Page",
+      "relation_zh": "未出貨訂單預留量 Reservation Qty(C)增加會降低 Salable Qty,連動減少前台可下單數量;取消或出貨後回補。",
+      "trigger": "Salable Qty = A - B - C;下單增 C、取消/出貨減 C",
+      "sources": [
+        "AOM_MCC1_TestCase_v1.1_20231020.xlsx",
+        "AOM_MCC1_TestCase_v1_20230530.xlsx",
+        "AOM_MCC1_TestCase_v1_20230710.xlsx"
+      ],
+      "id": "REL-046"
+    },
+    {
+      "feature": "AOM",
+      "backend": "Salable Qty",
+      "backend_category": "欄位",
+      "frontend": "Buy Page 可下單數量",
+      "frontend_category": "Buy Page",
+      "relation_zh": "後台 Advanced Inventory 的 Salable Qty(可售數量)決定前台可下單數量,兩者須相符。",
+      "trigger": "Salable Qty = Quantity(A) - Out of Stock Threshold(B) - Reservation Qty(C)",
+      "sources": [
+        "AOM_MCC1_TestCase_v1.1_20231020.xlsx",
+        "AOM_MCC1_TestCase_v1_20230530.xlsx",
+        "AOM_MCC1_TestCase_v1_20230710.xlsx"
+      ],
+      "id": "REL-047"
+    },
+    {
+      "feature": "AOM",
+      "backend": "Salable Qty",
+      "backend_category": "欄位",
+      "frontend": "Buy Page 產品狀態按鈕 [notify_me]",
+      "frontend_category": "Buy Page",
+      "relation_zh": "Salable Qty=0(缺貨)時前台商品 CTA 由 [buy] 改為 [notify_me](缺貨通知我)。",
+      "trigger": "Salable Qty=0 → 前台 CTA = Notify me",
+      "sources": [
+        "AOM_MCC1_TestCase_v1.1_20231020.xlsx",
+        "AOM_MCC1_TestCase_v1_20230530.xlsx",
+        "AOM_MCC1_TestCase_v1_20230710.xlsx"
+      ],
+      "id": "REL-048"
+    },
+    {
+      "feature": "AOM",
+      "backend": "Shipping Embargo Date",
+      "backend_category": "欄位",
+      "frontend": "前台 pre-order restriction alert",
+      "frontend_category": "Buy Page",
+      "relation_zh": "商品在後台設有仍未到期的 Shipping Embargo Date(出貨禁運日)時,前台仍顯示 pre-order restriction alert;訂單於該日前不 Sourcing。",
+      "trigger": "shipping_embargo_date > 今日(網站時區)→ 前台顯示 pre-order restriction alert",
+      "sources": [
+        "AOM_MCC1_TestCase_v1.1_20231020.xlsx",
+        "AOM_MCC1_TestCase_v1_20230530.xlsx",
+        "AOM_MCC1_TestCase_v1_20230710.xlsx",
+        "[EU] Shipping embargo date update logic change_testcase_EU_20240924.xlsx"
+      ],
+      "id": "REL-049"
+    },
+    {
+      "feature": "AOM",
+      "backend": "Shipping Refund Rules",
+      "backend_category": "規則",
+      "frontend": "My Account Refund tab 退款金額",
+      "frontend_category": "My Account",
+      "relation_zh": "各國運費退款規則決定運費是否/何時併入退款,影響前台 My Account 呈現的實際退款金額。",
+      "trigger": "三選項:全部退完才退運費(預設)/ 起退即優先退運費 / 一律不退運費",
+      "sources": [
+        "AOM_MCC1_TestCase_v1.1_20231020.xlsx",
+        "AOM_MCC1_TestCase_v1_20230530.xlsx",
+        "AOM_MCC1_TestCase_v1_20230710.xlsx"
+      ],
+      "id": "REL-050"
+    },
+    {
+      "feature": "AOM",
+      "backend": "WEP Activate SN",
+      "backend_category": "欄位",
+      "frontend": "WEP 保固啟用 / WEP activation email",
+      "frontend_category": "Email",
+      "relation_zh": "實體商品出貨(SHIPPED)後 AOM 將 WEP Activate SN 更新為實體產品 SN,為 WEP 保固啟用與寄送 activation email 的必要條件之一。",
+      "trigger": "WepActivateSn 非空 + DELIVERED + Magento invoice → WEP 保固啟用並寄 activation email",
+      "sources": [
+        "AOM_MCC1_TestCase_v1.1_20231020.xlsx",
+        "AOM_MCC1_TestCase_v1_20230530.xlsx",
+        "AOM_MCC1_TestCase_v1_20230710.xlsx",
+        "Digital WEP - Plus Sale_Testcase_HU_20240710.xlsx"
+      ],
+      "id": "REL-051"
+    },
+    {
+      "feature": "AOM",
+      "backend": "Warehouse Status",
+      "backend_category": "狀態",
+      "frontend": "WEP activation email",
+      "frontend_category": "Email",
+      "relation_zh": "混合/Only WEP 訂單中,實體商品 warehouse status=SHIPPED 時 AOM 自動將 WEP 產品 WMS status 壓上 DELIVERED,以觸發 WEP 保固啟用並寄出 WEP activation email 給消費者。",
+      "trigger": "實體 SHIPPED → WEP 壓 DELIVERED;DELIVERED + Magento invoice + WepActivateSn≠空 → 寄出 WEP activation email",
+      "sources": [
+        "AOM_MCC1_TestCase_v1.1_20231020.xlsx",
+        "AOM_MCC1_TestCase_v1_20230530.xlsx",
+        "AOM_MCC1_TestCase_v1_20230710.xlsx",
+        "Digital WEP - Single Buy_TestCase_CZ_20250407.xlsx"
+      ],
+      "id": "REL-052"
+    },
+    {
+      "feature": "Payment",
+      "backend": "AOM (ECMW) Payment Method",
+      "backend_category": "AOM(ECMW)",
+      "frontend": "Refund Option 欄位 (Create New Return)",
+      "frontend_category": "My Account 退貨頁",
+      "relation_zh": "後台記錄的原訂單付款方式決定 Create New Return 頁 Refund Option 欄位顯示對應的付款方式名稱。",
+      "trigger": "依原訂單付款方式(Alma/BNPL/imoje installments/BLIK/Online Transfer/Credit Card)",
+      "sources": [
+        "EU_PartCountries_ Add new payment method - Alma_Test Case_20260410.xlsx",
+        "PL_Installment payment method_Test Case_20251016.xlsx",
+        "PL_Payment gateway partner & integration change (with imoje)_TestCase_20260420.xlsx"
+      ],
+      "id": "REL-053"
+    },
+    {
+      "feature": "Payment",
+      "backend": "Cancel Button 隱藏規則(付款方式)",
+      "backend_category": "退款/取消規則",
+      "frontend": "My Account 隱藏 Cancel Button",
+      "frontend_category": "My Account",
+      "relation_zh": "後台依付款方式規則,於前台 My Account page 隱藏 Cancel Button 且訂單無法取消(分期需由 disti/nextM 處理);OTP Trade Loan 亦無法從 MOM 取消。",
+      "trigger": "訂單付款方式為 OTP Trade Loan / InstaCash BNPL / imoje installments",
+      "sources": [
+        "(HU) OTP Trade Loan_v1_20230607.xlsx",
+        "HU_Add new payment method - InstaCash BNPL service_Test Case_20250714.xlsx",
+        "PL_Installment payment method_Test Case_20251016.xlsx"
+      ],
+      "id": "REL-054"
+    },
+    {
+      "feature": "Payment",
+      "backend": "Company & VAT Number(B2B 判定)",
+      "backend_category": "欄位規則",
+      "frontend": "隱藏 OTP Trade Loan 付款選項 + notice message",
+      "frontend_category": "Checkout 付款方式區塊",
+      "relation_zh": "結帳地址任一填寫 Company & VAT Number(代表 B2B)時,前台 Checkout 隱藏 OTP Trade Loan 付款選項並於地址欄位下方顯示 notice message。",
+      "trigger": "shipping/billing/address book/new address 任一填寫 Company & VAT Number",
+      "sources": [
+        "(HU) OTP Trade Loan_v1_20230607.xlsx"
+      ],
+      "id": "REL-055"
+    },
+    {
+      "feature": "Payment",
+      "backend": "Coupon Return API error (Coupon Code Middleware)",
+      "backend_category": "退款規則 / API",
+      "frontend": "alert mail",
+      "frontend_category": "Email",
+      "relation_zh": "取消含 coupon 訂單時 Coupon Code Middleware 處理 coupon 返還並更新 coupon return record;若 Coupon Return API 回傳 error,Magento 記錄 log 並發送 alert mail。",
+      "trigger": "含 coupon 訂單取消且 Coupon Return API 回傳 error",
+      "sources": [
+        "Apple Pay and Google Pay payment method (with GoPay)_CZ_Testcase_20260527.xlsx"
+      ],
+      "id": "REL-056"
+    },
+    {
+      "feature": "Payment",
+      "backend": "GoPay Payment Status",
+      "backend_category": "付款狀態",
+      "frontend": "Thank you page / 導回 Cart page",
+      "frontend_category": "導頁 / 付款失敗",
+      "relation_zh": "GoPay 回傳狀態決定前台導頁與訂單處理:PAID 進 Thank you page 並開票;CANCELED/TIMEOUT 取消(reason=Payment Failed)並在有 redirect webhook 時導回 Cart page;PAYMENT_METHOD_CHOSEN 維持 New/Gopay Pending。",
+      "trigger": "GoPay status(PAID/CANCELED/TIMEOUT/PAYMENT_METHOD_CHOSEN)",
+      "sources": [
+        "Apple Pay and Google Pay payment method (with GoPay)_CZ_Testcase_20260527.xlsx"
+      ],
+      "id": "REL-057"
+    },
+    {
+      "feature": "Payment",
+      "backend": "Google Pay / Apple Pay 付款失敗(cancel/timeout/未綁卡)",
+      "backend_category": "付款狀態",
+      "frontend": "付款失敗提示 + 停留 Checkout Page",
+      "frontend_category": "付款失敗 alert",
+      "relation_zh": "Google Pay/Apple Pay 取消付款、逾時或未綁卡/裝置不支援時,前台顯示付款失敗錯誤(未設定可用付款方式 / Apple Pay Timeout),不產生訂單編號且停留 Checkout Page。",
+      "trigger": "取消付款 / timeout / 未綁卡或裝置不支援",
+      "sources": [
+        "Apple Pay and Google Pay payment method (with GoPay)_CZ_Testcase_20260527.xlsx",
+        "Apple Pay and Google Pay payment method (with Stripe)_DK_TestCase_20251124.xlsx"
+      ],
+      "id": "REL-058"
+    },
+    {
+      "feature": "Payment",
+      "backend": "InstaCash Block / Installment 金額計算(最終價)",
+      "backend_category": "金額範圍規則",
+      "frontend": "Buy page InstaCash Block / Installment Block",
+      "frontend_category": "Buy page Block",
+      "relation_zh": "依商品最終價與價格區間決定 Buy page 料號下方是否顯示 InstaCash Block/Prescore Block 與 imoje Installment Block(含每期金額、View Installment Plans);native bundle buy page 不顯示 Installment Block。",
+      "trigger": "商品最終價落在區間(InstaCash 依 HU 價格區間;imoje Installments 300–50,000 PLN)",
+      "sources": [
+        "HU_Add new payment method - InstaCash BNPL service_Test Case_20250714.xlsx",
+        "PL_Installment payment method_Test Case_20251016.xlsx"
+      ],
+      "id": "REL-059"
+    },
+    {
+      "feature": "Payment",
+      "backend": "InstaCash Payment Status",
+      "backend_category": "付款狀態",
+      "frontend": "訂單狀態 + BNPL 付款頁停留(Go Shopping)",
+      "frontend_category": "導頁 / 訂單狀態",
+      "relation_zh": "InstaCash 於 application/deal level 回傳狀態:PAID → Magento Processing(LOGISTICS)、AOM Pending first shipment request、等出貨開發票;CANCELLED/DENIED/INTERRUPTED → 訂單取消(reason=Payment Failed)。選 BNPL 後停留 BNPL 付款頁不自動導 Thank You,須點 Go Shopping。",
+      "trigger": "InstaCash 回傳狀態(PAID/CANCELLED/DENIED/INTERRUPTED)",
+      "sources": [
+        "HU_Add new payment method - InstaCash BNPL service_Test Case_20250714.xlsx"
+      ],
+      "id": "REL-060"
+    },
+    {
+      "feature": "Payment",
+      "backend": "Klarna 啟用",
+      "backend_category": "Magento Payment 設定",
+      "frontend": "Buy/Cart page 每月字串 + Checkout terms 勾選",
+      "frontend_category": "Buy page Block / Checkout",
+      "relation_zh": "Klarna(ES/IT/BE)啟用時前台 Buy page 稅額下方與 Cart page Checkout 按鈕下方顯示『Pay as low as $ xx/month Learn More>』,Checkout 需勾選 Klarna terms and condition 才 enable place order,Email 於信用卡付款方式下方顯示 Klarna 客服字串。",
+      "trigger": "付款方式含 Klarna(ES/IT/BE)",
+      "sources": [
+        "Klarna_TestCase_ES_IT_BE_20211130.xlsx"
+      ],
+      "id": "REL-061"
+    },
+    {
+      "feature": "Payment",
+      "backend": "Magento Payment Methods Configuration",
+      "backend_category": "Magento Payment 設定",
+      "frontend": "Payment Method Option 區塊",
+      "frontend_category": "Checkout 付款方式區塊",
+      "relation_zh": "後台各付款方式的 Enable/Title/Description/New Order Status 決定前台 Checkout 是否顯示該付款方式及其名稱、描述與展開內容;GoPay 的 Apple/Google Pay 設定與 Payment Card 一致。",
+      "trigger": "付款方式 Enable=Yes 且 Scope(國別)相符",
+      "sources": [
+        "Apple Pay and Google Pay payment method (with GoPay)_CZ_Testcase_20260527.xlsx",
+        "PL_Installment payment method_Test Case_20251016.xlsx"
+      ],
+      "id": "REL-062"
+    },
+    {
+      "feature": "Payment",
+      "backend": "Magento USP 設定 (可編輯)",
+      "backend_category": "Magento Payment 設定",
+      "frontend": "USP / Prescore Block",
+      "frontend_category": "USP/Prescore Block",
+      "relation_zh": "後台可編輯的 USP title/description 決定選擇 ASUS Pay Later(InstaCash BNPL)時 Checkout 右側 USP Block 顯示內容(Why should you choose installment payment? 等)。",
+      "trigger": "選擇 ASUS Pay Later(InstaCash BNPL)付款方式",
+      "sources": [
+        "HU_Add new payment method - InstaCash BNPL service_Test Case_20250714.xlsx"
+      ],
+      "id": "REL-063"
+    },
+    {
+      "feature": "Payment",
+      "backend": "Multibanco Entity/Reference 產生 (Stripe)",
+      "backend_category": "金流商回傳",
+      "frontend": "Multibanco Payment details dialog / View voucher",
+      "frontend_category": "彈窗 dialog",
+      "relation_zh": "下單後 Stripe 產生 Entity/Reference,前台彈出 Multibanco Payment details dialog(Entity、Reference、到期時間、Print、Copy link、Powered by stripe),並於 Thank you/My Order 顯示 View voucher 供 ATM/網銀繳款。",
+      "trigger": "place order 成功(未付款且未取消時顯示 voucher)",
+      "sources": [
+        "PT_ Add new payment method_Multibanco payment_TestCase_20260401.xlsx"
+      ],
+      "id": "REL-064"
+    },
+    {
+      "feature": "Payment",
+      "backend": "Multibanco 逾期取消 (webhook payment_failed)",
+      "backend_category": "Cron/Webhook",
+      "frontend": "Cancel Email 主旨 + View voucher 隱藏",
+      "frontend_category": "Email / 彈窗",
+      "relation_zh": "Multibanco 逾期 7 天收 Stripe webhook(payment_failed)自動取消訂單,寄送取消 Email(主旨 Your Order Has Been Cancelled Due to Incomplete Payment),且 Thank you/My Order 不再顯示 View voucher。",
+      "trigger": "Multibanco 逾期未付(payment_failed)",
+      "sources": [
+        "PT_ Add new payment method_Multibanco payment_TestCase_20260401.xlsx"
+      ],
+      "id": "REL-065"
+    },
+    {
+      "feature": "Payment",
+      "backend": "Payment Method Mapping Table",
+      "backend_category": "Payment Method Mapping",
+      "frontend": "付款名稱一致顯示 (Thank you / My Order / Email)",
+      "frontend_category": "付款名稱呈現",
+      "relation_zh": "後台 mapping(Payment Method/Submethod→Payment Name)決定各系統與前台 Thank you page、My Order、Email 顯示的付款名稱一致。",
+      "trigger": "依 mapping 表(imoje/installments→imoje installments;STRIPE/multibanco→Multibanco;STRIPE/MB WAY→MB WAY 等)",
+      "sources": [
+        "EU_PartCountries_ Add new payment method - Alma_Test Case_20260410.xlsx",
+        "PL_Installment payment method_Test Case_20251016.xlsx",
+        "PT_Add new payment method_MB Way_Test Case_20260401.xlsx"
+      ],
+      "id": "REL-066"
+    },
+    {
+      "feature": "Payment",
+      "backend": "Payment status (Payment Mocker)",
+      "backend_category": "付款狀態",
+      "frontend": "Thank you page 警示語 / 導回 Cart page",
+      "frontend_category": "Thank you page / 付款失敗",
+      "relation_zh": "NL/DE Online Banking 用 Payment Mocker 狀態決定前台呈現:Approve/Back → Thank you page 顯示警示語;Reject(payment failed)→ 回到 Cart page 且訂單 cancel。",
+      "trigger": "Payment Mocker 狀態(Approve/Reject/Back)",
+      "sources": [
+        "Add the warning message Online Banking payment on Thank You page_TestCase_NLDE_20220620.xlsx"
+      ],
+      "id": "REL-067"
+    },
+    {
+      "feature": "Payment",
+      "backend": "Redirect webhook",
+      "backend_category": "Cron/Webhook",
+      "frontend": "Thank you page / Cart page 導頁",
+      "frontend_category": "導頁 / 付款失敗",
+      "relation_zh": "金流商付款結果 redirect webhook 回傳 Magento 後觸發前台導向:成功導 thank you page,失敗/取消導回 cart page(並可自動取消訂單)。",
+      "trigger": "webhook 結果(paid / payment_failed / cancelled / rejected)",
+      "sources": [
+        "Apple Pay and Google Pay payment method (with GoPay)_CZ_Testcase_20260527.xlsx",
+        "PL_Google Pay payment method (with Imoje)_Test Case_20260420.xlsx",
+        "PT_ Add new payment method_Multibanco payment_TestCase_20260401.xlsx"
+      ],
+      "id": "REL-068"
+    },
+    {
+      "feature": "Payment",
+      "backend": "Return / Refund offline processing",
+      "backend_category": "退款規則",
+      "frontend": "不寄 Refund Email / 前台無退款信",
+      "frontend_category": "Email",
+      "relation_zh": "部分付款方式(InstaCash/Wire Transfer/Paynow/Credit Card/COD)退貨退款為線下處理,Magento 產生 credit memo 但避免呼叫 refund API,前台不寄退款 Email。",
+      "trigger": "付款方式屬線下退款處理",
+      "sources": [
+        "HU_Add new payment method - InstaCash BNPL service_Test Case_20250714.xlsx",
+        "PL_Installment payment method_Test Case_20251016.xlsx"
+      ],
+      "id": "REL-069"
+    },
+    {
+      "feature": "Payment",
+      "backend": "TreviPay SMS authentication",
+      "backend_category": "付款狀態",
+      "frontend": "SMS auth fail message / 取消訂單",
+      "frontend_category": "付款失敗 alert",
+      "relation_zh": "TreviPay 於 login page 進行 SMS 驗證,輸入非正確密碼(2222)時前台顯示錯誤訊息,按 Cancel and return to checkout 導回購物車並取消該訂單;關閉付款頁則訂單為 pending payment。",
+      "trigger": "SMS 驗證失敗(密碼≠2222)或關閉付款頁",
+      "sources": [
+        "TreviPay_TestCase_20230719.xlsx"
+      ],
+      "id": "REL-070"
+    },
+    {
+      "feature": "Payment",
+      "backend": "TreviPay 導入條件(國別 / 同國地址)",
+      "backend_category": "Magento Payment 設定",
+      "frontend": "Checkout 顯示 TreviPay(前台其餘處顯示 Msts)",
+      "frontend_category": "Checkout 付款方式區塊",
+      "relation_zh": "後台該國已導入 TreviPay 且 shipping/billing 為同一國家時,前台 Checkout 才顯示 TreviPay;order detail/Thank you/Email/MOM 則顯示為 Msts。",
+      "trigger": "國別已導入 TreviPay 且 shipping=billing 同國",
+      "sources": [
+        "TreviPay_TestCase_20230719.xlsx"
+      ],
+      "id": "REL-071"
+    },
+    {
+      "feature": "Payment",
+      "backend": "Zero-Pay order invoice rule",
+      "backend_category": "發票/金額規則",
+      "frontend": "Checkout 不顯示金流選項 + No payment information required",
+      "frontend_category": "Checkout 付款方式區塊",
+      "relation_zh": "coupon 使金額降為 $0 的零付款訂單,前台 Checkout 不顯示需付款的金流選項(不可選 Alma/Multibanco)並顯示無需付款訊息(如 Não são necessárias informações de pagamento),仍可下單導向 Thank you page,僅出貨時開發票。",
+      "trigger": "訂單金額=$0(coupon 全額折抵)",
+      "sources": [
+        "Add new payment method - Bancontact_BE_Testcase_20260212.xlsx",
+        "EU_PartCountries_ Add new payment method - Alma_Test Case_20260410.xlsx",
+        "PT_ Add new payment method_Multibanco payment_TestCase_20260401.xlsx",
+        "PT_Add new payment method_MB Way_Test Case_20260401.xlsx"
+      ],
+      "id": "REL-072"
+    },
+    {
+      "feature": "Payment",
+      "backend": "imoje installments payment status",
+      "backend_category": "付款狀態",
+      "frontend": "訂單狀態 / 發票 / 導頁",
+      "frontend_category": "發票呈現 / 導頁",
+      "relation_zh": "imoje installments 狀態決定前台結果:settled → Magento Processing 並自動開發票、同步 ECMW;rejected → Payment Review;cancelled(逾期 2 小時未付)自動取消(reason=Payment Failed)。",
+      "trigger": "imoje installments 狀態(new/settled/rejected/cancelled)",
+      "sources": [
+        "PL_Installment payment method_Test Case_20251016.xlsx"
+      ],
+      "id": "REL-073"
+    },
+    {
+      "feature": "Payment",
+      "backend": "imoje 付款 Reject / 逾期 (Redirect webhook)",
+      "backend_category": "付款狀態 / Webhook",
+      "frontend": "Payment failed alert + 導回清空 Cart page + Choose another payment method",
+      "frontend_category": "付款失敗 alert / 導回購物車",
+      "relation_zh": "imoje(BLIK/Online Transfer/Credit Card)付款被 Reject 或逾期,前台導回並清空 Cart page 顯示『Payment failed. Please try placing the order again.』,並於 Payment rejected 畫面提供 Choose another payment method 改選其他付款方式重新下單。",
+      "trigger": "imoje 付款 rejected / 逾期未付",
+      "sources": [
+        "PL_Google Pay payment method (with Imoje)_Test Case_20260420.xlsx",
+        "PL_Installment payment method_Test Case_20251016.xlsx",
+        "PL_Payment gateway partner & integration change (with imoje)_TestCase_20260420.xlsx"
+      ],
+      "id": "REL-074"
+    },
+    {
+      "feature": "Payment",
+      "backend": "invoice_issue_trigger=Paid / Invoice creation upon payment confirmation",
+      "backend_category": "invoice_issue_trigger",
+      "frontend": "Invoice email / 發票呈現",
+      "frontend_category": "發票呈現",
+      "relation_zh": "即時捕獲付款(iDeal/Bancontact/Alma/Bank Transfer 或含 pre-order 商品)時 invoice_issue_trigger=Paid,付款確認即開立發票並寄送 Order confirmation / Invoice email。",
+      "trigger": "invoice_issue_trigger=Paid(付款捕獲時)",
+      "sources": [
+        "Add new payment method - Bancontact_BE_Testcase_20260212.xlsx",
+        "Add new payment method - iDeal_NL_Testcase_20260223.xlsx",
+        "EU_PartCountries_ Add new payment method - Alma_Test Case_20260410.xlsx",
+        "EU_Pre-order payment and invoice process adjustment_Test Case_20260306.xlsx",
+        "[EU6] Add Bank Transfer payment method_TestCase_20260519.xlsx"
+      ],
+      "id": "REL-075"
+    },
+    {
+      "feature": "Payment",
+      "backend": "invoice_issue_trigger=Shipped",
+      "backend_category": "invoice_issue_trigger",
+      "frontend": "出貨後才開立發票 / 發票呈現",
+      "frontend_category": "發票呈現",
+      "relation_zh": "一般 Credit Card/PayPal/Apple Pay/Google Pay 及零元訂單 invoice_issue_trigger=Shipped,須出貨後才開立發票。",
+      "trigger": "invoice_issue_trigger=Shipped",
+      "sources": [
+        "Add new payment method - Bancontact_BE_Testcase_20260212.xlsx",
+        "Add new payment method - iDeal_NL_Testcase_20260223.xlsx",
+        "EU_Pre-order payment and invoice process adjustment_Test Case_20260306.xlsx",
+        "PT_ Add new payment method_Multibanco payment_TestCase_20260401.xlsx"
+      ],
+      "id": "REL-076"
+    },
+    {
+      "feature": "Payment",
+      "backend": "is_reminder_sent + Cron(第5天)",
+      "backend_category": "Cron/Webhook",
+      "frontend": "Multibanco Payment Reminder Email",
+      "frontend_category": "Email",
+      "relation_zh": "PT Multibanco is_reminder_sent=false 時,第 5 天由排程發送付款提醒 Email(主旨 Reminder: Complete Your Multibanco Payment to Finalize Your Order,含 View voucher link)並更新 is_reminder_sent=true 避免重複。",
+      "trigger": "is_reminder_sent=false 且到付款期第 5 天",
+      "sources": [
+        "PT_ Add new payment method_Multibanco payment_TestCase_20260401.xlsx"
+      ],
+      "id": "REL-077"
+    },
+    {
+      "feature": "Payment",
+      "backend": "pending_payment / 付款未完成訂單",
+      "backend_category": "付款狀態",
+      "frontend": "保留購物車商品",
+      "frontend_category": "購物車",
+      "relation_zh": "付款未完成(pending_payment)的訂單,前台保留購物車商品供重新下單(EU10);TreviPay 關閉付款頁、Multibanco/Bank Transfer 未付款皆停留 pending payment。",
+      "trigger": "訂單 pending payment(付款未完成)",
+      "sources": [
+        "Keep the products in shopping cart for payment failed (not completed) orders_EU10_Testcase_20260525.xlsx",
+        "PT_ Add new payment method_Multibanco payment_TestCase_20260401.xlsx",
+        "TreviPay_TestCase_20230719.xlsx"
+      ],
+      "id": "REL-078"
+    },
+    {
+      "feature": "Payment",
+      "backend": "付款金額範圍限制",
+      "backend_category": "金額範圍規則",
+      "frontend": "Payment Method Option 區塊 / Buy page Block",
+      "frontend_category": "Checkout 付款方式區塊",
+      "relation_zh": "後台設定的金額區間決定前台 Checkout 是否顯示該付款選項與 Buy page 分期/BNPL Block;訂單或商品金額超出區間即隱藏該付款方式(Buy page Block 可能仍顯示)。",
+      "trigger": "金額落在區間內(Alma 50–5,000 EUR;imoje Installments 300–50,000 PLN;BLIK 0.1–50,000 PLN;Online Transfer/Credit Card 0.01–999,999.99 PLN;Bank Transfer EU6 1–999,999.99;OTP Trade Loan ≥$50000)",
+      "sources": [
+        "EU_PartCountries_ Add new payment method - Alma_Test Case_20260410.xlsx",
+        "HU_Add new payment method - InstaCash BNPL service_Test Case_20250714.xlsx",
+        "PL_Installment payment method_Test Case_20251016.xlsx",
+        "PL_Payment gateway partner & integration change (with imoje)_TestCase_20260420.xlsx",
+        "[EU6] Add Bank Transfer payment method_TestCase_20260519.xlsx"
+      ],
+      "id": "REL-079"
+    },
+    {
+      "feature": "Payment",
+      "backend": "逾期未付自動取消 (Payment Cron Job / Cancel job)",
+      "backend_category": "Cron/Webhook",
+      "frontend": "Order Cancel Email",
+      "frontend_category": "Email",
+      "relation_zh": "逾期未付由 cron job / webhook 自動取消訂單並寄送取消通知 Email(cancellation reason=Payment Failed 或 Overdue Cancel)。",
+      "trigger": "逾期未付(imoje 2 小時 / InstaCash 2 週 / Multibanco 7 天 / Bank Transfer Cancel job)",
+      "sources": [
+        "HU_Add new payment method - InstaCash BNPL service_Test Case_20250714.xlsx",
+        "PL_Payment gateway partner & integration change (with imoje)_TestCase_20260420.xlsx",
+        "PT_ Add new payment method_Multibanco payment_TestCase_20260401.xlsx",
+        "[EU6] Add Bank Transfer payment method_TestCase_20260519.xlsx"
+      ],
+      "id": "REL-080"
+    },
+    {
+      "feature": "Private Store",
+      "backend": "Condition type",
+      "backend_category": "規則",
+      "frontend": "Membership check section",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "EPP 以 Domain list rule 綁定 Customer Group，前台 EPP Introduction Page 的 Membership check 區塊輸入公司 email domain 查得該公司「已加入」，引導 Employee Login / Go shopping。",
+      "trigger": "domain 已在 Domain list rule → 前台網域查詢顯示已加入",
+      "sources": [
+        "Private Store new country rollout_PT_Testcase_20260313.xlsx",
+        "Private Store_TestCase_v1_20220920.xlsx"
+      ],
+      "id": "REL-081"
+    },
+    {
+      "feature": "Private Store",
+      "backend": "Condition type",
+      "backend_category": "規則",
+      "frontend": "Buy Page Price Check",
+      "frontend_category": "價格公式",
+      "relation_zh": "EPP 審核通過後以 Domain list 綁定 Customer Group，同公司網域(domain)之員工登入即於 Buy Page 享 EPP 優惠價，無須逐一審核。",
+      "trigger": "email domain 命中 Domain list rule → 前台登入顯示 EPP 優惠價",
+      "sources": [
+        "Private Store new country rollout_PT_Testcase_20260313.xlsx",
+        "Private Store_TestCase_v1_20220920.xlsx"
+      ],
+      "id": "REL-082"
+    },
+    {
+      "feature": "Private Store",
+      "backend": "Customer Group",
+      "backend_category": "狀態",
+      "frontend": "Checkout Billing Address (SMB 公司欄位)",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "帳號屬 SMB Customer Group 時，前台結帳 Billing Address 的 Company Name、Company ID(IČO)、VAT number(DIČ)三欄為必填，未填顯示錯誤且不導頁；一般會員/訪客為選填可繼續結帳。",
+      "trigger": "會員屬 SMB 群組 → 前台 Checkout 公司三欄必填",
+      "sources": [
+        "[CZ]Private Store mechanism extend to Microbusiness Program (SMB)_TestCase.xlsx"
+      ],
+      "id": "REL-083"
+    },
+    {
+      "feature": "Private Store",
+      "backend": "Customer Group",
+      "backend_category": "狀態",
+      "frontend": "Buy Page Price Check",
+      "frontend_category": "價格公式",
+      "relation_zh": "審核 Reject 者信箱不加入 Magento rule 維持 General 群組，前台 Buy Page 不顯示專案優惠價。",
+      "trigger": "審核 Rejected → 維持 General 群組 → 前台無優惠價",
+      "sources": [
+        "Private store_auto remove_TestCase_MCC1_20231228.xlsx",
+        "SheerID integration for EDU Private Store authentication_Test Case_20260604.xlsx"
+      ],
+      "id": "REL-084"
+    },
+    {
+      "feature": "Private Store",
+      "backend": "Customer Group Assign API",
+      "backend_category": "API",
+      "frontend": "Buy Page Price Check",
+      "frontend_category": "價格公式",
+      "relation_zh": "ECMW 審核通過後呼叫 API 將 Customer Group 指派同步至 Magento，回傳成功狀態轉 Approved 並註記 Customer group has been assigned to Magento，前台商品 Buy Page 即顯示對應優惠價。",
+      "trigger": "API 回傳成功 → 狀態轉 Approved 並指派群組 → 前台顯示優惠價",
+      "sources": [
+        "Private store_auto remove_TestCase_MCC1_20231228.xlsx",
+        "SheerID integration for EDU Private Store authentication_Test Case_20260604.xlsx"
+      ],
+      "id": "REL-085"
+    },
+    {
+      "feature": "Private Store",
+      "backend": "Customer Group Assign API",
+      "backend_category": "API",
+      "frontend": "Buy Page Price Check",
+      "frontend_category": "價格公式",
+      "relation_zh": "API 回傳失敗時狀態轉 Waiting for review (Automatic assign failed)、Customer Group 未指派，前台商品 Buy Page 不顯示優惠價，須待重試指派成功才顯示。",
+      "trigger": "API 回傳失敗 → Automatic assign failed、群組未指派 → 前台無優惠價",
+      "sources": [
+        "Private store_auto remove_TestCase_MCC1_20231228.xlsx",
+        "SheerID integration for EDU Private Store authentication_Test Case_20260604.xlsx"
+      ],
+      "id": "REL-086"
+    },
+    {
+      "feature": "Private Store",
+      "backend": "Customer Group Levels",
+      "backend_category": "規則",
+      "frontend": "Buy Page Price Check",
+      "frontend_category": "價格公式",
+      "relation_zh": "審核 Approve 時於 Review pop up 選定的 Customer Group 層級(EPP level 1/2、Education level 1/2/3、SMB Level 1/2/3)決定會員歸屬群組，前台 Buy Page 依該層級套用對應折扣優惠價。",
+      "trigger": "Review pop up 選定群組層級 → 歸入該群組 → 前台顯示該層級優惠價",
+      "sources": [
+        "Private store_auto remove_TestCase_MCC1_20231228.xlsx",
+        "[CZ]Private Store mechanism extend to Microbusiness Program (SMB)_TestCase.xlsx"
+      ],
+      "id": "REL-087"
+    },
+    {
+      "feature": "Private Store",
+      "backend": "Customer group auto assign",
+      "backend_category": "規則",
+      "frontend": "Buy Page Price Check",
+      "frontend_category": "價格公式",
+      "relation_zh": "審核 Approved 後 ECMW 透過 API 自動將申請人加入 Magento 對應 Rule ID 清單並更新 Customer Group，會員登入後於已設定專案優惠價的商品 Buy Page 顯示優惠價。",
+      "trigger": "審核 Approved → 自動指派 Customer Group → 前台登入顯示優惠價",
+      "sources": [
+        "Private store_auto remove_TestCase_MCC1_20231228.xlsx",
+        "SheerID integration for EDU Private Store authentication_Test Case_20260604.xlsx"
+      ],
+      "id": "REL-088"
+    },
+    {
+      "feature": "Private Store",
+      "backend": "Customer group auto remove",
+      "backend_category": "規則",
+      "frontend": "Buy Page Price Check",
+      "frontend_category": "價格公式",
+      "relation_zh": "每日排程 Job 依 Expiration Date 將到期會員從 Email/Phone list 移除、Customer Group 轉回 General 並清空 Expiration Date，前台 Buy Page 不再顯示專案優惠價(延展成功者恢復顯示)。",
+      "trigger": "Expiration Date 到期未延展 → 自動移除轉回 General → 前台優惠價消失",
+      "sources": [
+        "Private store_auto remove_TestCase_MCC1_20231228.xlsx",
+        "SheerID integration for EDU Private Store authentication_Test Case_20260604.xlsx"
+      ],
+      "id": "REL-089"
+    },
+    {
+      "feature": "Private Store",
+      "backend": "Expiration Date",
+      "backend_category": "規則",
+      "frontend": "會籍到期與延展流程",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "依 EDU 會籍 Expiration Date 與當前日期差，前台 Introduction/Application Page 顯示不同提示：距到期>30天隱藏 Apply 顯示已是會員、<30天顯示 Extend、已到期顯示 Apply to Join/Reapply。",
+      "trigger": "依 Expiration Date 與當前日期差 → 前台顯示對應延展/重新申請提示",
+      "sources": [
+        "Private Store new country rollout_PT_Testcase_20260313.xlsx",
+        "SheerID integration for EDU Private Store authentication_Test Case_20260604.xlsx"
+      ],
+      "id": "REL-090"
+    },
+    {
+      "feature": "Private Store",
+      "backend": "Export Magento import template",
+      "backend_category": "後台",
+      "frontend": "Buy Page Price Check",
+      "frontend_category": "價格公式",
+      "relation_zh": "非自動化國家於 Application Review 將篩選結果匯出為 Magento 匯入範本 CSV(EPP domain list rule / EDU email list rule)，手動匯入 Magento 綁定 Customer Group 後，前台會員登入才顯示優惠價。",
+      "trigger": "非自動化國家 Approve → 匯出 CSV 手動匯入 Magento → 前台顯示優惠價",
+      "sources": [
+        "Private Store new country rollout_PT_Testcase_20260313.xlsx",
+        "Private Store_TestCase_v1_20220920.xlsx"
+      ],
+      "id": "REL-091"
+    },
+    {
+      "feature": "Private Store",
+      "backend": "Group expiration date",
+      "backend_category": "欄位",
+      "frontend": "到期提醒信",
+      "frontend_category": "其他",
+      "relation_zh": "當會員 Customer Group 的 Expiration Date = 今日+30天(依各國時區)時，每日 09:00(GMT+8) 發送會籍到期提醒信給會員；+29天或有更晚到期日之同一申請人不發送。",
+      "trigger": "Expiration Date = 今日+30天 → 每日 09:00 發送到期提醒信",
+      "sources": [
+        "SheerID integration for EDU Private Store authentication_Test Case_20260604.xlsx",
+        "[CZ]Private Store mechanism extend to Microbusiness Program (SMB)_TestCase.xlsx"
+      ],
+      "id": "REL-092"
+    },
+    {
+      "feature": "Private Store",
+      "backend": "Magento Assign Status",
+      "backend_category": "狀態",
+      "frontend": "審核結果通知信",
+      "frontend_category": "其他",
+      "relation_zh": "SMB 審核 Approved 後 ECMW 記錄 Magento Assign Status=Success(每日 Job 於台灣 00:00 執行)，同步成功後寄送 SMB Approved 信(含公司名/VAT/到期日)給申請人。",
+      "trigger": "SMB Approved + Magento Assign Status=Success → 寄送 SMB Approved 信",
+      "sources": [
+        "[CZ]Private Store mechanism extend to Microbusiness Program (SMB)_TestCase.xlsx"
+      ],
+      "id": "REL-093"
+    },
+    {
+      "feature": "Private Store",
+      "backend": "Private Store",
+      "backend_category": "核心概念",
+      "frontend": "Introduction Page",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "後台以 Magento→Stores→Configuration→ASUS→Special Offers 開關各國別，開啟後前台首頁依序顯示 EPP/EDU/SMB 入口區塊，各自導向對應 Introduction Page 進行申請。",
+      "trigger": "後台開啟該國 Special Offers → 前台首頁顯示 EPP/EDU/SMB 入口與 Introduction Page",
+      "sources": [
+        "Private Store new country rollout_PT_Testcase_20260313.xlsx",
+        "Private Store_TestCase_v1_20220920.xlsx"
+      ],
+      "id": "REL-094"
+    },
+    {
+      "feature": "Private Store",
+      "backend": "Review button",
+      "backend_category": "後台",
+      "frontend": "審核結果通知信",
+      "frontend_category": "其他",
+      "relation_zh": "人工審核於 Review pop up 選 Approve 並勾選確認 checkbox Submit 後，Approved 通知信於審核成功隔日由 Job(Mon–Fri) 寄給申請人；選 Reject 則即時寄出 Reject 信。",
+      "trigger": "Review pop up 選 Approve/Reject → Approved 隔日寄信 / Reject 即時寄信",
+      "sources": [
+        "Private store_auto remove_TestCase_MCC1_20231228.xlsx",
+        "Private Store_TestCase_v1_20220920.xlsx"
+      ],
+      "id": "REL-095"
+    },
+    {
+      "feature": "Private Store",
+      "backend": "Rule Mapping Console",
+      "backend_category": "後台",
+      "frontend": "Buy Page Price Check",
+      "frontend_category": "價格公式",
+      "relation_zh": "於 Rule Mapping Console 設定各國別各 Customer Group 對應之 Magento Rule ID(Domain/Email/SMB)，審核通過時才能正確將申請人自動加入對應 Magento rule，前台登入方顯示優惠價；Rule ID 未設定則 submit 前攔截、自動指派失敗、前台無優惠。",
+      "trigger": "Rule Mapping Console 已設 Rule ID + Approved → 加入 Magento rule → 前台優惠價",
+      "sources": [
+        "Private store_auto remove_TestCase_MCC1_20231228.xlsx",
+        "[CZ]Private Store mechanism extend to Microbusiness Program (SMB)_TestCase.xlsx"
+      ],
+      "id": "REL-096"
+    },
+    {
+      "feature": "Private Store",
+      "backend": "SheerID",
+      "backend_category": "核心概念",
+      "frontend": "Under Education store review page",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "SheerID 開關 ON 的國家(PL/HU/CZ 等)，前台點 Apply 後另開 SheerID 頁面填資料上傳證明，送出後導向審核中頁面(Under Education store review)，ECMW Approval Status = waiting for review。",
+      "trigger": "SheerID ON + 送出申請 → 導向 Under Education store review page",
+      "sources": [
+        "Private Store new country rollout_PT_Testcase_20260313.xlsx",
+        "SheerID integration for EDU Private Store authentication_Test Case_20260604.xlsx"
+      ],
+      "id": "REL-097"
+    },
+    {
+      "feature": "Private Store",
+      "backend": "SheerID",
+      "backend_category": "核心概念",
+      "frontend": "審核結果通知信",
+      "frontend_category": "其他",
+      "relation_zh": "SheerID 審核國家由 SheerID 依回傳結果定義發送 Approved/Rejected/補件(Request supplementary documents)通知信給申請人。",
+      "trigger": "SheerID 回傳審核結果 → 由 SheerID 定義寄送對應通知信",
+      "sources": [
+        "Private Store EU10_PL_HU_CZ EDU verification flow optimization - SheerID.xlsx",
+        "SheerID integration for EDU Private Store authentication_Test Case_20260604.xlsx"
+      ],
+      "id": "REL-098"
+    },
+    {
+      "feature": "Private Store",
+      "backend": "Waiting for review (SheerID : currentStep)",
+      "backend_category": "狀態",
+      "frontend": "Buy Page Price Check",
+      "frontend_category": "價格公式",
+      "relation_zh": "SheerID 回傳 currentStep=success 後，依 mapping segment 自動指派 Customer Group，前台登入即顯示 EDU 專案優惠價。",
+      "trigger": "SheerID success → 依 segment 自動指派群組 → 前台顯示 EDU 優惠價",
+      "sources": [
+        "Private Store new country rollout_PT_Testcase_20260313.xlsx",
+        "SheerID integration for EDU Private Store authentication_Test Case_20260604.xlsx"
+      ],
+      "id": "REL-099"
+    },
+    {
+      "feature": "WEP Single Buy",
+      "backend": "Enable WEP Products for Multi-Country Activation",
+      "backend_category": "後台",
+      "frontend": "非本國序號訊息",
+      "frontend_category": "錯誤訊息",
+      "relation_zh": "後台多國啟用設定(Allow Entry of SNs from Multiple Countries 與 Applicable Countries)決定站點是否接受他國 SN;僅當 SN 的 wepCountry 屬於該站 Applicable Countries 才允許購買,否則前台顯示『This site is not available for your device...』。",
+      "trigger": "SN 的 wepCountry 在後台 Applicable Countries 內(如 CZ 開放 SK) → 允許查詢購買;未開放(如 PL/HU/BE-nl) → 前台顯示非本國序號錯誤訊息",
+      "sources": [
+        "Ship-to SK products (SN from SK) can purchase WEP on CZ eShop_TestCase_20251016.xlsx",
+        "Digital WEP - Single Buy_TestCase_CZ_20250407.xlsx"
+      ],
+      "id": "REL-100"
+    },
+    {
+      "feature": "WEP Single Buy",
+      "backend": "PN Mapping Rule",
+      "backend_category": "規則",
+      "frontend": "WEP Product Card",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "WEP Check API 回傳適用 PN 後,須交叉比對 PN Mapping Table,且商品 Product Type 為 Virtual、Attribute Set 為 Warranty Product,前台搜尋結果才顯示該 WEP 產品卡。",
+      "trigger": "PN 命中 PN Mapping Table 且商品為 Virtual + Warranty Product → 前台顯示對應 WEP 產品卡;否則不顯示",
+      "sources": [
+        "(HU)WEP Single Buy_Test Case_20240401 (1).xlsx",
+        "Virtual WEP Single Buy_TestCase_PL_20240506.xlsx"
+      ],
+      "id": "REL-101"
+    },
+    {
+      "feature": "WEP Single Buy",
+      "backend": "Segment API",
+      "backend_category": "API",
+      "frontend": "Search Result Section",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "WEP 查詢加入 Segment 欄位驗證:Segment 需與 SN 一致(不分大小寫、不可塞兩值)才回傳結果;不一致或前段欄位(如 Standard_warranty)不匹配則查無,前台不顯示對應 WEP 產品。",
+      "trigger": "Segment 與 SN 一致且其他欄位匹配 → 前台顯示對應 WEP 產品;Segment 不一致/API 回傳 null → 前台查無結果",
+      "sources": [
+        "WEP API add Segment field validation_TestCase_20220713.xlsx",
+        "WEP single buy purchase check logic update_Test Case_MCC1_20240130.xlsx"
+      ],
+      "id": "REL-102"
+    },
+    {
+      "feature": "WEP Single Buy",
+      "backend": "Serial Number (SN) 驗證 / 重複加入規則",
+      "backend_category": "核心概念",
+      "frontend": "Warranty product is already in the shopping cart",
+      "frontend_category": "錯誤訊息",
+      "relation_zh": "以 SN 綁定 WEP 產品;購物車已存在相同 SN 的 WEP 產品時再點 Add to Cart,前台於商品名稱下方顯示重複加入提示(多語系),不同 SN 則可各自獨立加入成列。",
+      "trigger": "購物車已有相同 SN 的 WEP 產品再次 Add to Cart → 前台顯示保固產品已在購物籃中提示",
+      "sources": [
+        "(HU)WEP Single Buy_Test Case_20240401 (1).xlsx",
+        "Digital WEP - Single Buy_TestCase_CZ_20250407.xlsx",
+        "WEP single buy_TestCase_20211112.xlsx"
+      ],
+      "id": "REL-103"
+    },
+    {
+      "feature": "WEP Single Buy",
+      "backend": "WEP Activation API",
+      "backend_category": "API",
+      "frontend": "SN Activation Log Page",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "WEP Activation API 由 WEP Team API(SIP)回應成功/失敗,結果記錄於後台 SN Activation Log(Action=Activate、Status=Success/Failed、Error Message 顯示 resultDesc,成功為 1000→Success)。",
+      "trigger": "WEP Activation API 觸發後 SIP 回應 → SN Activation Log 記錄 Action=Activate 與 Status/Error Message",
+      "sources": [
+        "Digital WEP - Single Buy_TestCase_CZ_20250407.xlsx",
+        "Virtual WEP Single Buy_TestCase_PL_20240506.xlsx"
+      ],
+      "id": "REL-104"
+    },
+    {
+      "feature": "WEP Single Buy",
+      "backend": "WEP Check API",
+      "backend_category": "API",
+      "frontend": "Search Result Section / WEP Product Card",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "Landing Page 輸入的 SN 經 WEP Check API 驗證存在、在保固期並回傳適用 WEP 零件號後,搜尋結果區才列出對應的 WEP 產品卡(含 Model name、price、CTA);回傳 Fail 或無符合時顯示無符合產品。",
+      "trigger": "SN 經 WEP Check API 驗證通過並回傳適用 PN → 前台 Search Result 顯示對應 WEP 產品卡;回傳 Fail/無符合 → 顯示找不到保固選項訊息",
+      "sources": [
+        "Digital WEP - Single Buy_TestCase_CZ_20250407.xlsx",
+        "WEP single buy purchase check logic update_Test Case_MCC1_20240130.xlsx",
+        "WEP single buy_TestCase_20211112.xlsx"
+      ],
+      "id": "REL-105"
+    },
+    {
+      "feature": "WEP Single Buy",
+      "backend": "WEP Check API",
+      "backend_category": "API",
+      "frontend": "Something went wrong",
+      "frontend_category": "錯誤訊息",
+      "relation_zh": "WEP Check API 發生系統性錯誤(resultCode != 200 或 resultStatus = -1)時,前台顯示一般錯誤訊息『Something went wrong. Please try again later.』。",
+      "trigger": "WEP Check API resultCode != 200 或 resultStatus = -1(系統性失敗) → 前台顯示 Something went wrong 訊息",
+      "sources": [
+        "Digital WEP - Single Buy_TestCase_CZ_20250407.xlsx"
+      ],
+      "id": "REL-106"
+    },
+    {
+      "feature": "WEP Single Buy",
+      "backend": "WEP Check API",
+      "backend_category": "API",
+      "frontend": "The serial number is invalid",
+      "frontend_category": "錯誤訊息",
+      "relation_zh": "SN 格式正確但號碼不存在時,WEP Check API 回傳 error,前台顯示序號無效訊息(CZ 版含請重新檢查或聯繫客服)。",
+      "trigger": "SN 格式正確但 WEP Check API 回傳號碼不存在(return error) → 前台顯示 The serial number is invalid 訊息",
+      "sources": [
+        "Digital WEP - Single Buy_TestCase_CZ_20250407.xlsx",
+        "Virtual WEP Single Buy_TestCase_PL_20240506.xlsx",
+        "WEP single buy_TestCase_20211112.xlsx"
+      ],
+      "id": "REL-107"
+    },
+    {
+      "feature": "WEP Single Buy",
+      "backend": "WEP Check API 比對欄位",
+      "backend_category": "欄位",
+      "frontend": "找不到符合保固選項訊息",
+      "frontend_category": "錯誤訊息",
+      "relation_zh": "WEP Check API 以 Service_type、Product_type、Region、Country_id、Standard_warranty、Segment 交叉比對,任一欄位不匹配即查無對應 PN,前台 Search Result 顯示『Sorry. We can't find any warranty options...』。",
+      "trigger": "SN 可查詢但比對欄位不匹配(無適用 PN)或商品缺貨 → 前台 Search Result 顯示找不到保固選項訊息",
+      "sources": [
+        "WEP single buy SN check error notice update_TestCase_PL_20240918.xlsx",
+        "WEP single buy purchase check logic update_Test Case_MCC1_20240130.xlsx",
+        "Digital WEP - Single Buy_TestCase_CZ_20250407.xlsx"
+      ],
+      "id": "REL-108"
+    },
+    {
+      "feature": "WEP Single Buy",
+      "backend": "WEP Deactivate API",
+      "backend_category": "API",
+      "frontend": "WEP 退貨規則 / SN Activation Log Page / Order Cancellation Email",
+      "frontend_category": "規則",
+      "relation_zh": "訂單退貨/取消且符合條件時觸發 WEP Deactivate API 停用該 SN,SN Activation Log 的 Action 顯示為 Cancel;前台不可自行退貨(僅 AOM 建立),Order Cancellation Email 會列出 WEP items。",
+      "trigger": "AOM 建立退貨/訂單取消符合條件 → 觸發 WEP Deactivate API 停用 SN(Log Action=Cancel)並寄送列有 WEP items 的取消信",
+      "sources": [
+        "Digital WEP - Single Buy_TestCase_CZ_20250407.xlsx",
+        "(HU)WEP Single Buy_Test Case_20240401 (1).xlsx",
+        "Virtual WEP Single Buy_TestCase_PL_20240506.xlsx"
+      ],
+      "id": "REL-109"
+    },
+    {
+      "feature": "WEP Single Buy",
+      "backend": "WEP Info",
+      "backend_category": "後台",
+      "frontend": "WEP Product Card",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "後台 WEP Info 欄位設定的商品資訊文字,顯示於 Recommendation Page 的 WEP 產品卡上,最多顯示 8 點/8 個標點。",
+      "trigger": "後台 WEP Info 輸入資訊文字 → 前台產品卡顯示(最多 8 點)",
+      "sources": [
+        "(HU)WEP Single Buy_Test Case_20240401 (1).xlsx",
+        "Virtual WEP Single Buy_TestCase_PL_20240506.xlsx",
+        "WEP single buy_TestCase_20211112.xlsx"
+      ],
+      "id": "REL-110"
+    },
+    {
+      "feature": "WEP Single Buy",
+      "backend": "WEP Introduction Content",
+      "backend_category": "後台",
+      "frontend": "WEP Recommendation Page",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "Recommendation Page 底部的 WEP 介紹內容由後台 CMS Block(Magento > Content > Block > WEP Content)設定,前台顯示內容須與後台設定相符。",
+      "trigger": "後台 CMS Block(WEP Content)設定內容 → 前台 Recommendation Page 底部 Introduction Content 顯示相符內容",
+      "sources": [
+        "Digital WEP - Single Buy_TestCase_CZ_20250407.xlsx",
+        "Virtual WEP Single Buy_TestCase_PL_20240506.xlsx"
+      ],
+      "id": "REL-111"
+    },
+    {
+      "feature": "WEP Single Buy",
+      "backend": "WEP Product",
+      "backend_category": "後台",
+      "frontend": "WEP Buy Page",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "WEP 商品新建時 Enable Product 與價格欄位反灰,需先設定價格才能啟用上架;啟用並儲存後,商品才能於 EC 前台找到並在 Buy Page 正常顯示。",
+      "trigger": "後台設定 WEP 商品價格並開啟 Enable Product → 商品可於 EC 前台/Buy Page 顯示;未啟用/未設價 → 前台找不到",
+      "sources": [
+        "(HU)WEP Single Buy_Test Case_20240401 (1).xlsx",
+        "Virtual WEP Single Buy_TestCase_PL_20240506.xlsx"
+      ],
+      "id": "REL-112"
+    },
+    {
+      "feature": "WEP Single Buy",
+      "backend": "WEP Product",
+      "backend_category": "後台",
+      "frontend": "WEP Only 訂單規則(Checkout/Thank You)",
+      "frontend_category": "規則",
+      "relation_zh": "WEP 商品為 Virtual、無重量無庫存出貨屬性;訂單僅含 WEP 時前台不顯示 Shipping Method/Shipping Detail、不計運費與包裝費、隱藏 COD 付款、Order Detail 隱藏 shipments/Invoice Tab 並隱藏 Create New Return 按鈕。",
+      "trigger": "訂單商品皆為 Virtual WEP(Only WEP) → 前台 Checkout 隱藏 COD、Cart/Thank You 不顯示運費包裝費與 Shipping Detail、隱藏建立退貨按鈕",
+      "sources": [
+        "Digital WEP - Single Buy_TestCase_CZ_20250407.xlsx",
+        "Virtual WEP Single Buy_TestCase_PL_20240506.xlsx",
+        "WEP single buy_TestCase_20211112.xlsx"
+      ],
+      "id": "REL-113"
+    },
+    {
+      "feature": "WEP Single Buy",
+      "backend": "WEP Product 後台屬性",
+      "backend_category": "後台",
+      "frontend": "CTA Button 狀態",
+      "frontend_category": "狀態",
+      "relation_zh": "WEP 商品後台 Manage Stock(預設 NO,需設 yes)與庫存數量決定前台 CTA 狀態:有庫存且帶 SN 顯示 Add to Cart,缺貨顯示 Notify me;無 SN 直接開啟 Buy Page 時 CTA Disable。",
+      "trigger": "後台商品有庫存 + 帶 SN → CTA=Add to Cart;後台設為 Out of stock → CTA=Notify me;無 SN → CTA Disable",
+      "sources": [
+        "(HU)WEP Single Buy_Test Case_20240401 (1).xlsx",
+        "WEP single buy_TestCase_20211112.xlsx"
+      ],
+      "id": "REL-114"
+    },
+    {
+      "feature": "WEP Single Buy",
+      "backend": "WEP Product 後台屬性(庫存)",
+      "backend_category": "後台",
+      "frontend": "Stock alert email",
+      "frontend_category": "其他",
+      "relation_zh": "WEP 商品後台設為 Out of Stock 時前台顯示 Notify me,消費者登記後,後台將數量調整並改為 In Stock 時發送到貨通知信(標題 ASUS STORE: Your product is now available!)。",
+      "trigger": "後台 WEP 商品由 Out of Stock 改為 In Stock 且有人登記 notify me → 發送 Stock alert email",
+      "sources": [
+        "(HU)WEP Single Buy_Test Case_20240401 (1).xlsx"
+      ],
+      "id": "REL-115"
+    },
+    {
+      "feature": "WEP Single Buy",
+      "backend": "WEP Reminder",
+      "backend_category": "後台",
+      "frontend": "WEP Buy Page",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "後台 WEP Reminder 欄位輸入的提醒文字會顯示於 WEP Buy Page 商品名稱下方;若後台未設定則前台不顯示該提醒區塊。",
+      "trigger": "後台設定 WEP Reminder 文字 → Buy Page 商品名稱下方顯示;未設定 → 不顯示該區塊",
+      "sources": [
+        "(HU)WEP Single Buy_Test Case_20240401 (1).xlsx",
+        "Virtual WEP Single Buy_TestCase_PL_20240506.xlsx",
+        "WEP single buy_TestCase_20211112.xlsx"
+      ],
+      "id": "REL-116"
+    },
+    {
+      "feature": "WEP Single Buy",
+      "backend": "WEP Special Price / Price Rule",
+      "backend_category": "價格公式",
+      "frontend": "WEP Product Card / WEP Cart 商品行",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "WEP 產品支援後台設定的 special price、catalog price rule 與 cart price rule;設有折扣時前台產品卡與 Cart 正確顯示折扣價,且 coupon code 可折抵 WEP 產品價格。",
+      "trigger": "後台為 WEP 設定 special price/catalog/cart price rule → 前台產品卡與 Cart 顯示折扣價;輸入 coupon → 折抵 WEP 價格",
+      "sources": [
+        "WEP single buy_TestCase_20211112.xlsx"
+      ],
+      "id": "REL-117"
+    },
+    {
+      "feature": "WEP Single Buy",
+      "backend": "WEP 啟用時機 / WEP Activation API",
+      "backend_category": "規則",
+      "frontend": "Warranty Product Message / WEP Activation Email",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "WEP 產品於 Magento 收到 warehouse status=DELIVERED 且已開發票時觸發 WEP Activation API 自動啟用該 SN 保固;啟用後對應前台 Buy Page『The warranty will be auto-activated.』提示,並寄送 WEP Activation Email(標題 Your ASUS extended warranty has been activated!)。",
+      "trigger": "訂單 DELIVERED + 已開發票 → 觸發 WEP Activation API 啟用 SN → 寄送 WEP Activation Email(無論 SIP Success/Fail 皆寄,多個 WEP 僅寄一次)",
+      "sources": [
+        "(HU)WEP Single Buy_Test Case_20240401 (1).xlsx",
+        "Digital WEP - Single Buy_TestCase_CZ_20250407.xlsx",
+        "Virtual WEP Single Buy_TestCase_PL_20240506.xlsx"
+      ],
+      "id": "REL-118"
+    },
+    {
+      "feature": "WEP Single Buy",
+      "backend": "WEP 退貨規則(AOM/ECMW 建立退貨)",
+      "backend_category": "規則",
+      "frontend": "Return request to WMS 提醒信",
+      "frontend_category": "其他",
+      "relation_zh": "AOM 建立退貨(New Return)後,系統發送 Return request to WMS 提醒信([Eshop] New return request,含 RMA No、Line No.、Product Name、SKU、Qty);金流失敗/客戶拒收 COD 時 ECMW/AOM 自動建立退貨並發提醒信。",
+      "trigger": "AOM 建立含 WEP 的退貨,或交貨狀態=FAILURE/拒收 COD → ECMW/AOM 自動建立退貨並發送 Return request to WMS 提醒信",
+      "sources": [
+        "(HU)WEP Single Buy_Test Case_20240401 (1).xlsx",
+        "Digital WEP - Single Buy_TestCase_CZ_20250407.xlsx",
+        "Virtual WEP Single Buy_TestCase_PL_20240506.xlsx"
+      ],
+      "id": "REL-119"
+    },
+    {
+      "feature": "WEP Single Buy",
+      "backend": "WMS Shipment / WEP Product 後台屬性",
+      "backend_category": "後台",
+      "frontend": "WEP 相關 Email(Order Shipped)",
+      "frontend_category": "其他",
+      "relation_zh": "WEP 為虛擬商品不需出貨;Only WEP 訂單不寄送 Order Shipped Email,WEP+Physical 混合訂單雖寄出貨信但信件內不列出 WEP 產品;Magento 訂單僅 WEP 時無 shipments tab,混合訂單顯示 shipments tab 但不列 WEP。",
+      "trigger": "訂單全為 WEP → 不寄 Order Shipped Email、無 shipments tab;混合訂單出貨 → 寄出貨信但不列 WEP、shipment list 不含 WEP",
+      "sources": [
+        "(HU)WEP Single Buy_Test Case_20240401 (1).xlsx",
+        "Virtual WEP Single Buy_TestCase_PL_20240506.xlsx",
+        "WEP single buy_TestCase_20211112.xlsx"
+      ],
+      "id": "REL-120"
+    },
+    {
+      "feature": "WEP Single Buy",
+      "backend": "監控 / Alert Email(Wep Failed Notification Email 收件人設定)",
+      "backend_category": "其他",
+      "frontend": "EC WEP Activation / Cancellation Fail Notification 監控信",
+      "frontend_category": "其他",
+      "relation_zh": "WEP 啟用/停用失敗時,系統依後台 Wep Failed Notification Email > Send Email to 設定的收件人發送監控信(含 Country/Order ID/Email/Action/SN/WEP PN/Error message/Create Date),於固定時間彙整發送。",
+      "trigger": "WEP Activation/Deactivate API 回應 Fail → 依後台設定收件人發送 EC WEP Activation/Cancellation Fail Notification 監控信",
+      "sources": [
+        "Digital WEP - Single Buy_TestCase_CZ_20250407.xlsx",
+        "Virtual WEP Single Buy_TestCase_PL_20240506.xlsx"
+      ],
+      "id": "REL-121"
+    },
+    {
+      "feature": "Pre-Order",
+      "backend": "Backorders (Allow Pre-Orders)",
+      "backend_category": "Advanced Inventory 庫存設定",
+      "frontend": "產品狀態按鈕 [pre_order]",
+      "frontend_category": "產品狀態按鈕/CTA",
+      "relation_zh": "Advanced Inventory 的 Backorders 選 Allow Pre-Orders 才將商品啟用為預購商品並使 Pre-Order 欄位可編輯;啟用後前台 CTA 顯示為 Pre-order 按鈕。改為 No Pre-Order 則關閉預購,前台回復一般商品。",
+      "trigger": "Backorders=Allow Pre-Orders(且庫存為0)→ 前台 CTA=[pre_order];Backorders=No Pre-Order → 關閉預購",
+      "sources": [
+        "Pre order_TestCase_HU_20220926.xlsx",
+        "Pre order_TestCase_PL_20220926.xlsx",
+        "Scheduling mechanism for pre-order setup_TestCase_MCC1_20260309.xlsx"
+      ],
+      "id": "REL-122"
+    },
+    {
+      "feature": "Pre-Order",
+      "backend": "Out-of-Stock Threshold(可賣量)",
+      "backend_category": "Advanced Inventory 庫存設定",
+      "frontend": "產品狀態按鈕由 [pre_order] 轉 [notify_me]",
+      "frontend_category": "產品狀態按鈕/CTA",
+      "relation_zh": "預購商品以 Out-of-Stock Threshold 負數(-N)作為庫存為0時的可賣量,每購買 Y 個由 -N 變 -N+Y;可賣量售完(達 0)後前台 CTA 由 Pre-order 轉為 Notify Me。",
+      "trigger": "OOS Threshold 可賣量>0 → CTA=Pre-order;可賣量達 0(售完)→ CTA=Notify Me",
+      "sources": [
+        "Pre order_TestCase_HU_20220926.xlsx",
+        "Pre order_TestCase_PL_20220926.xlsx",
+        "Scheduling mechanism for pre-order setup_TestCase_MCC1_20260309.xlsx"
+      ],
+      "id": "REL-123"
+    },
+    {
+      "feature": "Pre-Order",
+      "backend": "Pre-Order Start Date 須小於 Shipping Embargo Date(存檔驗證)",
+      "backend_category": "排程設定驗證",
+      "frontend": "無法排程生效,前台不呈現預購狀態",
+      "frontend_category": "產品狀態按鈕/CTA(反向約束)",
+      "relation_zh": "當 Pre-Order Start Date 等於或晚於 Shipping Embargo Date 時存檔失敗並顯示 'This field must be less than Shipping Embargo Date';設定無法儲存,商品即無法依排程於前台轉為預購狀態。未設定 Shipping Embargo Date 時不受此限。",
+      "trigger": "Pre-Order Start Date ≥ Shipping Embargo Date → 存檔報錯,排程不生效",
+      "sources": [
+        "Scheduling mechanism for pre-order setup_TestCase_MCC1_20260309.xlsx"
+      ],
+      "id": "REL-124"
+    },
+    {
+      "feature": "Pre-Order",
+      "backend": "Pre-Order Start Date(排程機制)",
+      "backend_category": "排程設定",
+      "frontend": "商品自動轉 [pre_order] 狀態",
+      "frontend_category": "產品狀態按鈕/CTA",
+      "relation_zh": "Advanced Inventory 新增的 Pre-Order Start Date 到達(以網站當地時區判定)後,商品才自動轉為 Pre-order 狀態;設定日期未到前前台呈現同一般商品。欄位非必填,不填則設定後立即生效;關閉 Pre-order 設定後即使時間到也不生效。",
+      "trigger": "現在時間 ≥ Pre-Order Start Date(local time)且無現貨 → CTA=Pre-order;未到 → 前台呈現一般商品",
+      "sources": [
+        "Scheduling mechanism for pre-order setup_TestCase_MCC1_20260309.xlsx"
+      ],
+      "id": "REL-125"
+    },
+    {
+      "feature": "Pre-Order",
+      "backend": "Pre-Order Warning 設定(AMASTY EXTENSIONS > Pre Order > Display Options)",
+      "backend_category": "後台文案/顯示設定",
+      "frontend": "Pre-Order Warning in Shopping Cart",
+      "frontend_category": "購物車預購訊息",
+      "relation_zh": "後台 AMASTY Pre Order Display Options 設定的預購警語,於前台 Cart page 顯示;前台顯示文字須與後台設定一致,Scope 可選 store view。",
+      "trigger": "購物車含預購商品 → Cart page 顯示後台設定之預購警語(前後台一致)",
+      "sources": [
+        "Pre order_TestCase_HU_20220926.xlsx",
+        "Pre order_TestCase_PL_20220926.xlsx"
+      ],
+      "id": "REL-126"
+    },
+    {
+      "feature": "Pre-Order",
+      "backend": "Pre-Order date",
+      "backend_category": "Advanced Inventory 庫存設定",
+      "frontend": "Pre-Order date 顯示於 Buy/Cart/Checkout/Thank you page",
+      "frontend_category": "出貨日顯示 / Buy Page 預購訊息",
+      "relation_zh": "後台設定的 Pre-Order date(預計到貨日)顯示於前台 CTA 下方,以及 Buy page、Cart page、Checkout page(Items in cart)、Thank you page,格式 DD-MM-YYYY。",
+      "trigger": "設定 Pre-Order date → 前台各頁面顯示該日期(DD-MM-YYYY)",
+      "sources": [
+        "Pre order_TestCase_HU_20220926.xlsx",
+        "Pre order_TestCase_PL_20220926.xlsx"
+      ],
+      "id": "REL-127"
+    },
+    {
+      "feature": "Pre-Order",
+      "backend": "Pre-Order 商品設定",
+      "backend_category": "Advanced Inventory 庫存設定",
+      "frontend": "CTA [pre_order] 並於下方顯示 Pre-Order date",
+      "frontend_category": "產品狀態按鈕/CTA + Buy Page 預購訊息",
+      "relation_zh": "在 Advanced Inventory 將庫存為 0 的商品設定為可預購(Out-of-Stock Threshold 填負數可賣量、Backorders=Allow Pre-Orders、設定 Pre-Order date、Stock Status=In Stock)後,前台 CTA 顯示為 Pre-order(帶各國翻譯),CTA 下方顯示 Pre-Order date。",
+      "trigger": "完成預購商品設定(OOS Threshold=-N、Allow Pre-Orders、Stock Status=In Stock)→ 前台 CTA=Pre-order + 顯示 Pre-Order date",
+      "sources": [
+        "Pre order_TestCase_HU_20220926.xlsx",
+        "Pre order_TestCase_PL_20220926.xlsx"
+      ],
+      "id": "REL-128"
+    },
+    {
+      "feature": "Pre-Order",
+      "backend": "Pre-order 付款方式限制設定(PayPal 與 Cartes Bancaires/CB)",
+      "backend_category": "付款方式限制設定",
+      "frontend": "Pre-order item restriction alert + 付款方式不可用擋單訊息",
+      "frontend_category": "購物車/Checkout 付款擋單 alert",
+      "relation_zh": "後台限制 PayPal 與 CB 不可用於含 pre-order 商品的訂單:前台於購物車/結帳頁上方及付款方式區塊顯示 restriction alert('...PayPal and Cartes Bancaires are not available for pre-orders.');選用受限付款方式點 Place order 時停留 checkout 並顯示擋單訊息('The payment method you selected is not available for pre-orders...')。此限制與 alert 於後續版本(F1)整體移除,移除後 PayPal/CB 系列皆可正常下單。",
+      "trigger": "訂單含 pre-order 商品 → 顯示 restriction alert;選 PayPal/CB 系列送出 → Place order 被擋並顯示擋單訊息(F1 版本後移除)",
+      "sources": [
+        "EU_Pre-order payment and invoice process adjustment_Test Case_20260306.xlsx",
+        "Pre-order payment method restriction (Paypal and CB card)_TestCase_EU10_20251216.xlsx"
+      ],
+      "id": "REL-129"
+    },
+    {
+      "feature": "Pre-Order",
+      "backend": "Pre-order 發票開立時機調整(訂單含 pre-order 商品 → invoice_issue_trigger=Paid)",
+      "backend_category": "發票開立時機設定",
+      "frontend": "My Account Invoice tab + 發票 email",
+      "frontend_category": "My Account Invoice / 發票顯示",
+      "relation_zh": "訂單只要含任一 pre-order 商品,付款後即開立發票(invoice_issue_trigger=Paid,Magento 與前台皆出現);此時 My Account 頁面顯示 Invoice tab,並於付款確認時寄出發票 email。",
+      "trigger": "訂單含 pre-order 商品 → invoice_issue_trigger=Paid → 付款後即開發票 → My Account 顯示 Invoice tab + 寄發票 email",
+      "sources": [
+        "EU_Pre-order payment and invoice process adjustment_Test Case_20260306.xlsx"
+      ],
+      "id": "REL-130"
+    },
+    {
+      "feature": "Pre-Order",
+      "backend": "Zero-Pay 訂單(invoice_issue_trigger=Shipped)",
+      "backend_category": "發票開立時機設定",
+      "frontend": "My Account Invoice tab 於出貨後才出現",
+      "frontend_category": "My Account Invoice / 發票顯示",
+      "relation_zh": "訂單金額經折抵降為 $0 的 Zero-Pay 訂單,不論國別/付款方式一律於出貨時才開立發票(invoice_issue_trigger=Shipped),故前台 My Account Invoice tab 與發票須待出貨後才出現。",
+      "trigger": "Zero-pay 訂單 → invoice_issue_trigger=Shipped → 出貨時才開發票 → 出貨後 Invoice tab 才顯示",
+      "sources": [
+        "EU_Pre-order payment and invoice process adjustment_Test Case_20260306.xlsx"
+      ],
+      "id": "REL-131"
+    },
+    {
+      "feature": "Pre-Order",
+      "backend": "iDeal / Bancontact(付款即開票之付款方式)",
+      "backend_category": "付款方式設定",
+      "frontend": "付款後即出現發票(My Account Invoice / 發票 email)",
+      "frontend_category": "My Account Invoice / 發票顯示",
+      "relation_zh": "iDeal/Bancontact 於付款確認時即捕款並同時在 Magento 開立發票(invoice_issue_trigger=Paid),不需客製化;前台在付款確認後即出現發票與 Invoice tab。ECMW Order details 另以 transaction_id 顯示 Payment ID。",
+      "trigger": "以 iDeal/Bancontact 付款確認 → invoice_issue_trigger=Paid → 即時開發票 → 前台付款後出現發票",
+      "sources": [
+        "EU_Pre-order payment and invoice process adjustment_Test Case_20260306.xlsx"
+      ],
+      "id": "REL-132"
+    },
+    {
+      "feature": "Pre-Order",
+      "backend": "invoice_issue_trigger(Delivery Date / Invoice Date 判定規則)",
+      "backend_category": "發票開立時機設定",
+      "frontend": "發票 PDF 的 Delivery Date 與 Invoice Date",
+      "frontend_category": "發票顯示",
+      "relation_zh": "發票 PDF 的 Delivery Date 與 Invoice Date 依 invoice_issue_trigger 決定:Paid(預購訂單)時 Delivery Date 顯示 '–'(en dash)、Invoice Date=發票建立日;Shipped(一般訂單)時 Delivery Date=Invoice Date=出貨日。",
+      "trigger": "invoice_issue_trigger=Paid → Delivery Date='–'、Invoice Date=發票建立日;=Shipped → Delivery Date=Invoice Date=出貨日",
+      "sources": [
+        "EU_Pre-order payment and invoice process adjustment_Test Case_20260306.xlsx"
+      ],
+      "id": "REL-133"
+    },
+    {
+      "feature": "Pre-Order",
+      "backend": "取消訂單可賣量返還時間",
+      "backend_category": "庫存返還規則",
+      "frontend": "產品狀態按鈕重新可預購",
+      "frontend_category": "產品狀態按鈕/CTA",
+      "relation_zh": "取消預購付款或訂單後 Out-of-Stock Threshold 可賣量會延遲返還,返還後前台可賣量恢復、CTA 才重新可預購;返還前前台仍反映扣減後可賣量。",
+      "trigger": "取消付款/訂單 → 第三方付款(PayU/Simple pay)約 1 天、COD 約 5 分鐘後可賣量返還 → 前台恢復可預購",
+      "sources": [
+        "Pre order_TestCase_HU_20220926.xlsx",
+        "Pre order_TestCase_PL_20220926.xlsx"
+      ],
+      "id": "REL-134"
+    },
+    {
+      "feature": "Pre-Order",
+      "backend": "有庫存商品無法設定 Pre-Order(存檔驗證)",
+      "backend_category": "Advanced Inventory 庫存設定驗證",
+      "frontend": "有庫存商品不呈現預購 CTA",
+      "frontend_category": "產品狀態按鈕/CTA(反向約束)",
+      "relation_zh": "對仍有庫存(可賣量>0)的商品設定 Pre-Order 並存檔時會跳錯誤訊息無法設定;唯有庫存為 0 的商品才能成功設定為預購,前台才會呈現 Pre-order CTA。",
+      "trigger": "可賣量>0 設定 Pre-Order 存檔 → 報錯,無法設定 → 前台不顯示 Pre-order",
+      "sources": [
+        "Pre order_TestCase_HU_20220926.xlsx",
+        "Pre order_TestCase_PL_20220926.xlsx"
+      ],
+      "id": "REL-135"
+    },
+    {
+      "feature": "Pre-Order",
+      "backend": "現貨與預購混合販售邏輯(Pre-Order Start Date + 現貨庫存)",
+      "backend_category": "排程/庫存設定",
+      "frontend": "CTA 在 Add to cart 與 Pre-order 間切換",
+      "frontend_category": "產品狀態按鈕/CTA",
+      "relation_zh": "Pre-Order Start Date 到後若進現貨,前台先以一般商品(CTA=Add to cart)售出並扣現貨數,現貨賣完後 CTA 轉回 Pre-order 接續消耗 Out-of-Stock Threshold 可賣量;Start Date 未到即進現貨則整體視為一般商品(Add to cart)。",
+      "trigger": "Start Date 到+有現貨 → CTA=Add to cart;現貨售完 → CTA=Pre-order;Start Date 未到+有現貨 → 一般商品",
+      "sources": [
+        "Scheduling mechanism for pre-order setup_TestCase_MCC1_20260309.xlsx"
+      ],
+      "id": "REL-136"
+    },
+    {
+      "feature": "Plus Sale",
+      "backend": "AddOn Rules Grid(排程版新增 User Group ID / Start Date / End Date 欄)",
+      "backend_category": "後台",
+      "frontend": "middle page 加購品(依 group 與生效日期)呈現",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "後台 AddOn Rules Grid 呈現所有已匯入加購 rule 的綁定內容(main/add-on product、website、add-on price、priority,排程版並含 User Group ID、Start/End Date),這些欄位即決定前台 middle page 對哪些會員、於哪段期間、以什麼價格與排序顯示加購品。",
+      "trigger": "路徑 Marketing→Promotions→AddOn Rules(WEP 為 MARKETING→Wep AddOn Rules);排程版於 Priority 之後新增 User Group ID、Start Date、End Date 三欄;grid 內容驅動前台加購品的可見性、適用會員群組、生效期間與排序。",
+      "sources": [
+        "Digital WEP - Plus Sale_TestCase_CZ_20250428.xlsx",
+        "Plus sale_TestCase_HU_20220920.xlsx",
+        "Scheduling mechanism for plus sale setup (& customer group)_TestCase_MCC1_20260325.xlsx"
+      ],
+      "id": "REL-137"
+    },
+    {
+      "feature": "Plus Sale",
+      "backend": "SN Activation Log(Magento>Catalog>SN Activation Log)",
+      "backend_category": "後台",
+      "frontend": "WEP activation email / WEP Failed Alert Email",
+      "frontend_category": "其他",
+      "relation_zh": "後台 SN Activation Log 記錄每次 WEP 序號啟用動作與結果,啟用成功推動 activation 通知,啟用失敗則寄發 WEP Failed Alert Email。",
+      "trigger": "欄位含 Action(Activate/Cancel)、Error Message(1000→Success 或 resultDesc)、Status(Success/Failed);Status=Failed 時寄 WEP Failed Alert Email。",
+      "sources": [
+        "Digital WEP - Plus Sale_Testcase_HU_20240710.xlsx",
+        "[PL][HU]WEP SN input check and activation API upgrade_Testcase_20250314.xlsx"
+      ],
+      "id": "REL-138"
+    },
+    {
+      "feature": "Plus Sale",
+      "backend": "WEP Add On Products import / Plus Sale add-on rule 匯入",
+      "backend_category": "後台",
+      "frontend": "Physical middle page / WEP middle page(Add-on Page)",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "後台由 System→Import 匯入 add-on rule,綁定 main_sku 與 addon_sku;主商品加入購物車後,系統依此綁定判斷是否有可購買加購品,有則導向對應 middle page,無則停留 Buy Page。",
+      "trigger": "主商品加入購物車後,有可用 add-on 才跳轉 middle page,否則顯示加入購物車 alert 並停留 buy page;單一 main SKU 最多綁 20 個 add-on;檔案上限 2MB。",
+      "sources": [
+        "Plus Sale Adaption_Phase2_Test Case_ES.HU.PL_20240326.xlsx",
+        "Plus sale_TestCase_HU_20220920.xlsx",
+        "Digital WEP - Plus Sale_TestCase_CZ_20250428.xlsx"
+      ],
+      "id": "REL-139"
+    },
+    {
+      "feature": "Plus Sale",
+      "backend": "WEP Add On Products import / Plus Sale add-on rule 匯入",
+      "backend_category": "後台",
+      "frontend": "Add-ons Recommendation Section(加購推薦區塊)",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "匯入的 add-on rule 決定 middle page 加購推薦區塊要列出哪些加購產品卡;綁定成功的加購品即成為 Add-ons recommended for you 的產品卡。",
+      "trigger": "產品卡一行 4 個、預設一頁 20 個,超過 20 顯示 Show more/Show less,最多 40 個;單一 main SKU 綁超過 20 個 add-on 匯入報錯。",
+      "sources": [
+        "Digital WEP - Plus Sale_TestCase_CZ_20250428.xlsx",
+        "Plus sale_TestCase_EU_20220209.xlsx"
+      ],
+      "id": "REL-140"
+    },
+    {
+      "feature": "Plus Sale",
+      "backend": "WEP Reminder / WEP Info(Product→Asus 文字欄位)",
+      "backend_category": "後台",
+      "frontend": "Buy Page(WEP Reminder)/ Product card(WEP Info)文字",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "後台商品的兩個文字欄位分別驅動前台顯示位置:WEP Reminder 文字顯示於 Buy Page,WEP Info 文字顯示於 Product card。",
+      "trigger": "設定路徑 Magento→Categories→Product→新增商品→Asus;WEP Reminder→Buy Page,WEP Info→Product card。",
+      "sources": [
+        "Digital WEP - Plus Sale_Testcase_HU_20240710.xlsx"
+      ],
+      "id": "REL-141"
+    },
+    {
+      "feature": "Plus Sale",
+      "backend": "WEP add-on default image(STORES>Configuration>ISOBAR>Asus Addon)",
+      "backend_category": "後台",
+      "frontend": "WEP middle page / checkout / WEP default option(Standard / None)圖片",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "後台以 Website Scope 上傳的 WEP 加購預設圖片,於前台 WEP 商品無主圖或選擇 Standard/None 選項時套用顯示於 middle page 與 checkout。",
+      "trigger": "僅接受 JPG 且小於 3MB,可 Replace/Delete;middle page 與 checkout 於 WEP 無主圖時、或使用者選 Standard/None 選項時套用此預設圖。",
+      "sources": [
+        "Digital WEP - Plus Sale_TestCase_CZ_20250428.xlsx",
+        "Digital WEP - Plus Sale_Testcase_HU_20240710.xlsx"
+      ],
+      "id": "REL-142"
+    },
+    {
+      "feature": "Plus Sale",
+      "backend": "WEP add-on product 綁定(Add on 須為 Virtual product type WEP SKU)",
+      "backend_category": "核心概念",
+      "frontend": "Asus warranty program 區塊(WEP middle page 單選清單)",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "後台匯入時 Add on 欄位須為存在且 Product Type=Virtual 的 WEP SKU,才能於前台 WEP middle page 的 Asus warranty program 區塊以單選 radio button 呈現。",
+      "trigger": "Add on 非 Virtual product type 或不存在則匯入報錯;WEP 為單選,WEP 圖片與名稱不可點擊;i icon(hover PC / click Tablet&Mobile)顯示說明 tooltip。",
+      "sources": [
+        "Digital WEP - Plus Sale_TestCase_CZ_20250428.xlsx",
+        "Digital WEP - Plus Sale_Testcase_HU_20240710.xlsx"
+      ],
+      "id": "REL-143"
+    },
+    {
+      "feature": "Plus Sale",
+      "backend": "WEP 保固啟用流程(delivery_status / WepActivateSn)",
+      "backend_category": "狀態",
+      "frontend": "WEP activation email / 保固自動啟用訊息(auto-activated once shipped)",
+      "frontend_category": "其他",
+      "relation_zh": "後台依實體主商品出貨/交付狀態推進 WEP 保固啟用,啟用完成即寄出 WEP activation email;前台 Cart/Checkout/Thank you/會員頁則顯示保固將於主商品出貨後自動啟用的說明訊息。",
+      "trigger": "啟用三條件:收到實體商品 DELIVERED status、產生 Magento invoice、WepActivateSn 欄非空;SHIPPED/delivery_status=PROGRESS 更新 WepActivateSn,DELIVERED/SUCCESS 時 status=COMPLETED 啟用;訊息全文『The warranty will be auto-activated once your main product shipped out.』(各國語系翻譯);Shipped email 不顯示 WEP 商品。",
+      "sources": [
+        "Digital WEP - Plus Sale_Testcase_HU_20240710.xlsx",
+        "Digital WEP - Plus Sale_TestCase_CZ_20250428.xlsx"
+      ],
+      "id": "REL-144"
+    },
+    {
+      "feature": "Plus Sale",
+      "backend": "add-on price 變動(重新匯入 rule 改價)",
+      "backend_category": "價格公式",
+      "frontend": "加購品漲價提示(Some of the products price has been changed)",
+      "frontend_category": "錯誤訊息",
+      "relation_zh": "後台調整加購 rule 的加購價後,前台 Cart/Checkout 顯示價格已變動提示並自動更新為新價格。",
+      "trigger": "價格變動 → 置頂『Some of the products price has been changed.』+ 加購品下『This product has changed the price.』並自動更新價格,Checkout 按鈕維持 enable;多筆觸發只顯示一次;觸發時機為進入/刷新 cart、點 checkout、點 place order。",
+      "sources": [
+        "Digital WEP - Plus Sale_TestCase_CZ_20250428.xlsx",
+        "Plus sale_TestCase_HU_20220920.xlsx"
+      ],
+      "id": "REL-145"
+    },
+    {
+      "feature": "Plus Sale",
+      "backend": "add-on price(CSV 指定加購價)",
+      "backend_category": "價格公式",
+      "frontend": "Relative price info / add-on price、original price、saved price 顯示",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "後台 CSV 指定的 add-on price 直接決定前台 middle page 相對價格區塊的三要素顯示:原價、折扣金額(saved)與折扣後加購價,且不受任何目錄促銷計價影響。",
+      "trigger": "saved price = original price − add-on price;saved>0 顯示且用橘色;add-on price=original price 只顯示一價;saved<0 隱藏 save 與原價;configurable 各規格 add-on price 需相同;add-on price 不受 catalog rule/special price/tier price 影響。",
+      "sources": [
+        "Digital WEP - Plus Sale_TestCase_CZ_20250428.xlsx",
+        "Plus sale_TestCase_EU_20220209.xlsx"
+      ],
+      "id": "REL-146"
+    },
+    {
+      "feature": "Plus Sale",
+      "backend": "add-on rule 綁定類型(physical / WEP)",
+      "backend_category": "規則",
+      "frontend": "Middle page 導向與 Switch to warranty & software / Switch to accessories 按鈕",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "後台加購 rule 綁定的加購品類型(physical/WEP)決定主商品加入購物車後導向哪個 middle page,以及是否顯示兩種加購頁之間的切換按鈕。",
+      "trigger": "只綁 physical→physical middle page;只綁 WEP→WEP middle page;同時綁→優先 WEP middle page;無可用加購品→停留 buy page + alert;無對應加購選項則隱藏對應 Switch 按鈕;CNF 與 child SKU 各自綁定時 middle page 合併顯示兩者加購品。",
+      "sources": [
+        "Digital WEP - Plus Sale_TestCase_CZ_20250428.xlsx",
+        "Plus sale_TestCase_HU_20220920.xlsx",
+        "Plus Sale Adaption_Phase2_Test Case_ES.HU.PL_20240326.xlsx"
+      ],
+      "id": "REL-147"
+    },
+    {
+      "feature": "Plus Sale",
+      "backend": "priority(Plus Sale 排序,CSV 匯入欄位)",
+      "backend_category": "欄位",
+      "frontend": "Add-ons Recommendation Section 加購品排序",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "後台 CSV 匯入的 priority 欄位決定加購品在 middle page 加購推薦區塊的排序;未設定則改依加購價排序。",
+      "trigger": "排序規則:priority 由低到高(ASC)→ priority 相同則 addon_price 低到高 → addon_price 相同則 mapping_id 低到高;priority 未設定則依價格排序。",
+      "sources": [
+        "Digital WEP - Plus Sale_TestCase_CZ_20250428.xlsx",
+        "Plus sale_TestCase_HU_20220920.xlsx"
+      ],
+      "id": "REL-148"
+    },
+    {
+      "feature": "Plus Sale",
+      "backend": "start_date / end_date(Plus Sale 排程)、Addon Rule Expiring Job",
+      "backend_category": "欄位",
+      "frontend": "加購品失效/漲價提示(Some of the products is no longer available...)",
+      "frontend_category": "錯誤訊息",
+      "relation_zh": "後台加購 rule 因排程到期、被排程作業刪除、群組變更或尚未開始而失效時,前台 Cart/Checkout 即時顯示加購品已移除提示並自動移除該加購品。",
+      "trigger": "rule 不存在(規則刪除/group 變更/尚未開始/到期)→ 置頂『Some of the products is no longer available and is removed from the cart.』+ 主商品下『Some of the add-on product has been removed』並自動移除;checkout 點 place order 則踢回 Cart Page;Expiring Job 每天 01:00 CET/CEST 刪除 end_date 到期超過 180 天的 rule。",
+      "sources": [
+        "Digital WEP - Plus Sale_TestCase_CZ_20250428.xlsx",
+        "Plus sale_TestCase_HU_20220920.xlsx",
+        "Scheduling mechanism for plus sale setup (& customer group)_TestCase_MCC1_20260325.xlsx"
+      ],
+      "id": "REL-149"
+    },
+    {
+      "feature": "Plus Sale",
+      "backend": "start_date / end_date(Plus Sale 排程匯入欄位)",
+      "backend_category": "欄位",
+      "frontend": "middle page 加購品生效呈現",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "後台匯入的 start_date/end_date 控制 add-on rule 生效期間,只有落在生效區間的加購 rule 才會於 middle page 顯示對應加購品。",
+      "trigger": "格式 YYYY/MM/DD;start_date 不填報錯;start_date 晚於 end_date 報『Start date/End date is invalid.』;start_date 等於 end_date 可上傳並於當日生效;尚未開始或已到期則不顯示加購品。",
+      "sources": [
+        "Scheduling mechanism for plus sale setup (& customer group)_TestCase_MCC1_20260325.xlsx"
+      ],
+      "id": "REL-150"
+    },
+    {
+      "feature": "Plus Sale",
+      "backend": "同商品多 group 取較低價 / user_group_id 綁定",
+      "backend_category": "規則",
+      "frontend": "Relative price info(middle page 加購價)",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "後台以 user_group_id 綁定加購 rule,當登入會員同時符合多個 group 的加購 rule 時,middle page 只顯示較低的 add-on 價格。",
+      "trigger": "會員同時符合多個 group id 取較低價;CNF 與其 child SKU 綁相同加購品且價格不同時取較低者;configurable 僅顯示一種價格。",
+      "sources": [
+        "Digital WEP - Plus Sale_TestCase_CZ_20250428.xlsx",
+        "Scheduling mechanism for plus sale setup (& customer group)_TestCase_MCC1_20260325.xlsx"
+      ],
+      "id": "REL-151"
+    },
+    {
+      "feature": "Freebie",
+      "backend": "Check Freebies Rule (Guest/Member)",
+      "backend_category": "規則",
+      "frontend": "Cart page 贈品行顯示",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "贈品加入規則區分 Guest 與登入會員:以 Guest 身分結帳不會自動加入 freebie,僅登入會員(特定群組)才會將 freebie 自動加入 Cart page 並顯示於商品中。",
+      "trigger": "以 guest 登入結帳 → 前台不加入 freebie;以會員登入 → 前台 Cart page 加入 freebie",
+      "sources": [
+        "Freebies for specific customer group users need to be added to cart automatically after login_EU_Testcase_20250121.xlsx",
+        "Freebies for specific customer group users need to be added to cart automatically after login_EU_Testcase_20260427.xlsx"
+      ],
+      "id": "REL-152"
+    },
+    {
+      "feature": "Freebie",
+      "backend": "Free Gift Rule Wizard",
+      "backend_category": "後台",
+      "frontend": "Cart page 贈品行顯示",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "由後台 Free Gift Rule Wizard 三步驟建立的贈品規則(scenario=N products、主商品與贈品商品、觸發條件)決定主商品搭贈哪些贈品及數量;規則生效後,前台於購物車對應主商品下方顯示贈品行。",
+      "trigger": "後台 Marketing 建立 Free Gift Rule(Step1 scenario='A customer adds N products...')→ 前台購物車在 Main product 下方顯示贈品行",
+      "sources": [
+        "Freebies 後台功能優化_TestCase_20211105.xlsx",
+        "Freebies for specific customer group users need to be added to cart automatically after login_EU_Testcase_20250121.xlsx"
+      ],
+      "id": "REL-153"
+    },
+    {
+      "feature": "Freebie",
+      "backend": "Freebie rule 不受其他促銷影響",
+      "backend_category": "規則",
+      "frontend": "Cart page 贈品行顯示",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "贈品規則折扣只能為 0 且與一般 cart price rule 相互獨立,前台贈品以免費($0)加入購物車,不受其他 promotion rule 影響。",
+      "trigger": "Freebie rule 折扣=0(cart price rule 折扣不可為 0)→ 前台贈品以免費加入,兩規則互不影響",
+      "sources": [
+        "Freebies 後台功能優化_TestCase_20211105.xlsx",
+        "Freebies for specific customer group users need to be added to cart automatically after login_EU_Testcase_20250121.xlsx"
+      ],
+      "id": "REL-154"
+    },
+    {
+      "feature": "Freebie",
+      "backend": "Highlight promotion section",
+      "backend_category": "後台",
+      "frontend": "Highlight promotion banner (前台促銷 banner)",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "後台 Highlight promotion 區塊將主商品 SKU 設為 'show Banner For' 的值並填入 'Product SKUs' 欄位,決定前台於哪些主商品顯示促銷 banner;Edit parent product sku 後按 Save 可更新。",
+      "trigger": "後台將所有選定主商品 SKU 填入 Product SKUs 並設 show Banner For → 前台對應主商品顯示 promotion banner",
+      "sources": [
+        "Freebies 後台功能優化_TestCase_20211105.xlsx"
+      ],
+      "id": "REL-155"
+    },
+    {
+      "feature": "Freebie",
+      "backend": "Messages And Notifications Settings",
+      "backend_category": "後台",
+      "frontend": "Free gift added!",
+      "frontend_category": "錯誤訊息",
+      "relation_zh": "後台 Amasty Free Gift 的 Messages And Notifications Settings 設定贈品相關前台訊息與通知,決定前台贈品行下方顯示的提示文字(固定 simple 贈品顯示 'Free gift added!';可選贈品顯示 'Free gift added! You can choose a different gift on previous buy page')。",
+      "trigger": "後台 Store-Configuration-Amasty-Free Gift-Messages And Notifications Settings 設定 → 前台贈品行下方顯示對應訊息(須檢查各國翻譯)",
+      "sources": [
+        "Freebies 後台功能優化_TestCase_20211105.xlsx",
+        "Freebies for specific customer group users need to be added to cart automatically after login_EU_Testcase_20250121.xlsx"
+      ],
+      "id": "REL-156"
+    },
+    {
+      "feature": "Freebie",
+      "backend": "Product settings (Step 2)",
+      "backend_category": "後台",
+      "frontend": "贈品 CNF 選規格切換主圖",
+      "frontend_category": "規則",
+      "relation_zh": "於 Step2 將贈品設為 Configurable Product(CNF)時,前台 Buy Page 該贈品規格不可預選,圖片預設顯示 Configurable Product 主圖,選定規格後依國別邏輯切換顯示對應主圖。",
+      "trigger": "Step2 贈品=Configurable Product → 前台不預選規格、預設 CNF 主圖;選定規格後 EU10 顯示對應 Simple Product 主圖、PL 維持 Configurable Product 主圖(適用 Simple/CNF 主商品 Buy Page 與 Single/Multiple Selection)",
+      "sources": [
+        "EU_Freebie product image changes according to the selected itemTest Case_20250108.xlsx"
+      ],
+      "id": "REL-157"
+    },
+    {
+      "feature": "Freebie",
+      "backend": "Product settings (Step 2)",
+      "backend_category": "後台",
+      "frontend": "Freebie 選擇模式",
+      "frontend_category": "狀態",
+      "relation_zh": "後台 Step2 的贈品數量與可選組合設定決定前台贈品的選取模式:單選(Single Selection)或多選(Multiple Selection,須勾選 Freebie CNF checkbox 後再檢視/切換規格)。",
+      "trigger": "後台設定可選贈品(any combination up to max)→ 前台 Multiple Selection(勾 Freebie CNF checkbox);固定/單一贈品 → 前台 Single Selection",
+      "sources": [
+        "EU_Freebie product image changes according to the selected itemTest Case_20250108.xlsx"
+      ],
+      "id": "REL-158"
+    },
+    {
+      "feature": "Freebie",
+      "backend": "Your customer will be able to choose free products",
+      "backend_category": "規則",
+      "frontend": "Edit freebie and go back to cart page",
+      "frontend_category": "規則",
+      "relation_zh": "後台允許顧客自行選擇贈品的設定,使前台可於 Cart page 點 Freebie edit 回 buy page 重選贈品;重選後新贈品需獨立顯示一條 line 且主商品不變,不與舊 Main product 合併,並隱藏原有訊息。",
+      "trigger": "後台設定可選贈品 → 前台 Cart page 顯示 Freebie edit;重選後新 Freebie 獨立一行、main product 不變、隱藏 'Free gift added! You can choose a different gift on previous buy page' 與 'Free gift added!'",
+      "sources": [
+        "Freebies for specific customer group users need to be added to cart automatically after login_EU_Testcase_20250121.xlsx",
+        "Freebies for specific customer group users need to be added to cart automatically after login_EU_Testcase_20260427.xlsx"
+      ],
+      "id": "REL-159"
+    },
+    {
+      "feature": "Freebie",
+      "backend": "登入後自動加入贈品",
+      "backend_category": "規則",
+      "frontend": "Cart page 贈品行顯示",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "特定會員群組使用者以 Guest 加入含贈品主商品後,於 checkout 登入會員時,系統自動將對應贈品加入購物車;登入後應先跳回 Cart page 顯示 alert message 再帶入贈品,並顯示於主商品下方。",
+      "trigger": "特定會員群組於 checkout 由 Guest 登入會員 → 先跳回 Cart page 顯示 alert message 並自動帶入贈品(贈品 disable 或庫存=0 時不加入)",
+      "sources": [
+        "Freebies for specific customer group users need to be added to cart automatically after login_EU_Testcase_20250121.xlsx",
+        "Freebies for specific customer group users need to be added to cart automatically after login_EU_Testcase_20260427.xlsx"
+      ],
+      "id": "REL-160"
+    },
+    {
+      "feature": "Freebie",
+      "backend": "登入後自動加入贈品",
+      "backend_category": "規則",
+      "frontend": "rule change 訊息",
+      "frontend_category": "錯誤訊息",
+      "relation_zh": "贈品自動加入邏輯運作時,前台不應被錯誤觸發顯示 rule change 訊息以阻擋購買;add freebies 錯誤、多選未依庫存最多帶入、固定贈品首次登入未正確 add 等情境均屬應修正的 bug。",
+      "trigger": "add freebies 商品錯誤 / 多選 freebies 未依庫存最多帶入 / 固定贈品活動首次登入未正確 add freebies → 前台不應顯示 rule change 訊息(ISO2IN1-3969/3971/3981)",
+      "sources": [
+        "Freebies for specific customer group users need to be added to cart automatically after login_EU_Testcase_20260427.xlsx"
+      ],
+      "id": "REL-161"
+    },
+    {
+      "feature": "Freebie",
+      "backend": "贈品商品類型限制",
+      "backend_category": "規則",
+      "frontend": "Cart page 贈品行顯示",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "Step2 對主商品與贈品商品類型組合的合法性檢核(僅 simple/configurable 可 pass,任一方 bundle 則 fail)決定前台贈品只可能為 simple 或 CNF 商品。",
+      "trigger": "Step2 點 Next 檢核:Main/Free 為 simple 或 configurable → pass;任一方 bundle → fail → 前台贈品必為 simple 或 CNF",
+      "sources": [
+        "Freebies 後台功能優化_TestCase_20211105.xlsx"
+      ],
+      "id": "REL-162"
+    },
+    {
+      "feature": "Freebie",
+      "backend": "贈品數量與主商品 QTY 關係",
+      "backend_category": "規則",
+      "frontend": "The requested qty is not available",
+      "frontend_category": "錯誤訊息",
+      "relation_zh": "贈品庫存相對主商品購買數量的處理規則決定前台是否顯示數量不足訊息及能否結帳:庫存足夠正常加入,庫存不足仍加入但顯示不足訊息並停用 Checkout,庫存=0 則不加入。",
+      "trigger": "Freebie 庫存>0 且=主商品 QTY → 正常加入;>0 但<主商品 QTY → 加入並於 freebies product items 下方顯示 'The requested qty of {商品名} is not available.'、Cart page 上方顯示 'The requested qty is not available.'、Disable Checkout button;庫存=0 → 不加入",
+      "sources": [
+        "Freebies for specific customer group users need to be added to cart automatically after login_EU_Testcase_20250121.xlsx",
+        "Freebies for specific customer group users need to be added to cart automatically after login_EU_Testcase_20260427.xlsx"
+      ],
+      "id": "REL-163"
+    },
+    {
+      "feature": "Freebie",
+      "backend": "贈品數量設定",
+      "backend_category": "規則",
+      "frontend": "Your customer will be able to choose free products",
+      "frontend_category": "規則",
+      "relation_zh": "後台 Step2 設定每種贈品給予數量 N 及可選贈品上限,前台可選擇的贈品數量須與後台設定的最大值一致。",
+      "trigger": "後台 Step2 設定 N(可選贈品最大值)→ 前台可選擇贈品數量同後台設定",
+      "sources": [
+        "Freebies 後台功能優化_TestCase_20211105.xlsx"
+      ],
+      "id": "REL-164"
+    },
+    {
+      "feature": "Freebie",
+      "backend": "贈品自動選取優先序",
+      "backend_category": "規則",
+      "frontend": "Cart page 贈品行顯示",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "當贈品為 CNF 或多個 simple 時,後台自動選取優先序決定前台購物車自動帶入並顯示哪一個贈品。",
+      "trigger": "庫存最多者優先;庫存相同時 CNF 取 Product ID 大者、多個 simple 取排序前面者;A disable/B stock0/C stock5 → 前台帶入 C",
+      "sources": [
+        "Freebies for specific customer group users need to be added to cart automatically after login_EU_Testcase_20250121.xlsx",
+        "Freebies for specific customer group users need to be added to cart automatically after login_EU_Testcase_20260427.xlsx"
+      ],
+      "id": "REL-165"
+    },
+    {
+      "feature": "Backorder 顯示 pre-order 按鈕",
+      "backend": "Native Bundle 的 Option Item 於後台被設為 Pre order / Back Order",
+      "backend_category": "後台",
+      "frontend": "Buy Page 產品狀態按鈕統一顯示 Pre order",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "當 Bundle 必選 Option Item 被設定為 Pre order/Back Order 時，Buy Page 的 CTA 按鈕統一顯示為 Pre order；GraphQL 依庫存與設定輸出 buy/pre_order/back_order/notify_me 狀態。",
+      "trigger": "Option Item = Pre order/Back Order。",
+      "sources": [
+        "Show pre-order on backorder button_TestCase_20221021.xlsx"
+      ],
+      "id": "REL-166"
+    },
+    {
+      "feature": "Buy Page Banner 排程維護",
+      "backend": "MARKETING>Promotions>Banner Schedule Rule（Banner Position/Website/Customer Group/時間/適用 SKU，可 CSV 匯入 SKU list）",
+      "backend_category": "後台",
+      "frontend": "Buy Page Top/Bottom Banner Area 顯示生效中的 Promotion Banner",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "後台以規則排程 Buy Page 促銷 Banner，符合 SKU/Website/Customer Group 且在生效時間內的規則於前台 Buy Page 對應位置顯示；衝突與優先規則決定同位置顯示哪一個。",
+      "trigger": "規則 Active 且 SKU/Website/Customer Group 符合、時間生效；顯示優先：Time-Bound>Permanent、Priority 數字越低越優先、較晚建立(較高 Rule ID)優先。",
+      "sources": [
+        "EU_Buy Page banner maintenance mechanism for multiple products - Test Case_20260418.xlsx"
+      ],
+      "id": "REL-167"
+    },
+    {
+      "feature": "Buy Page Tech Spec 錨點",
+      "backend": "商品是否具備 Tech Spec 內容",
+      "backend_category": "後台",
+      "frontend": "Buy Page Short Descriptions 下方的 SPEC 錨點連結（向下箭頭）",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "商品有 Tech Spec 內容時，Buy Page 顯示 SPEC 錨點連結，點擊後滑動至 Tab bar 並自動展開 Tech Spec；無內容則不顯示錨點。",
+      "trigger": "商品有 Tech Spec 內容才顯示錨點連結。",
+      "sources": [
+        "Buy Page design enhancement (Tech Spec anchor)_MCC1_Testcase_20260508.xlsx"
+      ],
+      "id": "REL-168"
+    },
+    {
+      "feature": "CNF Buy Page 關鍵規格固定排序",
+      "backend": "Configuration Attributes Mapping Tab 依 Attributes Priority(0~6) 固定排序關鍵規格屬性",
+      "backend_category": "後台",
+      "frontend": "Configurable Buy Page 關鍵規格顯示順序",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "後台對應表中關鍵 attribute 依 Attributes Priority 由低到高固定排序（不可拖曳），其餘屬性依勾選順序；前台 Buy Page 規格排序須與後台一致。",
+      "trigger": "表內 attribute 依 0~6 固定排序，非表內依勾選順序；異動 Attribute Set 不與排序連動。",
+      "sources": [
+        "Fixed order for key spec attribute for Configurable Product Buy Page_TestCase_20250522.xlsx",
+        "[EU] Fixed order for key spec attribute for Configurable Product Buy Page_Test Case_20250513.xlsx"
+      ],
+      "id": "REL-169"
+    },
+    {
+      "feature": "CNF Buy Page 關鍵規格屬性強化",
+      "backend": "CNF 各 SKU 的庫存、Final price 與 URL OPT 參數",
+      "backend_category": "後台",
+      "frontend": "CNF Buy Page 開啟時的規格預選",
+      "frontend_category": "規則",
+      "relation_zh": "CNF Buy Page 開啟時依後台資料預選規格：URL 帶有效 OPT 參數則依參數預選，否則選有庫存且最低 Final price 的規格。",
+      "trigger": "有效 OPT 參數→依參數；無/無效→有庫存最低 Final price（同價依 Model base→最低價→有庫存→折扣最高→系統選）。",
+      "sources": [
+        "EC Buy Page key spec attribute design and logic enhancement (configurable product)_EU_Testcase_20260703.xlsx"
+      ],
+      "id": "REL-170"
+    },
+    {
+      "feature": "CNF Buy Page 關鍵規格屬性強化",
+      "backend": "各 storeview 貨幣格式與規格價格差",
+      "backend_category": "後台",
+      "frontend": "Config Option 上顯示 Included in price 或 +/- 價差金額",
+      "frontend_category": "價格公式",
+      "relation_zh": "已選規格顯示 Included in price，未選規格顯示與目前選擇的價差金額，並依 storeview 貨幣格式呈現。",
+      "trigger": "格式範例 FR +1 000,99 €、NL +€ 3.999,00、DK +6.599,00 DKK、SE +10 990,00 SEK，零值 +0,00。",
+      "sources": [
+        "EC Buy Page key spec attribute design and logic enhancement (configurable product)_EU_Testcase_20260703.xlsx"
+      ],
+      "id": "REL-171"
+    },
+    {
+      "feature": "CNF Buy Page 關鍵規格屬性強化",
+      "backend": "未選 Attribute Value 對應到 1 個以上不同規格（多 SKU 映射）",
+      "backend_category": "後台",
+      "frontend": "Config Option 前 Warning icon、Main/Secondary Notification Bar 與 Config Change Notification Popup",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "當某 attribute value 對應多個不同規格時，前台顯示警示 icon 與通知列，點擊展開規格變更前後對照與價差 popup，供使用者確認切換影響。",
+      "trigger": "value 對應 >1 規格顯示 Warning icon 與 Main Notification Bar；勾 Don't show again 後 24 小時內直接套用不跳窗。",
+      "sources": [
+        "EC Buy Page key spec attribute design and logic enhancement (configurable product)_EU_Testcase_20260703.xlsx"
+      ],
+      "id": "REL-172"
+    },
+    {
+      "feature": "CNF 缺貨折扣價顯示",
+      "backend": "Configurable Product SKU 設定 Special/Catalog/Tier Price（即使 out of stock）",
+      "backend_category": "後台",
+      "frontend": "Buy Page 價格欄位顯示折扣價格模板",
+      "frontend_category": "規則",
+      "relation_zh": "設有 Special/Catalog/Tier Price 的 SKU 即使缺貨，Buy Page 價格欄位仍顯示折扣價格模板；未設折扣價則顯示原價格式。",
+      "trigger": "SKU 有設折扣價且 out of stock。",
+      "sources": [
+        "Display the discount price template for configurable product (out-of-stock status)_TestCase_EU13_20231013.xlsx"
+      ],
+      "id": "REL-173"
+    },
+    {
+      "feature": "CNF 自動建立機制",
+      "backend": "依 Simple 屬性自動建立/更新 Configurable 的機制（每日 Job 或 Auto CNF 按鈕觸發，條件 CNF auto sync=Y、CTO=N、相同 Model Key、Attribute Set 有交集）",
+      "backend_category": "後台",
+      "frontend": "Configurable Product 於 Buy Page 呈現規格選擇",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "後台依 Simple Product 屬性自動綁定產生 Configurable Product，前台 Buy Page 即以該 CNF 呈現規格選項；自動產生 SKU 為 Model Key-國家-CNF-Auto。",
+      "trigger": "CNF auto sync=Y、CTO Product=N、相同 Model Key、指定 Attribute Set 有交集；ASUS 全納入、ROG 限 AI/DA/DC/DD/YH/MP/GC。",
+      "sources": [
+        "Configurable Product auto creation mechanism - trigger by button_MCC1_Testcase_20260428.xlsx",
+        "Configurable Product auto creation mechanism_Test Case_MCC1_20251013.xlsx"
+      ],
+      "id": "REL-174"
+    },
+    {
+      "feature": "CSAT (NPS) email 機制",
+      "backend": "後台 Stores>Sales emails>NPS（預設 YES）與訂單全部 Delivered 判定",
+      "backend_category": "後台",
+      "frontend": "Checkout NPS 同意勾選格、NPS 滿意度調查信與 BazaarVoice 產品評論信",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "消費者於 Checkout 勾選 NPS 同意且訂單全部 Delivered 後，系統寄送 NPS 調查信（CTA 帶 orderid 導 eSurvey）與 BazaarVoice 評論信；未勾選則兩封皆不寄。",
+      "trigger": "勾選 NPS checkbox 且訂單全部 Delivered；CTA 帶入 &orderid={Order Number} 導向 eSurvey。",
+      "sources": [
+        "RS_CSAT (NPS) email and mechanism implementation_TestCase_20260630.xlsx",
+        "[CZ] CSAT (NPS) email and mechanism redesign_czde_testcase_20250120.xlsx"
+      ],
+      "id": "REL-175"
+    },
+    {
+      "feature": "Cart Page 數量選擇",
+      "backend": "商品 Maximum Available Quantity(MAQ)/Saleable QTY 與 Purchase Limitation",
+      "backend_category": "欄位",
+      "frontend": "Cart Page 數量下拉選單最大值與缺貨/數量警告",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "Cart 數量下拉最大值取 Saleable QTY 與 Purchase Limitation 較小值；reload cart 後依最新 MAQ 更新，MAQ 不足或為 0 顯示對應警告並限制編輯。",
+      "trigger": "max=min(Saleable QTY, Purchase Limitation)，>10 顯示 10+；MAQ<目前值顯示 The requested QTY is not available、MAQ=0 顯示 Some of the products are out of stock 並禁用編輯。",
+      "sources": [
+        "Cart page quantity selection behavior design change_MCC1_TestCase_20260323.xlsx"
+      ],
+      "id": "REL-176"
+    },
+    {
+      "feature": "Cart/Checkout 顯示原價與折扣",
+      "backend": "商品 Final Price 與 Original Price（折扣設定）",
+      "backend_category": "價格公式",
+      "frontend": "Cart/Checkout 顯示數量 x Final Price、刪除線原價與 Save amount",
+      "frontend_category": "價格公式",
+      "relation_zh": "當商品有折扣（final<original）時，Cart/Checkout 顯示刪除線原價與省下金額(Save amount)；無折扣則不顯示原價。",
+      "trigger": "Saved Price=(Original Price - Final Price)，僅 final<original 時顯示；含稅；Freebies 無 Subtotal 不顯示。",
+      "sources": [
+        "Show original price and discount amount in Cart page and Checkout page_TestCase_EU13_20231211.xlsx"
+      ],
+      "id": "REL-177"
+    },
+    {
+      "feature": "Checkout CTA 按鈕邏輯",
+      "backend": "訂單情境判定（虛實混買/WEP Single Buy/0 元訂單）與付款方式選擇",
+      "backend_category": "規則",
+      "frontend": "Checkout Select Payment Method 區塊、同意條款/DR 訊息與 Place Order 按鈕的顯示與啟用",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "特定情境隱藏付款方式區塊與同意條款/DR 訊息/Place Order；選付款並 Continue 後才顯示條款、DR 訊息與 Place Order 按鈕（預設 Disable）。",
+      "trigger": "虛實混買/WEP Single Buy/0 元訂單隱藏付款區塊；選付款+Continue 後顯示並啟用。",
+      "sources": [
+        "Checkout page CTA button design and logic adjustment_Test Case_EU_20240731.xlsx"
+      ],
+      "id": "REL-178"
+    },
+    {
+      "feature": "Checkout Tech Spec 彈窗",
+      "backend": "商品是否具備 Tech Spec 內容",
+      "backend_category": "後台",
+      "frontend": "Checkout items in cart 的 View Specs+ 連結與規格彈窗",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "商品有 Tech Spec 時 Checkout 顯示 View Specs+ 連結，點擊彈出完整規格（Configurable 顯示所選 Simple 規格）；無則隱藏連結。",
+      "trigger": "無 Tech Spec 則隱藏 View Specs+ 連結。",
+      "sources": [
+        "Checkout Page design enhancement_Tech Spec pop up window_TestCase_20260617.xlsx"
+      ],
+      "id": "REL-179"
+    },
+    {
+      "feature": "Checkout 地址自動完成",
+      "backend": "Google Map Autocomplete API 與各國 country code 限制",
+      "backend_category": "API",
+      "frontend": "Checkout address 1 輸入時的地址建議下拉與自動帶入",
+      "frontend_category": "API",
+      "relation_zh": "於 address 1 輸入時呼叫 Google API 回傳建議地址（最多 5 筆）並自動帶入 country/city/province/zip；依國家 country code 限制建議範圍。",
+      "trigger": "依 country code 限制（如 DE 站僅 DE/AT）；修改 address 1 重新觸發，無結果隱藏下拉。",
+      "sources": [
+        "[UAT-QA][EU] Address fill-in suggestion_autocomplete in checkout process_Test Case_20241021.xlsx"
+      ],
+      "id": "REL-180"
+    },
+    {
+      "feature": "Checkout 新增 VAT 欄位並顯示於發票",
+      "backend": "CZ 站 Company ID(IČO)/VAT number(DIČ) 欄位設定與檢核",
+      "backend_category": "後台",
+      "frontend": "Checkout/Address Book/Quotation 的 Company ID/VAT number 欄位與 Billing summary/訂單信/Order View/Proforma Invoice 顯示",
+      "frontend_category": "欄位",
+      "relation_zh": "CZ 站於 Checkout 新增 Company ID 與 VAT number 欄位並檢核格式，通過後顯示於 Billing summary、訂單信、Magento Order View 與 Proforma Invoice PDF。",
+      "trigger": "VAT number 格式 CZ+至少 8 位；Company ID 至少 8 位、與 Company 互為必填；不更新至 shipping address。",
+      "sources": [
+        "CZ_Add VAT number field on Checkout Page for disti and invoicing_Test Case_20251014.xlsx"
+      ],
+      "id": "REL-181"
+    },
+    {
+      "feature": "Checkout 頁面設計優化",
+      "backend": "MCC1 全站預選運送選項設定",
+      "backend_category": "後台",
+      "frontend": "Checkout Order Summary 顯示 Total（非 Estimated Total）",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "因各國預選運送選項，Checkout 訂單摘要直接顯示 Total 而非 Estimated Total；items in cart 以展開清單、QTY 與價格同行呈現。",
+      "trigger": "全站預選運送選項；Tablet/Mobile 預設收合 Order Summary 並固定頂部。",
+      "sources": [
+        "Checkout Page design enhancement_Order Summary_TestCase_20260612.xlsx"
+      ],
+      "id": "REL-182"
+    },
+    {
+      "feature": "Company Name 欄位",
+      "backend": "Stores>Customer Address>Company：Input Validation=Length Only、Maximum Text Length=35",
+      "backend_category": "後台",
+      "frontend": "Checkout(Shipping/Billing)與 My Address Book 的 Company 欄位長度驗證",
+      "frontend_category": "規則",
+      "relation_zh": "後台設定 Company 欄位最大 35 字元，前台輸入超過即顯示 Warning 並無法 continue/儲存。",
+      "trigger": ">35 字元顯示 Please enter a maximum of 35 characters.。",
+      "sources": [
+        "Add the character limitation for Company Name field_EU_Testcase_20260525.xlsx"
+      ],
+      "id": "REL-183"
+    },
+    {
+      "feature": "Copilot+ PC 命名",
+      "backend": "商品名稱資料含 ';Copilot+ PC'（微軟命名規則）",
+      "backend_category": "後台",
+      "frontend": "各前台頁面顯示商品名稱時的換行與空格呈現",
+      "frontend_category": "規則",
+      "relation_zh": "微軟要求的命名規則要求 ';Copilot+ PC' 換行、+ 與 PC 間保留空格，套用於 Buy page/mini cart/Cart/Checkout/Thank you/My Account 各處商品名稱顯示。",
+      "trigger": "商品名稱含 ';Copilot+ PC'。",
+      "sources": [
+        "Copilot+ PC product naming policy requested by Microsoft_MCC1_TestCase_20240909.xlsx"
+      ],
+      "id": "REL-184"
+    },
+    {
+      "feature": "Customer Group 分群規則",
+      "backend": "Customer Group Assign Rule 依 domain/email/phone(及 VIP Email List) 指派會員群組",
+      "backend_category": "規則",
+      "frontend": "該會員於前台看到對應群組價格/私有店內容",
+      "frontend_category": "價格公式",
+      "relation_zh": "後台分群規則將會員指派到 Customer Group，前台即依該群組顯示對應優惠價或私有店內容；同國同條件僅一筆可 enable。",
+      "trigger": "執行順序 domain rule>email rule>phone rule；VIP Email List 優先權最高。",
+      "sources": [
+        "Customer Group Assign Rule 邏輯衝突_TestCase_EU_20220718.xlsx",
+        "Private Store mechanism extend to Microbusiness Program (SMB)_CZ_TestCase.xlsx"
+      ],
+      "id": "REL-185"
+    },
+    {
+      "feature": "EC Buy Page rich content 整合",
+      "backend": "STORES>Configuration ASUS>1 World Sync 開關 / EBROOK>ARCS(Athena) 設定",
+      "backend_category": "後台",
+      "frontend": "Buy Page 顯示對應 rich content",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "一個網站僅能嵌入一種 rich content；啟用 1WS 時 Buy Page 顯示 1WS 內容，關閉 1WS 且 ARCS=YES 則顯示 ARCS 內容；無資料時不顯示收合 icon。",
+      "trigger": "1WS 開啟→顯示 1WS；1WS 關閉且 ARCS=YES→顯示 ARCS。",
+      "sources": [
+        "EC Buy Page rich content integration (with 1WS)_20240621.xlsx"
+      ],
+      "id": "REL-186"
+    },
+    {
+      "feature": "EC Magento 導入 AI Assistant",
+      "backend": "AIA Intent 分類（意圖模型/RAG 檢索資料庫/Fixed Script 固定話術）",
+      "backend_category": "規則",
+      "frontend": "AIA 聊天回覆內容與 avatar tooltip 意圖分類",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "AIA 依使用者輸入歸類意圖，回覆對應固定話術或以 RAG 生成內容；點擊 avatar 於 tooltip 顯示該意圖分類，部分意圖提供 Chat with Support 轉真人。",
+      "trigger": "意圖分類為 technical-support/check-order-status/return-and-exchange 等；命中意圖決定回覆話術與是否顯示轉客服按鈕。",
+      "sources": [
+        "[AIA][MCC1] EC magento page導入AI Assistant服務_TestCase_20250908 .xlsx"
+      ],
+      "id": "REL-187"
+    },
+    {
+      "feature": "EC Magento 導入 AI Assistant",
+      "backend": "AIA 顯示範圍設定與 Age Check 未成年卡控流程",
+      "backend_category": "規則",
+      "frontend": "Buy/Add-on/Thank you Page 顯示 AIA 圖示；開啟先顯示資料蒐集聲明與年齡驗證",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "AIA 僅於 Buy/Add-on/Thank you Page 顯示、Cart/Login/Checkout 不顯示；開啟後先跑資料蒐集聲明與 Age Check，不符年齡顯示年齡限制通知並無法對話。",
+      "trigger": "填寫生日；符合年齡（含生日當天）可對話，不符則跳年齡限制通知。",
+      "sources": [
+        "[AIA][MCC1] EC magento page導入AI Assistant服務_TestCase_20250908 .xlsx"
+      ],
+      "id": "REL-188"
+    },
+    {
+      "feature": "EC Product Card 顏色名稱",
+      "backend": "Magento color attribute 的 Option Label",
+      "backend_category": "後台",
+      "frontend": "CNF product card 的 Color Swatch 與其下方顏色名稱",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "前台 product card 依 color attribute Option Label 顯示顏色名稱（實際 DOM 文字）；顏色選項 ≤6 用 dot swatch、>6 改 dropdown；無 color value 則不顯示名稱。",
+      "trigger": "color options ≤6 dot swatch、>6 dropdown 預設第一個；無 color attribute value 不顯示。",
+      "sources": [
+        "EU_ Add color name for color option on EC Product Card_TestCase_20260625.xlsx"
+      ],
+      "id": "REL-189"
+    },
+    {
+      "feature": "EU 30天最低價(Omnibus)",
+      "backend": "系統每日計算過去 30 天最低價 min_price（取 Regular/Catalog/Special/Tier Price 最低值並落地）",
+      "backend_category": "價格公式",
+      "frontend": "Buy Page/Cart 促銷降價時顯示 30 天最低價",
+      "frontend_category": "規則",
+      "relation_zh": "依 EU 消費者保護指令，後台每日重算並落地 min_price，前台於促銷降價時顯示過去 30 天最低價；Cart 於 Config detail 下方顯示且隨數量疊加。",
+      "trigger": "取 Regular/Catalog/Special/Tier 最低，價格為 0 不採計取第二低；啟用單品特價時顯示，新品促銷起始顯示 regular price。",
+      "sources": [
+        "(EU) Price reduction under the EU consumer protection directive_TestCase_20230714.xlsx",
+        "Price reduction under the EU consumer protection directive_Shopping Cart_TestCase_EU13_20231228.xlsx"
+      ],
+      "id": "REL-190"
+    },
+    {
+      "feature": "Embargo Date 上架卡控",
+      "backend": "On-shelf Embargo Date 禁售日期與 Schedule New Update 排程卡控",
+      "backend_category": "規則",
+      "frontend": "商品於前台的上架可見性",
+      "frontend_category": "狀態",
+      "relation_zh": "未達 website 時區 Embargo Date 00:00 前不可 Enable 商品，藉此卡控前台上架時間；Schedule New Update 亦要求 Embargo Date<=Start Date 才可儲存。",
+      "trigger": "website 時區未達設定日凌晨 00:00 不可 Enable；空值或 Embargo Date<=當日可跳過。",
+      "sources": [
+        "Disallow to enable product before Embargo Date_TestCase_EU13_20231019.xlsx"
+      ],
+      "id": "REL-191"
+    },
+    {
+      "feature": "Energy Label 自動同步至 Buy Page",
+      "backend": "Catalog 設定 Display The Energy Label Section On Buy Page(Yes/No, Website Scope) 與 EnergyLink API 資料",
+      "backend_category": "後台",
+      "frontend": "Buy Page/商品卡顯示 Energy Efficiency Icon 與 Product Information Sheet link",
+      "frontend_category": "核心概念",
+      "relation_zh": "後台設定與 EnergyLink 資料驅動 Buy Page 能源標籤顯示；Config 為最高優先權設 No 則完全不顯示 icon 與 link，不留 placeholder。",
+      "trigger": "config=Yes 且類別為 Monitor/Mobile Phone 才顯示；config=No 完全不顯示；Freebie 不顯示。",
+      "sources": [
+        "EU10PLHUCZ_ Energy Efficiency Logo  Label image auto sync up to Buy Page_Test Case_20260421.xlsx"
+      ],
+      "id": "REL-192"
+    },
+    {
+      "feature": "FPS 顯示邏輯",
+      "backend": "attribute set=Gaming Desktop、Sale model name 為 G 開頭、Product code=PF 與 3DMARK(UL) 分數資料",
+      "backend_category": "後台",
+      "frontend": "Buy Page Game FPS 效能區塊",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "符合條件的產品由 3DMARK 分數資料驅動 Buy Page 顯示遊戲 FPS 區塊（六款遊戲 1080p/1440p 分數）；不符或無分數則隱藏或顯示 N/A。",
+      "trigger": "attribute set=Gaming Desktop 且 Sale model G 開頭、Product code=PF；分數<20 顯示 ≤20 FPS、無分數 N/A 或隱藏 Tab。",
+      "sources": [
+        "Buy Page_FPS display logic optimization_TestCase_EU_20250303.xlsx"
+      ],
+      "id": "REL-193"
+    },
+    {
+      "feature": "FR 發票/退款單顯示 WEEE",
+      "backend": "FR 站商品 WEEE(電子廢棄物/eco-tax)資料",
+      "backend_category": "後台",
+      "frontend": "Invoice/Credit Memo/Refund Email/My Orders 顯示 WEEE 與 eco-tax",
+      "frontend_category": "其他",
+      "relation_zh": "FR 站訂單於發票、Credit Memo、退款明細與退款信顯示 WEEE 資訊與 Included eco-tax，僅計退貨數量的 WEEE。",
+      "trigger": "FR 站；eco-tax=0 不顯示；支援 Appeasement Followed by Return。",
+      "sources": [
+        "[FR]WEEE display on Invoice  Credit Memo_Testcase_1110.xlsx",
+        "MyAccount Refund tab & Refund email 呈現優化_EU10_Testcase_20260112.xlsx"
+      ],
+      "id": "REL-194"
+    },
+    {
+      "feature": "IT/PT NIF 欄位位置與檢核",
+      "backend": "後台 toggle 'Company ID/Personal VAT Show On Billing Address' 與國別(IT/PT)設定",
+      "backend_category": "後台",
+      "frontend": "Checkout Select Payment Method 的 Personal VAT(NIF) 欄位與 Billing summary/My Order 顯示",
+      "frontend_category": "欄位",
+      "relation_zh": "由後台 toggle 控制是否於 IT/PT Checkout 顯示個人稅號(NIF)欄位，欄位含 I don't need the Personal VAT 勾選框，可自 Address Book 帶入並顯示於 Summary/發票。",
+      "trigger": "IT/PT 且後台 toggle 開；最長 20 字元、必填/勾選框衝突檢核；Thank you Page 不顯示、My Order 顯示。",
+      "sources": [
+        "ITPT_ Adjust the NIF field position and checking logic_TestCase_20260401.xlsx"
+      ],
+      "id": "REL-195"
+    },
+    {
+      "feature": "Invoice/Credit Memo 改 PDF",
+      "backend": "EU10 設定 Invoice/Credit Memo 改 PDF 並以 billing 電話加密",
+      "backend_category": "後台",
+      "frontend": "My Orders download invoice / Payment/Refund Email 附加加密 PDF",
+      "frontend_category": "其他",
+      "relation_zh": "EU10 將 Invoice 與 Credit Memo 改以 PDF 呈現，隨 Payment Information/Refund Email 附加並以密碼保護；My Orders 可下載、AOM 點號碼即時產生 PDF。",
+      "trigger": "EU10；PDF 密碼為 billing 電話、字型 Roboto。",
+      "sources": [
+        "[EU10] Invoice and Credit Memo change to PDF format_Testcase_1110.xlsx"
+      ],
+      "id": "REL-196"
+    },
+    {
+      "feature": "NextM 配銷商與 PayNow 金流導入",
+      "backend": "導入 PayNow 金流閘道（Credit Card/Bank Transfer/COD/BLIK）",
+      "backend_category": "API",
+      "frontend": "Checkout 顯示對應付款方式",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "後台導入 PayNow 金流後，前台 Checkout 顯示 Credit Card/Bank Transfer Online/Offline/Cash on Delivery/BLIK 等付款方式；0 元訂單 disable place order。",
+      "trigger": "PayNow 支援之付款方式；0 元訂單不支援；取消已付款未拋單訂單時 Magento 呼叫 PayNow API 退款。",
+      "sources": [
+        "New disti (NextM) & new payment gateway (PayNow) implementation_TestCase_20250407.xlsx"
+      ],
+      "id": "REL-197"
+    },
+    {
+      "feature": "NextM 配銷商與 PayNow 金流導入",
+      "backend": "導入配銷商 NextM（Shipment tracking number 來自 NextM）",
+      "backend_category": "核心概念",
+      "frontend": "各前後台頁面顯示 NextM 相關 UI（message/feature_icon/Footer Service）",
+      "frontend_category": "核心概念",
+      "relation_zh": "導入 NextM 配銷商後，Buy/Cart/Checkout/Thankyou/My Account/Email 等頁顯示 NextM 相關訊息與圖示，出貨追蹤號來自 NextM。",
+      "trigger": "PL 站導入 NextM；退貨採 offline 處理（不呼叫 refund API 但產生 credit memo）。",
+      "sources": [
+        "New disti (NextM) & new payment gateway (PayNow) implementation_TestCase_20250407.xlsx"
+      ],
+      "id": "REL-198"
+    },
+    {
+      "feature": "No reply 信件機制調整",
+      "backend": "寄件者名稱改 ASUS-XX-No Reply 並新增免責聲明設定",
+      "backend_category": "後台",
+      "frontend": "各類自動信件顯示 No Reply 寄件者名稱與斜體免責聲明",
+      "frontend_category": "其他",
+      "relation_zh": "後台調整寄件者名稱與免責聲明，前台各類自動信件顯示 ASUS-XX-No Reply 寄件者及斜體免回覆聲明（依語系翻譯）。",
+      "trigger": "寄至 store_eu@asus.com 觸發自動回覆；免責聲明文字斜體、不改顏色。",
+      "sources": [
+        "No reply email mechanism adjustment_TestCase_EU13_20240118.xlsx"
+      ],
+      "id": "REL-199"
+    },
+    {
+      "feature": "PayPal 付款人資訊比對攔截",
+      "backend": "Sourcing Job 比對 Magento 與 PayPal 的 Country/Email/Name（達門檻攔截進 Payment Review），Reject 後訂單 Cancelled",
+      "backend_category": "API",
+      "frontend": "訂單顯示 Cancelled 並寄取消信給消費者",
+      "frontend_category": "狀態",
+      "relation_zh": "後台 Sourcing Job 對 EU10 processing 訂單比對付款人資訊，≥2 項 Mismatch 則攔截進 Payment Review；審核 Reject 後訂單轉 Cancelled、寄取消信並發 event 至 AOM。",
+      "trigger": "EU10 且 state=processing；≥2 項 Country/Email/Name Mismatch 或 Duplicate Address 攔截；Reject→cancellation_reason='Payment Review Failed'。",
+      "sources": [
+        "EU10_Fraud_Detection_Paypal_payer_information_check_and_block_Testcase_20260629.xlsx"
+      ],
+      "id": "REL-200"
+    },
+    {
+      "feature": "Pick up point solution (CZ)",
+      "backend": "STORES>Delivery Methods>DPD 的 Enabled for Checkout 開關與商品尺寸/重量門檻",
+      "backend_category": "後台",
+      "frontend": "Buy Page Bottom Fixed Bar 與 Checkout 顯示 DPD Pickup Point（可搜尋/選取取貨點）",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "後台啟用 DPD 取貨點後前台顯示 Pickup 選項與地圖搜尋；商品尺寸或重量超標則隱藏 Pickup Point 與 radio button。",
+      "trigger": "DPD Enabled；單邊>100cm、周長超標或總重>20kg 則隱藏取貨點（子商品同適用）。",
+      "sources": [
+        "Pick up point solution_TestCase_CZ_20250331.xlsx"
+      ],
+      "id": "REL-201"
+    },
+    {
+      "feature": "Preview Page 加浮水印",
+      "backend": "Magento Save & Preview / Schedule New Update / Scheduled Changes 產生 Preview",
+      "backend_category": "後台",
+      "frontend": "Preview Page 上顯示使用者名稱與登入日期時間浮水印",
+      "frontend_category": "後台",
+      "relation_zh": "由後台預覽動作產生的 Preview Page 印上操作者 user name 與登入日期時間浮水印（Local Time），適用 Product/Categories/Rule 設定頁。",
+      "trigger": "Save & Preview / Schedule New Update / Scheduled Changes；時間為 Local Time(CET/CEST)。",
+      "sources": [
+        "To add watermark on Preview Page_MCC1_Testcase_20260413.xlsx"
+      ],
+      "id": "REL-202"
+    },
+    {
+      "feature": "Private Store 擴展 SMB",
+      "backend": "ECMW SMB Application Review 審核核准後每日 09:00(GMT+8) 同步 Magento Customer Group",
+      "backend_category": "後台",
+      "frontend": "SMB Introduction/Application Form 頁與核准後前台取得 SMB 群組優惠",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "消費者於 SMB 申請表送出，經 ECMW 後台審核 Approved 後同步 Magento Customer Group，前台該會員即取得 SMB 專屬優惠；Special Offers Home Page 提供入口。",
+      "trigger": "Approval Status=Approved 後每日 09:00(GMT+8) 同步；失敗顯示 Automatic assignment of customer groups has failed。",
+      "sources": [
+        "Private Store mechanism extend to Microbusiness Program (SMB)_CZ_TestCase.xlsx"
+      ],
+      "id": "REL-203"
+    },
+    {
+      "feature": "Rating & Review(BazaarVoice)",
+      "backend": "BazaarVoice ExternalID Review 評論資料同步（StarStatus）",
+      "backend_category": "後台",
+      "frontend": "Buy Page 商品名下/Rating & Reviews Tab 與 Related/Add-On/Cross-Sale product card 顯示星級評論",
+      "frontend_category": "核心概念",
+      "relation_zh": "後台由 BazaarVoice 同步評論與星級資料（StarStatus=1 表有星級），前台 EC Buy Page 與官網/ROG Site 一致顯示星級與評論。",
+      "trigger": "StarStatus=1 有星級評論；顯示於商品名下、Rating Tab、關聯/加購/交叉銷售 product card。",
+      "sources": [
+        "(MCC1)Rating & Review Status auto-sync up with Official Site  ROG Site for EC buy page_testcase_ESDK_0524.xlsx"
+      ],
+      "id": "REL-204"
+    },
+    {
+      "feature": "Refurbish 整新品",
+      "backend": "以既有商品 Duplicate 建整新品（SKU 前綴 90R、ASUS Product Type=Refurbish、Categories/Feature Icon 設 Refurbish，庫存連 WMS）",
+      "backend_category": "後台",
+      "frontend": "前台顯示整新品（Refurbished Feature Icon、URL refurbish）並可正常下單",
+      "frontend_category": "核心概念",
+      "relation_zh": "後台設定整新品屬性後，前台呈現整新品標示與獨立 URL，庫存連 WMS 可正常下單扣量並走完出貨；支援 Configurable。",
+      "trigger": "SKU 前綴 90R、ASUS Product Type=Refurbish、Categories=Refurbish、Feature Icon=Refurbished product。",
+      "sources": [
+        "Refurbish_TestCase_HU_20231030.xlsx",
+        "Enable refurbished product sale flow and process_TestCase_PL_20231218.xlsx"
+      ],
+      "id": "REL-205"
+    },
+    {
+      "feature": "SPEC detail",
+      "backend": "後台設定的商品屬性(SPEC)",
+      "backend_category": "後台",
+      "frontend": "Cart Page/Checkout Page/My orders 顯示商品規格",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "後台設定的商品 SPEC 屬性需於前台 Cart、Checkout 與 My orders 正確顯示。",
+      "trigger": "由產品線 L2/L3 進入產品卡加入購物車後檢視。",
+      "sources": [
+        "SPEC detail_TestCase_20211111.xlsx"
+      ],
+      "id": "REL-206"
+    },
+    {
+      "feature": "Tech Spec 手動同步",
+      "backend": "Simple Product detail page 的 Resync 按鈕依 Store View 由 API 抓取官網 Tech Spec 更新 Magento",
+      "backend_category": "後台",
+      "frontend": "Buy Page/Checkout 顯示更新後的 Tech Spec",
+      "frontend_category": "後台",
+      "relation_zh": "按下 Resync 由 API 更新 Magento 的 Product tab & detailed spec，前台隨之顯示更新內容；API 回空則僅顯示欄位名稱無內容。",
+      "trigger": "僅 Simple 顯示按鈕；成功提示 Tech spec updated successfully、無資料 Data not found；網路中斷不更新。",
+      "sources": [
+        "Tech Spec manual sync function_Test Case_MCC1_20250819.xlsx"
+      ],
+      "id": "REL-207"
+    },
+    {
+      "feature": "Thank You Page 會員註冊邀請",
+      "backend": "Stores>Configuration ISOBAR>Register benefits on thank you page（顯示順序/內容，六個固定字串）",
+      "backend_category": "後台",
+      "frontend": "Guest Thank You Page 與訂單 Email 的會員註冊邀請區塊",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "Guest 下單後，Thank You Page 與訂單 Email 依後台設定顯示會員註冊邀請區塊（Create an ASUS Account 按鈕與六項權益），取代原 register block。",
+      "trigger": "Guest 下單；PC 前端內容≤兩行、欄位字元限制 102。",
+      "sources": [
+        "Member registration invitation notice on Thank You Page_Testcase_EU_0606.xlsx"
+      ],
+      "id": "REL-208"
+    },
+    {
+      "feature": "WEMEA 商業模式變更",
+      "backend": "WEMEA 由 Digital River 轉 ASUS Computer Commerce B.V. 自營(B2C)並採 EU OSS 稅務、付款改 Stripe/Paypal",
+      "backend_category": "核心概念",
+      "frontend": "Buy Page 價含 VAT、Cart 不顯示稅、header/footer/email footer 改公司名、付款隱藏 Klarna",
+      "frontend_category": "價格公式",
+      "relation_zh": "商業模式變更後前台改以 B2C/OSS 呈現：Buy Page 價格含 VAT、Cart 不列稅額稅率、Checkout 依地址算稅、不提供 VAT 輸入，header/footer/email 改標示 ASUS Computer Commerce B.V.。",
+      "trigger": "WEMEA 國家；僅 B2C、不收 VAT 號碼、不支援 Reverse Charge；Phase1 隱藏 Klarna；FR 之 WEEE 含於價內不單列。",
+      "sources": [
+        "WEMEA countries business model change project_TestCase_20250728.xlsx"
+      ],
+      "id": "REL-209"
+    },
+    {
+      "feature": "WEP SN 檢核與啟用 API 升級",
+      "backend": "SN 檢核 API 與 Segment 比對",
+      "backend_category": "API",
+      "frontend": "WEP Recommendations Page 顯示符合的 WEP 產品卡與錯誤訊息",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "消費者輸入產品 SN 經 API 檢核與 Segment 比對後，顯示符合的 WEP 延長保固產品卡；不符或非本國 SN 顯示對應錯誤訊息。",
+      "trigger": "SN 上限 20 碼僅英數；依 Segment 比對，不同 Segment 不顯示；非本國 SN 提示 This site is not available for your device.。",
+      "sources": [
+        "[PL][HU]WEP SN input check and activation API upgrade_Testcase_20250314.xlsx"
+      ],
+      "id": "REL-210"
+    },
+    {
+      "feature": "eShop 報價單",
+      "backend": "Magento Store>Configuration>EBROOK>Quotation 設定 Expired Days/Lifetime/Cron 與每日午夜刪除 Job",
+      "backend_category": "後台",
+      "frontend": "Cart 的 Fill in the form 報價流程、Proforma Invoice PDF 與 Quotation email",
+      "frontend_category": "核心概念",
+      "relation_zh": "消費者於 Cart 填寫報價表單後系統以 Email 寄送 Proforma Invoice PDF；後台設定效期，過期報價由每日 Job 刪除且載入時顯示 expired。",
+      "trigger": "登入且未過期可載入報價至 Cart；過期顯示 Your proforma invoice is already expired；proforma invoice number={country_code}+{store_id}+9碼。",
+      "sources": [
+        "Quotation form on eShop_TestCase_v1_20220923.xlsx"
+      ],
+      "id": "REL-211"
+    },
+    {
+      "feature": "付款未完成保留購物車",
+      "backend": "訂單維持 pending_payment 一小時後才轉 Canceled 的機制與 Concurrency/Duplicate Order Prevention",
+      "backend_category": "後台",
+      "frontend": "付款失敗/未完成時保留購物車並回到 Checkout（保留 Shipping/Billing/Tax Code）",
+      "frontend_category": "核心概念",
+      "relation_zh": "付款失敗、逾時、瀏覽器返回或 Stripe Cancel 時，將商品保留於購物車並回到 checkout page 並保留已填資訊；訂單維持 pending_payment 一小時後才變 Canceled。",
+      "trigger": "適用 BE-FR/SE/IT/DE；google pay 逾時 30 分鐘變 Canceled；同購物車不產生第二張訂單。",
+      "sources": [
+        "Keep the products in shopping cart for payment failed (not completed) orders_EU10_Testcase_20260525.xlsx"
+      ],
+      "id": "REL-212"
+    },
+    {
+      "feature": "促銷資訊跨頁顯示",
+      "backend": "cart price rule 設定的促銷標題與說明",
+      "backend_category": "後台",
+      "frontend": "Buy Page/Cart/Checkout/Order Detail/Email 一致顯示促銷標題(橙)與說明",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "由 cart price rule 設定的促銷標題與說明需一致顯示於各相關頁面；configurable 選不同規格顯示不同內容，Learn more 連到相對頁面。",
+      "trigger": "configurable 依所選規格顯示對應促銷內容；Learn more 以藍色連相對頁面。",
+      "sources": [
+        "Promotion info on relative pages_TestCase_20210602.xlsx"
+      ],
+      "id": "REL-213"
+    },
+    {
+      "feature": "價格為0時不可結帳",
+      "backend": "Magento EBROOK>Price Policy 的 Cart Price Validation 與 Price Save Validation 開關",
+      "backend_category": "後台",
+      "frontend": "0 元商品於購物車擋結帳並顯示錯誤訊息",
+      "frontend_category": "規則",
+      "relation_zh": "後台開啟 Cart Price Validation 後，購物車出現 0 元商品即擋結帳並顯示錯誤；Price Save Validation 則於後台擋 0 元商品儲存。",
+      "trigger": "價格=0 且 Cart Price Validation on；顯示『此產品出現問題,請將其刪除,並重試』；折扣折到 0 的商品與 0 元 Freebie 仍可購買。",
+      "sources": [
+        "Unable checkout on cart page when product price=0_TestCase_MCC1_20230509.xlsx"
+      ],
+      "id": "REL-214"
+    },
+    {
+      "feature": "價格為0時不可結帳",
+      "backend": "以 Coupon 將訂單金額折為 0 元",
+      "backend_category": "後台",
+      "frontend": "Checkout 禁用 place order 並顯示 0 amount order 訊息後導回購物車",
+      "frontend_category": "狀態",
+      "relation_zh": "當 Coupon 將金額折為 0 元時，Checkout 無付款方式且禁用 place order，顯示『0 amount order is not supported』並於 3 秒後自動導回購物車。",
+      "trigger": "訂單金額=0(coupon 折抵)；3 秒後導回 cart。",
+      "sources": [
+        "Business model change_CZ_TestCase_20240830.xlsx"
+      ],
+      "id": "REL-215"
+    },
+    {
+      "feature": "充電器 Adapter Icon 顯示",
+      "backend": "Catalog 設定 Display The Adapter Icon Section On Buy Page(依 Website,預設 Yes) 與 ChargerIconName/PowerName 資料",
+      "backend_category": "後台",
+      "frontend": "Buy Page/Cart Page/Add-on Page 顯示充電器 Adapter Icon 與說明",
+      "frontend_category": "核心概念",
+      "relation_zh": "後台開關與充電器資料驅動前台顯示 Adapter Icon 區塊（是否含充電器/瓦數/USB-PD）；ChargerIconName 為 Null 則不顯示。",
+      "trigger": "config=Yes 且 ChargerIconName 非 Null；PowerName 格式 {Min}-{Max} (USB-PD)/(W)；不套用 WEP。",
+      "sources": [
+        "EU_Add adapter icon on EC Buy Page_Test Case_20260415.xlsx",
+        "EU_Add adapter icon on Cart Page  Add on Page_Test Case_20260630.xlsx"
+      ],
+      "id": "REL-216"
+    },
+    {
+      "feature": "免運訊息與規則",
+      "backend": "免運門檻規則(依 FSD 金額)",
+      "backend_category": "後台",
+      "frontend": "購物車/結帳頁的免運訊息",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "依免運門檻規則，購物車/結帳頁未達門檻顯示尚差金額、達門檻顯示免運訊息（翻譯與金額依 FSD）。",
+      "trigger": "金額未達門檻顯示尚差金額，達門檻顯示免運。",
+      "sources": [
+        "Free Shipping message and Rules_TestCase_20211110.xlsx"
+      ],
+      "id": "REL-217"
+    },
+    {
+      "feature": "出貨後產品自動註冊(鑑賞期)",
+      "backend": "Checkout 自動註冊同意條款(Stores>Terms and Conditions)與鑑賞期結束隔日執行的自動註冊 Job(Madrid 03:05)",
+      "backend_category": "後台",
+      "frontend": "Checkout 自動註冊同意 checkbox、會員中心自動註冊商品與成功/失敗通知信",
+      "frontend_category": "後台",
+      "relation_zh": "消費者於 Checkout 勾選同意後，系統於鑑賞期結束隔日以 Product SN 於會員中心自動註冊商品並寄送成功/失敗通知信。",
+      "trigger": "勾選同意；鑑賞期 EU10/HU/CZ=DELIVERED+30D、PL=SHIPPED+20D、RS=DELIVERED+14D；WEP 與退貨商品不註冊；失敗 retry 第 3 次寄 Register Error Mail。",
+      "sources": [
+        "Product auto registration after ship out (need to consider the grace period)_TestCase_EU_20240731.xlsx",
+        "RS_Product auto registration after ship out (need to consider the grace period)_TestCase_20260629.xlsx"
+      ],
+      "id": "REL-218"
+    },
+    {
+      "feature": "出貨後產品自動註冊(鑑賞期)",
+      "backend": "商品 ASUS 區塊 Product Notes Display 開關與國家 Configuration Fetch Enable(雙向開啟)",
+      "backend_category": "後台",
+      "frontend": "Cart Page 該商品下方顯示 Product Notes(點數回饋)訊息",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "需國家設定與產品設定雙向開啟，Cart Page 才於該商品下方顯示 Product Notes 點數回饋等訊息。",
+      "trigger": "Configuration Fetch Enable 與產品 toggle 皆開；Message≤140 字、依 Store View 顯示；default disable。",
+      "sources": [
+        "Product auto registration after ship out (need to consider the grace period)_TestCase_EU_20240731.xlsx",
+        "RS_Product auto registration after ship out (need to consider the grace period)_TestCase_20260629.xlsx"
+      ],
+      "id": "REL-219"
+    },
+    {
+      "feature": "商品圖片隱藏顯示批次功能",
+      "backend": "Magento Images And Videos 的 Show/Hide button 與 Show All/Hide All 批次(依 Store View 儲存)",
+      "backend_category": "後台",
+      "frontend": "EC Buy Page 依設定顯示/隱藏商品圖片",
+      "frontend_category": "後台",
+      "relation_zh": "後台將圖片設為 Hide(壓 HIDDEN 浮水印)後，前台 EC Buy Page 依 Store View 設定隱藏該圖片；ROG 隱藏時前台顯示 Magento 預設反灰圖。",
+      "trigger": "依 Store View 儲存，不受 All/其他 Store View 影響；Hide 則前台隱藏。",
+      "sources": [
+        "Image hide show bulk update function_TestCase_EU13_20250514.xlsx"
+      ],
+      "id": "REL-220"
+    },
+    {
+      "feature": "客服 Email 設定",
+      "backend": "Magento>Stores>Configuration>Ebrook>Contact Email 依國家 Scope 設定客服 Email",
+      "backend_category": "後台",
+      "frontend": "Shipped/RMA/Reminder/Footer 各類信件顯示該國客服 Email",
+      "frontend_category": "後台",
+      "relation_zh": "後台依 Scope 設定各國客服聯絡 Email，前台 Shipped、RMA、Reminder、Footer 各類信件即套用該國客服 Email。",
+      "trigger": "以 Scope 選國家；Default 用 system value、國別 Store View 覆寫。",
+      "sources": [
+        "Adjust the customer service contact email address in Shipped & RMA email_TestCase_EU_20230605.xlsx"
+      ],
+      "id": "REL-221"
+    },
+    {
+      "feature": "德國網站配送奧地利",
+      "backend": "後台 Multiple Country Tab Reset Shipping Form Config=YES 開啟指定國家跨國運送",
+      "backend_category": "後台",
+      "frontend": "Checkout 新增 Country 下拉(DE/AT)並依國家切換 zip/province/稅率/付款方式",
+      "frontend_category": "核心概念",
+      "relation_zh": "後台開啟跨國運送後，DE eShop 的 Checkout 新增 Country 下拉並依所選國家切換郵遞區號位數、Province 清單、稅率與付款方式。",
+      "trigger": "config=YES；AT zip 4 碼/DE 5 碼；稅率 AT 20%/DE 19%；含 AT 地址不顯示 Klarna。",
+      "sources": [
+        "Germany eShop to ship to Austria_TestCase_DE_20230529.xlsx"
+      ],
+      "id": "REL-222"
+    },
+    {
+      "feature": "推薦與贊助方案",
+      "backend": "後台設定 Y/Z/X 天數與 coupon 格式/效期並綁 cart price rule 自動產生 coupon",
+      "backend_category": "後台",
+      "frontend": "My Account 的 Referral Record/My Coupon/邀請與獎勵信",
+      "frontend_category": "其他",
+      "relation_zh": "會員邀請好友(Referee)後，後台依規則產生 Referral/Reward Coupon，前台於 My Account 顯示 Referral Record 與 My Coupon 並寄送邀請/到期/獎勵信。",
+      "trigger": "Referee 完單並過 RMA delivery days 後產生 Reward Coupon；30 天內限邀 30 位、Uses per coupon=1。",
+      "sources": [
+        "Referral and Sponsorship Offer & Program_TestCase_v1_20230412.xlsx"
+      ],
+      "id": "REL-223"
+    },
+    {
+      "feature": "最後一哩物流商更換(DHL)",
+      "backend": "末端配送商由 UPS 改為 DHL 的後台設定(Store>Configuration>Isobar>Asus View>Shipment 各國 URL)與 Carrier Name→Tracking URL 產生",
+      "backend_category": "後台",
+      "frontend": "各類 Email/My Account/AOM Shipment 顯示 DHL 文字與 DHL reverse logistics tracking 連結",
+      "frontend_category": "API",
+      "relation_zh": "後台將末端配送商改為 DHL 後，前後台 UPS 文字改為 DHL，並依 Carrier Name 產生對應 Tracking URL 導向 DHL 追蹤頁。",
+      "trigger": "Carrier=DHL/UPS 各對應不同 Tracking URL。",
+      "sources": [
+        "Last mile delivery carrier partner change (from UPS to DHL)_EU10_Testcase_20260305.xlsx",
+        "[EC][QA] Last mile delivery carrier partner change _Test Case_20240823.xlsx"
+      ],
+      "id": "REL-224"
+    },
+    {
+      "feature": "會員優惠價",
+      "backend": "依 Customer Group 以 Special price 或 Catalog price rule 設定不同售價",
+      "backend_category": "後台",
+      "frontend": "產品卡/search result/Buy Page/購物車依會員身分(Guest/Member/VIP)顯示對應售價",
+      "frontend_category": "價格公式",
+      "relation_zh": "後台依 Customer Group 設定價格後，前台依登入會員身分於產品卡、搜尋結果、Buy Page 與購物車一致顯示對應售價。",
+      "trigger": "未登入=Guest、General Member、Qtest/VIP group；Simple 與 Configurable 底下所有 SKU 皆適用；ROG 與 ASUS 官網共用價格。",
+      "sources": [
+        "會員優惠價_TestCase_20211208.xlsx"
+      ],
+      "id": "REL-225"
+    },
+    {
+      "feature": "會員登入/訪客結帳整合 ASUS One Portal",
+      "backend": "Member Login 與 Guest Checkout 整合 ASUS One Portal 的後台設定",
+      "backend_category": "核心概念",
+      "frontend": "Checkout 導向會員中心登入頁，登入或 Guest Checkout 後返回 Checkout",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "整合 ASUS One Portal 後，前台各入口(Header 小人頭/Email/Search with order number/Quotation)依 ASUS/ROG 天地導向會員中心登入頁，完成後返回 Checkout。",
+      "trigger": "Search with order number page 左區顯示 Sign in、右區保留訂單查詢欄位。",
+      "sources": [
+        "Member Login and Guest Checkout page integration with ASUS One Portal_TestCase_MCC1_20250210.xlsx"
+      ],
+      "id": "REL-226"
+    },
+    {
+      "feature": "會員群組折扣顯示",
+      "backend": "Customer>Customer Groups 各國 Store View 設 Group Label 並勾選 Display on Buy Page",
+      "backend_category": "後台",
+      "frontend": "Buy Page 折扣價旁顯示 'with {customer group label}'",
+      "frontend_category": "後台",
+      "relation_zh": "勾選 Display on Buy Page 後，前台於折扣價旁顯示 'with {group label}'；未勾選僅顯示折扣價。Special/Catalog/Tier 三價中特價最低僅顯示數字、Catalog/Tier 最低則顯示價與 group 名。",
+      "trigger": "Display on Buy Page 勾選；標籤限 40 字元。",
+      "sources": [
+        "Display special price with discount effect for customer group info_TestCase_MCC1_20231213.xlsx"
+      ],
+      "id": "REL-227"
+    },
+    {
+      "feature": "業務模式轉換(CZ)",
+      "backend": "Magento Consignment/Buy&Sell 欄位 CZ 設 Buy&Sell(經銷商 Datron)並改 GoPay/DPD/客服 Email/稅務",
+      "backend_category": "後台",
+      "frontend": "前台/信件 Header/Footer 顯示 DATRON 授權經銷商聲明(DR message)並替換金流/運送/稅務",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "CZ 由寄售轉經銷(Datron)後，前台 Buy/Cart/Checkout/Email 的 Header/Footer 顯示 DATRON 授權經銷聲明並附連結/LOGO，金流改 GoPay、運送改 DPD、稅率 21% 滿 3000 Kč 免運。",
+      "trigger": "CZ 設 Buy&Sell；DR new/DR need Sync 預設 No、WMS Need Sync 預設 Yes。",
+      "sources": [
+        "Business model change_CZ_TestCase_20240830.xlsx"
+      ],
+      "id": "REL-228"
+    },
+    {
+      "feature": "沿用官網彈窗機制",
+      "backend": "後台 Promotion Banner Settings 依 Store view 開關彈出式促銷廣告(位置/內容類型)",
+      "backend_category": "後台",
+      "frontend": "EC 頁面彈出 Promotion ads(Lower right/Overlay)",
+      "frontend_category": "核心概念",
+      "relation_zh": "沿用官網彈窗機制於 EC，後台依 Store view 開關並設定顯示位置與內容類型，前台於 EC 頁面彈出促銷廣告；不遮蓋 AIA，點 X 關閉後不再顯示。",
+      "trigger": "位置 Lower right corner/Overlay；內容 Offers/Promotion/Notice/Video；進 detail 或切 tab 自動消失，返回列表重新顯示。",
+      "sources": [
+        "Leverage the pop-up mechanism from Official Site_TestCase_EU_20250311.xlsx"
+      ],
+      "id": "REL-229"
+    },
+    {
+      "feature": "特價批次匯入",
+      "backend": "System>Data Transfer>Special Price Bulk Import 批次匯入特價(含 from/to date)，依 Madrid 時區生效",
+      "backend_category": "後台",
+      "frontend": "商品特價於 Buy/Cart 生效顯示",
+      "frontend_category": "價格公式",
+      "relation_zh": "後台以 CSV 批次匯入/刪除商品特價，於生效期間(Open)前台顯示特價；Special Price Update List 狀態控制生效與清除。",
+      "trigger": "CSV≤2MB 且僅 simple product；依 EU/Madrid(UTC+1)時區生效；時間重疊擋下並提示 overlapped。",
+      "sources": [
+        "Special Price bulk import_TestCase_EUPLHU_20231206.xlsx",
+        "New disti (NextM) & new payment gateway (PayNow) implementation_TestCase_20250407.xlsx"
+      ],
+      "id": "REL-230"
+    },
+    {
+      "feature": "確保 Cancel 訂單觸發 Magento Cancel",
+      "backend": "ASUS Cancel Job(每 2 小時,Madrid 00:30)對未完成付款訂單觸發 Magento Cancel 並返還庫存",
+      "backend_category": "後台",
+      "frontend": "前台訂單顯示 canceled 且庫存返還",
+      "frontend_category": "狀態",
+      "relation_zh": "未完成第三方付款(關頁/亂填卡號/逾時)的訂單由排程 Job 觸發 Magento Cancel，前台訂單狀態顯示 canceled，Reservation/Quantity/Salable 正確返還。",
+      "trigger": "未完成付款；Job 每 2 小時執行、Madrid 00:30 開始。",
+      "sources": [
+        "確保Cancel 訂單會觸發Magento Cancel 功能完成取消流程_TestCase_MCC1_20240105.xlsx"
+      ],
+      "id": "REL-231"
+    },
+    {
+      "feature": "購物車數量警告",
+      "backend": "商品缺貨狀態、Purchase Limitation 與 Customer Group limit",
+      "backend_category": "後台",
+      "frontend": "Cart Page 頂部與商品下方的缺貨/數量/購買限制警告",
+      "frontend_category": "錯誤訊息",
+      "relation_zh": "後台庫存與購買限制設定驅動 Cart Page 顯示缺貨、數量不足、加購超過主商品數量與購買限制等警告訊息。",
+      "trigger": "缺貨 Some of the products are out of stock；數量不足 The requested qty is not available；加購>主商品 禁用+；達購買限制顯示 membership/purchase limit 訊息。",
+      "sources": [
+        "Item quantity warning on the cart page_TestCase_20211207.xlsx"
+      ],
+      "id": "REL-232"
+    },
+    {
+      "feature": "退貨/RMA",
+      "backend": "已出貨訂單與各品項 SN 資料",
+      "backend_category": "後台",
+      "frontend": "My Account/AOM 的 Create New Return 頁顯示可退商品與 SN",
+      "frontend_category": "核心概念",
+      "relation_zh": "針對已出貨訂單於 My Account 或 AOM 發起退貨，Create New Return 頁以下拉選單列出可退商品並顯示各品項 SN（WEP Add-on 顯示綁定機台 SN）。",
+      "trigger": "訂單已出貨；訪客需先 Check My Order；商品無 SN 則不顯示，Customized bundle 下拉顯示 bundle set name。",
+      "sources": [
+        "(EU) Create return SN_TestCase_20230630.xlsx"
+      ],
+      "id": "REL-233"
+    },
+    {
+      "feature": "退貨取件時間與地址填寫",
+      "backend": "Can Change Return Address 開關與依 Return Reason 判斷是否委派逆物流",
+      "backend_category": "後台",
+      "frontend": "退貨流程的 Pick-up Date 下拉、Return Address 編輯與退貨信欄位遮蔽",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "退貨流程新增取件日期與退貨地址區塊，由後台開關控制可否編輯；並依 Return Reason 決定是否委派逆物流。",
+      "trigger": "Pick-up date 顯示 N+1~N+5 工作天(六日不可選)必填；Return Reason 為未收到(carrier return)或運送損壞時不委派逆物流。",
+      "sources": [
+        "Return pick up time and address fill in process on website and AOM_TestCase_FR.ES.PL.HU.CZ_20240627.xlsx"
+      ],
+      "id": "REL-234"
+    },
+    {
+      "feature": "運送方式-InPost",
+      "backend": "DHL Pickup Point/Access Point 設定與 DHL API、尺寸重量門檻(DE/AT)",
+      "backend_category": "API",
+      "frontend": "DE/AT Checkout 以 Search Pickup Point 顯示 DHL 取貨點",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "DE/AT 站於 Checkout 以 Search Pickup Point 呼叫 DHL API 顯示取貨點；尺寸或重量超標則隱藏取貨方式。",
+      "trigger": "僅建議 DE/AT 取貨點(最多 15 筆,下拉 5 筆)；>31.5kg 或 >120/60cm 隱藏。",
+      "sources": [
+        "[EC][QA] Last mile delivery carrier partner change _Test Case_20240823.xlsx"
+      ],
+      "id": "REL-235"
+    },
+    {
+      "feature": "運送方式-InPost",
+      "backend": "PL InPost 取貨櫃設定、InPost API 與商品尺寸限制(59x39x30cm)",
+      "backend_category": "後台",
+      "frontend": "Checkout 以內嵌地圖選取 InPost collection points 並隱藏 COD",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "PL 站於 Checkout 以地圖選取 InPost 取貨點並回填點資訊；選 InPost 時隱藏貨到付款(COD)；商品尺寸超限則隱藏 InPost 選項。",
+      "trigger": "選 InPost 隱藏 COD；長59xx寬39x高30cm 超限隱藏 InPost(Buy Page 僅檢核 Main、Checkout 檢核全部、WEP 虛擬商品排除)。",
+      "sources": [
+        "Add new shipment method - InPost_TestCase_PL_20240529.xlsx"
+      ],
+      "id": "REL-236"
+    },
+    {
+      "feature": "運送方式-ZIP 檢核",
+      "backend": "依 shipping address ZIP code 判斷啟用/隱藏運送方式的規則",
+      "backend_category": "後台",
+      "frontend": "Checkout 依 ZIP 隱藏運送方式並顯示無法配送訊息",
+      "frontend_category": "規則",
+      "relation_zh": "後台 ZIP 規則使 Checkout 依 shipping address 的 ZIP code 隱藏運送方式；指定 ZIP 隱藏所有運送方式並提示無法配送。",
+      "trigger": "指定 ZIP(如 97XXX/984XX)隱藏所有運送、9XXXXXX 隱藏 STANDARD；訊息 Your chosen delivery method is not available for your destination。",
+      "sources": [
+        "Checking ZIP code in shipping address to enabledisable the Express Shipping method_TestCase_20211101.xlsx"
+      ],
+      "id": "REL-237"
+    },
+    {
+      "feature": "顯示預計出貨日 (ETA)",
+      "backend": "後台 ASUS>Asus Estimated Shipment Date>Enable Eta Switch 與 ETA/Delivery Option API、Delivery Option 設定",
+      "backend_category": "後台",
+      "frontend": "Buy/Checkout 顯示 ETA 與 Delivery Options 彈窗、Standard/Express 運送方式",
+      "frontend_category": "頁面區塊",
+      "relation_zh": "後台開啟 ETA 開關後，前台 Buy/Checkout 以輸入 Zip Code 由 API 取得預計出貨/送達日並顯示 Delivery Options 彈窗；In Stock 才顯示 ETA。",
+      "trigger": "Enable Eta Switch 開；OOS/pre-order(CTA 為 Pre Order/Notify me)與 WEP Single 不顯示；Dangerous goods 只顯示 Standard；錯誤 zip 顯示 invalid(E_CODE:1001)。",
+      "sources": [
+        "Last mile delivery carrier partner change (from UPS to DHL)_EU10_Testcase_20260305.xlsx",
+        "[EC][QA] [UAT-QA][EU] Display estimated shipment date (ETA) _Test Case_20240925.xlsx"
+      ],
+      "id": "REL-238"
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+# AOCC QA Skill — 使用規範與情境（Use Case）
+
+ASUS EC（Magento）QA 測試需求分析與 Test Case 產線所使用的一組 Claude Skill。本 repo 記錄每個 skill 的**定義、用途、使用規範（責任邊界）、輸入/輸出、觸發詞與使用情境**，並說明它們如何串接成一條產線。
+
+---
+
+## 產線總覽
+
+這組 skill 對應一條「需求 → 分析 → 規則 → 產案 → 審查 → 交付」的測試案例產線，分為三個 Phase：
+
+| Phase | 階段 | 主要 Skill | 執行者 |
+|-------|------|-----------|--------|
+| A | 需求解析 | `aoccqa-fsd-parser` | Skill |
+| A | 規格確認（★唯一必經人工關卡） | —（人工） | QA + PM |
+| A | 規則整備 ① | `aoccqa-rule-loader` | Skill |
+| B | 案例起草 | `aoccqa-tc-generator` | Skill |
+| B | 情境擴充 | `aoccqa-scenario-expander` | Skill |
+| B | 品質審查 ③（Gate 2） | `aoccqa-quality-reviewer` | Skill |
+| B | 判定處置 | —（人工） | QA |
+| C | 案例匯出 | `aoccqa-case-exporter` | Skill |
+
+輔助：`aoccqa-knowledge-base`（跨功能知識庫，全程可查，見下方索引第 7 支）。
+
+### 三大鐵則（貫穿全線）
+
+1. **原始檔單次讀取**：只有 `aoccqa-fsd-parser`（解析）與 `aoccqa-quality-reviewer`（獨立查核原文）可接觸原始來源；中間步驟一律引用 Requirement ID，不重讀原始檔。
+2. **唯一必經人工關卡**：「規格確認」由 QA＋PM 執行，未取得釐清結論不得往下。
+3. **審查刻意隔離**：`aoccqa-quality-reviewer` 不吃 Requirement Matrix，獨立重讀原文，避免沿用 parser 視角而一起漏測。
+
+---
+
+## Skill 索引
+
+| # | Skill | 版本 | Phase | 一句話定位 | 文件 |
+|---|-------|------|-------|-----------|------|
+| 1 | `aoccqa-fsd-parser` | 1.2.0 | A | 把任何規格來源解析成給 PM 看的六段需求分析報告 | [docs](docs/01-aoccqa-fsd-parser.md) |
+| 2 | `aoccqa-rule-loader` | — | A | 把散落的市場規則整理成可追溯的 Rule Context | [docs](docs/02-aoccqa-rule-loader.md) |
+| 3 | `aoccqa-tc-generator` | 1.5.0 | B | 把已確認需求展開成 7 欄 Test Case 初稿 | [docs](docs/03-aoccqa-tc-generator.md) |
+| 4 | `aoccqa-scenario-expander` | — | B | 對照合格 baseline 補強覆蓋缺口 | [docs](docs/04-aoccqa-scenario-expander.md) |
+| 5 | `aoccqa-quality-reviewer` | 20.1.0 | B | 第二人視角獨立重讀原文，雙向查核報告 | [docs](docs/05-aoccqa-quality-reviewer.md) |
+| 6 | `aoccqa-case-exporter` | — | C | 把案例＋Jira 單套官方模板匯出 xlsx | [docs](docs/06-aoccqa-case-exporter.md) |
+| 7 | `aoccqa-knowledge-base` | — | 全程 | 跨功能知識庫（名詞/關係/測試點/歷史單），**不在流程順序內、全程可查** | [docs](docs/07-aoccqa-knowledge-base.md) |
+
+> 以上 1–7 為**現行七支核心 skill**。第 7 支 `aoccqa-knowledge-base` 不是流程中的一步，而是全程可查的共用知識庫。
+
+---
+
+## 快速使用情境對照
+
+| 我想做的事（手動測試工程師常說的話） | 用哪個 skill |
+|-----------|-------------|
+| 「這張 Confluence FSD／PRD 到底要測什麼」「幫我做測試需求分析」「這份規格有沒有缺漏、前後矛盾」「改版了、最終版是哪個」「截圖跟內文對不上」「整理釐清問題丟給 PM／RD」 | `aoccqa-fsd-parser` |
+| 「這功能要上哪些國家／站台」「各國幣別、稅、語系、時區規則」「Guest／Member／Admin 權限規則」「哪些後台設定會影響 Pass／Fail」「資格、排除規則整理成 Rule Context」 | `aoccqa-rule-loader` |
+| 「幫我寫測試案例」「產 test case／測項初稿」「規劃測試覆蓋」「正向、負向、邊界要測哪些」「狀態流轉怎麼測」「把 Requirement 轉成測項」 | `aoccqa-tc-generator` |
+| 「舊測案不夠完整、想補測項」「回歸測試要補哪些」「狀態轉換／身分別（Guest vs Member）有沒有漏測」「拿既有 xlsx 補強覆蓋」 | `aoccqa-scenario-expander` |
+| 「幫我審這份分析報告」「有沒有漏測」「有沒有捏造或超出文件的測項」「技術值、公式、錯誤訊息有沒有抄錯」「Gate 2 審查」 | `aoccqa-quality-reviewer` |
+| 「案例匯出成 Excel」「套 AOCC 官方模板」「產 Test_Case 檔」「接 Jira 單打包成交付檔」 | `aoccqa-case-exporter` |
+| 「這個名詞／狀態值／錯誤訊息是什麼意思」「這個金額／折扣公式怎麼算」「這個後台設定對應前台哪裡」「Magento／AOM／EC 資料流」「這功能以前測過哪些、有沒有歷史單／回歸點」「某頁面有哪些區塊」 | `aoccqa-knowledge-base` |
+
+---
+
+## 使用情境（不是每次都七支全用）
+
+同一條產線，依情境決定哪幾步會用、跳過或重複。互動視覺版見 [`diagrams/AOCCQA_skill_roles_and_scenarios.html`](diagrams/AOCCQA_skill_roles_and_scenarios.html)。
+
+| 情境 | 說明 | 使用的步驟 |
+|------|------|-----------|
+| 1. 新需求·跨市場·完整流程 | 全新功能、多市場、有相鄰既有案例可補強 | 七支全用 |
+| 2. 新需求·單一市場·無既有案例（最常見） | 單一市場、無舊案例 → 跳過 aoccqa-rule-loader、aoccqa-scenario-expander | aoccqa-fsd-parser → 規格確認 → aoccqa-tc-generator → aoccqa-quality-reviewer → 判定 → aoccqa-case-exporter |
+| 3. 既有功能異動·補強路徑 | 已有完整舊案例 → 以補強為主，不重建第一版 | 跳過 aoccqa-tc-generator，改走 aoccqa-scenario-expander |
+| 4. 規格不足·早停 | aoccqa-fsd-parser 回 BLOCKED → 後面全停，先補件 | 只用 aoccqa-fsd-parser |
+| 5. 審查判定 REWORK·回流 | reviewer 找到漏測 → aoccqa-tc-generator 只補差異、reviewer 只查新增 | aoccqa-tc-generator / aoccqa-quality-reviewer 重複呼叫 |
+| 6. 單點呼叫 | skill 可獨立呼叫：aoccqa-case-exporter 只出檔 / aoccqa-quality-reviewer 健檢 / aoccqa-fsd-parser 整理釐清問題 | 只用其中一支 |
+
+**三條最重要、也最容易被破壞的設計**：規格沒確認不往下（情境 4）、reviewer 不看需求清單才審得出問題、出檔只搬不改。
+
+---
+
+## 原始檔備份（skills/）
+
+[`skills/`](skills/) 收錄 7 支 skill 的原始 `SKILL.md` 與其 references／scripts／assets，作為版本備份：
+
+| Skill | 版本 | 附帶檔案 |
+|-------|------|---------|
+| `aoccqa-fsd-parser` | 1.2.0 | `references/report-template.html` |
+| `aoccqa-rule-loader` | 未標版本 | `agents/openai.yaml` |
+| `aoccqa-tc-generator` | 1.5.0 | `references/coverage-and-examples.md` |
+| `aoccqa-scenario-expander` | 未標版本 | — |
+| `aoccqa-quality-reviewer-v201` | 20.1.0 | — |
+| `aoccqa-case-exporter` | 未標版本 | `assets/Test_Case_Template_Claude.xlsx`、`scripts/export_test_cases.py` |
+| `aoccqa-knowledge-base` | 未標版本 | `references/` 13 個資料檔（glossary 約 472K 等） |
+
+> `aoccqa-fsd-parser` 為雲端 skill，備份內容依當前 v1.2.0 逐字重建；其餘 6 支由本機 skill 目錄原樣複製。
+
+---
+
+## 相關文件
+
+- **流程圖（視覺版）**：[`diagrams/AOCCQA_flow_diagram.html`](diagrams/AOCCQA_flow_diagram.html) — 泳道 + 回流路徑 SVG
+- **角色與使用情境（視覺版）**：[`diagrams/AOCCQA_skill_roles_and_scenarios.html`](diagrams/AOCCQA_skill_roles_and_scenarios.html)
+- [完整產線流程圖說明（文字版）](workflow.md)
+- [專案自訂指示（orchestration）](custom-instructions.md)
+- 各 skill 詳細說明見 [`docs/`](docs/)

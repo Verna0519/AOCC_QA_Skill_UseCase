@@ -1,0 +1,498 @@
+{
+  "name": "Definition_AOCCQA_system_relations",
+  "description": "AOM / Magento / EC page 三層系統之間的資料流與驅動關係。Magento=電商後台/下單來源;AOM=訂單管理系統;EC page=消費者前台。",
+  "version": "1.0",
+  "generated_date": "2026-07-24",
+  "layers": {
+    "Magento": "電商平台後台:商品/目錄/匯入/庫存/付款設定/CMS/Customer Group,亦為下單與訂單初始來源。",
+    "AOM": "ASUS Order Management 訂單管理系統:訂單/退貨/退款/Reship/Appeasement/可賣量與拋單/各國設定/貨態/發票。",
+    "EC page": "消費者前台頁面:Buy Page/Cart/Checkout/Thank You/My Account/Mini Cart/產品卡/Email。"
+  },
+  "direction_index": {
+    "Magento → EC page": 16,
+    "Magento → AOM": 5,
+    "AOM → Magento": 7,
+    "AOM → EC page": 8
+  },
+  "relation_count": 36,
+  "relations": [
+    {
+      "from_layer": "Magento",
+      "to_layer": "EC page",
+      "from": "Configurable product auto pre-select",
+      "to": "Pre-select",
+      "flow_zh": "Magento CNF 商品開啟 Buy Page 時依自動預選規則決定預選子 SKU/規格。",
+      "trigger": "預選序:有庫存→折扣最高→最終價最低→預設 SKU",
+      "feature": "CNF 自動建立機制",
+      "sources": [
+        "Configurable product Buy Page auto pre-select_TestCase_20221012.xlsx"
+      ],
+      "id": "SYS-01"
+    },
+    {
+      "from_layer": "Magento",
+      "to_layer": "EC page",
+      "from": "Customized Bundle rule",
+      "to": "Select your set",
+      "flow_zh": "以 Entity Type=Customized Bundle Products 匯入的 CSV 規則(main_sku/sub_skus/set_name/priority)驅動 Buy Page『Select your set』列出各 bundle set 按鈕。",
+      "trigger": "main product 為當前 Buy Page 商品且組合在生效期間(start_date/end_date、website_code 相符)",
+      "feature": "Customized Bundle",
+      "sources": [
+        "Customized Bundle_TestCase_HU_20220920.xlsx"
+      ],
+      "id": "SYS-02"
+    },
+    {
+      "from_layer": "Magento",
+      "to_layer": "EC page",
+      "from": "main_sku_set_price",
+      "to": "Price info",
+      "flow_zh": "匯入的 main_sku_set_price 與 sub_skus_set_price 計算 Buy Page 選取組合後的 Sale Price / Save$ / +$。",
+      "trigger": "Save$=Original-Sale;+$=子商品加價;計算為負則隱藏該 bundle set",
+      "feature": "Customized Bundle",
+      "sources": [
+        "Customized Bundle_TestCase_PL_20220920.xlsx"
+      ],
+      "id": "SYS-03"
+    },
+    {
+      "from_layer": "Magento",
+      "to_layer": "EC page",
+      "from": "Special Price for Bundle",
+      "to": "Price info",
+      "flow_zh": "為 bundle 設定的 Special Price 依網站當地時區(local time)生效/失效,影響 Buy Page 與 Cart Page 顯示的組合特價。",
+      "trigger": "special price local time(非台灣時間)介於生效區間",
+      "feature": "Customized Bundle",
+      "sources": [
+        "[UAT-QA][MCC1] customize bundle special price檢核未依local time_ptplfi_testcase_20250116-1.xlsx"
+      ],
+      "id": "SYS-04"
+    },
+    {
+      "from_layer": "Magento",
+      "to_layer": "EC page",
+      "from": "子商品缺貨隱藏",
+      "to": "Bundle set button",
+      "flow_zh": "bundle set 內任一子商品(simple)缺貨則隱藏該組合按鈕;configurable 子商品需全部變體缺貨才隱藏,資料來自 Magento 庫存。",
+      "trigger": "sub product OOS;configurable 需所有 child SKU 皆 OOS",
+      "feature": "Customized Bundle",
+      "sources": [
+        "Customized Bundle_TestCase_HU_20220920.xlsx"
+      ],
+      "id": "SYS-05"
+    },
+    {
+      "from_layer": "Magento",
+      "to_layer": "EC page",
+      "from": "主商品缺貨隱藏",
+      "to": "Select your set",
+      "flow_zh": "simple 主商品缺貨時隱藏整個 Select your set 區;configurable 主商品需所有關聯主商品都缺貨才隱藏。",
+      "trigger": "main product OOS(configurable 需全部關聯主商品 OOS)",
+      "feature": "Customized Bundle",
+      "sources": [
+        "Customized Bundle_TestCase_PL_20220920.xlsx"
+      ],
+      "id": "SYS-06"
+    },
+    {
+      "from_layer": "Magento",
+      "to_layer": "EC page",
+      "from": "user_group_id",
+      "to": "會員群組折扣顯示",
+      "flow_zh": "匯入組合的 user_group_id / user_group_limit 決定該會員群組登入後才看到對應 bundle set 及每人限購數。",
+      "trigger": "登入會員群組 = user_group_id;購買量受 user_group_limit(X)限制",
+      "feature": "Customized Bundle",
+      "sources": [
+        "Customized Bundle_TestCase_HU_20220920.xlsx"
+      ],
+      "id": "SYS-07"
+    },
+    {
+      "from_layer": "Magento",
+      "to_layer": "EC page",
+      "from": "start_date / end_date",
+      "to": "Bundle set button",
+      "flow_zh": "組合排程欄位 start_date/end_date 依網站時區控制 bundle set 於 Buy Page 的生效期間。",
+      "trigger": "website timezone 當前時間介於 start_date 與 end_date",
+      "feature": "Customized Bundle",
+      "sources": [
+        "[EU]Scheduling mechanism for customized bundle setup_DE&FR&ES&PL&CZ_Testcase_20251029.xlsx"
+      ],
+      "id": "SYS-08"
+    },
+    {
+      "from_layer": "Magento",
+      "to_layer": "EC page",
+      "from": "Embargo Date",
+      "to": "Buy Page",
+      "flow_zh": "Magento Embargo Date 上架卡控使商品於指定日期前不可於前台顯示/購買。",
+      "trigger": "今日 < Embargo Date 則卡控上架",
+      "feature": "Embargo Date 上架卡控",
+      "sources": [
+        "OtherFeature.txt"
+      ],
+      "id": "SYS-09"
+    },
+    {
+      "from_layer": "Magento",
+      "to_layer": "EC page",
+      "from": "Payment method 設定",
+      "to": "Checkout Page",
+      "flow_zh": "Magento 後台啟用的付款方式(含各國/會員群組限制)決定 Checkout 顯示的可選付款選項。",
+      "trigger": "付款方式於該 website/Sales Channel 啟用",
+      "feature": "Payment",
+      "sources": [
+        "Payment.txt"
+      ],
+      "id": "SYS-10"
+    },
+    {
+      "from_layer": "Magento",
+      "to_layer": "EC page",
+      "from": "Add-on Product",
+      "to": "Add-on Page",
+      "flow_zh": "Magento 設定與主商品關聯的 plus-sale/Add-on 商品,主商品加入購物車後導向 Add-on/Middle page 顯示可加購商品。",
+      "trigger": "主商品有可購買的 plus-sale 商品",
+      "feature": "Plus Sale",
+      "sources": [
+        "PlusSale.txt"
+      ],
+      "id": "SYS-11"
+    },
+    {
+      "from_layer": "Magento",
+      "to_layer": "EC page",
+      "from": "Advanced Inventory",
+      "to": "產品狀態按鈕",
+      "flow_zh": "Magento 產品的進階庫存設定(Quantity(A)、Out-of-Stock Threshold(B)、Backorders、Manage Stock)決定該商品在產品卡/Buy Page 顯示的 CTA 狀態,經 Graphql(Product/Category)傳給前台。",
+      "trigger": "有可賣量→[buy];Backorders 開→[back_order];缺貨且開通知→[notify_me];Pre-Order 設定→[pre_order]",
+      "feature": "Pre-Order",
+      "sources": [
+        "PreOrder.txt",
+        "AOM.txt"
+      ],
+      "id": "SYS-12"
+    },
+    {
+      "from_layer": "Magento",
+      "to_layer": "EC page",
+      "from": "Salable Qty",
+      "to": "Notify me",
+      "flow_zh": "Magento 可販售數量歸零時,產品卡/Buy Page 由 [buy] 切換為 [notify_me] 缺貨通知按鈕。",
+      "trigger": "Salable Qty = Quantity(A) - Out of Stock Threshold(B) - Reservation Qty(C) ≤ 0",
+      "feature": "Pre-Order",
+      "sources": [
+        "AOM.txt",
+        "PreOrder.txt"
+      ],
+      "id": "SYS-13"
+    },
+    {
+      "from_layer": "Magento",
+      "to_layer": "EC page",
+      "from": "Pre-Order date",
+      "to": "CTA Button",
+      "flow_zh": "Advanced Inventory 的 Pre-Order date 使商品進入預購狀態,Buy Page CTA 顯示為預購按鈕並帶 Pre-Order Note。",
+      "trigger": "今日介於 Pre-Order 生效區間;Shipping Embargo Date 前不 Sourcing",
+      "feature": "Pre-Order",
+      "sources": [
+        "PreOrder.txt"
+      ],
+      "id": "SYS-14"
+    },
+    {
+      "from_layer": "Magento",
+      "to_layer": "EC page",
+      "from": "Shipping Embargo Date",
+      "to": "顯示預計出貨日 (ETA)",
+      "flow_zh": "Pre-Order 商品的運送禁運日決定 Buy Page/購物車顯示的預計出貨日(ETA)。",
+      "trigger": "Shipping Embargo Date 須大於今日,訂單於該日前不 Sourcing",
+      "feature": "Pre-Order",
+      "sources": [
+        "PreOrder.txt"
+      ],
+      "id": "SYS-15"
+    },
+    {
+      "from_layer": "Magento",
+      "to_layer": "EC page",
+      "from": "Customer Group",
+      "to": "Private Store 價格",
+      "flow_zh": "Magento Customer Group 分群決定 Private Store(EPP/EDU/SMB)會員登入後看到的專屬價格與可購商品。",
+      "trigger": "顧客所屬 Customer Group Code 命中對應 Rule Mapping",
+      "feature": "Private Store",
+      "sources": [
+        "PrivateStore.txt"
+      ],
+      "id": "SYS-16"
+    },
+    {
+      "from_layer": "Magento",
+      "to_layer": "AOM",
+      "from": "Order Created",
+      "to": "Order ID",
+      "flow_zh": "消費者於 Magento(EC)完成下單後,以 Order Created event 拋單至 AOM/ECMW 建立訂單,帶入 Order ID、Payment ID(transaction_id)、Customer Group Code 等。",
+      "trigger": "Magento 訂單成立並送出 Order Created event",
+      "feature": "AOM",
+      "sources": [
+        "AOM.txt"
+      ],
+      "id": "SYS-17"
+    },
+    {
+      "from_layer": "Magento",
+      "to_layer": "AOM",
+      "from": "Advanced Inventory",
+      "to": "Salable Qty",
+      "flow_zh": "Magento Advanced Inventory 的 Quantity(A) 與 Out of Stock Threshold(B) 同步至 AOM,作為可賣量計算基礎。",
+      "trigger": "Salable Qty = Quantity(A) - Out of Stock Threshold(B) - Reservation Qty(C)",
+      "feature": "AOM",
+      "sources": [
+        "AOM.txt"
+      ],
+      "id": "SYS-18"
+    },
+    {
+      "from_layer": "Magento",
+      "to_layer": "AOM",
+      "from": "Payment Status",
+      "to": "Payment Status",
+      "flow_zh": "金流商付款結果透過 Magento 更新 Payment Status,並同步 AOM 訂單 Pay Time / Captured Time。",
+      "trigger": "capture 成功 → Payment Status 更新;決定 Pay Time 與 Captured Time",
+      "feature": "Payment",
+      "sources": [
+        "Payment.txt",
+        "AOM.txt"
+      ],
+      "id": "SYS-19"
+    },
+    {
+      "from_layer": "Magento",
+      "to_layer": "AOM",
+      "from": "WEP Activate SN",
+      "to": "WEP Activate SN",
+      "flow_zh": "WEP single buy/加購項目出貨後,實體產品序號(SN)由 WMS/Magento 帶入 AOM WEP Activate SN,供啟用該 WEP 保固。",
+      "trigger": "WEP 出貨完成取得 SN → 啟用 API",
+      "feature": "WEP Single Buy",
+      "sources": [
+        "WepSingleBuy.txt",
+        "AOM.txt"
+      ],
+      "id": "SYS-20"
+    },
+    {
+      "from_layer": "Magento",
+      "to_layer": "AOM",
+      "from": "WMS SKU",
+      "to": "WMS SKU",
+      "flow_zh": "Magento 商品的 WMS SKU 欄位(原 Sabrix Code)自動同步,供 AOM 報表與 WMS 倉儲對應。",
+      "trigger": "WMS SKU 自動同步",
+      "feature": "WMS SKU 自動同步",
+      "sources": [
+        "AOM.txt"
+      ],
+      "id": "SYS-21"
+    },
+    {
+      "from_layer": "AOM",
+      "to_layer": "Magento",
+      "from": "Sourcing 順序",
+      "to": "Reservation Qty (C)",
+      "flow_zh": "AOM 進貨後對未出貨訂單進行 sourcing(拋單),更新 Reservation Qty(C)(未出貨訂單預留數),進而回饋 Magento 可販售量。",
+      "trigger": "訂單 sourcing 完成 → Reservation Qty 變動 → Salable Qty 更新",
+      "feature": "AOM",
+      "sources": [
+        "AOM.txt"
+      ],
+      "id": "SYS-22"
+    },
+    {
+      "from_layer": "AOM",
+      "to_layer": "Magento",
+      "from": "Cancel Order / Force Cancel Order",
+      "to": "Order Status",
+      "flow_zh": "AOM 執行 Cancel Order / Force Cancel Order 後回寫 Magento 訂單為 Cancel 狀態並觸發 Restock 補庫存,記錄 Cancellation Reason。",
+      "trigger": "Cancel 前未 sourcing 用 Cancel;已通知 WMS 出貨用 Force Cancel;已取消訂單補庫存不重啟出貨",
+      "feature": "AOM",
+      "sources": [
+        "AOM.txt"
+      ],
+      "id": "SYS-23"
+    },
+    {
+      "from_layer": "AOM",
+      "to_layer": "Magento",
+      "from": "Refund",
+      "to": "Credit Memo",
+      "flow_zh": "AOM 的 Return/Appeasement 退款於 Magento 端成功開立 Credit Memo,對應 Credit Memo Status(Requested/Complete/Failed)。",
+      "trigger": "Refund Released 且金流退款成功 → Magento 開立 Credit Memo",
+      "feature": "AOM",
+      "sources": [
+        "AOM.txt"
+      ],
+      "id": "SYS-24"
+    },
+    {
+      "from_layer": "AOM",
+      "to_layer": "Magento",
+      "from": "WMS",
+      "to": "Warehouse Status",
+      "flow_zh": "WMS 回傳出貨/配送狀態經 shipment result API 更新 AOM Warehouse Status(ORDER_RECEIVED>PACKED>SHIPPED>DELIVERED),並帶 SN、Package ID、Tracking Number。",
+      "trigger": "WMS 打貨態 → shipment result API 更新",
+      "feature": "AOM",
+      "sources": [
+        "AOM.txt"
+      ],
+      "id": "SYS-25"
+    },
+    {
+      "from_layer": "AOM",
+      "to_layer": "Magento",
+      "from": "Cancellation Reason",
+      "to": "Cancellation Reason",
+      "flow_zh": "訂單取消原因依取消途徑(Magento 端/AOM 端)分別記錄於雙系統的 Cancellation Reason 欄位。",
+      "trigger": "依取消來源記錄對應 Cancellation Reason",
+      "feature": "AOM",
+      "sources": [
+        "AOM.txt"
+      ],
+      "id": "SYS-26"
+    },
+    {
+      "from_layer": "AOM",
+      "to_layer": "Magento",
+      "from": "Payment ID",
+      "to": "Payment ID",
+      "flow_zh": "金流商回傳的 transaction_id(包含於 Order Created event)作為 Payment ID,同時顯示於 Magento 與 ECMW/AOM 訂單。",
+      "trigger": "Order Created event 帶入 transaction_id",
+      "feature": "Payment",
+      "sources": [
+        "AOM.txt",
+        "Payment.txt"
+      ],
+      "id": "SYS-27"
+    },
+    {
+      "from_layer": "AOM",
+      "to_layer": "Magento",
+      "from": "Refund Status",
+      "to": "Credit Memo Status",
+      "flow_zh": "AOM Refund Status(Pending/Requested/Released/Cancelled)驅動 Magento 端 Credit Memo Status 更新。",
+      "trigger": "Refund Released → Credit Memo Complete;失敗 → Failed",
+      "feature": "Payment status update for refund & disputed case",
+      "sources": [
+        "AOM.txt",
+        "Payment.txt"
+      ],
+      "id": "SYS-28"
+    },
+    {
+      "from_layer": "AOM",
+      "to_layer": "EC page",
+      "from": "Warehouse Status",
+      "to": "My Account",
+      "flow_zh": "AOM/WMS 貨態(Warehouse Status)驅動前台 My Account 訂單狀態與貨態追蹤顯示。",
+      "trigger": "ORDER_RECEIVED>PACKED>SHIPPED>DELIVERED 逐步更新前台訂單追蹤",
+      "feature": "AOM",
+      "sources": [
+        "AOM.txt",
+        "OtherFeature.txt"
+      ],
+      "id": "SYS-29"
+    },
+    {
+      "from_layer": "AOM",
+      "to_layer": "EC page",
+      "from": "Tracking Number",
+      "to": "My Account",
+      "flow_zh": "AOM 的 Tracking Number 依 Tracking Links Configuration(Online/Offline)於前台 My Account 帶出物流查詢超連結。",
+      "trigger": "Tracking Links Configuration = Online → Tracking No. 帶超連結",
+      "feature": "AOM",
+      "sources": [
+        "AOM.txt"
+      ],
+      "id": "SYS-30"
+    },
+    {
+      "from_layer": "AOM",
+      "to_layer": "EC page",
+      "from": "Reship",
+      "to": "My Account",
+      "flow_zh": "AOM 針對遺失/損毀商品開立的 Reship(R 開頭訂單)於前台 My Account 顯示重寄訂單。",
+      "trigger": "Reship Flow enabled 且開立 Reship 訂單",
+      "feature": "AOM",
+      "sources": [
+        "AOM.txt"
+      ],
+      "id": "SYS-31"
+    },
+    {
+      "from_layer": "AOM",
+      "to_layer": "EC page",
+      "from": "Salable Qty",
+      "to": "產品狀態按鈕",
+      "flow_zh": "AOM 可賣量(Salable Qty)歸零回饋 Magento 後,前台產品卡/Buy Page CTA 轉為 notify_me/缺貨。",
+      "trigger": "Salable Qty ≤ 0 → [notify_me]",
+      "feature": "AOM",
+      "sources": [
+        "AOM.txt"
+      ],
+      "id": "SYS-32"
+    },
+    {
+      "from_layer": "AOM",
+      "to_layer": "EC page",
+      "from": "Warehouse Status",
+      "to": "CSAT (NPS) email 機制",
+      "flow_zh": "訂單貨態達 DELIVERED 觸發 CSAT/NPS 滿意度調查 email 發送給消費者。",
+      "trigger": "Warehouse Status = DELIVERED → 觸發 CSAT/NPS email",
+      "feature": "CSAT (NPS) email 機制",
+      "sources": [
+        "OtherFeature.txt"
+      ],
+      "id": "SYS-33"
+    },
+    {
+      "from_layer": "AOM",
+      "to_layer": "EC page",
+      "from": "Credit Memo",
+      "to": "Refund email",
+      "flow_zh": "Magento 開立的 Credit Memo(改為 PDF)作為退款憑證,經 Refund email / My Account 提供給消費者。",
+      "trigger": "Credit Memo Status = Complete → 產生 PDF 並附於 Refund email",
+      "feature": "Invoice/Credit Memo 改 PDF",
+      "sources": [
+        "OtherFeature.txt",
+        "AOM.txt"
+      ],
+      "id": "SYS-34"
+    },
+    {
+      "from_layer": "AOM",
+      "to_layer": "EC page",
+      "from": "Refund Status",
+      "to": "MyAccount Refund tab",
+      "flow_zh": "AOM Refund Status(Pending/Requested/Released/Cancelled)驅動前台 My Account 的 Refund tab 顯示退款進度與 Refund email 發送。",
+      "trigger": "Refund Status 變動(如 Released)→ 更新 Refund tab 並寄 Refund email",
+      "feature": "MyAccount Refund tab 與 Refund email 優化",
+      "sources": [
+        "OtherFeature.txt",
+        "AOM.txt"
+      ],
+      "id": "SYS-35"
+    },
+    {
+      "from_layer": "AOM",
+      "to_layer": "EC page",
+      "from": "Return Status",
+      "to": "My Account",
+      "flow_zh": "AOM Return Status(Pending/Requested/Approved/Cancelled)驅動前台 My Account 退貨申請的狀態顯示。",
+      "trigger": "Return Status 變動 → 前台退貨狀態更新",
+      "feature": "退貨/RMA",
+      "sources": [
+        "AOM.txt",
+        "OtherFeature.txt"
+      ],
+      "id": "SYS-36"
+    }
+  ]
+}

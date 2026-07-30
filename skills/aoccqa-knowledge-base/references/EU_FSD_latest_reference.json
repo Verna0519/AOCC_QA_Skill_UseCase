@@ -1,0 +1,354 @@
+{
+  "name": "EU_FSD_latest_reference",
+  "source": "Confluence space EP - EU FSD (page 41458339)",
+  "generated_date": "2026-07-24",
+  "total_descendant_pages": 370,
+  "chapter_count": 13,
+  "note": "每章節依最後修改時間排序,latest 為該章最新更新頁;recent 為次新的參考頁。點 url 可直接開啟。",
+  "chapters": [
+    {
+      "chapter": "EU ECSA-0 Global Settings",
+      "chapter_id": "41462361",
+      "chapter_url": "https://ec-service.asus.com/confluence/spaces/EP/pages/41462361",
+      "descendant_count": 26,
+      "latest": {
+        "title": "EU ECSA-0.3 AOM Custom Attribute",
+        "id": "48767133",
+        "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/48767133/EU+ECSA-0.3+AOM+Custom+Attribute"
+      },
+      "recent": [
+        {
+          "title": "EU ECSA-0.3 AOM Custom Attribute",
+          "id": "48767133",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/48767133/EU+ECSA-0.3+AOM+Custom+Attribute"
+        },
+        {
+          "title": "EU ECSA-0.9 SFTP List",
+          "id": "41463585",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/41463585/EU+ECSA-0.9+SFTP+List"
+        },
+        {
+          "title": "EU ECSA-0.4 GED Data Source",
+          "id": "41462541",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/41462541/EU+ECSA-0.4+GED+Data+Source"
+        }
+      ]
+    },
+    {
+      "chapter": "EU ECSA-1 UXUI",
+      "chapter_id": "41467260",
+      "chapter_url": "https://ec-service.asus.com/confluence/spaces/EP/pages/41467260",
+      "descendant_count": 0,
+      "latest": null,
+      "recent": []
+    },
+    {
+      "chapter": "EU ECSA-2 3 in 1 Design & API",
+      "chapter_id": "106661277",
+      "chapter_url": "https://ec-service.asus.com/confluence/spaces/EP/pages/106661277",
+      "descendant_count": 133,
+      "latest": {
+        "title": "EU ECSA-2.22 (FTP) Buy Page Header、Product Spec",
+        "id": "106662001",
+        "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/106662001/EU+ECSA-2.22+FTP+Buy+Page+Header%E3%80%81Product+Spec"
+      },
+      "recent": [
+        {
+          "title": "EU ECSA-2.22 (FTP) Buy Page Header、Product Spec",
+          "id": "106662001",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/106662001/EU+ECSA-2.22+FTP+Buy+Page+Header%E3%80%81Product+Spec"
+        },
+        {
+          "title": "EU ECSA-2.31 (API) Product onshelf status dashboard",
+          "id": "219554870",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/219554870/EU+ECSA-2.31+API+Product+onshelf+status+dashboard"
+        },
+        {
+          "title": "EU ECSA-2.5.2 Maintain Product Data Manually",
+          "id": "106662220",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/106662220/EU+ECSA-2.5.2+Maintain+Product+Data+Manually"
+        }
+      ]
+    },
+    {
+      "chapter": "EU ECSA-3 Inbound/RTV",
+      "chapter_id": "41463738",
+      "chapter_url": "https://ec-service.asus.com/confluence/spaces/EP/pages/41463738",
+      "descendant_count": 3,
+      "latest": {
+        "title": "EU ECSA-3.1.1 API",
+        "id": "41463746",
+        "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/41463746/EU+ECSA-3.1.1+API"
+      },
+      "recent": [
+        {
+          "title": "EU ECSA-3.1.1 API",
+          "id": "41463746",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/41463746/EU+ECSA-3.1.1+API"
+        },
+        {
+          "title": "EU ECSA-3.1 Inbound Process",
+          "id": "41463743",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/41463743/EU+ECSA-3.1+Inbound+Process"
+        },
+        {
+          "title": "EU ECSA-3 Inbound",
+          "id": "41463740",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/41463740/EU+ECSA-3+Inbound"
+        }
+      ]
+    },
+    {
+      "chapter": "EU ECSA-4 Product/Inventory",
+      "chapter_id": "41458620",
+      "chapter_url": "https://ec-service.asus.com/confluence/spaces/EP/pages/41458620",
+      "descendant_count": 19,
+      "latest": {
+        "title": "EU ECSA-4.1.1 MCC1 Attribute Definition",
+        "id": "120046469",
+        "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/120046469/EU+ECSA-4.1.1+MCC1+Attribute+Definition"
+      },
+      "recent": [
+        {
+          "title": "EU ECSA-4.1.1 MCC1 Attribute Definition",
+          "id": "120046469",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/120046469/EU+ECSA-4.1.1+MCC1+Attribute+Definition"
+        },
+        {
+          "title": "EU ECSA-4.1 Product Add/Maintain(Simple)",
+          "id": "41464837",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/41464837/EU+ECSA-4.1+Product+Add+Maintain+Simple"
+        },
+        {
+          "title": "EU ECSA-4.2 Product Add/Maintain(Configurable)",
+          "id": "41464187",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/41464187/EU+ECSA-4.2+Product+Add+Maintain+Configurable"
+        }
+      ]
+    },
+    {
+      "chapter": "EU ECSA-5 Promotion",
+      "chapter_id": "41458623",
+      "chapter_url": "https://ec-service.asus.com/confluence/spaces/EP/pages/41458623",
+      "descendant_count": 15,
+      "latest": {
+        "title": "EU ECSA-5.5 Cart Price Rules",
+        "id": "44439101",
+        "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/44439101/EU+ECSA-5.5+Cart+Price+Rules"
+      },
+      "recent": [
+        {
+          "title": "EU ECSA-5.5 Cart Price Rules",
+          "id": "44439101",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/44439101/EU+ECSA-5.5+Cart+Price+Rules"
+        },
+        {
+          "title": "EU ECSA-5.6.3 Customer Group List",
+          "id": "198181885",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/198181885/EU+ECSA-5.6.3+Customer+Group+List"
+        },
+        {
+          "title": "EU ECSA-5.6.2 Customer Group Auto Removal",
+          "id": "106680205",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/106680205/EU+ECSA-5.6.2+Customer+Group+Auto+Removal"
+        }
+      ]
+    },
+    {
+      "chapter": "EU ECSA-6 Order",
+      "chapter_id": "41458634",
+      "chapter_url": "https://ec-service.asus.com/confluence/spaces/EP/pages/41458634",
+      "descendant_count": 54,
+      "latest": {
+        "title": "EU ECSA-6.6.2 Order Detail UI",
+        "id": "98186888",
+        "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/98186888/EU+ECSA-6.6.2+Order+Detail+UI"
+      },
+      "recent": [
+        {
+          "title": "EU ECSA-6.6.2 Order Detail UI",
+          "id": "98186888",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/98186888/EU+ECSA-6.6.2+Order+Detail+UI"
+        },
+        {
+          "title": "EU ECSA-6.4.1 Cart Page",
+          "id": "188170947",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/188170947/EU+ECSA-6.4.1+Cart+Page"
+        },
+        {
+          "title": "EU ECSA-6.1.1 Simple Product (Customized Bundle/Freebies/Related)",
+          "id": "44435306",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/44435306/EU+ECSA-6.1.1+Simple+Product+Customized+Bundle+Freebies+Related"
+        }
+      ]
+    },
+    {
+      "chapter": "EU ECSA-7 Return",
+      "chapter_id": "41458638",
+      "chapter_url": "https://ec-service.asus.com/confluence/spaces/EP/pages/41458638",
+      "descendant_count": 23,
+      "latest": {
+        "title": "EU ECSA-7.3.1 Return Creation UI",
+        "id": "98188641",
+        "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/98188641/EU+ECSA-7.3.1+Return+Creation+UI"
+      },
+      "recent": [
+        {
+          "title": "EU ECSA-7.3.1 Return Creation UI",
+          "id": "98188641",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/98188641/EU+ECSA-7.3.1+Return+Creation+UI"
+        },
+        {
+          "title": "EU ECSA-7.3 Return Creation",
+          "id": "44435079",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/44435079/EU+ECSA-7.3+Return+Creation"
+        },
+        {
+          "title": "EU ECSA-7.3.3 Return Detail UI",
+          "id": "98188645",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/98188645/EU+ECSA-7.3.3+Return+Detail+UI"
+        }
+      ]
+    },
+    {
+      "chapter": "EU ECSA-8 Invoice/Credit Memo",
+      "chapter_id": "41461639",
+      "chapter_url": "https://ec-service.asus.com/confluence/spaces/EP/pages/41461639",
+      "descendant_count": 4,
+      "latest": {
+        "title": "EU ECSA-8.1 Invoice",
+        "id": "44442024",
+        "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/44442024/EU+ECSA-8.1+Invoice"
+      },
+      "recent": [
+        {
+          "title": "EU ECSA-8.1 Invoice",
+          "id": "44442024",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/44442024/EU+ECSA-8.1+Invoice"
+        },
+        {
+          "title": "EU ECSA-8.2 Credit Memo",
+          "id": "44442027",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/44442027/EU+ECSA-8.2+Credit+Memo"
+        },
+        {
+          "title": "EU ECSA-8 Credit Memo",
+          "id": "106676130",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/106676130/EU+ECSA-8+Credit+Memo"
+        }
+      ]
+    },
+    {
+      "chapter": "EU ECSA-9 EBS/EDI",
+      "chapter_id": "41461520",
+      "chapter_url": "https://ec-service.asus.com/confluence/spaces/EP/pages/41461520",
+      "descendant_count": 11,
+      "latest": {
+        "title": "EU ECSA-9.1 EDI Order Flow",
+        "id": "106671492",
+        "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/106671492/EU+ECSA-9.1+EDI+Order+Flow"
+      },
+      "recent": [
+        {
+          "title": "EU ECSA-9.1 EDI Order Flow",
+          "id": "106671492",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/106671492/EU+ECSA-9.1+EDI+Order+Flow"
+        },
+        {
+          "title": "EU ECSA-9.2.3 860(FO) for Return & Appeasement",
+          "id": "41463086",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/41463086/EU+ECSA-9.2.3+860+FO+for+Return+Appeasement"
+        },
+        {
+          "title": "EU ECSA-9.1.1 850",
+          "id": "41462432",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/41462432/EU+ECSA-9.1.1+850"
+        }
+      ]
+    },
+    {
+      "chapter": "EU ECSA-10 Email/SMS",
+      "chapter_id": "41461522",
+      "chapter_url": "https://ec-service.asus.com/confluence/spaces/EP/pages/41461522",
+      "descendant_count": 5,
+      "latest": {
+        "title": "EU ECSA-10.2 Alert mail for internal user",
+        "id": "41466454",
+        "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/41466454/EU+ECSA-10.2+Alert+mail+for+internal+user"
+      },
+      "recent": [
+        {
+          "title": "EU ECSA-10.2 Alert mail for internal user",
+          "id": "41466454",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/41466454/EU+ECSA-10.2+Alert+mail+for+internal+user"
+        },
+        {
+          "title": "EU ECSA-10.1 Customer Email",
+          "id": "44434909",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/44434909/EU+ECSA-10.1+Customer+Email"
+        },
+        {
+          "title": "EU ECSA-10.2.1 JOB Execution Time List",
+          "id": "41467099",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/41467099/EU+ECSA-10.2.1+JOB+Execution+Time+List"
+        }
+      ]
+    },
+    {
+      "chapter": "EU ECSA-11 Report/View",
+      "chapter_id": "41461526",
+      "chapter_url": "https://ec-service.asus.com/confluence/spaces/EP/pages/41461526",
+      "descendant_count": 54,
+      "latest": {
+        "title": "EU ECSA-11.10.2 Payment Report",
+        "id": "41461728",
+        "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/41461728/EU+ECSA-11.10.2+Payment+Report"
+      },
+      "recent": [
+        {
+          "title": "EU ECSA-11.10.2 Payment Report",
+          "id": "41461728",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/41461728/EU+ECSA-11.10.2+Payment+Report"
+        },
+        {
+          "title": "EU ECSA-11.12.2 Order Sales Report",
+          "id": "44448558",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/44448558/EU+ECSA-11.12.2+Order+Sales+Report"
+        },
+        {
+          "title": "EU ECSA - 11.6.3 (CSV) Order Information to EC Data Hub",
+          "id": "120033993",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/120033993/EU+ECSA+-+11.6.3+CSV+Order+Information+to+EC+Data+Hub"
+        }
+      ]
+    },
+    {
+      "chapter": "EU ECSA-12 My Account",
+      "chapter_id": "41461528",
+      "chapter_url": "https://ec-service.asus.com/confluence/spaces/EP/pages/41461528",
+      "descendant_count": 10,
+      "latest": {
+        "title": "EU ECSA-12.1 My Address Book",
+        "id": "44439367",
+        "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/44439367/EU+ECSA-12.1+My+Address+Book"
+      },
+      "recent": [
+        {
+          "title": "EU ECSA-12.1 My Address Book",
+          "id": "44439367",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/44439367/EU+ECSA-12.1+My+Address+Book"
+        },
+        {
+          "title": "EU ECSA-12.5 Referral Program",
+          "id": "62628575",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/62628575/EU+ECSA-12.5+Referral+Program"
+        },
+        {
+          "title": "EU ECSA-12.3 Shopping FAQs (static)",
+          "id": "44439413",
+          "url": "https://ec-service.asus.com/confluence/spaces/EP/pages/44439413/EU+ECSA-12.3+Shopping+FAQs+static"
+        }
+      ]
+    }
+  ]
+}
