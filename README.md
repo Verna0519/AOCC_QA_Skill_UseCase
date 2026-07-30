@@ -29,6 +29,46 @@ ASUS EC（Magento）QA 測試需求分析與 Test Case 產線所使用的一組 
 
 ---
 
+## 流程圖（Flow Chart）
+
+> 實線＝主流程；虛線＝回流（會反覆執行）；點線＝全程可查的知識庫。方框＝Skill 自動執行；菱形＝QA 人工判斷關卡。此為「預期／典型」串接，實際用哪幾步依情境而定（步驟可跳過、可回流、可單獨呼叫）。
+
+```mermaid
+flowchart TD
+    A["① aoccqa-fsd-parser<br/>需求解析（讀原文）"]
+    G1{"規格確認<br/>QA + PM<br/>★唯一必經人工關卡"}
+    B["② aoccqa-rule-loader<br/>規則整備（多市場時）"]
+    C["③ aoccqa-tc-generator<br/>案例起草（第一版）"]
+    D["④ aoccqa-scenario-expander<br/>情境擴充（有 baseline 時）"]
+    E["⑤ aoccqa-quality-reviewer<br/>品質審查 · Gate 2（獨立讀原文）"]
+    G2{"判定處置<br/>QA｜接受／不接受／需再確認"}
+    F["⑥ aoccqa-case-exporter<br/>案例匯出 xlsx"]
+    H["⑧ aoccqa-decision-archiver<br/>決策歸檔（設計中）"]
+    KB[("⑦ aoccqa-knowledge-base<br/>跨功能知識庫｜全程可查")]
+
+    A --> G1
+    G1 -->|"未釐清完不得往下"| A
+    G1 --> B --> C --> D --> E --> G2
+    G2 -->|"REWORK：只補差異"| C
+    G2 -->|"補強不足"| D
+    G2 -->|"需再確認"| G1
+    G2 --> F
+    G2 --> H
+    A -. 查詢 .-> KB
+    C -. 查詢 .-> KB
+    D -. 查詢 .-> KB
+    E -. 查詢 .-> KB
+
+    classDef human fill:#e5efe2,stroke:#47643f,stroke-width:2px,color:#33403a;
+    classDef aux fill:#eceeea,stroke:#5f7f5f,color:#33403a,stroke-dasharray:4 3;
+    class G1,G2 human;
+    class KB,H aux;
+```
+
+互動視覺版（含各步觸發詞、產出、每個情境的可展開流程圖）：[`diagrams/AOCCQA_workflow_and_scenarios.html`](diagrams/AOCCQA_workflow_and_scenarios.html)
+
+---
+
 ## Skill 索引
 
 | # | Skill | 版本 | Phase | 一句話定位 | 文件 |
@@ -40,8 +80,9 @@ ASUS EC（Magento）QA 測試需求分析與 Test Case 產線所使用的一組 
 | 5 | `aoccqa-quality-reviewer` | 20.1.0 | B | 第二人視角獨立重讀原文，雙向查核報告 | [docs](docs/05-aoccqa-quality-reviewer.md) |
 | 6 | `aoccqa-case-exporter` | — | C | 把案例＋Jira 單套官方模板匯出 xlsx | [docs](docs/06-aoccqa-case-exporter.md) |
 | 7 | `aoccqa-knowledge-base` | — | 全程 | 跨功能知識庫（名詞/關係/測試點/歷史單），**不在流程順序內、全程可查** | [docs](docs/07-aoccqa-knowledge-base.md) |
+| 8 | `aoccqa-decision-archiver` | — | D | 把確認出的功能定義與規則沉澱成知識條目（**設計中，尚未建立為 skill**） | [docs](docs/10-aoccqa-decision-archiver.md) |
 
-> 以上 1–7 為**現行七支核心 skill**。第 7 支 `aoccqa-knowledge-base` 不是流程中的一步，而是全程可查的共用知識庫。
+> 1–6 為走產線主順序的核心 skill；第 7 支 `aoccqa-knowledge-base` 不是流程中的一步，而是全程可查的共用知識庫；第 8 支 `aoccqa-decision-archiver` 為產線最後的獨立步驟，目前為設計定義、尚未建立為 skill。所有 skill 名稱統一為小寫 `aoccqa-*`（即實際呼叫名）。
 
 ---
 
@@ -96,6 +137,7 @@ ASUS EC（Magento）QA 測試需求分析與 Test Case 產線所使用的一組 
 
 ## 相關文件
 
+- **Skill 說明 · 工作流程 · 使用情境（互動版，推薦）**：[`diagrams/AOCCQA_workflow_and_scenarios.html`](diagrams/AOCCQA_workflow_and_scenarios.html) — 八支 skill 說明、各步觸發詞與產出、六情境含可展開流程圖
 - **流程圖（視覺版）**：[`diagrams/AOCCQA_flow_diagram.html`](diagrams/AOCCQA_flow_diagram.html) — 泳道 + 回流路徑 SVG
 - **角色與使用情境（視覺版）**：[`diagrams/AOCCQA_skill_roles_and_scenarios.html`](diagrams/AOCCQA_skill_roles_and_scenarios.html)
 - [完整產線流程圖說明（文字版）](workflow.md)
