@@ -1,0 +1,167 @@
+<!--
+  AOCCQA 測試需求分析報告 — HTML 範本
+  用法：複製整份，替換 <<...>> 佔位與各區塊內容；輸出到 /mnt/user-data/outputs/ 後以 present_files 呈現。
+  規則見 SKILL.md。固定名詞保留原文並用 <code>；六段固定順序；邏輯不對之處永遠最後。
+-->
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- <title> 與 H1 皆固定＝來源文件標題（Confluence 用頁面標題，其他用檔名） -->
+<title><<來源文件標題（Confluence 頁面標題或檔名）>></title>
+<style>
+  :root{
+    --ink:#1b2432; --ink2:#3a4657; --line:#e3e7ee; --paper:#ffffff; --bg:#eef1f5;
+    --muted:#6b7686; --accent:#0f6fb3;
+    --ask:#9a5b00; --ask-bg:#fff6e6; --ask-line:#f0d296;
+    --bug:#b42318; --bug-bg:#fdecea; --bug-line:#f3c0ba;
+    --ok:#0f7a52; --ok-bg:#e9f6f0;
+    --sup:#5a4a9a; --sup-bg:#efecfa;
+    --quote-bg:#f4f6f9; --quote-line:#9fb1c4;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font-family:"PingFang TC","Microsoft JhengHei","Noto Sans TC","Hiragino Sans GB",system-ui,sans-serif;
+    line-height:1.75; font-size:15px;}
+  .wrap{max-width:900px; margin:0 auto; padding:0 20px 80px;}
+  header{background:var(--ink); color:#fff; margin:0 -20px 34px; padding:36px 40px 26px; border-bottom:4px solid var(--accent);}
+  header h1{margin:0 0 12px; font-size:23px; font-weight:700; letter-spacing:.01em; line-height:1.45;}
+  header .meta{font-size:12.5px; color:#9fb4c9; border-top:1px solid #35404f; padding-top:11px;}
+  header .meta b{color:#d7e2ec; font-weight:600;}
+  section{background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:24px 26px; margin-bottom:20px;}
+  .eyebrow{display:flex; align-items:baseline; gap:11px; margin:0 0 14px;}
+  .eyebrow .n{font-size:13px; font-weight:700; color:#fff; background:var(--ink2); width:26px; height:26px;
+    border-radius:6px; display:inline-flex; align-items:center; justify-content:center; flex:none;}
+  .eyebrow h2{margin:0; font-size:19px; font-weight:700;}
+  p{margin:0 0 10px;}
+  ul{margin:6px 0 4px; padding-left:22px;}
+  li{margin:4px 0;}
+  code{background:#eef1f5; padding:1px 5px; border-radius:4px; font-size:13px; font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace;}
+  .lead{color:var(--ink2); font-size:15.5px;}
+  .tags{display:flex; gap:6px; flex-wrap:wrap; align-items:center; margin-bottom:7px;}
+  .tag{font-size:11px; font-weight:700; padding:2px 9px; border-radius:5px; letter-spacing:.02em; white-space:nowrap;}
+  .tag.new{background:var(--accent); color:#fff;}
+  .tag.cat{background:#e6edf4; color:#33506b;}
+  .tag.pm{background:#fbe9cf; color:#8a5300;}
+  .tag.rd{background:#e6e0f7; color:#4c3d8a;}
+  .tag.ok{background:var(--ok-bg); color:var(--ok);}
+  .tag.sup{background:var(--sup-bg); color:var(--sup);}
+  .goal{border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:0 8px 8px 0; padding:12px 15px; margin:10px 0; background:#fbfcfd;}
+  .goal .txt{font-size:14.5px; margin:0 0 6px;}
+  .path{font-size:12.5px; color:var(--muted);}
+  .path b{color:var(--ink2); font-weight:600;}
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .box{border:1px solid var(--line); border-radius:8px; padding:14px 16px; background:#fbfcfd;}
+  .box h4{margin:0 0 7px; font-size:14px;}
+  .box.in{border-left:3px solid var(--ok);}
+  .box.out{border-left:3px solid var(--muted);}
+  .plan{border:1px solid var(--line); border-radius:8px; padding:13px 16px; margin:10px 0;}
+  .plan .ph{display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:4px;}
+  .plan .ph h4{margin:0; font-size:15px;}
+  .plan .why{font-size:13.5px; color:var(--ink2); margin:0;}
+  .plan .why b{color:var(--ink);}
+  .note{background:#f4f7fb; border-left:3px solid var(--accent); padding:11px 15px; border-radius:0 6px 6px 0; font-size:13.5px; color:var(--ink2); margin-top:12px;}
+  .src{background:var(--quote-bg); border-left:3px solid var(--quote-line); border-radius:0 6px 6px 0;
+    padding:9px 13px; margin:7px 0; font-size:13px; color:#33404f; white-space:pre-wrap;
+    font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace; line-height:1.6;}
+  .lbl{font-size:12px; font-weight:700; letter-spacing:.03em; display:block; margin-bottom:2px;}
+  .qa{border:1px solid var(--ask-line); background:var(--ask-bg); border-radius:9px; padding:15px 17px; margin:14px 0;}
+  .qa .q{font-weight:700; color:var(--ask); margin:0 0 6px; font-size:15px;}
+  .qa .lbl{color:var(--ask);}
+  .qa .why{font-size:14px; margin:8px 0 2px;}
+  .ask-line{margin-top:9px; padding:9px 12px; background:#fff; border:1px dashed var(--ask-line); border-radius:6px; font-size:14px;}
+  .ask-line .lbl{color:var(--ask);}
+  .bugs{background:var(--bug-bg); border:1px solid var(--bug-line);}
+  .bug{border-top:1px dashed var(--bug-line); padding:14px 0 4px;}
+  .bug:first-of-type{border-top:0;}
+  .bug .t{font-weight:700; color:var(--bug); font-size:15px; margin:0 0 6px;}
+  .bug .src{border-left-color:#d98a80;}
+  .bug .why{font-size:14px; color:var(--ink2); margin:7px 0 2px;}
+  .bug .ask-line{border-color:var(--bug-line);}
+  .bug .ask-line .lbl{color:var(--bug);}
+  .foot{color:var(--muted); font-size:12px; text-align:center; margin-top:26px;}
+  @media(max-width:640px){ .grid2{grid-template-columns:1fr;} header{padding:28px 22px 22px;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- HEADER：標題＝來源文件標題；meta 只放產生時間＋文件版號（依來源類型取得），不放其他 -->
+<header>
+  <h1><<來源文件標題（Confluence 頁面標題或檔名）>></h1>
+  <div class="meta"><b>產生時間：</b><<YYYY/MM/DD>>　｜　<b>文件版號：</b><<來源版本（Confluence 版本或文件自身版本）>>（最後更新：<<時間>>）</div>
+</header>
+
+<!-- 1 測試目的 -->
+<section>
+  <div class="eyebrow"><span class="n">1</span><h2>測試目的</h2></div>
+  <p class="lead"><<1–2 句：要驗證的功能與前台/後台/DB/Log 一致性；固定名詞保留原文>></p>
+</section>
+
+<!-- 2 測試目標：每項 .goal；新增功能加 <span class="tag new">新增</span>，既有不加；附驗證路徑 -->
+<section>
+  <div class="eyebrow"><span class="n">2</span><h2>測試目標</h2></div>
+  <p class="lead">標籤說明：<span class="tag new">新增</span> 為本次新增功能；未標示者為既有機制。每項附驗證頁面／路徑。</p>
+  <div class="goal">
+    <div class="tags"><span class="tag new">新增</span><span class="tag cat"><<功能名>></span></div>
+    <p class="txt"><<目標描述>></p>
+    <p class="path"><b>驗證路徑：</b><<明確路徑>></p>
+  </div>
+</section>
+
+<!-- 3 測試範圍 -->
+<section>
+  <div class="eyebrow"><span class="n">3</span><h2>測試範圍</h2></div>
+  <div class="grid2">
+    <div class="box in"><h4>✔ 包含</h4><ul><li><<...>></li></ul></div>
+    <div class="box out"><h4>✘ 不包含</h4><ul>
+      <li>程式內部實作（寫法、SQL、scheduler lock、效能最佳化）</li>
+      <li>與本次無關的效能／安全／自動化測試</li>
+      <li><<非本次調整的既有流程本身>></li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- 4 測試規劃：依功能分類，每功能一個 .plan，含標籤與一句需測原因 -->
+<section>
+  <div class="eyebrow"><span class="n">4</span><h2>測試規劃（依功能分類）</h2></div>
+  <div class="plan">
+    <div class="ph"><span class="tag new">新增</span><h4><<功能名>></h4><span class="tag sup">需協助備料</span></div>
+    <p class="why"><b>需測原因：</b><<簡短一句>></p>
+  </div>
+  <div class="note"><b>時機提醒：</b><<排程時機／清除觸發點等，若適用>></div>
+</section>
+
+<!-- 5 待釐清：標籤 → 原文段落 → 看不懂的點 → 可複製的「需 PM 釐清」一句 -->
+<section>
+  <div class="eyebrow"><span class="n">5</span><h2>待釐清（附原文段落，供雙方對照）</h2></div>
+  <div class="qa">
+    <div class="tags"><span class="tag cat"><<主題>></span><span class="tag pm">PM</span></div>
+    <p class="q">問N｜<<白話問題標題>></p>
+    <span class="lbl">原文段落</span>
+    <div class="src"><<逐字擷取的規格原文；固定名詞保留原樣>></div>
+    <p class="why"><<哪裡沒寫清楚、為何影響測試判定>></p>
+    <div class="ask-line"><span class="lbl">需 PM 釐清：</span><<可直接複製、對方一看就懂的問題句>></div>
+  </div>
+</section>
+
+<!-- 6 邏輯不對之處：永遠最後；附雙方原文，指出打架處，給可複製的「需 PM 確認」一句 -->
+<section class="bugs">
+  <div class="eyebrow"><span class="n">6</span><h2>邏輯不對之處（規格前後打架，附原文，建議先修正）</h2></div>
+  <div class="bug">
+    <div class="tags"><span class="tag cat"><<主題>></span><span class="tag pm">PM</span><span class="tag rd">RD</span></div>
+    <p class="t">錯N｜<<矛盾標題>></p>
+    <span class="lbl">原文段落</span>
+    <div class="src"><<A 說法原文>>
+<<B 說法原文>></div>
+    <p class="why"><<兩者如何互斥、造成什麼判定歧異>></p>
+    <div class="ask-line"><span class="lbl">需 PM 確認：</span><<可直接複製的確認句>></div>
+  </div>
+</section>
+
+<p class="foot">依來源文件最終版本整理：刪除線/修訂標記已判讀、inline 註解已納入；頁面一般 comment 未採用為規格。</p>
+
+</div>
+</body>
+</html>

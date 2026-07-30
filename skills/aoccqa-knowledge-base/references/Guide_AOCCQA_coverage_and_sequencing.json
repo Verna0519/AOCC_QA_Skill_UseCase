@@ -1,0 +1,157 @@
+{
+  "name": "Guide_AOCCQA_coverage_and_sequencing",
+  "description": "從知識庫歸納:QA 驗證應涵蓋的範圍(12 維度)與測項安排的順序規律(12 階段巨觀 + 5 步微觀 + 相依原則)。寫測項/排測試計畫時據此檢核涵蓋是否齊全、順序是否合理。",
+  "generated_date": "2026-07-24",
+  "coverage_dimensions": [
+    {
+      "dim": "後台設定 / 匯入驗證",
+      "desc": "Magento/AOM 後台設定、CSV 匯入(Entity Type、Add/Delete、Check Data)、欄位必填/格式/唯一性/重複/日期/檔案大小驗證。",
+      "refs": "glossary(匯入欄位/後台/錯誤訊息)、testpoint 各功能『匯入』子區"
+    },
+    {
+      "dim": "前台顯示 / UI",
+      "desc": "Buy Page / Cart / Checkout / product card / My Account 區塊呈現;PC / Mobile / Tablet 版面;跑版破圖。",
+      "refs": "ecpages(key_sections)、conventions §2 裝置欄"
+    },
+    {
+      "dim": "業務邏輯 / 規則",
+      "desc": "預選、隱藏、排序(priority)、限購(user_group_limit)、狀態切換(CTA buy/pre_order/back_order/notify_me)、旗標(Single Purchasable)。",
+      "refs": "glossary(規則/狀態)、relations(trigger)"
+    },
+    {
+      "dim": "價格與計算",
+      "desc": "公式驗證(+$ / Save$ / Sale Price / Original Price)、特價、折扣、稅(VAT/eco-tax)、幣別、生效時區(local time)。",
+      "refs": "glossary(價格公式)、quicklookup"
+    },
+    {
+      "dim": "前後台連動",
+      "desc": "改後台設定 → 前台呈現/行為是否對應;反查前台呈現由哪個後台驅動。每個後台測項應成對驗前台結果。",
+      "refs": "Definition_AOCCQA_relations"
+    },
+    {
+      "dim": "跨系統資料流",
+      "desc": "Magento↔AOM↔EC page:下單拋單(Order Created)、庫存可賣量、貨態、退款/Credit Memo、狀態同步的正確與時序。",
+      "refs": "Definition_AOCCQA_system_relations"
+    },
+    {
+      "dim": "跨國 / 多語系 / 時區",
+      "desc": "website_code/locale 對齊(BE 需 nl_BE+fr_BE)、日期/特價依當地時區、各國適用金流/物流/稅務/法規。",
+      "refs": "conventions §7、quicklookup"
+    },
+    {
+      "dim": "邊界值",
+      "desc": "數量上限/下限、庫存=0、金額界線(如超過5萬)、日期界線(start=end、早於當前)、檔案 2MB、configurable 一階、Show more 20 筆。",
+      "refs": "testpoint type=邊界"
+    },
+    {
+      "dim": "異常 / 錯誤處理",
+      "desc": "錯誤訊息原文正確、阻擋非法輸入、付款失敗/逾時 alert、重複提交攔截、找不到規則、權限不足。",
+      "refs": "quicklookup(錯誤訊息集)、testpoint type=異常"
+    },
+    {
+      "dim": "通知 / Email / SMS",
+      "desc": "交易信(訂單/出貨/退款/預購)、alert mail、NPS/CSAT、觸發時機與收件人、多語系內容、no-reply 機制。",
+      "refs": "glossary(通知信/Email)、testpoint『Email』子區"
+    },
+    {
+      "dim": "權限 / 帳號 / 安全",
+      "desc": "登入/2FA、後台 ACL、訪客 vs 會員行為、個資隱藏、密碼規範、鎖帳號。",
+      "refs": "glossary(AOM 權限/後台)"
+    },
+    {
+      "dim": "回歸",
+      "desc": "歷史 bug 與既有 QA task 的回歸點,改動相關功能時一併覆蓋,避免復發。",
+      "refs": "QA_task_UAT-QA_classified、testpoint 的 ref_qa"
+    }
+  ],
+  "macro_sequence": [
+    {
+      "n": 1,
+      "phase": "前置 / 環境就緒",
+      "what": "測試帳號、會員群組、商品(simple/CNF)、website/國別、時區、金流/物流設定準備妥當。",
+      "layer": "環境"
+    },
+    {
+      "n": 2,
+      "phase": "後台設定與匯入",
+      "what": "Magento 設定與 CSV 匯入(含各項驗證與錯誤訊息)、Customized Bundle/加購/贈品規則建立。先有資料才有得測。",
+      "layer": "Magento"
+    },
+    {
+      "n": 3,
+      "phase": "商品 / 庫存狀態",
+      "what": "Advanced Inventory、可賣量(Salable Qty=A−B−C)、上下架、Embargo、Pre-Order/Back Order 設定。",
+      "layer": "Magento"
+    },
+    {
+      "n": 4,
+      "phase": "前台呈現(Buy Page)",
+      "what": "區塊顯示、價格公式、預選、狀態按鈕、缺貨隱藏、rich content/spec、Rating。",
+      "layer": "EC page"
+    },
+    {
+      "n": 5,
+      "phase": "加入購物車(Cart)",
+      "what": "Cart row group/子項、數量調節、限購、缺貨提示、加購 Middle page、贈品行、Mini Cart。",
+      "layer": "EC page"
+    },
+    {
+      "n": 6,
+      "phase": "結帳與付款(Checkout)",
+      "what": "地址/VAT/NIF/zip 驗證、運送方式、金流選項與金額限制、付款成功/失敗/逾時、0元。",
+      "layer": "EC page"
+    },
+    {
+      "n": 7,
+      "phase": "訂單成立與拋單",
+      "what": "Magento 下單 → AOM 建立訂單(Order Created)、庫存扣減/Reservation、付款狀態同步。",
+      "layer": "Magento→AOM"
+    },
+    {
+      "n": 8,
+      "phase": "訂單管理與履約(AOM)",
+      "what": "訂單查詢/明細、貨態、出貨、取消(Cancel/Force Cancel 回寫 Magento)、退貨/退款/Credit Memo、Reship、Appeasement。",
+      "layer": "AOM(↔Magento)"
+    },
+    {
+      "n": 9,
+      "phase": "通知(Email/SMS)",
+      "what": "各時機交易信與 alert、內容與收件人、多語系、NPS/CSAT 觸發。",
+      "layer": "跨層"
+    },
+    {
+      "n": 10,
+      "phase": "會員後台 / 報表",
+      "what": "My Account(訂單/Refund tab/Invoice tab/Wishlist)、發票/Credit Memo PDF、各式 Report。",
+      "layer": "EC page / AOM"
+    },
+    {
+      "n": 11,
+      "phase": "跨國複驗",
+      "what": "各國別 locale/時區/金流/物流/稅務差異批量複驗。",
+      "layer": "全部"
+    },
+    {
+      "n": 12,
+      "phase": "回歸",
+      "what": "歷史 bug 點與相關既有 QA task 回歸。",
+      "layer": "全部"
+    }
+  ],
+  "micro_sequence": [
+    "正常路徑(happy path)",
+    "邊界值",
+    "異常 / 錯誤處理",
+    "跨國 / 多語系變體",
+    "跨系統同步確認"
+  ],
+  "ordering_principles": [
+    "相依先行:有前置相依的先測(匯入成功才測顯示;下單成功才測 AOM;審核通過才測前台優惠價)。",
+    "後台→前台成對驗:每改一個後台設定,緊接驗證對應前台呈現(對照 relations)。",
+    "跨系統成對驗:前台動作後,回另一層(AOM/Magento)確認資料/狀態同步(對照 system_relations)。",
+    "先讀後寫:查詢/顯示類先測,狀態改變(取消、退款、Reship)類排後,避免污染資料。",
+    "主流程優先:P0(可瀏覽→可加入→可結帳→可付款→訂單成立)先綠,再測邊角與異常。",
+    "跨國後段批驗:單國先驗完整流程,其他國別集中在跨國階段複驗差異,避免重複。",
+    "回歸墊底:改動功能相關的歷史單回歸點,放在該功能主測之後一併執行。"
+  ]
+}

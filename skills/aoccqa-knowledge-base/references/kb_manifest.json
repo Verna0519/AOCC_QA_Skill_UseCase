@@ -1,0 +1,109 @@
+{
+  "name": "kb_manifest",
+  "desc": "AOCCQA 知識庫歸檔索引 + 使用規則。所有檔在此資料夾;skill 與主代理共用。**大檔一律用 query 欄的 jq 過濾取需要的紀錄,勿整檔 Read。**",
+  "generated_date": "2026-07-24",
+  "token_rules": [
+    "只查不載:用 bash jq/grep/python 取符合條件的紀錄,勿 Read 整個 JSON(glossary 整檔≈120K tokens,jq 單筆≈數十 tokens)。",
+    "CLAUDE.md 是唯一自動載入;其餘按需。別把資料長進 CLAUDE.md。",
+    "重讀/大量分析交給 subagent,只回濃縮結果。",
+    "先查 manifest/CLAUDE.md 路由決定要開哪個檔與 key,再下 jq。"
+  ],
+  "files": [
+    {
+      "file": "CLAUDE.md",
+      "role": "常駐索引(唯一自動載入)",
+      "purpose": "路由表+功能索引+CB核心詞;告訴要去哪個檔、用哪個 key",
+      "load": "自動載入",
+      "query": "整檔即索引,本身就精簡",
+      "size": "18KB"
+    },
+    {
+      "file": "Definition_AOCCQA_glossary.json",
+      "role": "名詞權威庫(626詞)",
+      "purpose": "名詞/欄位/錯誤訊息/公式定義",
+      "load": "按需·過濾",
+      "query": "jq '.terms[]|select(.term==\"X\" or (.aliases[]?==\"X\"))'",
+      "size": "469KB"
+    },
+    {
+      "file": "Definition_AOCCQA_relations.json",
+      "role": "前後台關係(238)",
+      "purpose": "後台設定→前台呈現的驅動關係",
+      "load": "按需·過濾",
+      "query": "jq '.relations[]|select(.backend|test(\"X\"))' 或 .frontend",
+      "size": "178KB"
+    },
+    {
+      "file": "Definition_AOCCQA_system_relations.json",
+      "role": "AOM/Magento/EC 三層關係(36)",
+      "purpose": "跨系統資料流方向",
+      "load": "按需·過濾",
+      "query": "jq '.relations[]|select(.feature==\"X\")'",
+      "size": "17KB"
+    },
+    {
+      "file": "Definition_AOCCQA_ecpages.json",
+      "role": "EC 頁面定義(27)",
+      "purpose": "頁面用途/區塊/涉及功能",
+      "load": "按需·過濾",
+      "query": "jq '.pages[]|select(.page|test(\"Cart\"))'",
+      "size": "37KB"
+    },
+    {
+      "file": "Definition_AOCCQA_traceability.json",
+      "role": "功能追溯矩陣(24)",
+      "purpose": "某功能有哪些名詞/關係/頁面/FSD/QA",
+      "load": "按需·過濾",
+      "query": "jq '.rows[]|select(.feature==\"X\")'",
+      "size": "51KB"
+    },
+    {
+      "file": "Reference_AOCCQA_quicklookup.json",
+      "role": "快速查詢包",
+      "purpose": "縮寫/錯誤訊息原文/API 來源",
+      "load": "按需·過濾",
+      "query": "jq '.acronyms[]|select(.abbr==\"CNF\")' / .error_messages / .apis",
+      "size": "42KB"
+    },
+    {
+      "file": "QA_task_UAT-QA_classified.json",
+      "role": "QA 歷史單(776)",
+      "purpose": "某功能測過哪些、找相似單、回歸點",
+      "load": "按需·過濾",
+      "query": "jq '.issues[]|select(.feature==\"X\")'",
+      "size": "270KB"
+    },
+    {
+      "file": "EU_FSD_latest_reference.json",
+      "role": "FSD 章節最新頁索引(13章)",
+      "purpose": "取官方規格頁連結",
+      "load": "按需",
+      "query": "jq '.chapters[]|select(.chapter|test(\"Order\"))'",
+      "size": "13KB"
+    },
+    {
+      "file": "Guide_AOCCQA_testcase_conventions.md",
+      "role": "撰寫規範/範本",
+      "purpose": "格式/欄位/命名/Steps-Expected 慣例",
+      "load": "寫測項前讀一次",
+      "query": "整份閱讀(小)",
+      "size": "4KB"
+    },
+    {
+      "file": "Guide_AOCCQA_testpoint_library.json",
+      "role": "測試點素材(8功能·511點)",
+      "purpose": "展開測項內容的素材",
+      "load": "按需·過濾",
+      "query": "jq '.features[]|select(.feature==\"X\")'",
+      "size": "252KB"
+    },
+    {
+      "file": "Guide_AOCCQA_coverage_and_sequencing.json",
+      "role": "涵蓋維度+順序準則",
+      "purpose": "檢核漏測、排測項順序",
+      "load": "排計畫時讀(小)",
+      "query": "整份閱讀(小)",
+      "size": "6KB"
+    }
+  ]
+}
