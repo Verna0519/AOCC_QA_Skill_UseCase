@@ -111,6 +111,32 @@
   .keyline{margin-top:11px;padding-top:10px;border-top:1px dashed var(--line);font-size:12.6px;color:var(--muted)}
   .keyline b{color:var(--greenD)}
 
+  /* 情境下拉流程圖 */
+  .flowdrop{margin-top:12px;border-top:1px dashed var(--line);padding-top:10px}
+  .flowdrop summary{cursor:pointer;font-size:12.8px;color:var(--greenD);font-weight:600;
+    list-style:none;display:inline-flex;align-items:center;gap:6px;user-select:none}
+  .flowdrop summary::-webkit-details-marker{display:none}
+  .flowdrop summary .tri{font-size:10px;transition:transform .2s}
+  .flowdrop[open] summary .tri{transform:rotate(90deg)}
+  .flowdrop summary:hover{color:var(--green)}
+  .mini{margin-top:12px;background:var(--gtint);border:1px solid var(--line);border-radius:10px;padding:14px 14px 6px}
+  .mnode{display:grid;grid-template-columns:78px 1fr;gap:10px;align-items:center;padding:3px 0;transition:opacity .2s}
+  .mactor{font-size:11.3px;color:var(--muted);text-align:right;padding-right:2px}
+  .mactor.qa{color:var(--greenD);font-weight:700}
+  .mbox{position:relative;border:1.5px solid var(--line);border-radius:8px;padding:8px 12px;background:var(--panel);transition:all .2s}
+  .mbox .mn{font-family:Consolas,monospace;font-size:12.3px;font-weight:700;color:var(--ink)}
+  .mbox .md{font-size:11.4px;color:var(--muted);margin-top:1px}
+  .marrow{grid-column:2;color:var(--dim);height:13px;line-height:13px;font-size:12px}
+  .mtag{position:absolute;top:-8px;right:9px;font-size:10px;font-weight:700;padding:1px 8px;border-radius:20px;display:none}
+  .mnode[data-state="skip"]{opacity:.42}
+  .mnode[data-state="skip"] .mbox{border-style:dashed}
+  .mnode[data-state="skip"] .mtag.t-skip{display:inline-block;background:var(--gray);color:var(--dim);border:1px dashed var(--dim)}
+  .mnode[data-state="use"] .mbox{border-color:var(--green);background:var(--tint)}
+  .mnode[data-state="use"] .mtag.t-use{display:inline-block;background:var(--green);color:#fff}
+  .mnode[data-state="repeat"] .mbox{border-color:var(--amber);background:var(--amberT)}
+  .mnode[data-state="repeat"] .mtag.t-rep{display:inline-block;background:var(--amber);color:#fff}
+  .mnode[data-state="use"] .mbox.human,.mnode[data-state="repeat"] .mbox.human{border-style:dashed}
+
   .takeaway{margin-top:26px;background:var(--tint);border:1px solid var(--tintB);border-radius:12px;
     padding:15px 18px;font-size:13.5px}
   .takeaway b{color:var(--greenD)}
@@ -270,13 +296,36 @@ SCN.forEach(s=>{
     parts.push(`<span class="step ${cls}${humanCls}">${label}</span>`);
     if(idx<NODES.length-1) parts.push(`<span class="sep">→</span>`);
   });
+  /* 下拉：該情境的垂直流程圖 */
+  const mini=[];
+  NODES.forEach((nd,idx)=>{
+    const st=s.states[nd.id]||"skip";
+    let label=nd.nm;
+    if(nd.id==="confirm" && s.n==="4") label="補件與釐清（人工）";
+    if(st==="repeat" && nd.id==="tc") label=nd.nm+"（只補差異）";
+    if(st==="repeat" && nd.id==="review") label=nd.nm+"（只查新增）";
+    mini.push(`
+      <div class="mnode" data-state="${st}">
+        <div class="mactor ${nd.qa?'qa':''}">${nd.actor}</div>
+        <div class="mbox ${nd.human?'human':''}">
+          <span class="mtag t-use">會用</span><span class="mtag t-rep">重複</span><span class="mtag t-skip">跳過</span>
+          <div class="mn">${label}</div><div class="md">${nd.ds}</div>
+        </div>
+      </div>`);
+    if(idx<NODES.length-1) mini.push(`<div class="mnode" style="padding:0"><div></div><div class="marrow">↓</div></div>`);
+  });
+
   const el=document.createElement("div");
   el.className="scn";
   el.innerHTML=`
     <div class="ct"><span class="n">${s.n}</span>${s.title}<span class="badge">${s.badge}</span></div>
     <div class="cx">${s.ctx}</div>
     <div class="strip">${parts.join("")}</div>
-    <div class="keyline"><b>重點：</b>${s.key}</div>`;
+    <div class="keyline"><b>重點：</b>${s.key}</div>
+    <details class="flowdrop">
+      <summary><span class="tri">▶</span>展開這個情境的流程圖</summary>
+      <div class="mini">${mini.join("")}</div>
+    </details>`;
   list.appendChild(el);
 });
 </script>
