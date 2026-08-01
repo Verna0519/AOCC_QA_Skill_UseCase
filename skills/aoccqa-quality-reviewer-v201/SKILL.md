@@ -1,5 +1,5 @@
 ---
-name: aoccqa-quality-reviewer-v201
+name: aoccqa-quality-reviewer-v20.1
 metadata:
   version: 20.1.0
 description: >

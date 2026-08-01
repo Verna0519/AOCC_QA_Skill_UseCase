@@ -1,5 +1,7 @@
 ---
-name: aoccqa-knowledge-base
+name: AOCCQA Knowledge Base
+metadata:
+  version: 1.0.0
 description: ASUS EC (Magento) QA 測試需求分析與 test case 撰寫用的跨功能知識庫——名詞定義、前後台與 AOM/Magento/EC 三層關係、EC 頁面、功能追溯、QA 歷史單、撰寫規範、測試點素材與涵蓋/順序準則。解析 FSD/需求或撰寫測項時使用。
 ---
 

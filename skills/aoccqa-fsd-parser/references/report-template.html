@@ -1,166 +1,375 @@
-<!--
-  AOCCQA 測試需求分析報告 — HTML 範本
-  用法：複製整份，替換 <<...>> 佔位與各區塊內容；輸出到 /mnt/user-data/outputs/ 後以 present_files 呈現。
-  規則見 SKILL.md。固定名詞保留原文並用 <code>；六段固定順序；邏輯不對之處永遠最後。
--->
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- <title> 與 H1 皆固定＝來源文件標題（Confluence 用頁面標題，其他用檔名） -->
-<title><<來源文件標題（Confluence 頁面標題或檔名）>></title>
+<title>DV2IN1-39697 [TW] ASUS Membership reward points redemption minimum threshold</title>
 <style>
   :root{
-    --ink:#1b2432; --ink2:#3a4657; --line:#e3e7ee; --paper:#ffffff; --bg:#eef1f5;
-    --muted:#6b7686; --accent:#0f6fb3;
-    --ask:#9a5b00; --ask-bg:#fff6e6; --ask-line:#f0d296;
-    --bug:#b42318; --bug-bg:#fdecea; --bug-line:#f3c0ba;
-    --ok:#0f7a52; --ok-bg:#e9f6f0;
-    --sup:#5a4a9a; --sup-bg:#efecfa;
-    --quote-bg:#f4f6f9; --quote-line:#9fb1c4;
+    --bg:#f5f7fa; --ink:#1e293b; --ink2:#41506a; --sub:#7b8798; --hair:#e9edf3;
+    --hd:#1e2a3c; --hd-line:#2f6fb0; --hd-k:#d6dee8; --hd-v:#8fb6dd;
+    --c-purpose:#7169b8; --c-scope:#3f9490; --c-goal:#3f9b76;
+    --c-plan:#5385cf;    --c-pend:#c08a3e; --c-fix:#c9705f;
+    --pri0:#c0392b; --pri1:#c8891f; --pri2:#9aa5b3;
   }
-  *{box-sizing:border-box}
-  body{margin:0; background:var(--bg); color:var(--ink);
-    font-family:"PingFang TC","Microsoft JhengHei","Noto Sans TC","Hiragino Sans GB",system-ui,sans-serif;
-    line-height:1.75; font-size:15px;}
-  .wrap{max-width:900px; margin:0 auto; padding:0 20px 80px;}
-  header{background:var(--ink); color:#fff; margin:0 -20px 34px; padding:36px 40px 26px; border-bottom:4px solid var(--accent);}
-  header h1{margin:0 0 12px; font-size:23px; font-weight:700; letter-spacing:.01em; line-height:1.45;}
-  header .meta{font-size:12.5px; color:#9fb4c9; border-top:1px solid #35404f; padding-top:11px;}
-  header .meta b{color:#d7e2ec; font-weight:600;}
-  section{background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:24px 26px; margin-bottom:20px;}
-  .eyebrow{display:flex; align-items:baseline; gap:11px; margin:0 0 14px;}
-  .eyebrow .n{font-size:13px; font-weight:700; color:#fff; background:var(--ink2); width:26px; height:26px;
-    border-radius:6px; display:inline-flex; align-items:center; justify-content:center; flex:none;}
-  .eyebrow h2{margin:0; font-size:19px; font-weight:700;}
-  p{margin:0 0 10px;}
-  ul{margin:6px 0 4px; padding-left:22px;}
-  li{margin:4px 0;}
-  code{background:#eef1f5; padding:1px 5px; border-radius:4px; font-size:13px; font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace;}
-  .lead{color:var(--ink2); font-size:15.5px;}
-  .tags{display:flex; gap:6px; flex-wrap:wrap; align-items:center; margin-bottom:7px;}
-  .tag{font-size:11px; font-weight:700; padding:2px 9px; border-radius:5px; letter-spacing:.02em; white-space:nowrap;}
-  .tag.new{background:var(--accent); color:#fff;}
-  .tag.cat{background:#e6edf4; color:#33506b;}
-  .tag.pm{background:#fbe9cf; color:#8a5300;}
-  .tag.rd{background:#e6e0f7; color:#4c3d8a;}
-  .tag.ok{background:var(--ok-bg); color:var(--ok);}
-  .tag.sup{background:var(--sup-bg); color:var(--sup);}
-  .goal{border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:0 8px 8px 0; padding:12px 15px; margin:10px 0; background:#fbfcfd;}
-  .goal .txt{font-size:14.5px; margin:0 0 6px;}
-  .path{font-size:12.5px; color:var(--muted);}
-  .path b{color:var(--ink2); font-weight:600;}
-  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
-  .box{border:1px solid var(--line); border-radius:8px; padding:14px 16px; background:#fbfcfd;}
-  .box h4{margin:0 0 7px; font-size:14px;}
-  .box.in{border-left:3px solid var(--ok);}
-  .box.out{border-left:3px solid var(--muted);}
-  .plan{border:1px solid var(--line); border-radius:8px; padding:13px 16px; margin:10px 0;}
-  .plan .ph{display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:4px;}
-  .plan .ph h4{margin:0; font-size:15px;}
-  .plan .why{font-size:13.5px; color:var(--ink2); margin:0;}
-  .plan .why b{color:var(--ink);}
-  .note{background:#f4f7fb; border-left:3px solid var(--accent); padding:11px 15px; border-radius:0 6px 6px 0; font-size:13.5px; color:var(--ink2); margin-top:12px;}
-  .src{background:var(--quote-bg); border-left:3px solid var(--quote-line); border-radius:0 6px 6px 0;
-    padding:9px 13px; margin:7px 0; font-size:13px; color:#33404f; white-space:pre-wrap;
-    font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace; line-height:1.6;}
-  .lbl{font-size:12px; font-weight:700; letter-spacing:.03em; display:block; margin-bottom:2px;}
-  .qa{border:1px solid var(--ask-line); background:var(--ask-bg); border-radius:9px; padding:15px 17px; margin:14px 0;}
-  .qa .q{font-weight:700; color:var(--ask); margin:0 0 6px; font-size:15px;}
-  .qa .lbl{color:var(--ask);}
-  .qa .why{font-size:14px; margin:8px 0 2px;}
-  .ask-line{margin-top:9px; padding:9px 12px; background:#fff; border:1px dashed var(--ask-line); border-radius:6px; font-size:14px;}
-  .ask-line .lbl{color:var(--ask);}
-  .bugs{background:var(--bug-bg); border:1px solid var(--bug-line);}
-  .bug{border-top:1px dashed var(--bug-line); padding:14px 0 4px;}
-  .bug:first-of-type{border-top:0;}
-  .bug .t{font-weight:700; color:var(--bug); font-size:15px; margin:0 0 6px;}
-  .bug .src{border-left-color:#d98a80;}
-  .bug .why{font-size:14px; color:var(--ink2); margin:7px 0 2px;}
-  .bug .ask-line{border-color:var(--bug-line);}
-  .bug .ask-line .lbl{color:var(--bug);}
-  .foot{color:var(--muted); font-size:12px; text-align:center; margin-top:26px;}
-  @media(max-width:640px){ .grid2{grid-template-columns:1fr;} header{padding:28px 22px 22px;} }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Segoe UI","PingFang TC","Microsoft JhengHei",system-ui,-apple-system,sans-serif;
+    line-height:1.88;font-size:15.5px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:940px;margin:0 auto;padding:0 22px 80px;}
+
+  header.doc{background:var(--hd);margin:0 -22px 22px;padding:34px 40px 24px;border-bottom:4px solid var(--hd-line);}
+  .skillsig{color:#7f9bbd;font-size:12px;font-weight:600;letter-spacing:.4px;margin:-10px 0 14px;}
+  header.doc h1{margin:0 0 18px;color:#fff;font-size:24px;font-weight:700;line-height:1.5;}
+  .metaline{border-top:1px solid rgba(255,255,255,.16);padding-top:14px;
+    display:flex;flex-wrap:wrap;gap:7px 34px;font-size:12.5px;line-height:1.9;}
+  .metaline .i{white-space:nowrap;}
+  .metaline .k{color:var(--hd-k);font-weight:600;}
+  .metaline .v{color:var(--hd-v);margin-left:7px;}
+
+  .bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+  .chip{font-size:12.5px;font-weight:600;padding:5px 13px;border-radius:20px;}
+  .ch-ok{background:#e8f4ee;color:#2c7255;}
+  .ch-pend{background:#fbf1e1;color:#946318;}
+  .ch-fix{background:#fbeae7;color:#a8564a;}
+  nav.toc{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 2px;}
+  nav.toc a{font-size:12.5px;font-weight:600;text-decoration:none;color:var(--ink2);background:#fff;
+    border:1px solid var(--hair);border-radius:20px;padding:5px 14px;display:inline-flex;align-items:center;gap:8px;}
+  nav.toc a:hover{background:#fbfcfe;border-color:#d8dfe8;}
+  nav.toc a .d{width:8px;height:8px;border-radius:50%;flex:none;}
+
+  section{background:#fff;border:1px solid var(--hair);border-radius:12px;margin-top:16px;overflow:hidden;scroll-margin-top:14px;}
+  .sechead{display:flex;align-items:center;gap:11px;padding:13px 24px;border-bottom:1px solid var(--hair);}
+  .sechead .n{font-size:13px;font-weight:700;width:27px;height:27px;border-radius:8px;color:#fff;
+    display:inline-flex;align-items:center;justify-content:center;flex:none;}
+  .sechead h2{margin:0;font-size:17px;font-weight:700;line-height:1.45;}
+  .s-purpose .sechead{background:#f2f0fa;} .s-purpose .sechead .n{background:var(--c-purpose);}
+  .s-scope   .sechead{background:#ecf6f5;} .s-scope   .sechead .n{background:var(--c-scope);}
+  .s-goal    .sechead{background:#edf7f2;} .s-goal    .sechead .n{background:var(--c-goal);}
+  .s-plan    .sechead{background:#eef4fc;} .s-plan    .sechead .n{background:var(--c-plan);}
+  .s-pend    .sechead{background:#fbf4e9;} .s-pend    .sechead .n{background:var(--c-pend);}
+  .s-fix     .sechead{background:#fbefec;} .s-fix     .sechead .n{background:var(--c-fix);}
+  .secbody{padding:18px 24px 22px;}
+  .sec-hint{font-size:13px;color:var(--ink2);margin:0 0 14px;line-height:1.95;}
+
+  p{margin:8px 0;} ul{margin:8px 0;padding-left:20px;} li{margin:6px 0;}
+  code{font-family:"SFMono-Regular",Consolas,monospace;background:none;padding:0;
+    font-size:13.5px;color:#3a5b8c;font-weight:600;}
+  .lead{font-size:15.5px;line-height:1.95;margin-top:0;}
+  .chk{background:#fdf0cf;border-radius:4px;padding:1px 5px;font-weight:600;color:#5c4410;}
+
+  .tg{display:inline-flex;align-items:center;padding:3px 11px;border-radius:20px;
+    font-size:11.5px;font-weight:700;white-space:nowrap;line-height:1.65;}
+  .tg-new{background:#fbe8d2;color:#8f5312;} .tg-old{background:#eceef2;color:#586373;}
+  .tg-ok{background:#e0f0e6;color:#1f6b45;}  .tg-sup{background:#ece7f8;color:#5a4a9a;}
+  .tg-in{background:#e0f0ee;color:#166a60;}  .tg-out{background:#eef1f2;color:#4d6c69;}
+  .tg-ref{background:#f3f5f8;color:#5f6b7d;font-weight:600;}
+
+  .pri{display:inline-flex;align-items:center;gap:6px;padding:3px 12px;border-radius:20px;
+    font-size:11.5px;font-weight:700;white-space:nowrap;line-height:1.65;}
+  .pri::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;flex:none;}
+  .pri.p0{background:#fbe6e2;color:#a8352a;}
+  .pri.p1{background:#fbf0dc;color:#8a5a12;}
+  .pri.p2{background:#eef1f5;color:#5a6675;}
+
+  .idx{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;padding:0 7px;
+    border-radius:8px;font-size:13px;font-weight:700;flex:none;background:#eef1f5;color:#4a5666;}
+  .tagwrap{margin-left:auto;display:flex;gap:7px;flex-wrap:wrap;align-items:center;}
+
+  .goals{display:grid;grid-template-columns:repeat(auto-fill,minmax(288px,1fr));gap:12px;}
+  .goal{border:1px solid var(--hair);border-radius:11px;padding:15px 17px;background:#fff;}
+  .goal .gh{display:flex;align-items:center;gap:9px;margin-bottom:7px;}
+  .goal .gnum{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;
+    border-radius:7px;background:#e3f2ea;color:#2c7255;font-size:12.5px;font-weight:700;flex:none;}
+  .goal .gtitle{font-weight:700;font-size:14.5px;line-height:1.55;}
+  .goal .gwhat{font-size:14px;color:var(--ink2);line-height:1.85;}
+  .goal .gpass{font-size:14px;color:var(--ink2);line-height:1.85;margin-top:5px;}
+  .goal .gpass b{color:#2c7255;}
+  .goal .gpath{font-size:12.5px;color:var(--sub);margin-top:11px;background:#f6f8fb;border-radius:7px;
+    padding:8px 12px;line-height:1.75;}
+  .goal .gpath b{color:var(--ink2);}
+
+  .scope{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .sbox{border:1px solid var(--hair);border-radius:11px;background:#fff;overflow:hidden;padding-bottom:14px;}
+  .sbox .sh{display:flex;align-items:center;gap:9px;padding:11px 17px;font-weight:700;font-size:14px;}
+  .sbox.in .sh{background:#e2f0ee;color:#15645c;} .sbox.out .sh{background:#eff2f4;color:#4d6c69;}
+  .sbox .sh .mk{width:22px;height:22px;border-radius:7px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;}
+  .sbox.in .sh .mk{background:#c9e5e1;} .sbox.out .sh .mk{background:#dfe4e8;}
+  .sbox ul{margin:12px 0 0;padding-left:34px;font-size:14px;color:var(--ink2);}
+  .sbox li{line-height:1.85;}
+  .sbox.in li::marker{color:#57a49c;} .sbox.out li::marker{color:#9aa8b4;}
+
+  .plan{border:1px solid var(--hair);border-radius:11px;padding:15px 18px;margin:11px 0;background:#fff;}
+  .plan:first-of-type{margin-top:0;}
+  .plan .ph{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin-bottom:6px;}
+  .plan .ph h4{margin:0;font-size:15px;font-weight:700;}
+  .plan .why{font-size:14px;color:var(--ink2);margin:0;line-height:1.88;} .plan .why b{color:var(--ink);}
+
+  .pbox{border:1px solid var(--hair);border-left:6px solid;border-radius:11px;padding:16px 19px;margin:12px 0;background:#fff;}
+  .pbox.p0{border-left-color:var(--pri0);} .pbox.p0 .idx{background:#fbe6e2;color:#a8352a;}
+  .pbox.p1{border-left-color:var(--pri1);} .pbox.p1 .idx{background:#fbf0dc;color:#8a5a12;}
+  .pbox.p2{border-left-color:var(--pri2);} .pbox.p2 .idx{background:#eef1f5;color:#5a6675;}
+  .pbox .ph{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin-bottom:8px;}
+  .pbox .ptitle{font-weight:700;font-size:15px;line-height:1.55;}
+  .pbox .gap-txt{font-size:14px;margin:4px 0 10px;color:var(--ink2);line-height:1.88;}
+
+  /* 衝突點：直接放在標題下方 */
+  .conflict{background:#fbeae7;border-radius:9px;padding:11px 15px;margin:2px 0 10px;
+    font-size:14.5px;line-height:1.85;color:#4a2c27;}
+  .conflict::before{content:"⚖ 需裁決的衝突點";display:block;font-size:11.5px;color:#a8564a;
+    font-weight:700;margin-bottom:4px;letter-spacing:.4px;}
+
+  /* FSD 原文：Accordion、小字、緊湊、無分隔線 */
+  details.fsd{border:1px solid var(--hair);border-radius:8px;background:#f7f9fc;margin:8px 0;overflow:hidden;}
+  details.fsd summary{list-style:none;cursor:pointer;padding:7px 13px;font-size:12px;font-weight:700;
+    color:#5f6b7d;display:flex;align-items:center;gap:8px;letter-spacing:.3px;}
+  details.fsd summary::-webkit-details-marker{display:none;}
+  details.fsd summary::after{content:"▾";margin-left:auto;font-size:11px;color:var(--sub);transition:.2s;}
+  details.fsd[open] summary::after{transform:rotate(180deg);}
+  details.fsd summary:hover{background:#f2f5f9;}
+  details.fsd .fb{padding:2px 13px 10px;font-size:12.5px;color:#4d5a6b;line-height:1.62;}
+  details.fsd .qh{font-weight:700;color:#3f4b5c;margin:6px 0 2px;}
+  details.fsd .fb .qh:first-child{margin-top:0;}
+  details.fsd .q{white-space:pre-wrap;margin:1px 0;padding-left:11px;}
+  details.fsd code{font-size:12.5px;font-weight:600;}
+
+  .suggest{background:#e9f4ee;border-radius:10px;padding:11px 15px;font-size:14px;line-height:1.9;margin-top:9px;color:#27503f;}
+  .suggest::before{content:"🔧 建議修正";display:block;font-size:11.5px;color:#2c7255;font-weight:700;margin-bottom:4px;letter-spacing:.4px;}
+  .ask{background:#fbf3e2;border-radius:10px;padding:12px 15px;font-size:14.5px;line-height:1.9;margin-top:9px;color:#4a3a1c;}
+  .ask::before{content:"📋 要問 PM 的";display:block;font-size:11.5px;color:#946318;font-weight:700;margin-bottom:5px;letter-spacing:.4px;}
+  .impact{font-size:13px;color:var(--sub);margin-top:10px;line-height:1.8;}
+  .impact b{color:var(--ink2);}
+  .note{background:#eaf1fb;border-radius:11px;padding:13px 16px;font-size:13.5px;color:var(--ink2);margin-top:14px;line-height:1.88;}
+  .note b{color:var(--ink);}
+
+  /* 一般 Accordion（定義／準則） */
+  details.acc{border:1px solid var(--hair);border-radius:10px;background:#fff;margin-bottom:9px;overflow:hidden;}
+  details.acc > summary{list-style:none;cursor:pointer;padding:11px 16px;display:flex;align-items:center;gap:10px;
+    font-size:13.5px;font-weight:700;color:var(--ink);background:#f7f9fc;}
+  details.acc > summary::-webkit-details-marker{display:none;}
+  details.acc > summary::after{content:"▾";margin-left:auto;color:var(--sub);font-size:12px;transition:.2s;}
+  details.acc[open] > summary::after{transform:rotate(180deg);}
+  details.acc > summary:hover{background:#f2f5f9;}
+  details.acc .ab{padding:12px 16px 14px;font-size:13.5px;color:var(--ink2);line-height:1.88;}
+  details.acc .ab .drow{padding:6px 0;} .details-sep{border-top:1px solid #eef1f5;}
+  details.acc .ab .drow + .drow{border-top:1px solid #eef1f5;}
+  details.acc .ab b{color:var(--ink);}
+  details.acc .vs{margin-top:9px;padding-top:9px;border-top:1px solid #eef1f5;font-size:13px;color:var(--sub);line-height:1.8;}
+  details.lv{border:1px solid var(--hair);border-radius:9px;background:#fff;margin:7px 0;overflow:hidden;}
+  details.lv summary{list-style:none;cursor:pointer;padding:9px 14px;display:flex;align-items:center;gap:10px;
+    font-size:13.5px;font-weight:600;color:var(--ink2);}
+  details.lv summary::-webkit-details-marker{display:none;}
+  details.lv summary::after{content:"▾";margin-left:auto;color:var(--sub);font-size:12px;transition:.2s;}
+  details.lv[open] summary::after{transform:rotate(180deg);}
+  details.lv summary:hover{background:#fafbfd;}
+  details.lv .ac{padding:0 14px 12px;font-size:13.5px;color:var(--ink2);line-height:1.88;}
+  details.lv .ac ul{margin:4px 0 0;padding-left:19px;} details.lv .ac li{margin:4px 0;}
+  .tiebreak{font-size:12.5px;color:var(--sub);line-height:1.8;margin:9px 0 0;}
+
+  .gen{color:#9aa5b3;}
+  .foot{font-size:12.5px;color:var(--sub);text-align:center;margin-top:26px;line-height:1.95;}
+  .top{display:block;text-align:center;margin-top:12px;font-size:12.5px;color:var(--sub);text-decoration:none;}
+
+  @media (max-width:640px){
+    body{font-size:15px;} .wrap{padding:0 14px 60px;}
+    header.doc{margin:0 -14px 18px;padding:26px 20px 20px;} header.doc h1{font-size:19px;}
+    .metaline{gap:4px 20px;} .sechead{padding:12px 16px;} .secbody{padding:15px 16px 18px;}
+    .goals{grid-template-columns:1fr;} .scope{grid-template-columns:1fr;} .tagwrap{margin-left:0;width:100%;}
+  }
+  @media print{ body{background:#fff;} nav.toc,.top{display:none;}
+    section,.pbox,.goal,.plan,.sbox{break-inside:avoid;}
+    details{display:block;} details .ab,details .ac,details .fb{display:block;}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact;} }
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="wrap" id="top">
 
-<!-- HEADER：標題＝來源文件標題；meta 只放產生時間＋文件版號（依來源類型取得），不放其他 -->
-<header>
-  <h1><<來源文件標題（Confluence 頁面標題或檔名）>></h1>
-  <div class="meta"><b>產生時間：</b><<YYYY/MM/DD>>　｜　<b>文件版號：</b><<來源版本（Confluence 版本或文件自身版本）>>（最後更新：<<時間>>）</div>
+<!-- ============ Header：深色橫幅；標題＝來源文件標題；四項分別列出 ============ -->
+<header class="doc">
+  <h1>{{來源文件標題}}</h1>
+  <div class="skillsig">AOCCQA-fsd-parser v1.3.2</div>
+  <div class="metaline">
+    <span class="i"><span class="k">抓取資料時間：</span><span class="v">{{YYYY/MM/DD}}</span></span>
+    <span class="i"><span class="k">文件版號：</span><span class="v">{{文件自身版號（Confluence vNN）}}</span></span>
+    <span class="i"><span class="k">最後更新時間：</span><span class="v">{{YYYY/MM/DD HH:MM +08:00}}</span></span>
+    <span class="i"><span class="k">文件編輯者：</span><span class="v">{{最後編輯者}}</span></span>
+  </div>
 </header>
 
-<!-- 1 測試目的 -->
-<section>
-  <div class="eyebrow"><span class="n">1</span><h2>測試目的</h2></div>
-  <p class="lead"><<1–2 句：要驗證的功能與前台/後台/DB/Log 一致性；固定名詞保留原文>></p>
-</section>
+<div class="bar">
+  <span class="chip ch-ok">✓ 文件狀態 {{Reviewed/Draft}}</span>
+  <span class="chip ch-pend">⚠ 規格缺漏 {{N}} 項（阻擋設計 {{n}}）</span>
+  <span class="chip ch-fix">✎ 規格衝突 {{N}} 項（阻擋設計 {{n}}）</span>
+</div>
+<nav class="toc">
+  <a href="#s1"><span class="d" style="background:var(--c-purpose)"></span>1 測試目的</a>
+  <a href="#s2"><span class="d" style="background:var(--c-scope)"></span>2 測試範圍</a>
+  <a href="#s3"><span class="d" style="background:var(--c-goal)"></span>3 測試目標</a>
+  <a href="#s4"><span class="d" style="background:var(--c-plan)"></span>4 測試規劃</a>
+  <a href="#s5"><span class="d" style="background:var(--c-pend)"></span>5 規格缺漏</a>
+  <a href="#s6"><span class="d" style="background:var(--c-fix)"></span>6 規格衝突</a>
+</nav>
 
-<!-- 2 測試目標：每項 .goal；新增功能加 <span class="tag new">新增</span>，既有不加；附驗證路徑 -->
-<section>
-  <div class="eyebrow"><span class="n">2</span><h2>測試目標</h2></div>
-  <p class="lead">標籤說明：<span class="tag new">新增</span> 為本次新增功能；未標示者為既有機制。每項附驗證頁面／路徑。</p>
-  <div class="goal">
-    <div class="tags"><span class="tag new">新增</span><span class="tag cat"><<功能名>></span></div>
-    <p class="txt"><<目標描述>></p>
-    <p class="path"><b>驗證路徑：</b><<明確路徑>></p>
+<!-- ============ 1 測試目的 ============ -->
+<section class="s-purpose" id="s1">
+  <div class="sechead"><span class="n">1</span><h2>測試目的</h2></div>
+  <div class="secbody">
+    <p class="lead">{{1–2 句：要驗證的功能與一致性重點；可用 <span class="chk">黃底</span> 標一處核心驗證重點}}</p>
+    <p>{{背景一句：為何要做、由哪個設定控制、Scope}}</p>
   </div>
 </section>
 
-<!-- 3 測試範圍 -->
-<section>
-  <div class="eyebrow"><span class="n">3</span><h2>測試範圍</h2></div>
-  <div class="grid2">
-    <div class="box in"><h4>✔ 包含</h4><ul><li><<...>></li></ul></div>
-    <div class="box out"><h4>✘ 不包含</h4><ul>
-      <li>程式內部實作（寫法、SQL、scheduler lock、效能最佳化）</li>
-      <li>與本次無關的效能／安全／自動化測試</li>
-      <li><<非本次調整的既有流程本身>></li>
-    </ul></div>
+<!-- ============ 2 測試範圍 ============ -->
+<section class="s-scope" id="s2">
+  <div class="sechead"><span class="n">2</span><h2>測試範圍</h2></div>
+  <div class="secbody">
+    <p class="sec-hint">標示：<span class="tg tg-in">包含</span> ＝ 本次需驗證；<span class="tg tg-out">不包含</span> ＝ 本次不驗證。</p>
+    <div class="scope">
+      <div class="sbox in">
+        <div class="sh"><span class="mk">✔</span>包含（本次驗證）</div>
+        <ul><li>{{逐條，用 <code>原文名詞</code>}}</li></ul>
+      </div>
+      <div class="sbox out">
+        <div class="sh"><span class="mk">✘</span>不包含（本次不驗證）</div>
+        <ul><li>{{程式內部實作／無關效能安全／Scope 外站台／既有他案計算／外部 API 內部實作／無排程}}</li></ul>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- 4 測試規劃：依功能分類，每功能一個 .plan，含標籤與一句需測原因 -->
-<section>
-  <div class="eyebrow"><span class="n">4</span><h2>測試規劃（依功能分類）</h2></div>
-  <div class="plan">
-    <div class="ph"><span class="tag new">新增</span><h4><<功能名>></h4><span class="tag sup">需協助備料</span></div>
-    <p class="why"><b>需測原因：</b><<簡短一句>></p>
-  </div>
-  <div class="note"><b>時機提醒：</b><<排程時機／清除觸發點等，若適用>></div>
-</section>
-
-<!-- 5 待釐清：標籤 → 原文段落 → 看不懂的點 → 可複製的「需 PM 釐清」一句 -->
-<section>
-  <div class="eyebrow"><span class="n">5</span><h2>待釐清（附原文段落，供雙方對照）</h2></div>
-  <div class="qa">
-    <div class="tags"><span class="tag cat"><<主題>></span><span class="tag pm">PM</span></div>
-    <p class="q">問N｜<<白話問題標題>></p>
-    <span class="lbl">原文段落</span>
-    <div class="src"><<逐字擷取的規格原文；固定名詞保留原樣>></div>
-    <p class="why"><<哪裡沒寫清楚、為何影響測試判定>></p>
-    <div class="ask-line"><span class="lbl">需 PM 釐清：</span><<可直接複製、對方一看就懂的問題句>></div>
+<!-- ============ 3 測試目標：每卡三段式＋驗證路徑 ============ -->
+<section class="s-goal" id="s3">
+  <div class="sechead"><span class="n">3</span><h2>測試目標</h2></div>
+  <div class="secbody">
+    <p class="sec-hint">給測試工程師：這次要打到下面幾個點，每個都寫了「通過長怎樣」與驗證路徑。<span class="chk">黃底</span>＝依測試驗證需要<b>加強驗證</b>的重點。驗證路徑僅在 FSD 明文寫出時照錄，其餘依章節結構定位並註明，不臆造。</p>
+    <div class="goals">
+      <div class="goal">
+        <div class="gh"><span class="gnum">1</span><span class="gtitle">{{功能點名稱}}</span>
+          <span class="tagwrap"><span class="tg tg-ref">見缺漏 {{N}}</span></span></div>
+        <div class="gwhat">{{要驗證什麼，一句白話}}</div>
+        <div class="gpass"><b>通過：</b>{{通過長怎樣；<span class="chk">加強驗證處上黃底</span>}}</div>
+        <div class="gpath"><b>驗證路徑（FSD {{章節}} 明文）：</b><code>{{原文路徑}}</code></div>
+      </div>
+      <!-- 未寫路徑者：<div class="gpath"><b>驗證路徑：</b>{{定位描述}}（FSD 未給路徑，依 {{章節}} 定位）</div> -->
+    </div>
   </div>
 </section>
 
-<!-- 6 邏輯不對之處：永遠最後；附雙方原文，指出打架處，給可複製的「需 PM 確認」一句 -->
-<section class="bugs">
-  <div class="eyebrow"><span class="n">6</span><h2>邏輯不對之處（規格前後打架，附原文，建議先修正）</h2></div>
-  <div class="bug">
-    <div class="tags"><span class="tag cat"><<主題>></span><span class="tag pm">PM</span><span class="tag rd">RD</span></div>
-    <p class="t">錯N｜<<矛盾標題>></p>
-    <span class="lbl">原文段落</span>
-    <div class="src"><<A 說法原文>>
-<<B 說法原文>></div>
-    <p class="why"><<兩者如何互斥、造成什麼判定歧異>></p>
-    <div class="ask-line"><span class="lbl">需 PM 確認：</span><<可直接複製的確認句>></div>
+<!-- ============ 4 測試規劃：標籤置右上、與藍色標頭對比 ============ -->
+<section class="s-plan" id="s4">
+  <div class="sechead"><span class="n">4</span><h2>測試規劃（依功能分類）</h2></div>
+  <div class="secbody">
+    <p class="sec-hint">依功能模組列出要涵蓋的面向與所需協助，作為後續展開 Test Case 的骨架；此處不寫個別案例。標籤置於各卡右上角。</p>
+    <div class="plan">
+      <div class="ph"><span class="idx">1</span><h4>{{功能模組}}</h4>
+        <span class="tagwrap"><span class="tg tg-new">新增</span><span class="tg tg-old">既有</span><span class="tg tg-ok">可直接測</span><span class="tg tg-sup">需協助備料</span></span></div>
+      <p class="why"><b>要涵蓋：</b>{{狀態／資料／整合面向}}<b>需協助：</b>{{備料需求；無則省略}}</p>
+    </div>
+    <div class="note"><b>資料來源限制：</b>{{截圖未機讀、孤立附件已忽略等}}；<span class="chk">{{須回原頁逐字核對的項目}}</span>。</div>
   </div>
 </section>
 
-<p class="foot">依來源文件最終版本整理：刪除線/修訂標記已判讀、inline 註解已納入；頁面一般 comment 未採用為規格。</p>
+<!-- ============ 5 規格缺漏：文件沒寫 → 請 PM 補寫 ============ -->
+<section class="s-pend" id="s5">
+  <div class="sechead"><span class="n">5</span><h2>規格缺漏（文件沒寫，需 PM 補寫）</h2></div>
+  <div class="secbody">
+
+    <details class="acc">
+      <summary>這一段收什麼？—「規格沒寫」的缺口</summary>
+      <div class="ab">
+        <div class="drow"><b>認定條件（符合任一即列入本段）：</b>① 規格<b>完全沒提</b>這個情境或數值；② 有提到但<b>沒定義判準</b>；③ 引用了某個項目，但<b>該項目在文件中找不到</b>；④ 只寫了正常情況，<b>例外／邊界沒交代</b>。</div>
+        <div class="drow"><b>處理方式：</b>PM <b>補寫</b>缺漏的說明即可，原有敘述不必更動。</div>
+        <div class="vs"><b>與第 6 段「規格衝突」的差別：</b>本段是「<b>沒寫</b>」— 文件裡找不到答案，補上就好；第 6 段是「<b>寫了但打架</b>」— 兩處講法互相矛盾，必須改掉其中一邊。問法不同：本段「請補充」，第 6 段「請裁決哪個為準」。</div>
+      </div>
+    </details>
+
+    <details class="acc">
+      <summary>影響度判定準則（符合任一條即歸入該層級，由高往低判）</summary>
+      <div class="ab">
+        <details class="lv">
+          <summary><span class="pri p0">高優先權｜阻擋設計</span>沒答案就寫不出測試案例</summary>
+          <div class="ac"><ul>
+            <li>不知道答案就<b>寫不出「預期結果」</b>，測項無法設計或執行。</li>
+            <li>會動到<b>已上線的功能</b>，弄錯可能讓原本正常的功能壞掉。</li>
+            <li>牽涉<b>金額怎麼算、能折多少、擋不擋得住</b>，做錯會算錯錢或讓使用者看到錯的數字。</li>
+            <li>規格<b>兩個地方講法相反</b>，而且沒說要聽哪一邊。</li>
+          </ul></div>
+        </details>
+        <details class="lv">
+          <summary><span class="pri p1">次優先｜影響精度</span>可以先猜著做，但猜錯要重工</summary>
+          <div class="ac"><ul>
+            <li>可以<b>先用一個合理的假設</b>寫下去，但假設錯了這批案例要重寫。</li>
+            <li>影響的是<b>邊界數值或提示文字</b>，主要流程照樣測得下去。</li>
+            <li>屬於<b>比較少人走到的路徑</b>或次要情境。</li>
+          </ul></div>
+        </details>
+        <details class="lv">
+          <summary><span class="pri p2">可稍後｜不影響判定</span>不會影響過不過，之後再問就好</summary>
+          <div class="ac"><ul>
+            <li>答案是什麼都<b>不會改變測試的過或不過</b>，只影響文件好不好讀、名詞一不一致。</li>
+            <li>可以<b>邊測邊問</b>，不會卡住案例設計。</li>
+          </ul></div>
+        </details>
+        <p class="tiebreak"><b>同層級內的排序：</b>會不會影響金額或會員權益 &gt; 使用者多常走到 &gt; 跟本次需求核心多相關 &gt; 影響多少測項。</p>
+      </div>
+    </details>
+
+    <!-- 卡片依 p0 → p1 → p2 排序，序號連號 -->
+    <div class="pbox p0">
+      <div class="ph"><span class="idx">1</span><span class="ptitle">{{缺什麼，用問句或短句}}</span>
+        <span class="tagwrap"><span class="pri p0">高優先權｜阻擋設計</span></span></div>
+      <div class="gap-txt">{{白話說明：文件寫了什麼、沒寫什麼、為何 QA 判不出來}}</div>
+      <details class="fsd"><summary>FSD 原文對照｜{{章節路徑，例：3.2 Checkout Page › 1) 區塊 › [項目]}}</summary>
+        <div class="fb">
+          <div class="qh">{{章節標題路徑}}</div>
+          <div class="q">・{{照錄原文，保留文件自身編號與條列層級}}</div>
+          <div class="q">　- {{次層條列}}</div>
+        </div>
+      </details>
+      <div class="ask">{{可直接複製給 PM 的白話問句，保留所有關鍵條件}}</div>
+      <div class="impact"><b>為什麼是高優先權：</b>{{白話講出卡在哪、會漏測什麼；不要只寫「命中準則①」}}</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6 規格衝突：寫了但打架 → 請 PM 裁決 ============ -->
+<section class="s-fix" id="s6">
+  <div class="sechead"><span class="n">6</span><h2>規格衝突（同一份規格前後打架，需改掉一邊）</h2></div>
+  <div class="secbody">
+
+    <details class="acc">
+      <summary>這一段收什麼？—「規格寫了，但兩處講法互相矛盾」</summary>
+      <div class="ab">
+        <div class="drow"><b>認定條件（符合任一即列入本段）：</b>① 文件兩處對<b>同一件事給出相反結論</b>；② 兩條規則的<b>觸發條件會同時成立</b>，卻各自要求不同結果、且沒說誰優先；③ 同一個東西<b>用了兩種不同名稱</b>；④ 章節編號或交叉引用<b>指到不存在或錯誤的位置</b>。</div>
+        <div class="drow"><b>處理方式：</b>PM 需<b>裁決以哪一邊為準並修改另一邊</b>，不能只用補充說明帶過。</div>
+        <div class="vs"><b>與第 5 段「規格缺漏」的差別：</b>缺漏是文件裡<b>找不到答案</b>（請 PM 補寫）；本段是<b>有兩個答案且互相打架</b>（請 PM 裁決並改掉一個）。規格改好前，相關測項連「該以什麼為正確」都無法定義。</div>
+      </div>
+    </details>
+
+    <div class="pbox p0">
+      <div class="ph"><span class="idx">1</span><span class="ptitle">{{哪兩處打架，一句話帶出}}</span>
+        <span class="tagwrap"><span class="pri p0">高優先權｜阻擋設計</span></span></div>
+      <div class="conflict">{{要 PM 拍板的那句話：以 A 為準還是以 B 為準？後續行為為何？}}</div>
+      <div class="gap-txt">{{白話說明衝突怎麼產生；可用 <span class="chk">黃底</span> 標出同時成立的條件}}</div>
+      <details class="fsd"><summary>FSD 原文對照｜{{兩處章節路徑}}</summary>
+        <div class="fb">
+          <div class="qh">{{章節路徑 A}}</div>
+          <div class="q">・{{原文 A}}</div>
+          <div class="qh">{{章節路徑 B}}</div>
+          <div class="q">・{{原文 B}}</div>
+        </div>
+      </details>
+      <div class="suggest">{{建議怎麼改規格：補優先序／統一名稱／改編號}}</div>
+      <div class="impact"><b>為什麼是高優先權：</b>{{白話}}</div>
+    </div>
+    <!-- 第 6 段不放 .ask，衝突點已取代 -->
+  </div>
+</section>
+
+<p class="foot">{{來源判讀說明：刪除線／修訂標記處理、inline 與 footer 判定、截圖讀取限制}}。本文件為需求分析，非測試案例；規格缺漏與規格衝突確認後即可展開 Test Case。<br><span class="gen">Generated by AOCCQA-fsd-parser v1.3.2</span></p>
+<a class="top" href="#top">↑ 回到頂端</a>
 
 </div>
 </body>

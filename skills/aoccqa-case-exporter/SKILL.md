@@ -1,5 +1,7 @@
 ---
 name: aoccqa-case-exporter
+metadata:
+  version: 1.0.0
 description: >
   共用工具（人工指令觸發、Agent 執行）。把前一個 agent（測試案例產生器）產出的
   測試案例，連同一張 Jira 單，套進 AOCC QA 官方 xlsx 模板並匯出。只整理輸出、
@@ -140,15 +142,7 @@ Summary → 檔名處理步驟:
 
 ## 邊界與回報
 
-**動態欄位一律「抓得到就填、抓不到留空並回報,絕不臆測」。** 執行後腳本輸出兩份清單:
-- `report_captured`:實際填入的欄位、儲存格、值。
-- `report_blank`:留空的欄位與儲存格(需人工補或校正抓取關鍵字)。
-
-動態欄位涵蓋:Project(Summary)、Test date、Test Country(MCC#)、Test Environment、New feature & Release Note(link)、Tester(`AOCCQA_{Assignee}`)、Test Version。回覆使用者時把這兩份清單如實轉述,明講「哪些抓到、哪些沒抓到」。
-
-其他停止/邊界條件:
-- Description 抓不到時程 / 環境 → 該格留空 + 回報,**不**臆測填值。
-- Assignee 缺失 → Tester 留模板預設值 + 回報。
-- 案例 0 筆 → 停止並回報,不產空檔。
-- 案例 > 200 筆 → 停止並回報(模板公式範圍上限)。
-- 模板檔缺失 → 停止並回報,不自建替代模板。
+- Description 抓不到時程或環境 → 該格留白 + 明確告知。
+- 案例 0 筆 → 停止並回報，不產空檔。
+- 案例 > 200 筆 → 停止並回報（模板公式範圍上限）。
+- 模板檔缺失 → 停止並回報，不自建替代模板。

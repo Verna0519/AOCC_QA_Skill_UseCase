@@ -68,41 +68,28 @@ def clean_summary_to_filename(summary: str, today: str) -> str:
 
 
 def write_report(ws, jira: dict):
-    """
-    Fill Report input cells from Jira. Dynamic fields are filled only when a
-    non-empty value is supplied; missing ones are left blank (never guessed).
-    Returns a capture report listing captured vs blank for each dynamic field.
-    """
-    # dynamic Jira-sourced fields: key -> (cell, human label)
-    dynamic = {
-        "summary":          (REPORT_CELLS["summary"],          "Project (Summary)"),
-        "test_date":        (REPORT_CELLS["test_date"],        "Test date"),
-        "link":             (REPORT_CELLS["link"],             "New feature & Release Note (link)"),
-        "mcc":              (REPORT_CELLS["mcc"],              "Test Country (MCC#)"),
-        "test_environment": (REPORT_CELLS["test_environment"], "Test Environment"),
-        "test_version":     (REPORT_CELLS["test_version"],     "Test Version"),
-    }
+    """Fill Report sheet input cells. Return list of blanks that were skipped."""
+    blanks = []
 
-    captured, blank = [], []
-    for key, (cell, label) in dynamic.items():
-        raw = jira.get(key)
-        val = raw.strip() if isinstance(raw, str) else raw
+    def put(key, value):
+        cell = REPORT_CELLS[key]
+        val = (value or "").strip() if isinstance(value, str) else value
         if val in (None, ""):
-            blank.append({"field": label, "cell": cell})
-        else:
-            ws[cell] = val
-            captured.append({"field": label, "cell": cell, "value": val})
+            blanks.append((key, cell))
+            return
+        ws[cell] = val
 
-    # Tester is derived, not raw: AOCCQA_<Assignee>. Blank assignee -> keep template default.
+    put("summary", jira.get("summary"))          # Project cell <- full Summary (tags kept)
+    put("test_date", jira.get("test_date"))       # expect clean range YYYY/MM/DD-YYYY/MM/DD
+    put("test_version", jira.get("test_version"))
+
     assignee = (jira.get("assignee") or "").strip()
-    tester_cell = REPORT_CELLS["tester"]
-    if assignee:
-        ws[tester_cell] = f"AOCCQA_{assignee}"
-        captured.append({"field": "Tester", "cell": tester_cell, "value": f"AOCCQA_{assignee}"})
-    else:
-        blank.append({"field": "Tester (no Assignee on ticket)", "cell": tester_cell})
+    ws[REPORT_CELLS["tester"]] = f"AOCCQA_{assignee}" if assignee else ws[REPORT_CELLS["tester"]].value
 
-    return captured, blank
+    put("link", jira.get("link"))
+    put("mcc", jira.get("mcc"))
+    put("test_environment", jira.get("test_environment"))
+    return blanks
 
 
 def write_cases(ws, cases: list):
@@ -149,7 +136,7 @@ def main():
     report_ws = wb["Report"]
     case_ws = wb["Test case"]
 
-    captured, blanks = write_report(report_ws, jira)
+    blanks = write_report(report_ws, jira)
     write_cases(case_ws, cases)
     # Bug list / Screenshot untouched by design.
 
@@ -162,8 +149,7 @@ def main():
         "output_path": out_path,
         "filename": fname,
         "case_count": len(cases),
-        "report_captured": captured,
-        "report_blank": blanks,
+        "report_blanks": [{"field": k, "cell": c} for k, c in blanks],
         "sheets_preserved": ["Bug list", "Screenshot"],
         "formulas_touched": False,
     }

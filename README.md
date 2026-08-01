@@ -73,16 +73,16 @@ flowchart TD
 
 | # | Skill | 版本 | Phase | 一句話定位 | 文件 |
 |---|-------|------|-------|-----------|------|
-| 1 | `aoccqa-fsd-parser` | 1.2.0 | A | 把任何規格來源解析成給 PM 看的六段需求分析報告 | [docs](docs/01-aoccqa-fsd-parser.md) |
-| 2 | `aoccqa-rule-loader` | — | A | 把散落的市場規則整理成可追溯的 Rule Context | [docs](docs/02-aoccqa-rule-loader.md) |
-| 3 | `aoccqa-tc-generator` | 1.5.0 | B | 把已確認需求展開成 7 欄 Test Case 初稿 | [docs](docs/03-aoccqa-tc-generator.md) |
-| 4 | `aoccqa-scenario-expander` | — | B | 對照合格 baseline 補強覆蓋缺口 | [docs](docs/04-aoccqa-scenario-expander.md) |
+| 1 | `aoccqa-fsd-parser` | 1.3.2 | A | 把任何規格來源解析成給 PM 看的六段需求分析報告 | [docs](docs/01-aoccqa-fsd-parser.md) |
+| 2 | `aoccqa-rule-loader` | 1.0.0 | A | 把散落的市場規則整理成可追溯的 Rule Context | [docs](docs/02-aoccqa-rule-loader.md) |
+| 3 | `aoccqa-tc-generator` | 1.4.1 | B | 把已確認需求展開成 7 欄 Test Case 初稿 | [docs](docs/03-aoccqa-tc-generator.md) |
+| 4 | `aoccqa-scenario-expander` | 1.0.2 | B | 對照合格 baseline 補強覆蓋缺口 | [docs](docs/04-aoccqa-scenario-expander.md) |
 | 5 | `aoccqa-quality-reviewer` | 20.1.0 | B | 第二人視角獨立重讀原文，雙向查核報告 | [docs](docs/05-aoccqa-quality-reviewer.md) |
-| 6 | `aoccqa-case-exporter` | — | C | 把案例＋Jira 單套官方模板匯出 xlsx | [docs](docs/06-aoccqa-case-exporter.md) |
-| 7 | `aoccqa-knowledge-base` | — | 全程 | 跨功能知識庫（名詞/關係/測試點/歷史單），**不在流程順序內、全程可查** | [docs](docs/07-aoccqa-knowledge-base.md) |
-| 8 | `aoccqa-decision-archiver` | — | D | 把確認出的功能定義與規則沉澱成知識條目（**設計中，尚未建立為 skill**） | [docs](docs/10-aoccqa-decision-archiver.md) |
+| 6 | `aoccqa-case-exporter` | 1.0.0 | C | 把案例＋Jira 單套官方模板匯出 xlsx | [docs](docs/06-aoccqa-case-exporter.md) |
+| 7 | `aoccqa-knowledge-base` | 1.0.0 | 全程 | 跨功能知識庫（名詞/關係/測試點/歷史單），**不在流程順序內、全程可查** | [docs](docs/07-aoccqa-knowledge-base.md) |
+| 8 | `aoccqa-decision-archiver` | 1.2.0 | D | 把確認出的功能定義與規則沉澱成知識條目（**設計中，尚未併入本 repo 備份**） | [docs](docs/10-aoccqa-decision-archiver.md) · [repo](https://github.com/Verna0519/AOCCQA-decision-archiver) |
 
-> 1–6 為走產線主順序的核心 skill；第 7 支 `aoccqa-knowledge-base` 不是流程中的一步，而是全程可查的共用知識庫；第 8 支 `aoccqa-decision-archiver` 為產線最後的獨立步驟，目前為設計定義、尚未建立為 skill。所有 skill 名稱統一為小寫 `aoccqa-*`（即實際呼叫名）。
+> 1–6 為走產線主順序的核心 skill；第 7 支 `aoccqa-knowledge-base` 不是流程中的一步，而是全程可查的共用知識庫；第 8 支 `aoccqa-decision-archiver` 為產線最後的獨立步驟，設計中；已有獨立來源 repo（[AOCCQA-decision-archiver](https://github.com/Verna0519/AOCCQA-decision-archiver)，v1.2.0），但尚未併入本 repo 的原始檔備份區。所有 skill 名稱統一為小寫 `aoccqa-*`（即實際呼叫名）。
 
 ---
 
@@ -121,17 +121,17 @@ flowchart TD
 
 [`skills/`](skills/) 收錄 7 支 skill 的原始 `SKILL.md` 與其 references／scripts／assets，作為版本備份：
 
-| Skill | 版本 | 附帶檔案 |
-|-------|------|---------|
-| `aoccqa-fsd-parser` | 1.2.0 | `references/report-template.html` |
-| `aoccqa-rule-loader` | 未標版本 | `agents/openai.yaml` |
-| `aoccqa-tc-generator` | 1.5.0 | `references/coverage-and-examples.md` |
-| `aoccqa-scenario-expander` | 未標版本 | — |
-| `aoccqa-quality-reviewer-v201` | 20.1.0 | — |
-| `aoccqa-case-exporter` | 未標版本 | `assets/Test_Case_Template_Claude.xlsx`、`scripts/export_test_cases.py` |
-| `aoccqa-knowledge-base` | 未標版本 | `references/` 13 個資料檔（glossary 約 472K 等） |
+| Skill | 版本 | 來源 Repo | 附帶檔案 |
+|-------|------|-----------|---------|
+| `aoccqa-fsd-parser` | 1.3.2 | [AOCCQA-fsd-parser](https://github.com/Verna0519/AOCCQA-fsd-parser) | `references/report-template.html` |
+| `aoccqa-rule-loader` | 1.0.0 | [AOCCQA-Rule-Loader](https://github.com/Verna0519/AOCCQA-Rule-Loader) | `agents/openai.yaml` |
+| `aoccqa-tc-generator` | 1.4.1 | [AOCCQA-tc-generator](https://github.com/Verna0519/AOCCQA-tc-generator/tree/main/aoccqa-tc-generator) | `references/coverage-and-examples.md` |
+| `aoccqa-scenario-expander` | 1.0.2 | [AOCCQA-scenario-expander](https://github.com/Verna0519/AOCCQA-scenario-expander) | `agents/openai.yaml` |
+| `aoccqa-quality-reviewer-v201` | 20.1.0 | [AOCCQA_quality_reviewer](https://github.com/Verna0519/AOCCQA_quality_reviewer) | — |
+| `aoccqa-case-exporter` | 1.0.0 | [AOCCQA_case_exporter](https://github.com/Verna0519/AOCCQA_case_exporter) | `scripts/export_test_cases.py` |
+| `aoccqa-knowledge-base` | 1.0.0 | [AOCCQA_glossary](https://github.com/Verna0519/AOCCQA_glossary/tree/main/skill/aoccqa-knowledge-base) | `references/` 13 個資料檔（glossary 約 472K 等） |
 
-> `aoccqa-fsd-parser` 為雲端 skill，備份內容依當前 v1.2.0 逐字重建；其餘 6 支由本機 skill 目錄原樣複製。
+> 本區 7 支 skill 的原始檔已於 2026-08-01 由各自的**來源 GitHub repo**（見上表「來源 Repo」欄）重新同步，版號一律以來源 repo 的 `SKILL.md`（`metadata.version`）為準（各 repo `main` 最新 commit）。`aoccqa-fsd-parser` 為雲端 skill，依來源 repo v1.3.2 重建；`aoccqa-case-exporter` 以獨立 `AOCCQA_case_exporter` repo（v1.0.0）為準——該 repo 不含 `Test_Case_Template_Claude.xlsx`，故本次同步移除該範本（範本仍可於 `AOCCQA-tc-generator` bundle 內的 `aoccqa-case-exporter/assets/` 取得）；`aoccqa-knowledge-base` 來源為 `AOCCQA_glossary` repo 的 `skill/aoccqa-knowledge-base/`（v1.0.0）。`aoccqa-decision-archiver`（v1.2.0）目前仍設計中，未併入本備份區。
 
 ---
 
