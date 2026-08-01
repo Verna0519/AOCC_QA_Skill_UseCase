@@ -1,6 +1,7 @@
 ---
 name: "aoccqa-scenario-expander"
-version: 1.0.0
+metadata:
+  version: 1.0.2
 description: "Compare confirmed AOCCQA (ASUS EC/Magento) requirements and normalized country/product rules against a QUALIFIED existing Test Case baseline, and draft only evidence-backed supplementary cases, existing-case enhancements, or parameterized Test Data. Foreground state-transition (狀態流轉) and role/identity (身分別) coverage as the primary axes, then check every other applicable dimension. Use when an existing or changed feature already has reviewed/maintained/executed/previous-version Test Cases that need stronger coverage, or to reinforce the gaps of an already-independently-reviewed aoccqa-tc-generator draft. Requires a qualified baseline — with none, return Needs Baseline and route to aoccqa-tc-generator (do not create the first Test Case set). Do not parse raw FSD/PRD/screenshots/Figma/API (route to aoccqa-fsd-parser), do not normalize scattered rules, do not invent behavior, and do not approve delivery (route to aoccqa-quality-reviewer)."
 ---
 

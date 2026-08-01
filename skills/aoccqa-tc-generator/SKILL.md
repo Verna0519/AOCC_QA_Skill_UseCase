@@ -1,6 +1,7 @@
 ---
 name: "aoccqa-tc-generator"
-version: 1.0.0
+metadata:
+  version: 1.0.0
 description: "用於 AOCCQA 測試案例產線 Phase B(案例起草)。當使用者已有「已確認需求」——來自 aoccqa-fsd-parser 的需求分析報告(六段 HTML)、Requirement Matrix、aoccqa-rule-loader 的已確認業務規則(Rule Context)＋允許的假設,或直接貼上的確認清單——並希望據此「規劃覆蓋並產生可執行、可追溯、不重複的測試案例初稿」時,必須使用此 skill。輸出為固定 7 欄的 Test Case Draft (Test Case ID / Category / Feature / Pre-condition / Test Case / Steps / Expected Result),預設為可複製的 Markdown 表格,供下游 aoccqa-quality-reviewer 審查、aoccqa-case-exporter 匯出。只要對話出現「把這份需求變成測試案例」「幫我產測項/測試案例初稿」「規劃測試覆蓋」「這些規則要測哪些 case」「Requirement Matrix 轉 Test Case」「補齊正/負/邊界/狀態流轉覆蓋」等意圖,都應觸發,即使沒說出 \"tc-generator\" 這個字。此 skill 是「案例起草員」:負責產生＋自我標記,Test result 一律留白、不刪除或合併既有案例、不執行測試、不判 Pass/Fail、不做最終核准(皆屬 reviewer/後續階段)。不重新解析原始 FSD/PRD/截圖(屬 Phase A 的 fsd-parser),不臆造未出現於來源的角色、國家、產品型態、系統、重試、刪除、null 或 log 行為。"
 ---
 
