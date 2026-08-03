@@ -143,3 +143,4 @@ flowchart TD
 - [完整產線流程圖說明（文字版）](workflow.md)
 - [專案自訂指示（orchestration）](custom-instructions.md)
 - 各 skill 詳細說明見 [`docs/`](docs/)
+- [環境需求（SETUP）](SETUP.md) — 看文件／執行 skill／跑腳本各需要什麼
