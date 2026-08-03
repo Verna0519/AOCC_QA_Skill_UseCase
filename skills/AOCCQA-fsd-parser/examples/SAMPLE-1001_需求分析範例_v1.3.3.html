@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAMPLE-1001 [DEMO] 購物金最低折抵門檻 — AOCCQA-fsd-parser 輸出格式示範</title>
+<style>
+  :root{
+    --bg:#f5f7fa; --ink:#1e293b; --ink2:#41506a; --sub:#7b8798; --hair:#e9edf3;
+    --hd:#1e2a3c; --hd-line:#2f6fb0; --hd-k:#d6dee8; --hd-v:#8fb6dd;
+    --c-purpose:#7169b8; --c-scope:#3f9490; --c-goal:#3f9b76;
+    --c-plan:#5385cf;    --c-pend:#c08a3e; --c-fix:#c9705f;
+    --pri0:#c0392b; --pri1:#c8891f; --pri2:#9aa5b3;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Segoe UI","PingFang TC","Microsoft JhengHei",system-ui,-apple-system,sans-serif;
+    line-height:1.88;font-size:15.5px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:940px;margin:0 auto;padding:0 22px 80px;}
+
+  header.doc{background:var(--hd);margin:0 -22px 22px;padding:34px 40px 24px;border-bottom:4px solid var(--hd-line);}
+  .skillsig{color:#7f9bbd;font-size:12px;font-weight:600;letter-spacing:.4px;margin:-10px 0 14px;}
+  header.doc h1{margin:0 0 18px;color:#fff;font-size:24px;font-weight:700;line-height:1.5;}
+  .metaline{border-top:1px solid rgba(255,255,255,.16);padding-top:14px;
+    display:flex;flex-wrap:wrap;gap:7px 34px;font-size:12.5px;line-height:1.9;}
+  .metaline .i{white-space:nowrap;}
+  .metaline .k{color:var(--hd-k);font-weight:600;}
+  .metaline .v{color:var(--hd-v);margin-left:7px;}
+
+  .bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+  .chip{font-size:12.5px;font-weight:600;padding:5px 13px;border-radius:20px;}
+  .ch-ok{background:#e8f4ee;color:#2c7255;}
+  .ch-pend{background:#fbf1e1;color:#946318;}
+  .ch-fix{background:#fbeae7;color:#a8564a;}
+  nav.toc{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 2px;}
+  nav.toc a{font-size:12.5px;font-weight:600;text-decoration:none;color:var(--ink2);background:#fff;
+    border:1px solid var(--hair);border-radius:20px;padding:5px 14px;display:inline-flex;align-items:center;gap:8px;}
+  nav.toc a:hover{background:#fbfcfe;border-color:#d8dfe8;}
+  nav.toc a .d{width:8px;height:8px;border-radius:50%;flex:none;}
+
+  section{background:#fff;border:1px solid var(--hair);border-radius:12px;margin-top:16px;overflow:hidden;scroll-margin-top:14px;}
+  .sechead{display:flex;align-items:center;gap:11px;padding:13px 24px;border-bottom:1px solid var(--hair);}
+  .sechead .n{font-size:13px;font-weight:700;width:27px;height:27px;border-radius:8px;color:#fff;
+    display:inline-flex;align-items:center;justify-content:center;flex:none;}
+  .sechead h2{margin:0;font-size:17px;font-weight:700;line-height:1.45;}
+  .s-purpose .sechead{background:#f2f0fa;} .s-purpose .sechead .n{background:var(--c-purpose);}
+  .s-scope   .sechead{background:#ecf6f5;} .s-scope   .sechead .n{background:var(--c-scope);}
+  .s-goal    .sechead{background:#edf7f2;} .s-goal    .sechead .n{background:var(--c-goal);}
+  .s-plan    .sechead{background:#eef4fc;} .s-plan    .sechead .n{background:var(--c-plan);}
+  .s-pend    .sechead{background:#fbf4e9;} .s-pend    .sechead .n{background:var(--c-pend);}
+  .s-fix     .sechead{background:#fbefec;} .s-fix     .sechead .n{background:var(--c-fix);}
+  .secbody{padding:18px 24px 22px;}
+  .sec-hint{font-size:13px;color:var(--ink2);margin:0 0 14px;line-height:1.95;}
+
+  p{margin:8px 0;} ul{margin:8px 0;padding-left:20px;} li{margin:6px 0;}
+  code{font-family:"SFMono-Regular",Consolas,monospace;background:none;padding:0;
+    font-size:13.5px;color:#3a5b8c;font-weight:600;}
+  .lead{font-size:15.5px;line-height:1.95;margin-top:0;}
+  .chk{background:#fdf0cf;border-radius:4px;padding:1px 5px;font-weight:600;color:#5c4410;}
+
+  .tg{display:inline-flex;align-items:center;padding:3px 11px;border-radius:20px;
+    font-size:11.5px;font-weight:700;white-space:nowrap;line-height:1.65;}
+  .tg-new{background:#fbe8d2;color:#8f5312;} .tg-old{background:#eceef2;color:#586373;}
+  .tg-ok{background:#e0f0e6;color:#1f6b45;}  .tg-sup{background:#ece7f8;color:#5a4a9a;}
+  .tg-in{background:#e0f0ee;color:#166a60;}  .tg-out{background:#eef1f2;color:#4d6c69;}
+  .tg-ref{background:#f3f5f8;color:#5f6b7d;font-weight:600;}
+
+  .pri{display:inline-flex;align-items:center;gap:6px;padding:3px 12px;border-radius:20px;
+    font-size:11.5px;font-weight:700;white-space:nowrap;line-height:1.65;}
+  .pri::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;flex:none;}
+  .pri.p0{background:#fbe6e2;color:#a8352a;}
+  .pri.p1{background:#fbf0dc;color:#8a5a12;}
+  .pri.p2{background:#eef1f5;color:#5a6675;}
+
+  .idx{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;padding:0 7px;
+    border-radius:8px;font-size:13px;font-weight:700;flex:none;background:#eef1f5;color:#4a5666;}
+  .tagwrap{margin-left:auto;display:flex;gap:7px;flex-wrap:wrap;align-items:center;}
+
+  .goals{display:grid;grid-template-columns:repeat(auto-fill,minmax(288px,1fr));gap:12px;}
+  .goal{border:1px solid var(--hair);border-radius:11px;padding:15px 17px;background:#fff;}
+  .goal .gh{display:flex;align-items:center;gap:9px;margin-bottom:7px;}
+  .goal .gnum{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;
+    border-radius:7px;background:#e3f2ea;color:#2c7255;font-size:12.5px;font-weight:700;flex:none;}
+  .goal .gtitle{font-weight:700;font-size:14.5px;line-height:1.55;}
+  .goal .gwhat{font-size:14px;color:var(--ink2);line-height:1.85;}
+  .goal .gpass{font-size:14px;color:var(--ink2);line-height:1.85;margin-top:5px;}
+  .goal .gpass b{color:#2c7255;}
+  .goal .gpath{font-size:12.5px;color:var(--sub);margin-top:11px;background:#f6f8fb;border-radius:7px;
+    padding:8px 12px;line-height:1.75;}
+  .goal .gpath b{color:var(--ink2);}
+
+  .scope{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .sbox{border:1px solid var(--hair);border-radius:11px;background:#fff;overflow:hidden;padding-bottom:14px;}
+  .sbox .sh{display:flex;align-items:center;gap:9px;padding:11px 17px;font-weight:700;font-size:14px;}
+  .sbox.in .sh{background:#e2f0ee;color:#15645c;} .sbox.out .sh{background:#eff2f4;color:#4d6c69;}
+  .sbox .sh .mk{width:22px;height:22px;border-radius:7px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;}
+  .sbox.in .sh .mk{background:#c9e5e1;} .sbox.out .sh .mk{background:#dfe4e8;}
+  .sbox ul{margin:12px 0 0;padding-left:34px;font-size:14px;color:var(--ink2);}
+  .sbox li{line-height:1.85;}
+  .sbox.in li::marker{color:#57a49c;} .sbox.out li::marker{color:#9aa8b4;}
+
+  .plan{border:1px solid var(--hair);border-radius:11px;padding:15px 18px;margin:11px 0;background:#fff;}
+  .plan:first-of-type{margin-top:0;}
+  .plan .ph{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin-bottom:6px;}
+  .plan .ph h4{margin:0;font-size:15px;font-weight:700;}
+  .plan .why{font-size:14px;color:var(--ink2);margin:0;line-height:1.88;} .plan .why b{color:var(--ink);}
+
+  .pbox{border:1px solid var(--hair);border-left:6px solid;border-radius:11px;padding:16px 19px;margin:12px 0;background:#fff;}
+  .pbox.p0{border-left-color:var(--pri0);} .pbox.p0 .idx{background:#fbe6e2;color:#a8352a;}
+  .pbox.p1{border-left-color:var(--pri1);} .pbox.p1 .idx{background:#fbf0dc;color:#8a5a12;}
+  .pbox.p2{border-left-color:var(--pri2);} .pbox.p2 .idx{background:#eef1f5;color:#5a6675;}
+  .pbox .ph{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin-bottom:8px;}
+  .pbox .ptitle{font-weight:700;font-size:15px;line-height:1.55;}
+  .pbox .gap-txt{font-size:14px;margin:4px 0 10px;color:var(--ink2);line-height:1.88;}
+
+  /* 衝突點：直接放在標題下方 */
+  .conflict{background:#fbeae7;border-radius:9px;padding:11px 15px;margin:2px 0 10px;
+    font-size:14.5px;line-height:1.85;color:#4a2c27;}
+  .conflict::before{content:"⚖ 需裁決的衝突點";display:block;font-size:11.5px;color:#a8564a;
+    font-weight:700;margin-bottom:4px;letter-spacing:.4px;}
+
+  /* FSD 原文：Accordion、小字、緊湊、無分隔線 */
+  details.fsd{border:1px solid var(--hair);border-radius:8px;background:#f7f9fc;margin:8px 0;overflow:hidden;}
+  details.fsd summary{list-style:none;cursor:pointer;padding:7px 13px;font-size:12px;font-weight:700;
+    color:#5f6b7d;display:flex;align-items:center;gap:8px;letter-spacing:.3px;}
+  details.fsd summary::-webkit-details-marker{display:none;}
+  details.fsd summary::after{content:"▾";margin-left:auto;font-size:11px;color:var(--sub);transition:.2s;}
+  details.fsd[open] summary::after{transform:rotate(180deg);}
+  details.fsd summary:hover{background:#f2f5f9;}
+  details.fsd .fb{padding:2px 13px 10px;font-size:12.5px;color:#4d5a6b;line-height:1.62;}
+  details.fsd .qh{font-weight:700;color:#3f4b5c;margin:6px 0 2px;}
+  details.fsd .fb .qh:first-child{margin-top:0;}
+  details.fsd .q{white-space:pre-wrap;margin:1px 0;padding-left:11px;}
+  details.fsd code{font-size:12.5px;font-weight:600;}
+
+  .suggest{background:#e9f4ee;border-radius:10px;padding:11px 15px;font-size:14px;line-height:1.9;margin-top:9px;color:#27503f;}
+  .suggest::before{content:"🔧 建議修正";display:block;font-size:11.5px;color:#2c7255;font-weight:700;margin-bottom:4px;letter-spacing:.4px;}
+  .ask{background:#fbf3e2;border-radius:10px;padding:12px 15px;font-size:14.5px;line-height:1.9;margin-top:9px;color:#4a3a1c;}
+  .ask::before{content:"📋 要問 PM 的";display:block;font-size:11.5px;color:#946318;font-weight:700;margin-bottom:5px;letter-spacing:.4px;}
+  .impact{font-size:13px;color:var(--sub);margin-top:10px;line-height:1.8;}
+  .impact b{color:var(--ink2);}
+  .note{background:#eaf1fb;border-radius:11px;padding:13px 16px;font-size:13.5px;color:var(--ink2);margin-top:14px;line-height:1.88;}
+  .note b{color:var(--ink);}
+
+  /* 一般 Accordion（定義／準則） */
+  details.acc{border:1px solid var(--hair);border-radius:10px;background:#fff;margin-bottom:9px;overflow:hidden;}
+  details.acc > summary{list-style:none;cursor:pointer;padding:11px 16px;display:flex;align-items:center;gap:10px;
+    font-size:13.5px;font-weight:700;color:var(--ink);background:#f7f9fc;}
+  details.acc > summary::-webkit-details-marker{display:none;}
+  details.acc > summary::after{content:"▾";margin-left:auto;color:var(--sub);font-size:12px;transition:.2s;}
+  details.acc[open] > summary::after{transform:rotate(180deg);}
+  details.acc > summary:hover{background:#f2f5f9;}
+  details.acc .ab{padding:12px 16px 14px;font-size:13.5px;color:var(--ink2);line-height:1.88;}
+  details.acc .ab .drow{padding:6px 0;} .details-sep{border-top:1px solid #eef1f5;}
+  details.acc .ab .drow + .drow{border-top:1px solid #eef1f5;}
+  details.acc .ab b{color:var(--ink);}
+  details.acc .vs{margin-top:9px;padding-top:9px;border-top:1px solid #eef1f5;font-size:13px;color:var(--sub);line-height:1.8;}
+  details.lv{border:1px solid var(--hair);border-radius:9px;background:#fff;margin:7px 0;overflow:hidden;}
+  details.lv summary{list-style:none;cursor:pointer;padding:9px 14px;display:flex;align-items:center;gap:10px;
+    font-size:13.5px;font-weight:600;color:var(--ink2);}
+  details.lv summary::-webkit-details-marker{display:none;}
+  details.lv summary::after{content:"▾";margin-left:auto;color:var(--sub);font-size:12px;transition:.2s;}
+  details.lv[open] summary::after{transform:rotate(180deg);}
+  details.lv summary:hover{background:#fafbfd;}
+  details.lv .ac{padding:0 14px 12px;font-size:13.5px;color:var(--ink2);line-height:1.88;}
+  details.lv .ac ul{margin:4px 0 0;padding-left:19px;} details.lv .ac li{margin:4px 0;}
+  .tiebreak{font-size:12.5px;color:var(--sub);line-height:1.8;margin:9px 0 0;}
+
+
+  details.fsd .qh{display:inline-flex;align-items:baseline;gap:5px;text-decoration:none;
+    color:#2f6fb0;border-bottom:1px dotted #a9c3de;}
+  details.fsd .qh:hover{color:#1d4f86;border-bottom-color:#2f6fb0;background:#eef4fb;}
+  details.fsd .qh .ext{font-size:10.5px;opacity:.75;}
+  .metaline .srcpage{color:#8fb6dd;text-decoration:none;border-bottom:1px dotted rgba(143,182,221,.55);}
+  .metaline .srcpage:hover{color:#c9def2;border-bottom-color:#c9def2;}
+  .pt{font-size:14px;color:var(--ink2);line-height:1.8;margin:2px 0 9px;}
+  .pt b{color:var(--ink);}
+  .foot{font-size:12.5px;color:var(--sub);text-align:center;margin-top:26px;line-height:1.95;}
+  .top{display:block;text-align:center;margin-top:12px;font-size:12.5px;color:var(--sub);text-decoration:none;}
+
+  @media (max-width:640px){
+    body{font-size:15px;} .wrap{padding:0 14px 60px;}
+    header.doc{margin:0 -14px 18px;padding:26px 20px 20px;} header.doc h1{font-size:19px;}
+    .metaline{gap:4px 20px;} .sechead{padding:12px 16px;} .secbody{padding:15px 16px 18px;}
+    .goals{grid-template-columns:1fr;} .scope{grid-template-columns:1fr;} .tagwrap{margin-left:0;width:100%;}
+  }
+  @media print{ body{background:#fff;} nav.toc,.top{display:none;}
+    section,.pbox,.goal,.plan,.sbox{break-inside:avoid;}
+    details{display:block;} details .ab,details .ac,details .fb{display:block;}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact;} }
+</style>
+</head>
+<body>
+<div class="wrap" id="top">
+
+<header class="doc">
+  <h1>SAMPLE-1001 [DEMO] 購物金最低折抵門檻</h1>
+  <div class="skillsig">AOCCQA-fsd-parser v1.3.3</div>
+  <div class="metaline">
+    <span class="i"><span class="k">抓取資料時間：</span><span class="v">2026/01/15</span></span>
+    <span class="i"><span class="k">文件版號：</span><span class="v">1.0（示範資料）</span></span>
+    <span class="i"><span class="k">最後更新時間：</span><span class="v">2026/01/10 09:30 +08:00</span></span>
+    <span class="i"><span class="k">文件編輯者：</span><span class="v">（示範）</span></span>
+    <span class="i"><span class="k">來源頁面：</span><span class="v">虛構範例，無實際來源</span></span>
+  </div>
+</header>
+
+<div class="bar">
+  <span class="chip ch-ok">✓ 文件狀態 Reviewed</span>
+  <span class="chip ch-pend">⚠ 規格缺漏 3 項（阻擋設計 1）</span>
+  <span class="chip ch-fix">✎ 規格衝突 2 項（阻擋設計 1）</span>
+</div>
+<nav class="toc">
+  <a href="#s1"><span class="d" style="background:var(--c-purpose)"></span>1 測試目的</a>
+  <a href="#s2"><span class="d" style="background:var(--c-scope)"></span>2 測試範圍</a>
+  <a href="#s3"><span class="d" style="background:var(--c-goal)"></span>3 測試目標</a>
+  <a href="#s4"><span class="d" style="background:var(--c-plan)"></span>4 測試規劃</a>
+  <a href="#s5"><span class="d" style="background:var(--c-pend)"></span>5 規格缺漏</a>
+  <a href="#s6"><span class="d" style="background:var(--c-fix)"></span>6 規格衝突</a>
+</nav>
+
+<div class="note" style="margin-top:16px">
+  <b>這是什麼？</b>本檔為 <code>AOCCQA-fsd-parser</code> 的<b>輸出格式示範</b>，用來展示 skill 產出的版面與六個章節結構。
+  文中的單號、功能、欄位、公式、提示文案、缺漏與衝突<b>全部為虛構</b>，不對應任何真實需求文件或系統，也不可作為測試依據。
+</div>
+
+<!-- 1 測試目的 -->
+<section class="s-purpose" id="s1">
+  <div class="sechead"><span class="n">1</span><h2>測試目的</h2></div>
+  <div class="secbody">
+    <p class="lead">驗證「購物金最低折抵門檻」上線後，<span class="chk">結帳時金額過小的購物金折抵能被正確擋下</span>，同時不影響正常折抵，以及各種例外情境（餘額為 0、查詢失敗、達折抵上限）的顯示與卡控都正確。</p>
+    <p>此功能由後台新欄位 <code>Min Store Credit Allowed</code> 控制，結帳頁依門檻決定「使用購物金」能否勾選與輸入。本示範的 Scope 為單一 Demo Website。</p>
+  </div>
+</section>
+
+<!-- 2 測試範圍 -->
+<section class="s-scope" id="s2">
+  <div class="sechead"><span class="n">2</span><h2>測試範圍</h2></div>
+  <div class="secbody">
+    <p class="sec-hint">標示：<span class="tg tg-in">包含</span> ＝ 本次需驗證；<span class="tg tg-out">不包含</span> ＝ 本次不驗證。</p>
+    <div class="scope">
+      <div class="sbox in">
+        <div class="sh"><span class="mk">✔</span>包含（本次驗證）</div>
+        <ul>
+          <li>後台 <code>Min Store Credit Allowed</code> 欄位設定與輸入卡控（≥1 正整數）</li>
+          <li>門檻計算：設定值與系統下限取較大者</li>
+          <li>結帳頁購物金區塊：達／未達門檻的停用與提示訊息</li>
+          <li>可折抵金額顯示位數（未達門檻小數 2 位／達門檻捨去至整數）</li>
+          <li>輸入框游標離開時的卡控與 <code>[下一步]</code> 二次卡控</li>
+          <li>既有停用情境回歸：餘額查詢失敗、餘額為 0、已達折抵上限</li>
+        </ul>
+      </div>
+      <div class="sbox out">
+        <div class="sh"><span class="mk">✘</span>不包含（本次不驗證）</div>
+        <ul>
+          <li>程式內部實作（寫法、SQL、效能最佳化）</li>
+          <li>與本次無關的效能／安全／自動化測試</li>
+          <li>折抵上限本身的計算邏輯（既有功能，非本次變更）</li>
+          <li>餘額查詢 API 的內部實作</li>
+          <li>排程（cron）作業：本示範為即時前端＋API 查詢，無排程</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 測試目標 -->
+<section class="s-goal" id="s3">
+  <div class="sechead"><span class="n">3</span><h2>測試目標</h2></div>
+  <div class="secbody">
+    <p class="sec-hint">給測試工程師：這次要打到下面四個點，每個都寫了「通過長怎樣」與驗證路徑。<span class="chk">黃底</span>＝依測試驗證需要<b>加強驗證</b>的重點。驗證路徑僅在原文明文寫出時照錄，其餘依章節結構定位並註明，不臆造。</p>
+    <div class="goals">
+
+      <div class="goal">
+        <div class="gh"><span class="gnum">1</span><span class="gtitle">後台設定欄位</span></div>
+        <div class="gwhat">門檻值能存起來、重載後保留；輸入限制生效。</div>
+        <div class="gpass"><b>通過：</b><span class="chk">只能填 1 以上整數</span>，其餘被擋；欄位下備註文字正確。</div>
+        <div class="gpath"><b>驗證路徑（示範 2.1 明文）：</b><code>Stores - Configuration - Demo - Store Credit - General Setting</code></div>
+      </div>
+
+      <div class="goal">
+        <div class="gh"><span class="gnum">2</span><span class="gtitle">門檻計算</span></div>
+        <div class="gwhat">結帳頁採用的門檻正確。</div>
+        <div class="gpass"><b>通過：</b>門檻＝「設定值」與「系統下限（示範為 1）」<span class="chk">取較大者</span>，並與後台設定同步。</div>
+        <div class="gpath"><b>驗證路徑：</b>結帳頁 → 購物金折抵區塊（原文未給前台路徑，依 3.2 Checkout Page 定位）</div>
+      </div>
+
+      <div class="goal">
+        <div class="gh"><span class="gnum">3</span><span class="gtitle">「使用購物金」狀態</span><span class="tagwrap"><span class="tg tg-ref">見缺漏 2</span></span></div>
+        <div class="gwhat">各情境該亮就亮、該擋就擋。</div>
+        <div class="gpass"><b>通過：</b>沒到門檻／查詢失敗／餘額為 0／已達折抵上限 時皆停用，且<span class="chk">四種情境各自顯示對應提示</span>。</div>
+        <div class="gpath"><b>驗證路徑：</b>結帳頁 → 使用購物金區塊（標題與提示訊息）</div>
+      </div>
+
+      <div class="goal">
+        <div class="gh"><span class="gnum">4</span><span class="gtitle">輸入框與 [下一步] 卡控</span><span class="tagwrap"><span class="tg tg-ref">見缺漏 1</span></span></div>
+        <div class="gwhat">非法值被擋、合法值才套用，且無法闖關。</div>
+        <div class="gpass"><b>通過：</b>負數／非整數／超出範圍／0／空白會跳提示且<span class="chk">不套用新輸入金額</span>；被卡控時按 <code>[下一步]</code> <span class="chk">一併攔阻</span>。</div>
+        <div class="gpath"><b>驗證路徑：</b>結帳頁 → 使用購物金輸入框（focus out 卡控）→ <code>[下一步]</code> 按鈕</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 4 測試規劃 -->
+<section class="s-plan" id="s4">
+  <div class="sechead"><span class="n">4</span><h2>測試規劃（依功能分類）</h2></div>
+  <div class="secbody">
+    <p class="sec-hint">依功能模組列出要涵蓋的面向與所需協助，作為後續展開 Test Case 的骨架；此處不寫個別案例。標籤置於各卡右上角。</p>
+
+    <div class="plan">
+      <div class="ph"><span class="idx">1</span><h4>後台設定</h4><span class="tagwrap"><span class="tg tg-new">新增</span><span class="tg tg-ok">可直接測</span></span></div>
+      <p class="why"><b>要涵蓋：</b>欄位存取與重載保留；輸入限制（≥1 正整數）、非法輸入（0／負／文字／小數）；備註文案。<b>需協助：</b>後台設定權限。</p>
+    </div>
+
+    <div class="plan">
+      <div class="ph"><span class="idx">2</span><h4>門檻計算</h4><span class="tagwrap"><span class="tg tg-new">新增</span><span class="tg tg-ok">可直接測</span></span></div>
+      <p class="why"><b>要涵蓋：</b>設定值 ≥ 系統下限、設定值 &lt; 系統下限 兩種取值；後台設定正確帶入結帳頁。</p>
+    </div>
+
+    <div class="plan">
+      <div class="ph"><span class="idx">3</span><h4>使用購物金狀態</h4><span class="tagwrap"><span class="tg tg-new">新增</span><span class="tg tg-old">含既有回歸</span><span class="tg tg-sup">需協助備料</span></span></div>
+      <p class="why"><b>要涵蓋：</b>五種狀態 — 正常（達門檻）／未達門檻／查詢失敗／餘額＝0／已達折抵上限；整合餘額查詢 API。<b>需協助：</b>造「已達上限」資料、模擬 API 失敗、備妥 0 元餘額帳號。</p>
+    </div>
+
+    <div class="plan">
+      <div class="ph"><span class="idx">4</span><h4>輸入框與 [下一步] 卡控</h4><span class="tagwrap"><span class="tg tg-new">新增</span><span class="tg tg-sup">需協助備料</span></span></div>
+      <p class="why"><b>要涵蓋：</b>預設帶值（Min{餘額, 上限}）；focus 離開判定；apply／覆蓋行為；資料涵蓋負數、非整數、超出範圍、0、空白、合法值、剛好等於門檻；被卡控時 <code>[下一步]</code> 一併攔阻。</p>
+    </div>
+
+    <div class="note"><b>資料來源限制（示範）：</b>此處用於展示「附件無法機器讀取」時 skill 會如何標注 —— <span class="chk">UI 實際文案請於撰寫 Expected Result 前回原始文件截圖逐字核對</span>。</div>
+  </div>
+</section>
+
+<!-- 5 規格缺漏 -->
+<section class="s-pend" id="s5">
+  <div class="sechead"><span class="n">5</span><h2>規格缺漏（文件沒寫，需 PM 補寫）</h2></div>
+  <div class="secbody">
+      <details class="acc"><summary>這一段收什麼？—「規格沒寫」的缺口</summary><div class="ab">
+        <div class="drow"><b>認定條件：</b>① 完全沒提這個情境或數值；② 有提到但沒定義判準；③ 引用了某項目但文件中找不到；④ 只寫正常情況，例外／邊界沒交代。</div>
+        <div class="drow"><b>處理方式：</b>PM <b>補寫</b>即可，原敘述不必更動。<b>與第 6 段的差別：</b>本段「沒寫」→ 請補充；第 6 段「寫了但打架」→ 請裁決哪個為準。</div></div></details>
+      <details class="acc"><summary>影響度判定準則（符合任一條即歸入該層級，由高往低判）</summary><div class="ab">
+        <details class="lv"><summary><span class="pri p0">高優先權｜阻擋設計</span>沒答案就寫不出測試案例</summary><div class="ac"><ul>
+          <li>不知道答案就<b>寫不出預期結果</b>，測項無法設計或執行。</li>
+          <li>會動到<b>已上線的功能</b>，弄錯可能讓原本正常的功能壞掉。</li>
+          <li>牽涉<b>金額怎麼算、能折多少、擋不擋得住</b>。</li>
+          <li>規格<b>兩處講法相反</b>且沒說聽哪邊。</li></ul></div></details>
+        <details class="lv"><summary><span class="pri p1">次優先｜影響精度</span>可以先猜著做，但猜錯要重工</summary><div class="ac"><ul>
+          <li>可<b>先用合理假設</b>寫下去，假設錯這批案例要重寫。</li>
+          <li>影響<b>邊界數值或提示文字</b>，主流程照樣測。</li>
+          <li>屬<b>較少人走到的路徑</b>或次要情境。</li></ul></div></details>
+        <details class="lv"><summary><span class="pri p2">可稍後｜不影響判定</span>不會影響過不過，之後再問就好</summary><div class="ac"><ul>
+          <li>答案是什麼都<b>不改變過或不過</b>，只影響文件可讀性。</li>
+          <li>可<b>邊測邊問</b>，不卡案例設計。</li></ul></div></details>
+        <p class="tiebreak"><b>同層排序：</b>影響金額或會員權益 &gt; 使用者多常走到 &gt; 與需求核心關聯度 &gt; 影響測項數。</p></div></details>
+
+      <div class="pbox p0">
+      <div class="ph"><span class="idx">1</span><span class="ptitle">判斷有沒有達 <code>購物金折抵門檻</code>，是拿哪個數字去比？</span><span class="tagwrap"><span class="pri p0">高優先權｜阻擋設計</span></span></div>
+      <div class="pt"><b>問題點：</b>未達門檻顯示到小數第 2 位、達門檻捨去至整數，但<b>判斷當下</b>用捨去前或捨去後的值沒寫；剛好等於門檻算不算「達」也沒定義。</div>
+      <details class="fsd"><summary>原文｜3.2 Checkout Page › 1) 購物金折抵區塊 › 購物金使用</summary><div class="fb"><div class="qh">3.2 Checkout Page ＞ 1) 購物金折抵區塊 ＞ 購物金使用</div><div class="q">・{可折抵金額} <b>未達 購物金折抵門檻</b></div><div class="q">　- disabled [使用購物金]選項</div><div class="q">　- 可折抵金額顯示位數 : 顯示至小數點第2位（第2位後無條件捨去）</div><div class="q">・{可折抵金額} <b>達 購物金折抵門檻</b></div><div class="q">　- 可折抵金額 : 無條件捨去至整數</div></div></details>
+      <div class="ask">用捨去前的小數金額比，還是捨去後的整數比？<code>{可折抵金額}</code> 剛好等於門檻時，算「達門檻、可以折」嗎？</div>
+      </div>
+
+      <div class="pbox p1">
+      <div class="ph"><span class="idx">2</span><span class="ptitle">多個 disabled 條件同時成立時，要顯示哪一則訊息？</span><span class="tagwrap"><span class="pri p1">次優先｜影響精度</span></span></div>
+      <div class="pt"><b>問題點：</b>四種 disabled 情境各有訊息，但未定義同時成立時的顯示順序（例如 <code>餘額=0</code> 必然也「未達門檻」）。</div>
+      <details class="fsd"><summary>原文｜3.2 Checkout Page › 1) 購物金折抵區塊 › 購物金使用</summary><div class="fb"><div class="qh">3.2 Checkout Page ＞ 1) 購物金折抵區塊 ＞ 購物金使用</div><div class="q">・餘額查詢失敗 時 → 顯示 &lt;I18N&gt;示範訊息 A</div><div class="q">・餘額=0 時 → 標題顯示 : 使用購物金 ( 0 元 )</div><div class="q">・{可折抵金額} 未達 購物金折抵門檻 → &lt;I18N&gt;示範訊息 B</div><div class="q">・已達折抵上限 時 → &lt;I18N&gt;示範訊息 C</div></div></details>
+      <div class="ask">請給一份 disabled 訊息的顯示優先順序：同時成立時顯示哪一則，還是併同顯示？</div>
+      </div>
+
+      <div class="pbox p2">
+      <div class="ph"><span class="idx">3</span><span class="ptitle">餘額查詢<b>逾時</b>算不算「失敗」？</span><span class="tagwrap"><span class="pri p2">可稍後｜不影響判定</span></span></div>
+      <div class="pt"><b>問題點：</b>只寫「查詢失敗」，未涵蓋逾時與是否重試。</div>
+      <details class="fsd"><summary>原文｜3.2 Checkout Page › 1) 購物金折抵區塊 › 購物金使用</summary><div class="fb"><div class="qh">3.2 Checkout Page ＞ 1) 購物金折抵區塊 ＞ 購物金使用</div><div class="q">・餘額查詢失敗 時</div><div class="q">　- disabled [使用購物金]選項</div><div class="q">　- 顯示 alert msg : &lt;I18N&gt;示範訊息 A</div><div class="q">（全段未提及逾時、重試）</div></div></details>
+      <div class="ask">逾時比照「失敗」處理嗎？有無自動重試，或重新整理後即可恢復？</div>
+      </div>
+  </div>
+</section>
+
+<!-- 6 規格衝突 -->
+<section class="s-fix" id="s6">
+  <div class="sechead"><span class="n">6</span><h2>規格衝突（同一份規格前後打架，需改掉一邊）</h2></div>
+  <div class="secbody">
+      <details class="acc"><summary>這一段收什麼？—「規格寫了，但兩處講法互相矛盾」</summary><div class="ab">
+        <div class="drow"><b>認定條件：</b>① 兩處對同一件事給出相反結論；② 兩條規則觸發條件會同時成立卻要求不同結果、且未定優先序；③ 同一東西用了兩種名稱；④ 章節編號或交叉引用指到不存在或錯誤的位置。</div>
+        <div class="drow"><b>處理方式：</b>PM 需<b>裁決以哪一邊為準並修改另一邊</b>，不能只用補充說明帶過。<b>各卡標題即為需裁決的問題。</b></div></div></details>
+
+      <div class="pbox p0">
+      <div class="ph"><span class="idx">1</span><span class="ptitle">以 <code>1.2 Purpose</code> 的「功能可開啟或關閉」為準，還是以 <code>2.1</code> 的「僅可輸入 ≥1 正整數」為準？</span><span class="tagwrap"><span class="pri p0">高優先權｜阻擋設計</span></span></div>
+      <div class="pt"><b>問題點：</b><code>1.2 Purpose</code>：功能可開啟或關閉　vs　<code>2.1</code>：僅可輸入 ≥1 正整數、且門檻取 <code>Max [ 系統下限 , 設定值 ]</code> → 門檻恆 ≥1，<b>無任何值可代表關閉</b>。</div>
+      <details class="fsd"><summary>原文｜1.2 Purpose ／ 2.1 Configuration Setting</summary><div class="fb"><div class="qh">1. 需求說明 ＞ 1.2 Purpose</div><div class="q">・需要可以設定多少錢以下的購物金不能折抵，但功能可開啟或關閉。</div><div class="qh">2. Functional Specifications ＞ 2.1 Configuration Setting</div><div class="q">・卡控 : 僅可輸入大於等於1的正整數</div><div class="qh">3.2 Checkout Page ＞ 購物金折抵門檻定義</div><div class="q">・Max [ 系統下限 , (Min Store Credit Allowed 設定值) ]</div></div></details>
+      <div class="suggest">新增獨立啟用開關；或允許欄位留空／填 0 代表關閉，並定義關閉後的 <code>購物金折抵門檻</code> 與折抵行為。</div>
+      </div>
+
+      <div class="pbox p1">
+      <div class="ph"><span class="idx">2</span><span class="ptitle"><code>{折抵上限金額}</code> 與 <code>{訂單折抵上限}</code> 是同一個值嗎？alert 上界以哪個為準？</span><span class="tagwrap"><span class="pri p1">次優先｜影響精度</span></span></div>
+      <div class="pt"><b>問題點：</b>輸入框範圍用 <code>{折抵上限金額}</code>　vs　alert 用 <code>{訂單折抵上限}</code>；兩者公式皆指向查無的段落，無法確認是否同一值。</div>
+      <details class="fsd"><summary>原文｜3.2 Checkout Page › 購物金使用（卡控訊息 vs 輸入框）</summary><div class="fb"><div class="qh">3.2 Checkout Page ＞ 購物金使用 ＞ 卡控判斷</div><div class="q">・輸入{購物金折抵門檻} ~ Min {[餘額], [折抵上限金額]} 以外的值(包含0) 或 欄位為空值 時</div><div class="q">　- alert msg : &lt;I18N&gt;可使用金額為{購物金折抵門檻}~{訂單折抵上限}元</div><div class="qh">3.2 Checkout Page ＞ 購物金使用（輸入框預設值）</div><div class="q">・輸入框預設帶出 Min {[餘額], [折抵上限金額]}</div></div></details>
+      <div class="suggest">統一為單一名稱（例如一律用 <code>折抵上限金額</code>），或於文件標注兩者為同一值。</div>
+      </div>
+  </div>
+</section>
+
+<p class="foot">本檔為 <b>AOCCQA-fsd-parser 輸出格式示範</b>，所有單號、功能、欄位、公式、文案、缺漏與衝突均為虛構，不對應任何真實需求文件、系統或組織，亦不可作為測試依據。真實產出會在此處附上來源文件的版本判讀說明與可點擊的章節對照連結。<br><span style="color:#9aa5b3">Generated by AOCCQA-fsd-parser v1.3.3</span></p>
+<a class="top" href="#top">↑ 回到頂端</a>
+
+</div>
+</body>
+</html>
