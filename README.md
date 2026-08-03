@@ -65,7 +65,7 @@ flowchart TD
     class KB,H aux;
 ```
 
-互動視覺版（含各步觸發詞、產出、每個情境的可展開流程圖）：[`diagrams/AOCCQA_workflow_and_scenarios.html`](diagrams/AOCCQA_workflow_and_scenarios.html)
+互動視覺版（含各步觸發詞、產出、每個情境的可展開流程圖）：[`diagrams/AOCCQA_workflow_and_scenarios.html`](https://verna0519.github.io/AOCC_QA_Skill_UseCase/diagrams/AOCCQA_workflow_and_scenarios.html)
 
 ---
 
@@ -102,7 +102,7 @@ flowchart TD
 
 ## 使用情境（不是每次都七支全用）
 
-同一條產線，依情境決定哪幾步會用、跳過或重複。互動視覺版見 [`diagrams/AOCCQA_workflow_and_scenarios.html`](diagrams/AOCCQA_workflow_and_scenarios.html)。
+同一條產線，依情境決定哪幾步會用、跳過或重複。互動視覺版見 [`diagrams/AOCCQA_workflow_and_scenarios.html`](https://verna0519.github.io/AOCC_QA_Skill_UseCase/diagrams/AOCCQA_workflow_and_scenarios.html)。
 
 | 情境 | 說明 | 使用的步驟 |
 |------|------|-----------|
@@ -137,9 +137,9 @@ flowchart TD
 
 ## 相關文件
 
-- **Skill 說明 · 工作流程 · 使用情境（互動版，推薦）**：[`diagrams/AOCCQA_workflow_and_scenarios.html`](diagrams/AOCCQA_workflow_and_scenarios.html) — 八支 skill 說明、各步觸發詞與產出、六情境含可展開流程圖
-- **流程圖（視覺版）**：[`diagrams/AOCCQA_flow_diagram.html`](diagrams/AOCCQA_flow_diagram.html) — 泳道 + 回流路徑 SVG
-- **角色與使用情境（視覺版）**：[`diagrams/AOCCQA_skill_roles_and_scenarios.html`](diagrams/AOCCQA_skill_roles_and_scenarios.html)
+- **Skill 說明 · 工作流程 · 使用情境（互動版，推薦）**：[`diagrams/AOCCQA_workflow_and_scenarios.html`](https://verna0519.github.io/AOCC_QA_Skill_UseCase/diagrams/AOCCQA_workflow_and_scenarios.html) — 八支 skill 說明、各步觸發詞與產出、六情境含可展開流程圖
+- **流程圖（視覺版）**：[`diagrams/AOCCQA_flow_diagram.html`](https://verna0519.github.io/AOCC_QA_Skill_UseCase/diagrams/AOCCQA_flow_diagram.html) — 泳道 + 回流路徑 SVG
+- **角色與使用情境（視覺版）**：[`diagrams/AOCCQA_skill_roles_and_scenarios.html`](https://verna0519.github.io/AOCC_QA_Skill_UseCase/diagrams/AOCCQA_skill_roles_and_scenarios.html)
 - [完整產線流程圖說明（文字版）](workflow.md)
 - [專案自訂指示（orchestration）](custom-instructions.md)
 - 各 skill 詳細說明見 [`docs/`](docs/)
