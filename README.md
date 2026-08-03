@@ -102,7 +102,7 @@ flowchart TD
 
 ## 使用情境（不是每次都七支全用）
 
-同一條產線，依情境決定哪幾步會用、跳過或重複。互動視覺版見 [`diagrams/AOCCQA_skill_roles_and_scenarios.html`](diagrams/AOCCQA_skill_roles_and_scenarios.html)。
+同一條產線，依情境決定哪幾步會用、跳過或重複。互動視覺版見 [`diagrams/AOCCQA_workflow_and_scenarios.html`](diagrams/AOCCQA_workflow_and_scenarios.html)。
 
 | 情境 | 說明 | 使用的步驟 |
 |------|------|-----------|
