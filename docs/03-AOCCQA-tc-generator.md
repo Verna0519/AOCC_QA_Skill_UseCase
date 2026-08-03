@@ -6,7 +6,7 @@
 - **上游**：`aoccqa-fsd-parser`（需求分析報告 / Requirement Matrix）＋ `aoccqa-rule-loader`（Rule Context / Rule ID）
 - **下游**：`aoccqa-quality-reviewer`（審查、刪重、補漏）→ `aoccqa-case-exporter`（輸出）
 - **附帶檔案**：`references/coverage-and-examples.md`（電商覆蓋維度、product type、在地化維度與完整範例）
-- **原始檔備份**：[`skills/aoccqa-tc-generator/`](../skills/aoccqa-tc-generator/)
+- **原始檔備份**：[`skills/AOCCQA-tc-generator/`](../skills/AOCCQA-tc-generator/)
 
 ## 定義
 

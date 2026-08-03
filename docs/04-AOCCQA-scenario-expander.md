@@ -4,7 +4,7 @@
 - **Phase / 產線位置**：Phase B｜補強環節（aoccqa-tc-generator 之後、aoccqa-quality-reviewer 之前）
 - **產線**：`aoccqa-fsd-parser` → `aoccqa-tc-generator` → **`aoccqa-scenario-expander`** → `aoccqa-quality-reviewer`
 - **附帶檔案**：無（知識庫查詢依賴 `aoccqa-knowledge-base`）
-- **原始檔備份**：[`skills/aoccqa-scenario-expander/`](../skills/aoccqa-scenario-expander/)
+- **原始檔備份**：[`skills/AOCCQA-scenario-expander/`](../skills/AOCCQA-scenario-expander/)
 
 ## 定義
 

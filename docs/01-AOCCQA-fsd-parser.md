@@ -4,7 +4,7 @@
 - **Phase / 產線位置**：Phase A｜步驟 1（需求輸入與分析），全線起點
 - **隸屬角色**：`AOCCQA-testcase-requirements-analyst`（需求拆解員）
 - **附帶檔案**：`references/report-template.html`（六段報告 HTML 骨架）
-- **原始檔備份**：[`skills/aoccqa-fsd-parser/`](../skills/aoccqa-fsd-parser/)
+- **原始檔備份**：[`skills/AOCCQA-fsd-parser/`](../skills/AOCCQA-fsd-parser/)
 
 ## 定義
 

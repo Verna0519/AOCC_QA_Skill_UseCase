@@ -73,16 +73,16 @@ flowchart TD
 
 | # | Skill | 版本 | Phase | 一句話定位 | 文件 |
 |---|-------|------|-------|-----------|------|
-| 1 | `AOCCQA-fsd-parser` | 1.3.2 | A | 把任何規格來源解析成給 PM 看的六段需求分析報告 | [docs](docs/01-aoccqa-fsd-parser.md) |
-| 2 | `AOCCQA-rule-loader` | 1.0.0 | A | 把散落的市場規則整理成可追溯的 Rule Context | [docs](docs/02-aoccqa-rule-loader.md) |
-| 3 | `AOCCQA-tc-generator` | 1.4.1 | B | 把已確認需求展開成 7 欄 Test Case 初稿 | [docs](docs/03-aoccqa-tc-generator.md) |
-| 4 | `AOCCQA-scenario-expander` | 1.0.2 | B | 對照合格 baseline 補強覆蓋缺口 | [docs](docs/04-aoccqa-scenario-expander.md) |
-| 5 | `AOCCQA-quality-reviewer` | 20.1.0 | B | 第二人視角獨立重讀原文，雙向查核報告 | [docs](docs/05-aoccqa-quality-reviewer.md) |
-| 6 | `AOCCQA-case-exporter` | 1.0.0 | C | 把案例＋Jira 單套官方模板匯出 xlsx | [docs](docs/06-aoccqa-case-exporter.md) |
-| 7 | `AOCCQA-knowledge-base` | 1.0.0 | 全程 | 跨功能知識庫（名詞/關係/測試點/歷史單），**不在流程順序內、全程可查** | [docs](docs/07-aoccqa-knowledge-base.md) |
-| 8 | `AOCCQA-decision-archiver` | 1.2.0 | D | 把確認出的功能定義與規則沉澱成知識條目（**設計中，尚未併入本 repo 備份**） | [docs](docs/10-aoccqa-decision-archiver.md) · [repo](https://github.com/Verna0519/AOCCQA-decision-archiver) |
+| 1 | `AOCCQA-fsd-parser` | 1.3.2 | A | 把任何規格來源解析成給 PM 看的六段需求分析報告 | [docs](docs/01-AOCCQA-fsd-parser.md) |
+| 2 | `AOCCQA-rule-loader` | 1.0.0 | A | 把散落的市場規則整理成可追溯的 Rule Context | [docs](docs/02-AOCCQA-rule-loader.md) |
+| 3 | `AOCCQA-tc-generator` | 1.4.1 | B | 把已確認需求展開成 7 欄 Test Case 初稿 | [docs](docs/03-AOCCQA-tc-generator.md) |
+| 4 | `AOCCQA-scenario-expander` | 1.0.2 | B | 對照合格 baseline 補強覆蓋缺口 | [docs](docs/04-AOCCQA-scenario-expander.md) |
+| 5 | `AOCCQA-quality-reviewer` | 20.1.0 | B | 第二人視角獨立重讀原文，雙向查核報告 | [docs](docs/05-AOCCQA-quality-reviewer.md) |
+| 6 | `AOCCQA-case-exporter` | 1.0.0 | C | 把案例＋Jira 單套官方模板匯出 xlsx | [docs](docs/06-AOCCQA-case-exporter.md) |
+| 7 | `AOCCQA-knowledge-base` | 1.0.0 | 全程 | 跨功能知識庫（名詞/關係/測試點/歷史單），**不在流程順序內、全程可查** | [docs](docs/07-AOCCQA-knowledge-base.md) |
+| 8 | `AOCCQA-decision-archiver` | 1.2.0 | D | 把確認出的功能定義與規則沉澱成知識條目（**設計中，尚未併入本 repo 備份**） | [docs](docs/10-AOCCQA-decision-archiver.md) · [repo](https://github.com/Verna0519/AOCCQA-decision-archiver) |
 
-> 1–6 為走產線主順序的核心 skill；第 7 支 `AOCCQA-knowledge-base` 不是流程中的一步，而是全程可查的共用知識庫；第 8 支 `AOCCQA-decision-archiver` 為產線最後的獨立步驟，設計中；已有獨立來源 repo（[AOCCQA-decision-archiver](https://github.com/Verna0519/AOCCQA-decision-archiver)，v1.2.0），但尚未併入本 repo 的原始檔備份區。所有 skill 顯示名稱統一為 `AOCCQA-*`（與各來源 repo 命名一致）；磁碟資料夾與呼叫路徑仍為小寫 `aoccqa-*`，本文件連結據此。
+> 1–6 為走產線主順序的核心 skill；第 7 支 `AOCCQA-knowledge-base` 不是流程中的一步，而是全程可查的共用知識庫；第 8 支 `AOCCQA-decision-archiver` 為產線最後的獨立步驟，設計中；已有獨立來源 repo（[AOCCQA-decision-archiver](https://github.com/Verna0519/AOCCQA-decision-archiver)，v1.2.0），但尚未併入本 repo 的原始檔備份區。所有 skill 名稱（含 `skills/` 資料夾與 `docs/` 檔名）統一為 `AOCCQA-*`；僅各 `SKILL.md` 內的 `name:`（實際呼叫 ID）維持小寫 `aoccqa-*`。
 
 ---
 

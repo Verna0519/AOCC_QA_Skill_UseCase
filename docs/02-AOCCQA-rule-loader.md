@@ -5,7 +5,7 @@
 - **上游**：`aoccqa-fsd-parser`（Requirement Matrix）→ 步驟 2 規格確認
 - **下游**：`aoccqa-tc-generator`（引用 Requirement ID / Rule ID）
 - **附帶檔案**：`agents/openai.yaml`（Codex/OpenAI agent 定義）
-- **原始檔備份**：[`skills/aoccqa-rule-loader/`](../skills/aoccqa-rule-loader/)
+- **原始檔備份**：[`skills/AOCCQA-rule-loader/`](../skills/AOCCQA-rule-loader/)
 
 ## 定義
 

@@ -4,7 +4,7 @@
 - **Phase / 產線位置**：全程可查（輔助 skill）
 - **資料**：權威原檔放 `references/`（13 個檔）
 - **附帶檔案**：`references/` — `kb_manifest.json`、`Definition_AOCCQA_glossary.json`（約 472K）、`Definition_AOCCQA_relations.json`、`Definition_AOCCQA_system_relations.json`、`Definition_AOCCQA_ecpages.json`、`Definition_AOCCQA_traceability.json`、`Reference_AOCCQA_quicklookup.json`、`QA_task_UAT-QA_classified.json`、`EU_FSD_latest_reference.json`、`Guide_AOCCQA_testpoint_library.json`、`Guide_AOCCQA_coverage_and_sequencing.json`、`Guide_AOCCQA_testcase_conventions.md`、`Guide_AOCCQA_workflow.md`
-- **原始檔備份**：[`skills/aoccqa-knowledge-base/`](../skills/aoccqa-knowledge-base/)
+- **原始檔備份**：[`skills/AOCCQA-knowledge-base/`](../skills/AOCCQA-knowledge-base/)
 
 ## 定義
 

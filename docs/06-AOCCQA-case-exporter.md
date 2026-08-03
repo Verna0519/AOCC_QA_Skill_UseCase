@@ -4,7 +4,7 @@
 - **Phase / 產線位置**：Phase C｜共用工具（任何階段可獨立呼叫），與 aoccqa-decision-archiver 無關聯
 - **性質**：確定性格式化工具（人工指令觸發、Agent 執行）
 - **附帶檔案**：`assets/Test_Case_Template_Claude.xlsx`（AOCC 官方模板）、`scripts/export_test_cases.py`（匯出腳本）
-- **原始檔備份**：[`skills/aoccqa-case-exporter/`](../skills/aoccqa-case-exporter/)
+- **原始檔備份**：[`skills/AOCCQA-case-exporter/`](../skills/AOCCQA-case-exporter/)
 
 ## 定義
 

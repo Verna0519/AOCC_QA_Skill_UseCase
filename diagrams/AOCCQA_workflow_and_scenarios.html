@@ -214,7 +214,7 @@
 
 <!-- ================= §1 八支 Skill 說明 ================= -->
 <h2><span class="idx">§1</span> 八支 Skill 說明</h2>
-<div class="note">名稱統一為 <code>AOCCQA-*</code>（顯示統一大寫前綴；磁碟資料夾／呼叫路徑仍為小寫 aoccqa-*）。每支列出<b>功能邏輯</b>、<b>解決哪些問題</b>、以及<b>與其他支的關聯／可互用之處</b>。1–6 走產線主順序，7 全程可查，8 為產線最後的獨立步驟。</div>
+<div class="note">名稱統一為 <code>AOCCQA-*</code>（含 skills/ 資料夾與 docs/ 檔名；僅各 SKILL.md 的 name: 呼叫 ID 仍為小寫 aoccqa-*）。每支列出<b>功能邏輯</b>、<b>解決哪些問題</b>、以及<b>與其他支的關聯／可互用之處</b>。1–6 走產線主順序，7 全程可查，8 為產線最後的獨立步驟。</div>
 <div id="skilllist"></div>
 
 <!-- ================= §2 工作流程 ================= -->
@@ -276,7 +276,7 @@ const SKILLS=[
   logic:"拿一份「合格的既有測案 baseline」找出有證據的覆蓋缺口，前景化「狀態流轉 × 身分別（Guest／Member）」兩軸、再掃其餘維度，輸出補充案例草稿。擴充的是「測試邏輯」，不是產品需求。",
   solves:"既有／改版功能已有測案，要補漏測（尤其狀態轉換、身分別、非法操作）；或補強一份已獨立審過的 tc-generator 草稿的覆蓋深度。",
   relates:"必須要有「合格 baseline」才能跑（無 baseline → 回 Needs Baseline，改走 <b>tc-generator</b>）；產出一律交回 <b>quality-reviewer</b>。查名詞／連動依賴 <b>knowledge-base</b>。不建第一版、不解析原文、不靜默改既有案例。"},
- {num:"5",name:"AOCCQA-quality-reviewer",zh:"品質審查（Gate 2）",phase:"Phase B · 回饋節點③",kind:"",note:"版本 v20.1.0（備份資料夾 aoccqa-quality-reviewer-v201）",
+ {num:"5",name:"AOCCQA-quality-reviewer",zh:"品質審查（Gate 2）",phase:"Phase B · 回饋節點③",kind:"",note:"版本 v20.1.0（備份資料夾 AOCCQA-quality-reviewer-v201）",
   logic:"擔任獨立第二人視角：用「與 parser 完全同一份原始 INPUT」自己重讀一次，先在看報告前獨立推導應有測項，再對六段報告做四向比對，輸出 A／B／C 三段報告＋交付判定＋差異指令。執行順序固定（順序本身就是防錯機制）。",
   solves:"放行前需要有人「用原文再對一次」，確認沒漏測、沒捏造、技術值沒抄錯。",
   relates:"與 <b>fsd-parser</b> 並列為能讀原始檔的關卡，但<b>刻意「不吃 Requirement Matrix」</b>（避免沿用 parser 視角一起漏）——這是與其他支最關鍵的隔離設計（鐵則③）。以 <b>knowledge-base</b> 的 12 涵蓋維度輔助推導。只提問題、不改報告、不判 Pass／Fail；取不到原文 → BLOCKED。"},

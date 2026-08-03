@@ -3,7 +3,7 @@
 - **版本**：20.1.0（frontmatter `metadata.version`；skill 名 `aoccqa-quality-reviewer-v201`，另有舊版 `aoccqa-quality-reviewer`）
 - **Phase / 產線位置**：Phase B / Gate 2（審查放行），回饋節點 ③
 - **附帶檔案**：無（知識庫 12 維查詢依賴 `aoccqa-knowledge-base`）
-- **原始檔備份**：[`skills/aoccqa-quality-reviewer-v201/`](../skills/aoccqa-quality-reviewer-v201/)
+- **原始檔備份**：[`skills/AOCCQA-quality-reviewer-v201/`](../skills/AOCCQA-quality-reviewer-v201/)
 
 ## 定義
 
