@@ -182,7 +182,7 @@
 <header>
   <h1>AOCCQA — Skill 說明、工作流程與使用情境</h1>
   <div class="sub">八支 skill 各自在做什麼、彼此怎麼接；預期工作流程（含觸發與產出）；以及六個實際使用情境。</div>
-  <div class="meta">ASUS EC（Magento）QA 測試案例產線 ｜ skill 名稱統一為 <code>aoccqa-*</code> ｜ 對象：QA 新進 / 委外 / 流程導入</div>
+  <div class="meta">ASUS EC（Magento）QA 測試案例產線 ｜ skill 名稱統一為 <code>AOCCQA-*</code> ｜ 對象：QA 新進 / 委外 / 流程導入</div>
 </header>
 
 <!-- ================= §0 三大鐵則（白話） ================= -->
@@ -214,7 +214,7 @@
 
 <!-- ================= §1 八支 Skill 說明 ================= -->
 <h2><span class="idx">§1</span> 八支 Skill 說明</h2>
-<div class="note">名稱統一為 <code>aoccqa-*</code>（小寫，即實際呼叫名）。每支列出<b>功能邏輯</b>、<b>解決哪些問題</b>、以及<b>與其他支的關聯／可互用之處</b>。1–6 走產線主順序，7 全程可查，8 為產線最後的獨立步驟。</div>
+<div class="note">名稱統一為 <code>AOCCQA-*</code>（顯示統一大寫前綴；磁碟資料夾／呼叫路徑仍為小寫 aoccqa-*）。每支列出<b>功能邏輯</b>、<b>解決哪些問題</b>、以及<b>與其他支的關聯／可互用之處</b>。1–6 走產線主順序，7 全程可查，8 為產線最後的獨立步驟。</div>
 <div id="skilllist"></div>
 
 <!-- ================= §2 工作流程 ================= -->
@@ -227,16 +227,16 @@
 <div class="flow">
   <div id="pipeline"></div>
   <div class="kb">
-    🔎 <b>aoccqa-knowledge-base（第 7 支）</b> 不在流程順序裡，而是<b>全程可查</b>的共用知識庫：上面任何一步遇到名詞、狀態值、金額公式、系統連動不清楚時，都可查它（只取需要的那幾筆）。
+    🔎 <b>AOCCQA-knowledge-base（第 7 支）</b> 不在流程順序裡，而是<b>全程可查</b>的共用知識庫：上面任何一步遇到名詞、狀態值、金額公式、系統連動不清楚時，都可查它（只取需要的那幾筆）。
   </div>
   <div class="kb arch">
-    🗄 <b>aoccqa-decision-archiver（第 8 支 · 設計中）</b> 產線最後、<b>QA 判定後</b>的獨立步驟：把這次確認出的功能定義與規則沉澱成知識條目，供未來查閱。與 case-exporter <b>互不依賴</b>（出檔不必歸檔、歸檔也不靠出檔）。
+    🗄 <b>AOCCQA-decision-archiver（第 8 支 · 設計中）</b> 產線最後、<b>QA 判定後</b>的獨立步驟：把這次確認出的功能定義與規則沉澱成知識條目，供未來查閱。與 case-exporter <b>互不依賴</b>（出檔不必歸檔、歸檔也不靠出檔）。
   </div>
 </div>
 
 <!-- ================= §3 使用情境 ================= -->
 <h2><span class="idx">§3</span> 使用情境</h2>
-<div class="note">同一條產線，依情境決定哪幾步會用、跳過或重複——不是每次都七支全用。每個情境含<b>真實功能實例</b>（取自 aoccqa-knowledge-base）、<b>知識庫參照</b>，以及<b>「為什麼跳過仍完整」</b>的理由。每列色塊對應上方流程的同一步。</div>
+<div class="note">同一條產線，依情境決定哪幾步會用、跳過或重複——不是每次都七支全用。每個情境含<b>真實功能實例</b>（取自 AOCCQA-knowledge-base）、<b>知識庫參照</b>，以及<b>「為什麼跳過仍完整」</b>的理由。每列色塊對應上方流程的同一步。</div>
 <div class="keylegend">
   <span><i class="lg-use">會用</i> 這情境會執行</span>
   <span><i class="lg-human">人工關卡</i> QA/PM 判斷</span>
@@ -260,35 +260,35 @@
 <script>
 /* ================= §1 八支 Skill 說明 ================= */
 const SKILLS=[
- {num:"1",name:"aoccqa-fsd-parser",zh:"需求解析",phase:"Phase A · 起點",kind:"",
+ {num:"1",name:"AOCCQA-fsd-parser",zh:"需求解析",phase:"Phase A · 起點",kind:"",
   logic:"把任何形式的規格來源（Confluence FSD、Jira、Excel、截圖、Figma、API、貼上的文字）讀懂，忠實反映「最終版」（處理刪除線／紅字／修訂），輸出固定六段的需求分析報告（自包含 HTML），並把每一點分成「已定義／需釐清／邏輯矛盾」三態。",
   solves:"看不懂這份規格要測什麼、規格有沒有缺漏或前後矛盾、改版後哪個才是最終版、截圖與內文對不上、把要問 PM／RD 的釐清問題一次整理好。",
   relates:"與 <b>quality-reviewer</b> 並列為全線僅有的兩個能讀原始檔的關卡。下游＝規格確認 → rule-loader／tc-generator；產出會被 quality-reviewer 以第二人視角重新查核。已內含原 analysis-report，不需再搭配其他 skill。"},
- {num:"2",name:"aoccqa-rule-loader",zh:"規則整備",phase:"Phase A · 回饋節點①",kind:"",
+ {num:"2",name:"AOCCQA-rule-loader",zh:"規則整備",phase:"Phase A · 回饋節點①",kind:"",
   logic:"把已確認的市場規則，按「當前這輪涉及的市場」切片，整理成可追溯的 Rule Context（每條要答：規則是什麼／在哪何時適用／哪份證據授權／可不可靠到能定 Pass-Fail）。輸出三件：Normalized Rule Context、Rule Applicability Matrix、Missing／Conflict Rule Register。",
   solves:"同一功能要上多國時，Pass／Fail 會因幣別／語系／資格／時區／後台設定不同——先把規則講清楚，避免產案時各國規則混用。",
   relates:"上游＝<b>fsd-parser</b> 的需求＋規格確認；下游＝<b>tc-generator</b>（引用 Rule ID）。不解析原文、不替 PM 決定、缺規則時不用別國規則頂替（回退補件）。需求自足時回「No Additional Rule Loading Required」→ 可整支跳過。"},
- {num:"3",name:"aoccqa-tc-generator",zh:"案例起草",phase:"Phase B",kind:"",
+ {num:"3",name:"AOCCQA-tc-generator",zh:"案例起草",phase:"Phase B",kind:"",
   logic:"把已確認需求＋規則展開成第一版「可執行、可追溯、不重複」的 Test Case（固定 7 欄，Test result 留空）。重點在測試設計（正／負／邊界／狀態流轉覆蓋），引用 Requirement／Rule ID，不重讀原文。",
   solves:"需求與規則都確認好，要一次把測試覆蓋規劃出來；新功能沒有既有測案時，這是產「第一版」的正確入口。",
   relates:"上游＝<b>fsd-parser</b>＋<b>rule-loader</b>；下游＝<b>quality-reviewer</b> → <b>case-exporter</b>。不執行測試、不判 Pass／Fail、不刪改既有案例（疑似重複只標記交 reviewer）。既有案例補強改用 <b>scenario-expander</b>。"},
- {num:"4",name:"aoccqa-scenario-expander",zh:"情境擴充",phase:"Phase B · 補強",kind:"",
+ {num:"4",name:"AOCCQA-scenario-expander",zh:"情境擴充",phase:"Phase B · 補強",kind:"",
   logic:"拿一份「合格的既有測案 baseline」找出有證據的覆蓋缺口，前景化「狀態流轉 × 身分別（Guest／Member）」兩軸、再掃其餘維度，輸出補充案例草稿。擴充的是「測試邏輯」，不是產品需求。",
   solves:"既有／改版功能已有測案，要補漏測（尤其狀態轉換、身分別、非法操作）；或補強一份已獨立審過的 tc-generator 草稿的覆蓋深度。",
   relates:"必須要有「合格 baseline」才能跑（無 baseline → 回 Needs Baseline，改走 <b>tc-generator</b>）；產出一律交回 <b>quality-reviewer</b>。查名詞／連動依賴 <b>knowledge-base</b>。不建第一版、不解析原文、不靜默改既有案例。"},
- {num:"5",name:"aoccqa-quality-reviewer",zh:"品質審查（Gate 2）",phase:"Phase B · 回饋節點③",kind:"",note:"實際 skill 名：aoccqa-quality-reviewer-v201（v20.1.0）",
+ {num:"5",name:"AOCCQA-quality-reviewer",zh:"品質審查（Gate 2）",phase:"Phase B · 回饋節點③",kind:"",note:"版本 v20.1.0（備份資料夾 aoccqa-quality-reviewer-v201）",
   logic:"擔任獨立第二人視角：用「與 parser 完全同一份原始 INPUT」自己重讀一次，先在看報告前獨立推導應有測項，再對六段報告做四向比對，輸出 A／B／C 三段報告＋交付判定＋差異指令。執行順序固定（順序本身就是防錯機制）。",
   solves:"放行前需要有人「用原文再對一次」，確認沒漏測、沒捏造、技術值沒抄錯。",
   relates:"與 <b>fsd-parser</b> 並列為能讀原始檔的關卡，但<b>刻意「不吃 Requirement Matrix」</b>（避免沿用 parser 視角一起漏）——這是與其他支最關鍵的隔離設計（鐵則③）。以 <b>knowledge-base</b> 的 12 涵蓋維度輔助推導。只提問題、不改報告、不判 Pass／Fail；取不到原文 → BLOCKED。"},
- {num:"6",name:"aoccqa-case-exporter",zh:"案例匯出",phase:"Phase C · 共用工具",kind:"",
+ {num:"6",name:"AOCCQA-case-exporter",zh:"案例匯出",phase:"Phase C · 共用工具",kind:"",
   logic:"把「案例產生器的 7 欄輸出」＋「一張 Jira 單」套進 AOCC 官方 xlsx 模板匯出（Report 分頁自動帶 Jira 資訊）。純搬運與套版：不判斷、不篩選、不改寫、公式不動，抓不到的欄位留白並回報。",
   solves:"定稿後要交付一份符合官方模板、Report 帶好 Jira 資訊的 xlsx；或任何階段先把目前案例打包成 Excel 存查。",
   relates:"<b>任何階段可獨立呼叫</b>、不靠上游（純下游格式化工具）；與 <b>decision-archiver</b> 互不依賴。輸入來自 <b>tc-generator</b>／<b>scenario-expander</b> 定稿後的案例。"},
- {num:"7",name:"aoccqa-knowledge-base",zh:"跨功能知識庫",phase:"全程可查 · 輔助",kind:"aux",
+ {num:"7",name:"AOCCQA-knowledge-base",zh:"跨功能知識庫",phase:"全程可查 · 輔助",kind:"aux",
   logic:"ASUS EC（Magento）的跨功能知識庫：名詞（626 詞）、前後台關係（238）、AOM／Magento／EC 三層關係、EC 頁面（27）、功能追溯（24）、QA 歷史單（776）、測試點素材、涵蓋／順序準則。鐵則「只查不載」：先讀 manifest 決定開哪個檔，再用 jq／grep 撈需要的那幾筆。",
   solves:"名詞／公式／錯誤訊息不懂、某後台設定連動前台哪裡、跨系統資料流、某頁有哪些區塊、某功能歷史測過哪些／有無回歸單、測項格式規範。",
   relates:"<b>不在流程順序內</b>，全程可被任何一支查：<b>tc-generator</b> 取測試點素材、<b>scenario-expander</b>／<b>quality-reviewer</b> 推導 12 涵蓋維度。只回濃縮結果，找不到就明講「庫內沒有」，不臆測。"},
- {num:"8",name:"aoccqa-decision-archiver",zh:"決策歸檔",phase:"Phase D · 最後步驟",kind:"arch",warn:"尚未建立為 skill（設計定義）",
+ {num:"8",name:"AOCCQA-decision-archiver",zh:"決策歸檔",phase:"Phase D · 最後步驟",kind:"arch",warn:"尚未建立為 skill（設計定義）",
   logic:"把這次的需求內容＋Gate 1 澄清的規則＋reviewer 查核確認的行為定義，整理成「以功能為單位」的知識條目草稿；交 QA 人工確認「要不要存、歸在哪一類」後才寫入 .md，內容以「未來可被 AI 檢索」為目標。",
   solves:"讓「這次確認出來的功能定義與規則解釋」沉澱成知識，下次同功能的分析可直接引用，不必每次重新釐清。",
   relates:"與 <b>case-exporter</b> 是分開的兩件事（一個累積知識、一個是本次測試產出），<b>互不依賴</b>。素材來自 <b>fsd-parser</b>／<b>quality-reviewer</b> 的確認結果。⚠️ 目前為設計定義，SKILL.md 尚未建立，儲存位置與分類方式未定案。"}
@@ -314,21 +314,21 @@ SKILLS.forEach(k=>{
 
 /* ================= §2 流程節點 ================= */
 const NODES = [
-  {id:"parser",  actor:"Skill",  qa:false, short:"aoccqa-fsd-parser",       nm:"① aoccqa-fsd-parser",       ds:"解析全部來源，原始檔只在這裡讀一次", out:"需求清單 + 釐清問題",
+  {id:"parser",  actor:"Skill",  qa:false, short:"AOCCQA-fsd-parser",       nm:"① AOCCQA-fsd-parser",       ds:"解析全部來源，原始檔只在這裡讀一次", out:"需求清單 + 釐清問題",
     trig:["幫我做測試需求分析","這份 FSD／PRD 要測什麼","規格有沒有缺漏／矛盾","改版了、最終版是哪個","截圖跟內文對不上"]},
   {id:"confirm", actor:"QA + PM",qa:true,  short:"規格確認",                nm:"規格確認（人工）",          ds:"唯一必經人工關卡，沒結論不往下",     out:"釐清結論", human:true,
     cond:"觸發時機：parser 產出釐清清單後，QA 帶問題找 PM／RD 確認。非指令觸發，是流程強制關卡（鐵則②）。"},
-  {id:"rule",    actor:"Skill",  qa:false, short:"aoccqa-rule-loader",      nm:"② aoccqa-rule-loader",      ds:"只載這次涉及的市場規則",             out:"規則清單 Rule Context",
+  {id:"rule",    actor:"Skill",  qa:false, short:"AOCCQA-rule-loader",      nm:"② AOCCQA-rule-loader",      ds:"只載這次涉及的市場規則",             out:"規則清單 Rule Context",
     trig:["這功能要上哪些國家／站台","各國幣別／稅／語系／時區規則","Guest／Member／Admin 權限規則","哪些後台設定影響 Pass／Fail"]},
-  {id:"tc",      actor:"Skill",  qa:false, short:"aoccqa-tc-generator",     nm:"③ aoccqa-tc-generator",     ds:"引用需求 ID，不重開原始檔",          out:"第一版 Test Case + 追溯表",
+  {id:"tc",      actor:"Skill",  qa:false, short:"AOCCQA-tc-generator",     nm:"③ AOCCQA-tc-generator",     ds:"引用需求 ID，不重開原始檔",          out:"第一版 Test Case + 追溯表",
     trig:["幫我寫測試案例","產 test case／測項初稿","規劃測試覆蓋","正向／負向／邊界要測什麼","把 Requirement 轉成測項"]},
-  {id:"expand",  actor:"Skill",  qa:false, short:"aoccqa-scenario-expander",nm:"④ aoccqa-scenario-expander",ds:"以既有案例為底，補覆蓋缺口",        out:"補強案例草稿",
+  {id:"expand",  actor:"Skill",  qa:false, short:"AOCCQA-scenario-expander",nm:"④ AOCCQA-scenario-expander",ds:"以既有案例為底，補覆蓋缺口",        out:"補強案例草稿",
     trig:["舊測案不夠完整、想補測項","回歸測試要補哪些","狀態轉換／身分別有沒有漏測","拿既有 xlsx 補強覆蓋"]},
-  {id:"review",  actor:"Skill",  qa:false, short:"aoccqa-quality-reviewer", nm:"⑤ aoccqa-quality-reviewer", ds:"只用原文查核，不看需求清單",         out:"三段報告 + 交付判定",
+  {id:"review",  actor:"Skill",  qa:false, short:"AOCCQA-quality-reviewer", nm:"⑤ AOCCQA-quality-reviewer", ds:"只用原文查核，不看需求清單",         out:"三段報告 + 交付判定",
     trig:["幫我審這份分析報告","有沒有漏測","有沒有捏造／超出文件的測項","技術值／公式／錯誤訊息有沒有抄錯","Gate 2 審查"]},
   {id:"verdict", actor:"QA",     qa:true,  short:"判定處置",                nm:"判定處置（人工）",          ds:"接受 / 不接受(記理由) / 需再確認",   out:"定稿案例清單", human:true,
     cond:"觸發時機：reviewer 交付判定後，QA 決定 接受／不接受(記理由)／需再確認。人工決策，非指令觸發。"},
-  {id:"export",  actor:"Skill",  qa:false, short:"aoccqa-case-exporter",    nm:"⑥ aoccqa-case-exporter",    ds:"任何階段可單獨叫，需附 Jira 單",     out:"xlsx 交付檔 + 欄位狀況",
+  {id:"export",  actor:"Skill",  qa:false, short:"AOCCQA-case-exporter",    nm:"⑥ AOCCQA-case-exporter",    ds:"任何階段可單獨叫，需附 Jira 單",     out:"xlsx 交付檔 + 欄位狀況",
     trig:["案例匯出成 Excel","套 AOCC 官方模板","產 Test_Case 檔","接 Jira 單打包成交付檔"]}
 ];
 
@@ -347,8 +347,8 @@ const SCN = [
    kbref:"覆蓋改由 tc-generator 對照 <b>12 個涵蓋維度</b> 逐項建齊，reviewer 再獨立重讀原文查漏。",
    states:{parser:"use",confirm:"use",rule:"skip",tc:"use",expand:"skip",review:"use",verdict:"use",export:"use"},
    skipwhy:[
-     {s:"aoccqa-rule-loader", why:"只有單一市場 → 沒有「跨市場規則差異」要載。它的產出（跨市場 Rule Applicability Matrix）在單市場下退化成單一列，該市場規則已包含在 parser 的需求裡，跳過<b>不會少掉任何規則資訊</b>。"},
-     {s:"aoccqa-scenario-expander", why:"expander 的設計前提是「要有既有案例當 baseline」才能比對缺口；無底可比。覆蓋完整性改由 <b>tc-generator（對照 12 涵蓋維度建齊）＋ reviewer（獨立查漏）</b> 兩關共同保證，不靠補強一樣完整。"}
+     {s:"AOCCQA-rule-loader", why:"只有單一市場 → 沒有「跨市場規則差異」要載。它的產出（跨市場 Rule Applicability Matrix）在單市場下退化成單一列，該市場規則已包含在 parser 的需求裡，跳過<b>不會少掉任何規則資訊</b>。"},
+     {s:"AOCCQA-scenario-expander", why:"expander 的設計前提是「要有既有案例當 baseline」才能比對缺口；無底可比。覆蓋完整性改由 <b>tc-generator（對照 12 涵蓋維度建齊）＋ reviewer（獨立查漏）</b> 兩關共同保證，不靠補強一樣完整。"}
    ],
    key:"跳過 rule-loader 與 scenario-expander，覆蓋由 tc-generator＋reviewer 撐住。"},
   {n:"3", title:"既有成熟功能異動 × 以既有案例為底做補強", badge:"以補強為主",
@@ -357,7 +357,7 @@ const SCN = [
    kbref:"以既有案例為 <b>Coverage Baseline</b>，只補新增缺口：<b>新狀態轉換 · 新身分別（Guest／Member）· 新邊界值</b>。",
    states:{parser:"use",confirm:"use",rule:"use",tc:"skip",expand:"use",review:"use",verdict:"use",export:"use"},
    skipwhy:[
-     {s:"aoccqa-tc-generator", why:"第一版案例早已存在且通過，重建會打掉既有<b>編號與追溯</b>、徒增風險。改走 scenario-expander 只對「差異」補測 → 最終覆蓋＝<b>既有案例（維持）＋ 差異補強</b>，是完整覆蓋而非少測。"}
+     {s:"AOCCQA-tc-generator", why:"第一版案例早已存在且通過，重建會打掉既有<b>編號與追溯</b>、徒增風險。改走 scenario-expander 只對「差異」補測 → 最終覆蓋＝<b>既有案例（維持）＋ 差異補強</b>，是完整覆蓋而非少測。"}
    ],
    key:"跳過 tc-generator（不重建第一版），改走 scenario-expander 補缺口。"},
   {n:"4", title:"規格資料不足 × parser 判 BLOCKED，早停補件", badge:"只用一支",
