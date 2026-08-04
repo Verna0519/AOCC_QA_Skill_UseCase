@@ -121,6 +121,8 @@ flowchart TD
 
 [`skills/`](skills/) 收錄 7 支 skill 的原始 `SKILL.md` 與其 references／scripts／assets，作為版本備份：
 
+> ✅ **版本同步查核（2026-08-03）**：7 支備份已**逐檔（byte-for-byte）與各來源 repo `main` 最新版比對一致**。清單：fsd-parser `v1.3.3`、tc-generator `v1.4.1`、quality-reviewer `v20.1.0`、scenario-expander `v1.0.2`、rule-loader / case-exporter / knowledge-base 各 `v1.0.0`。（decision-archiver `v1.2.0` 設計中，未併入。）
+
 | Skill | 版本 | 來源 Repo | 附帶檔案 |
 |-------|------|-----------|---------|
 | `AOCCQA-fsd-parser` | 1.3.3 | [AOCCQA-fsd-parser](https://github.com/Verna0519/AOCCQA-fsd-parser) | `references/report-template.html`、`examples/SAMPLE-1001_需求分析範例_v1.3.3.html` |
